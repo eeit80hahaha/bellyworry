@@ -1,4 +1,4 @@
-package ranking.model.dao;
+package school.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,35 +8,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ranking.model.HeroDAO;
-import ranking.model.HeroVO;
+import school.model.ExamDAO;
 import school.model.ExamVO;
 
-public class HeroDAOJdbc implements HeroDAO {
+public class ExamDAOJdbc implements ExamDAO {
 
 	private static final String URL = "jdbc:sqlserver://192.168.149.128:1433;database=bellyworry";
 	private static final String USERNAME = "sa";
 	private static final String PASSWORD = "sa123456";
 	
-	
-	private static final String SELECT_BY_NO = "select memberNo, weightDiff, num from hero where memberNo=?";
+	private static final String SELECT_BY_NO = "select no, content, correct, optA, optB, optC "
+			+ "from exam where No=?";
 	@Override
-	public HeroVO selectByPrimaryKey(int memberNo) {
-		HeroVO result = null;
+	public ExamVO selectByPrimaryKey(int no) {
+		ExamVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
-			stmt.setInt(1, memberNo);
+			stmt.setLong(1, no);
 			rset = stmt.executeQuery();
 			if(rset.next())
 			{	
-				result = new HeroVO();
-				result.setMemberNo(rset.getInt(1));
-				result.setWeightDiff(rset.getDouble(2));
-				result.setNum(rset.getInt(3));
+				result = new ExamVO();
+				result.setNo(rset.getInt(1));
+				result.setContent(rset.getString(2));
+				result.setCorrect(rset.getString(3));
+				result.setOptA(rset.getString(4));
+				result.setOptB(rset.getString(5));
+				result.setOptC(rset.getString(6));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,12 +67,12 @@ public class HeroDAOJdbc implements HeroDAO {
 		}
 		return result;
 	}
-
 	
-	private static final String SELECT_ALL = "select memberNo, weightDiff, num from hero";
+	private static final String SELECT_ALL = "select no, content, correct, optA, optB, optC"
+			+ " from exam";
 	@Override
-	public List<HeroVO> getAll() {
-		List<HeroVO> result = null;
+	public List<ExamVO> getAll() {
+		List<ExamVO> result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
@@ -78,13 +80,16 @@ public class HeroDAOJdbc implements HeroDAO {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
-			result = new ArrayList<HeroVO>();
+			result = new ArrayList<ExamVO>();
 			while(rset.next())
 			{	
-				HeroVO vo = new HeroVO();
-				vo.setMemberNo(rset.getInt(1));
-				vo.setWeightDiff(rset.getDouble(2));
-				vo.setNum(rset.getInt(3));
+				ExamVO vo = new ExamVO();
+				vo.setNo(rset.getInt(1));
+				vo.setContent(rset.getString(2));
+				vo.setCorrect(rset.getString(3));
+				vo.setOptA(rset.getString(4));
+				vo.setOptB(rset.getString(5));
+				vo.setOptC(rset.getString(6));
 				result.add(vo);
 			}
 		} catch (SQLException e) {
@@ -114,10 +119,13 @@ public class HeroDAOJdbc implements HeroDAO {
 		}
 		return result;
 	}
-	private static final String INSERT = "insert into hero (weightDiff, num) values (?, ?)";
+
+	
+	private static final String INSERT =
+			"insert into exam (content, correct, optA, optB, optC) values (?, ?, ?, ?, ?)";
 	@Override
-	public HeroVO insert(HeroVO vo) {
-		HeroVO result = null;
+	public ExamVO insert(ExamVO vo) {
+		ExamVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
@@ -125,8 +133,11 @@ public class HeroDAOJdbc implements HeroDAO {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			stmt = conn.prepareStatement(INSERT);
 			if(vo != null){
-				stmt.setDouble(1, vo.getWeightDiff());
-				stmt.setInt(2, vo.getNum());
+				stmt.setString(1, vo.getContent());
+				stmt.setString(2, vo.getCorrect());
+				stmt.setString(3, vo.getOptA());
+				stmt.setString(4, vo.getOptB());
+				stmt.setString(5, vo.getOptC());
 				stmt.executeUpdate();
 				rset = stmt.getGeneratedKeys();
 				if(rset.next()){
@@ -161,23 +172,27 @@ public class HeroDAOJdbc implements HeroDAO {
 		return result;
 	}
 
-	private static final String UPDATE ="update hero set weightDiff=?, num=? where memberNo=?";
+	
+	private static final String UPDATE =
+			"update exam set content=?, correct=?, optA=?, optB=?, optC=? where no=?";
 	@Override
-	public HeroVO update(HeroVO vo) {
-		HeroVO result = null;
+	public ExamVO update(ExamVO vo) {
+		ExamVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
-				stmt.setDouble(1, vo.getWeightDiff());
-				stmt.setInt(2, vo.getNum());
-				stmt.setInt(3, vo.getMemberNo());
+				stmt.setString(1, vo.getContent());
+				stmt.setString(2, vo.getCorrect());
+				stmt.setString(3, vo.getOptA());
+				stmt.setString(4, vo.getOptB());
+				stmt.setString(5, vo.getOptC());
 				
 				int i = stmt.executeUpdate();
 				if (i == 1) {
-					result = this.selectByPrimaryKey(vo.getMemberNo());
+					result = this.selectByPrimaryKey(vo.getNo());
 				} 
 			}
 		} catch (SQLException e) {
@@ -201,16 +216,16 @@ public class HeroDAOJdbc implements HeroDAO {
 		return result;
 	}
 
-	
-	private static final String DELETE ="delete from hero where memberNo=?";
+	private static final String DELETE =
+			"delete from exam where no=?";
 	@Override
-	public boolean delete(int memberNo) {
+	public boolean delete(int no) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
-			stmt.setInt(1, memberNo);
+			stmt.setInt(1, no);
 			int i = stmt.executeUpdate();
 			if(i==1) {
 				return true;

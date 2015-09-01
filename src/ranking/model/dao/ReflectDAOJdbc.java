@@ -18,7 +18,7 @@ public class ReflectDAOJdbc implements ReflectDAO {
 
 	private static final String URL = "jdbc:sqlserver://192.168.149.128:1433;database=bellyworry";
 	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "P@ssw0rd";
+	private static final String PASSWORD = "sa123456";
 	
 	private static final String SELECT_BY_NO = "select no, reflectedNo, authorNo, reflectedDate, authorDate from reflect where No=?";
 	@Override
