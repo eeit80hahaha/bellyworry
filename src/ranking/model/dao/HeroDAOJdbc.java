@@ -114,7 +114,7 @@ public class HeroDAOJdbc implements HeroDAO {
 		}
 		return result;
 	}
-	private static final String INSERT = "insert into hero (weightDiff, num) values (?, ?)";
+	private static final String INSERT = "insert into hero (memberNo,weightDiff, num) values (?, ?, ?)";
 	@Override
 	public HeroVO insert(HeroVO vo) {
 		HeroVO result = null;
@@ -123,10 +123,11 @@ public class HeroDAOJdbc implements HeroDAO {
 		ResultSet rset = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			stmt = conn.prepareStatement(INSERT , PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
-				stmt.setDouble(1, vo.getWeightDiff());
-				stmt.setInt(2, vo.getNum());
+				stmt.setInt(1, vo.getMemberNo());
+				stmt.setDouble(2, vo.getWeightDiff());
+				stmt.setInt(3, vo.getNum());
 				stmt.executeUpdate();
 				rset = stmt.getGeneratedKeys();
 				if(rset.next()){

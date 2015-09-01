@@ -130,7 +130,7 @@ public class ReflectDAOJdbc implements ReflectDAO {
 		ResultSet rset = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			stmt = conn.prepareStatement(INSERT , PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setInt(1, vo.getReflectedNo());
 				stmt.setInt(2, vo.getAuthorNo());

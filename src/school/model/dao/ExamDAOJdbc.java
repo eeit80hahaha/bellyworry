@@ -131,7 +131,7 @@ public class ExamDAOJdbc implements ExamDAO {
 		ResultSet rset = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			stmt = conn.prepareStatement(INSERT , PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setString(1, vo.getContent());
 				stmt.setString(2, vo.getCorrect());
@@ -189,7 +189,7 @@ public class ExamDAOJdbc implements ExamDAO {
 				stmt.setString(3, vo.getOptA());
 				stmt.setString(4, vo.getOptB());
 				stmt.setString(5, vo.getOptC());
-				
+				stmt.setInt(6, vo.getNo());
 				int i = stmt.executeUpdate();
 				if (i == 1) {
 					result = this.selectByPrimaryKey(vo.getNo());
