@@ -182,10 +182,10 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		ResultSet rset = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setInt(1, vo.getMemberNo());
-				if(vo.getDate()==null){
+				if(vo.getDate()!=null){
 					long date = vo.getDate().getTime();
 					stmt.setDate(2, new java.sql.Date(date));
 				}else{

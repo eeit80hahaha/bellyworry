@@ -306,7 +306,7 @@ public class MemberDAOJdbc implements MemberDAO {
 		ResultSet rset = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME,PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if (bean!=null) {
 				stmt.setString(1, bean.getId());
 				stmt.setString(2, bean.getPassword());

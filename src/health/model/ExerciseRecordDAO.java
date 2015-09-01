@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface ExerciseRecordDAO {
 	public abstract ExerciseRecordVO selectByPrimaryKey(long no);
+	
+	public abstract List<ExerciseRecordVO> selectByMemberNo(int memberNo);
 
 	public abstract List<ExerciseRecordVO> getAll();
 
