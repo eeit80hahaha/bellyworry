@@ -11,5 +11,5 @@ public interface ExamDAO {
 
 	public abstract ExamVO update(ExamVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int no);
 }

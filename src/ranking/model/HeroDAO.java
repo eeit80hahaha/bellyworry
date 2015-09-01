@@ -11,5 +11,5 @@ public interface HeroDAO {
 
 	public abstract HeroVO update(HeroVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int memberNo);
 }

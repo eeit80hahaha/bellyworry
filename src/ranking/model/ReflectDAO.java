@@ -11,5 +11,5 @@ public interface ReflectDAO {
 
 	public abstract ReflectVO update(ReflectVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int no);
 }
