@@ -11,5 +11,5 @@ public interface MenuDAO {
 
 	public abstract MenuVO update(MenuVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int menuNo);
 }

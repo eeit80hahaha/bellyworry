@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface HealthDiaryDAO {
 	public abstract HealthDiaryVO selectByPrimaryKey(long no);
+	
+	public abstract HealthDiaryVO selectByMemberNo(int memberNo);
 
 	public abstract List<HealthDiaryVO> getAll();
 
@@ -11,5 +13,5 @@ public interface HealthDiaryDAO {
 
 	public abstract HealthDiaryVO update(HealthDiaryVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(long no);
 }
