@@ -11,5 +11,5 @@ public interface MealNameDAO {
 
 	public abstract MealNameVO update(MealNameVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int mealNo);
 }

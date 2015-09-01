@@ -11,5 +11,5 @@ public interface DayMealDAO {
 
 	public abstract DayMealVO update(DayMealVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int no);
 }

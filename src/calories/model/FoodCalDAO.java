@@ -11,5 +11,5 @@ public interface FoodCalDAO {
 
 	public abstract FoodCalVO update(FoodCalVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int foodNo);
 }
