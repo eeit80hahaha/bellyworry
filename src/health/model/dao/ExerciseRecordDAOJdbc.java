@@ -14,7 +14,7 @@ import health.model.ExerciseRecordVO;
 public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
 	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "passw0rd";
+	private static final String PASSWORD = "sa123456";
 	
 	private static final String SELECT_BY_NO = "select * from exercise_record where No=?";
 	
