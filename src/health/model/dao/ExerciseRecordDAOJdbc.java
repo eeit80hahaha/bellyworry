@@ -11,11 +11,9 @@ import java.util.List;
 import health.model.EatRecordVO;
 import health.model.ExerciseRecordDAO;
 import health.model.ExerciseRecordVO;
+import init.GlobalService;
 
 public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "sa123456";
 	
 	private static final String SELECT_BY_NO = "select * from exercise_record where No=?";
 	
@@ -26,7 +24,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setLong(1, no);
 			rset = stmt.executeQuery();
@@ -76,7 +75,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_MEMBER_NO);
 			stmt.setInt(1, memberNo);
 			rset = stmt.executeQuery();
@@ -128,7 +128,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<ExerciseRecordVO>();
@@ -180,7 +181,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setInt(1, vo.getMemberNo());
@@ -235,7 +237,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setInt(1, vo.getMemberNo());
@@ -282,7 +285,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setLong(1, no);
 			int i = stmt.executeUpdate();
