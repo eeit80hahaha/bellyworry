@@ -1,5 +1,7 @@
 package school.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,11 +13,11 @@ import java.util.List;
 import school.model.ExamDAO;
 import school.model.ExamVO;
 
-public class ExamDAOJDBC implements ExamDAO {
+public class ExamDAOJdbc implements ExamDAO {
 
-	private static final String URL = "jdbc:sqlserver://192.168.149.128:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "P@ssw0rd";
+//	private static final String URL = "jdbc:sqlserver://192.168.149.128:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 	
 	private static final String SELECT_BY_NO = "select no, content, correct, optA, optB, optC "
 			+ "from exam where No=?";
@@ -26,7 +28,8 @@ public class ExamDAOJDBC implements ExamDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setLong(1, no);
 			rset = stmt.executeQuery();
@@ -77,7 +80,8 @@ public class ExamDAOJDBC implements ExamDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<ExamVO>();
@@ -130,8 +134,9 @@ public class ExamDAOJDBC implements ExamDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT , PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setString(1, vo.getContent());
 				stmt.setString(2, vo.getCorrect());
@@ -181,7 +186,8 @@ public class ExamDAOJDBC implements ExamDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setString(1, vo.getContent());
@@ -189,7 +195,7 @@ public class ExamDAOJDBC implements ExamDAO {
 				stmt.setString(3, vo.getOptA());
 				stmt.setString(4, vo.getOptB());
 				stmt.setString(5, vo.getOptC());
-				
+				stmt.setInt(6, vo.getNo());
 				int i = stmt.executeUpdate();
 				if (i == 1) {
 					result = this.selectByPrimaryKey(vo.getNo());
@@ -223,7 +229,8 @@ public class ExamDAOJDBC implements ExamDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, no);
 			int i = stmt.executeUpdate();

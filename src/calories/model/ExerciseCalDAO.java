@@ -11,5 +11,5 @@ public interface ExerciseCalDAO {
 
 	public abstract ExerciseCalVO update(ExerciseCalVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int exerciseNo);
 }

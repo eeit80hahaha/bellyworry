@@ -8,13 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import init.GlobalService;
 import register.model.MemberDAO;
 import register.model.MemberVO;
 
 public class MemberDAOJdbc implements MemberDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "passw0rd";
 	private static final String SELECT_BY_MEMBER_NO =
 			"select * from Member where memberNo=?";
 
@@ -25,7 +23,8 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_MEMBER_NO);
 			stmt.setInt(1, memberNo);
 			rset = stmt.executeQuery();
@@ -80,7 +79,8 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_ID);
 			stmt.setString(1, id);
 			rset = stmt.executeQuery();
@@ -135,7 +135,8 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_EMAIL);
 			stmt.setString(1, email);
 			rset = stmt.executeQuery();
@@ -190,7 +191,8 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_PURVIEW);
 			stmt.setInt(1, purview);
 			rset = stmt.executeQuery();
@@ -247,7 +249,8 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<MemberVO>();
@@ -305,8 +308,9 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME,PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME,GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if (bean!=null) {
 				stmt.setString(1, bean.getId());
 				stmt.setString(2, bean.getPassword());
@@ -355,7 +359,8 @@ public class MemberDAOJdbc implements MemberDAO {
 	public MemberVO update(MemberVO bean){
 		MemberVO result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL,
+						GlobalService.USERNAME, GlobalService.PASSWORD);
 				PreparedStatement stmt = conn.prepareStatement(UPDATE);) {
 			stmt.setString(1, bean.getId());
 			stmt.setString(2, bean.getPassword());
@@ -391,7 +396,8 @@ public class MemberDAOJdbc implements MemberDAO {
 		PreparedStatement stmt = null;
 		int i=0;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);			
 			stmt.setInt(1, memberNo);
 			i = stmt.executeUpdate();
@@ -418,30 +424,4 @@ public class MemberDAOJdbc implements MemberDAO {
 		}		
 		return false;
 	}
-//	public static void main(String[] args) {
-//		MemberDAO dao = new MemberDAOJdbc();
-//		MemberVO member = null;
-//		List<MemberVO> members = null;
-//		test = dao.selectByMemberNo(1000011);
-//		System.out.println(test);
-//		test = dao.selectByld("Jolie");
-//		System.out.println(test);
-//		test = dao.selectByEmail("say08@gmail.com");
-//		System.out.println(test);
-//		members = dao.selectByPurview(901);
-//		System.out.println(members);
-//		members = dao.selectAll();
-//		System.out.println(members);
-//		member = dao.selectByPrimaryKey(1000001);
-//		System.out.println(member);
-//		member.setId("lin");
-//		System.out.println(member);
-//		member = dao.update(member);
-//		if(dao.delete(1000001)){
-//			System.out.println("刪除成功");
-//		}else{
-//			System.out.println("刪除失敗");
-//		}
-//	}
-
 }

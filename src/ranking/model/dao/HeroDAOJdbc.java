@@ -1,5 +1,7 @@
 package ranking.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,9 +16,9 @@ import school.model.ExamVO;
 
 public class HeroDAOJdbc implements HeroDAO {
 
-	private static final String URL = "jdbc:sqlserver://192.168.149.128:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "P@ssw0rd";
+//	private static final String URL = "jdbc:sqlserver://192.168.149.128:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 	
 	
 	private static final String SELECT_BY_NO = "select memberNo, weightDiff, num from hero where memberNo=?";
@@ -27,7 +29,8 @@ public class HeroDAOJdbc implements HeroDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setInt(1, memberNo);
 			rset = stmt.executeQuery();
@@ -75,7 +78,8 @@ public class HeroDAOJdbc implements HeroDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<HeroVO>();
@@ -114,7 +118,7 @@ public class HeroDAOJdbc implements HeroDAO {
 		}
 		return result;
 	}
-	private static final String INSERT = "insert into hero (weightDiff, num) values (?, ?)";
+	private static final String INSERT = "insert into hero (memberNo,weightDiff, num) values (?, ?, ?)";
 	@Override
 	public HeroVO insert(HeroVO vo) {
 		HeroVO result = null;
@@ -122,11 +126,13 @@ public class HeroDAOJdbc implements HeroDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT , PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
-				stmt.setDouble(1, vo.getWeightDiff());
-				stmt.setInt(2, vo.getNum());
+				stmt.setInt(1, vo.getMemberNo());
+				stmt.setDouble(2, vo.getWeightDiff());
+				stmt.setInt(3, vo.getNum());
 				stmt.executeUpdate();
 				rset = stmt.getGeneratedKeys();
 				if(rset.next()){
@@ -168,7 +174,8 @@ public class HeroDAOJdbc implements HeroDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setDouble(1, vo.getWeightDiff());
@@ -208,7 +215,8 @@ public class HeroDAOJdbc implements HeroDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, memberNo);
 			int i = stmt.executeUpdate();

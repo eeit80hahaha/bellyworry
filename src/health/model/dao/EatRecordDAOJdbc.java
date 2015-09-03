@@ -2,6 +2,7 @@ package health.model.dao;
 
 import health.model.EatRecordDAO;
 import health.model.EatRecordVO;
+import init.GlobalService;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EatRecordDAOJdbc implements EatRecordDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "passw0rd";
 	
 	private static final String SELECT_BY_NO = "select * from eat_Record where No=?";
 
@@ -25,7 +23,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setLong(1, no);
 			rset = stmt.executeQuery();
@@ -76,7 +75,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_MEMBER_NO);
 			stmt.setInt(1, memberNo);
 			rset = stmt.executeQuery();
@@ -129,7 +129,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<EatRecordVO>();
@@ -181,11 +182,12 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setInt(1, vo.getMemberNo());
-				if(vo.getDate()==null){
+				if(vo.getDate()!=null){
 					long date = vo.getDate().getTime();
 					stmt.setDate(2, new java.sql.Date(date));
 				}else{
@@ -237,7 +239,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setInt(1, vo.getMemberNo());
@@ -285,7 +288,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setLong(1, no);
 			int i = stmt.executeUpdate();

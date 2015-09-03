@@ -8,13 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import health.model.EatRecordVO;
 import health.model.ExerciseRecordDAO;
 import health.model.ExerciseRecordVO;
+import init.GlobalService;
 
 public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "passw0rd";
 	
 	private static final String SELECT_BY_NO = "select * from exercise_record where No=?";
 	
@@ -25,7 +24,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setLong(1, no);
 			rset = stmt.executeQuery();
@@ -66,6 +66,59 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		return result;
 	}
 	
+	private static final String SELECT_BY_MEMBER_NO = "select * from exercise_record where memberNo=?";
+
+	@Override
+	public List<ExerciseRecordVO> selectByMemberNo(int memberNo){
+		List<ExerciseRecordVO> result = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rset = null;
+		try {
+			conn = DriverManager.getConnection(GlobalService.URL, 
+					GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(SELECT_BY_MEMBER_NO);
+			stmt.setInt(1, memberNo);
+			rset = stmt.executeQuery();
+			result = new ArrayList<ExerciseRecordVO>();
+			while(rset.next())
+			{	
+				ExerciseRecordVO vo = new ExerciseRecordVO();
+				vo.setNo(rset.getLong(1));
+				vo.setMemberNo(rset.getInt(2));
+				vo.setExerciseNo(rset.getInt(3));
+				vo.setDate(rset.getDate(4));
+				vo.setCount(rset.getInt(5));
+				result.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if (rset!=null) {
+				try {
+					rset.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (stmt!=null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+	
 	private static final String SELECT_ALL = "select * from exercise_record";
 
 	@Override
@@ -75,7 +128,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<ExerciseRecordVO>();
@@ -127,12 +181,13 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setInt(1, vo.getMemberNo());
 				stmt.setInt(2, vo.getExerciseNo());
-				if(vo.getDate()==null){
+				if(vo.getDate()!=null){
 					long date = vo.getDate().getTime();
 					stmt.setDate(3, new java.sql.Date(date));
 				}else{
@@ -182,7 +237,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setInt(1, vo.getMemberNo());
@@ -194,6 +250,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 					stmt.setDate(3, null);
 				}
 				stmt.setInt(4, vo.getCount());
+				stmt.setLong(5, vo.getNo());
 				int i = stmt.executeUpdate();
 				if (i == 1) {
 					result = this.selectByPrimaryKey(vo.getNo());
@@ -228,7 +285,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setLong(1, no);
 			int i = stmt.executeUpdate();
