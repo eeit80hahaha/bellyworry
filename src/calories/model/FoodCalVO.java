@@ -1,6 +1,7 @@
 package calories.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class FoodCalVO implements Serializable{
 	private int foodNo;
@@ -10,7 +11,7 @@ public class FoodCalVO implements Serializable{
 	private String count;
 	private int weight;
 	private int cookNo;
-	private String picture;	
+	private Blob picture;	
 	
 	@Override
 	public String toString() {
@@ -69,10 +70,10 @@ public class FoodCalVO implements Serializable{
 	public void setCookNo(int cookNo) {
 		this.cookNo = cookNo;
 	}
-	public String getPicture() {
+	public Blob getPicture() {
 		return picture;
 	}
-	public void setPicture(String picture) {
+	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
 }
