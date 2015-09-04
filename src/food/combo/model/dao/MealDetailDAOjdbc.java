@@ -163,6 +163,7 @@ public class MealDetailDAOjdbc implements MealDetailDAO {
 	}
 
 	// 無法update!
+	// ********不能update,update沒有實質意義,但為了之後或許有其他功能,所以暫時保留,以備不時之需********
 	private static final String UPDATE = "update meal_detail set foodNo=? where mealno=?";
 
 	@Override

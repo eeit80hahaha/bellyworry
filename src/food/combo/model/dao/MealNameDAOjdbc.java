@@ -221,6 +221,7 @@ public class MealNameDAOjdbc implements MealNameDAO {
 	public static final String DELETE = "delete from meal_name where mealno=?";
 	public static final String DELETE1 = "delete from day_meal where breakfast=? or lunch=? or dinner=?";
 	public static final String DELETE2 = "delete from meal_detail where mealNo=?";
+
 	@Override
 	public boolean delete(int mealNo) {
 		Connection conn = null;
@@ -230,19 +231,16 @@ public class MealNameDAOjdbc implements MealNameDAO {
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(DELETE1);
 			pstmt.setInt(1, mealNo);
-			pstmt.setInt(2,mealNo);
-			pstmt.setInt(3,mealNo);
+			pstmt.setInt(2, mealNo);
+			pstmt.setInt(3, mealNo);
 			pstmt.executeUpdate();
-			
 			pstmt = conn.prepareStatement(DELETE2);
 			pstmt.setInt(1, mealNo);
-			pstmt.executeUpdate();	
-			
-			
+			pstmt.executeUpdate();
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setInt(1, mealNo);
-			int i = pstmt.executeUpdate();			
-			
+			int i = pstmt.executeUpdate();
+
 			conn.commit();
 			conn.setAutoCommit(true);
 			if (i == 1) {
