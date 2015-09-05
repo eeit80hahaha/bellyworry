@@ -32,7 +32,7 @@ public class test {
 		// System.out.println(dao.update(vo));
 
 		// // DELETE
-		// System.out.println(dao.delete(100003));
+		// System.out.println(dao.delete(100007));
 
 		// =========================================================
 		// MealDetailVO vo = new MealDetailVO();
@@ -109,6 +109,15 @@ public class test {
 		// System.out.println(dao.insert(vo,null,0));
 		// System.out.println(dao.selectByPrimaryKey(100018));
 
+		// vo.setName("美式咖啡");
+		// vo.setMenuNo(100018);
+		// vo.setCal(2);
+		// vo.setCount("杯");
+		// vo.setWeight(240);
+		// vo.setCookNo(100003);
+		// System.out.println(dao.insert(vo,null,0));
+		// System.out.println(dao.selectByPrimaryKey(100001));
+
 		// // UPDATE
 		// vo.setFoodNo(100007);
 		// vo.setName("烤肋排");
@@ -120,7 +129,7 @@ public class test {
 		// System.out.println(dao.update(vo));
 
 		// // DELETE
-		// System.out.println(dao.delete(100001));
+		// System.out.println(dao.delete(100008));
 
 	}
 

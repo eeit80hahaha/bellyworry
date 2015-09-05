@@ -219,8 +219,6 @@ public class MealNameDAOjdbc implements MealNameDAO {
 	}
 
 	public static final String DELETE = "delete from meal_name where mealno=?";
-	public static final String DELETE1 = "delete from day_meal where breakfast=? or lunch=? or dinner=?";
-	public static final String DELETE2 = "delete from meal_detail where mealNo=?";
 
 	@Override
 	public boolean delete(int mealNo) {
@@ -228,32 +226,14 @@ public class MealNameDAOjdbc implements MealNameDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = DriverManager.getConnection(URL, user, password);
-			conn.setAutoCommit(false);
-			pstmt = conn.prepareStatement(DELETE1);
-			pstmt.setInt(1, mealNo);
-			pstmt.setInt(2, mealNo);
-			pstmt.setInt(3, mealNo);
-			pstmt.executeUpdate();
-			pstmt = conn.prepareStatement(DELETE2);
-			pstmt.setInt(1, mealNo);
-			pstmt.executeUpdate();
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setInt(1, mealNo);
 			int i = pstmt.executeUpdate();
-
-			conn.commit();
-			conn.setAutoCommit(true);
 			if (i == 1) {
 				return true;
 			}
-
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
@@ -271,8 +251,67 @@ public class MealNameDAOjdbc implements MealNameDAO {
 				}
 			}
 		}
-
 		return false;
 	}
+
+	// public static final String DELETE =
+	// "delete from meal_name where mealno=?";
+	// public static final String DELETE1 =
+	// "delete from day_meal where breakfast=? or lunch=? or dinner=?";
+	// public static final String DELETE2 =
+	// "delete from meal_detail where mealNo=?";
+	//
+	// @Override
+	// public boolean delete(int mealNo) {
+	// Connection conn = null;
+	// PreparedStatement pstmt = null;
+	// try {
+	// conn = DriverManager.getConnection(URL, user, password);
+	// conn.setAutoCommit(false);
+	// pstmt = conn.prepareStatement(DELETE1);
+	// pstmt.setInt(1, mealNo);
+	// pstmt.setInt(2, mealNo);
+	// pstmt.setInt(3, mealNo);
+	// pstmt.executeUpdate();
+	// pstmt = conn.prepareStatement(DELETE2);
+	// pstmt.setInt(1, mealNo);
+	// pstmt.executeUpdate();
+	// pstmt = conn.prepareStatement(DELETE);
+	// pstmt.setInt(1, mealNo);
+	// int i = pstmt.executeUpdate();
+	//
+	// conn.commit();
+	// conn.setAutoCommit(true);
+	// if (i == 1) {
+	// return true;
+	// }
+	//
+	// } catch (SQLException e) {
+	// try {
+	// conn.rollback();
+	// } catch (SQLException e1) {
+	// // TODO Auto-generated catch block
+	// e1.printStackTrace();
+	// }
+	// e.printStackTrace();
+	// } finally {
+	// if (pstmt != null) {
+	// try {
+	// pstmt.close();
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// if (conn != null) {
+	// try {
+	// conn.close();
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// }
+	//
+	// return false;
+	// }
 
 }
