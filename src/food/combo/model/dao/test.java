@@ -89,8 +89,8 @@ public class test {
 		// System.out.println(dao.delete(100005));
 
 		// =========================================================
-		FoodCalVO vo = new FoodCalVO();
-		FoodCalDAO dao = new FoodCalDAOjdbc();
+		// FoodCalVO vo = new FoodCalVO();
+		// FoodCalDAO dao = new FoodCalDAOjdbc();
 
 		// // selectByPrimaryKey
 		// vo = dao.selectByPrimaryKey(100009);
