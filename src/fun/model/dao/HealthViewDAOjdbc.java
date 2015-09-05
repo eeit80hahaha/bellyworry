@@ -1,5 +1,7 @@
 package fun.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,9 +14,9 @@ import fun.model.HealthViewDAO;
 import fun.model.HealthViewVO;
 
 public class HealthViewDAOjdbc implements HealthViewDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "sa123456";
+//	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 	
 	private static final String SELECT_BY_NO = "select * from health_view where no=?";
 
@@ -25,7 +27,7 @@ public class HealthViewDAOjdbc implements HealthViewDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setInt(1, no);
 			rset = stmt.executeQuery();
@@ -73,7 +75,7 @@ public class HealthViewDAOjdbc implements HealthViewDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<HealthViewVO>();
@@ -123,18 +125,18 @@ public class HealthViewDAOjdbc implements HealthViewDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setString(1, vo.getName());
 				stmt.setInt(2, vo.getViewClassNo());
 				stmt.setFloat(3, vo.getLat());
 				stmt.setFloat(4, vo.getLng());
 				stmt.executeUpdate();
-//				rset = stmt.getGeneratedKeys();
-//				if(rset.next()){
+				rset = stmt.getGeneratedKeys();
+				if(rset.next()){
 					result = this.selectByPrimaryKey(vo.getNo());
-//				}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,7 +173,7 @@ public class HealthViewDAOjdbc implements HealthViewDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				
@@ -212,7 +214,7 @@ public class HealthViewDAOjdbc implements HealthViewDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, no);
 			int i = stmt.executeUpdate();

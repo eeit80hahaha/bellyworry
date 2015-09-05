@@ -1,5 +1,7 @@
 package news.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,9 +15,9 @@ import news.model.ActivityDAO;
 import news.model.ActivityVO;
 
 public class ActivityDAOjdbc implements ActivityDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "sa123456";
+//	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 	private static final String SELECT_BY_NO =
 			"select * from activity where no=?";
 
@@ -26,7 +28,7 @@ public class ActivityDAOjdbc implements ActivityDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_NO);
 			stmt.setInt(1, no);
 			rset = stmt.executeQuery();
@@ -77,7 +79,7 @@ public class ActivityDAOjdbc implements ActivityDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<ActivityVO>();
@@ -129,8 +131,8 @@ public class ActivityDAOjdbc implements ActivityDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setString(1, vo.getName());
 				stmt.setString(2, vo.getContent());
@@ -189,7 +191,7 @@ public class ActivityDAOjdbc implements ActivityDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				
@@ -243,7 +245,7 @@ public class ActivityDAOjdbc implements ActivityDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, no);
 			int i = stmt.executeUpdate();

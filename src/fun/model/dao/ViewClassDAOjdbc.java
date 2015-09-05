@@ -1,5 +1,7 @@
 package fun.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,9 +16,9 @@ import fun.model.ViewClassVO;
 
 
 public class ViewClassDAOjdbc implements ViewClassDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "sa123456";
+//	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 	
 	private static final String SELECT_BY_VIEWCLASSNO = "select * from view_class where viewClassNo=?";
 
@@ -27,7 +29,7 @@ public class ViewClassDAOjdbc implements ViewClassDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_BY_VIEWCLASSNO);
 			stmt.setInt(1, viewClassNo);
 			rset = stmt.executeQuery();
@@ -74,7 +76,7 @@ public class ViewClassDAOjdbc implements ViewClassDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(SELECT_ALL);
 			rset = stmt.executeQuery();
 			result = new ArrayList<ViewClassVO>();
@@ -122,15 +124,15 @@ public class ViewClassDAOjdbc implements ViewClassDAO {
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(INSERT);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
+			stmt = conn.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setString(1, vo.getName());
 				stmt.executeUpdate();
-//				rset = stmt.getGeneratedKeys();
-//				if(rset.next()){
+				rset = stmt.getGeneratedKeys();
+				if(rset.next()){
 					result = this.selectByPrimaryKey(vo.getViewClassNo());
-//				}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -169,7 +171,7 @@ public class ViewClassDAOjdbc implements ViewClassDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {				
 				stmt.setString(1, vo.getName());
@@ -201,15 +203,13 @@ public class ViewClassDAOjdbc implements ViewClassDAO {
 	}
 	
 	private static final String DELETE ="delete from view_class where ViewClassNo=?";
-	private static final String DELETE1 ="delete from health_view where no=?";
 
 	@Override
 	public boolean delete(int viewClassNo){
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt.executeUpdate();
+			conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, viewClassNo);
 			int i = stmt.executeUpdate();
