@@ -11,5 +11,5 @@ public interface ActivityDAO {
 
 	public abstract ActivityVO update(ActivityVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int no);
 }

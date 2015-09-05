@@ -1,15 +1,16 @@
 package news.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class ActivityVO implements Serializable {
 	private int no;
 	private String name;
 	private String content;
-	private java.sql.Timestamp startTime;
-	private java.sql.Timestamp endTime;
+	private java.util.Date startTime;
+	private java.util.Date endTime;
 	private String address;
-	private java.sql.Blob picture;
+	private Blob picture;
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -21,11 +22,6 @@ public class ActivityVO implements Serializable {
 		}
 		return false;
 	}
-	@Override
-	public String toString() {
-		return "{"+no+":"+name+":"+content+":"+startTime+":"+endTime+":"+address+":"+picture+"}";
-	}
-	
 	public int getNo() {
 		return no;
 	}
@@ -44,16 +40,16 @@ public class ActivityVO implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public java.sql.Timestamp getStartTime() {
+	public java.util.Date getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(java.sql.Timestamp startTime) {
+	public void setStartTime(java.util.Date startTime) {
 		this.startTime = startTime;
 	}
-	public java.sql.Timestamp getEndTime() {
+	public java.util.Date getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(java.sql.Timestamp endTime) {
+	public void setEndTime(java.util.Date endTime) {
 		this.endTime = endTime;
 	}
 	public String getAddress() {
@@ -62,10 +58,17 @@ public class ActivityVO implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public java.sql.Blob getPicture() {
+	public Blob getPicture() {
 		return picture;
 	}
-	public void setPicture(java.sql.Blob picture) {
+	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
+	@Override
+	public String toString() {
+		return "{"+no+":"+name+":"+content+":"+startTime+":"+endTime+":"+address+":"+picture+"}";
+	}
+	
+	
+
 }

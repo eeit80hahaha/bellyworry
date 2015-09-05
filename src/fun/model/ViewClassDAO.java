@@ -11,5 +11,5 @@ public interface ViewClassDAO {
 
 	public abstract ViewClassVO update(ViewClassVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int viewClassNo);
 }

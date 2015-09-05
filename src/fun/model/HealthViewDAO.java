@@ -11,5 +11,5 @@ public interface HealthViewDAO {
 
 	public abstract HealthViewVO update(HealthViewVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int no);
 }
