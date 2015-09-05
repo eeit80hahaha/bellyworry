@@ -1,5 +1,7 @@
 package food.combo.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,9 +15,6 @@ import food.combo.model.MealDetailVO;
 import food.combo.model.MealNameVO;
 
 public class MealDetailDAOjdbc implements MealDetailDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String user = "sa";
-	private static final String password = "sa123456";
 
 	private static final String SELECT_BY_MEAL_DETAIL = "select * from meal_detail where mealNo=? and foodNo=?";
 
@@ -26,7 +25,8 @@ public class MealDetailDAOjdbc implements MealDetailDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(SELECT_BY_MEAL_DETAIL);
 			pstmt.setInt(1, mealNo);
 			pstmt.setInt(2, foodNo);
@@ -77,7 +77,8 @@ public class MealDetailDAOjdbc implements MealDetailDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(select_ALL);
 			rs = pstmt.executeQuery();
 			result = new ArrayList<MealDetailVO>();
@@ -130,7 +131,8 @@ public class MealDetailDAOjdbc implements MealDetailDAO {
 		// ResultSet rs = null;
 		try {
 			result = new MealDetailVO();
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(INSERT);
 			if (vo != null) {
 				pstmt.setInt(1, vo.getMealNo());
@@ -172,7 +174,8 @@ public class MealDetailDAOjdbc implements MealDetailDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				pstmt.setInt(1, vo.getFoodNo());
@@ -211,7 +214,8 @@ public class MealDetailDAOjdbc implements MealDetailDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setInt(1, mealNo);
 			pstmt.setInt(2, foodNo);

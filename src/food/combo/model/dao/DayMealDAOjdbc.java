@@ -1,5 +1,7 @@
 package food.combo.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,9 +15,6 @@ import food.combo.model.DayMealVO;
 import food.combo.model.MealNameVO;
 
 public class DayMealDAOjdbc implements DayMealDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String user = "sa";
-	private static final String password = "sa123456";
 
 	private static final String SELECT_BY_DAY_MEAL = "select * from day_meal where no=?";
 
@@ -26,7 +25,8 @@ public class DayMealDAOjdbc implements DayMealDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(SELECT_BY_DAY_MEAL);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
@@ -76,7 +76,8 @@ public class DayMealDAOjdbc implements DayMealDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(select_ALL);
 			rs = pstmt.executeQuery();
 			result = new ArrayList<DayMealVO>();
@@ -134,7 +135,8 @@ public class DayMealDAOjdbc implements DayMealDAO {
 		ResultSet rs = null;
 		try {
 			result = new DayMealVO();
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(INSERT,
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			if (vo != null) {
@@ -191,7 +193,8 @@ public class DayMealDAOjdbc implements DayMealDAO {
 		PreparedStatement pstmt = null;
 		try {
 			result = new DayMealVO();
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				pstmt.setString(1, vo.getName());
@@ -232,7 +235,8 @@ public class DayMealDAOjdbc implements DayMealDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setInt(1, no);
 			int i = pstmt.executeUpdate();
