@@ -1,5 +1,7 @@
 package calories.model.dao;
 
+import init.GlobalService;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,9 +28,7 @@ import calories.model.FoodCalVO;
 import food.combo.model.MealNameVO;
 
 public class FoodCalDAOjdbc implements FoodCalDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String user = "sa";
-	private static final String password = "sa123456";
+
 	private static String inFile = "C:/Users/Kuei/Desktop/1.jpg";
 	private static final String SELECT_BY_FOOD_CAL = "select * from food_cal where foodNo=?";
 
@@ -39,7 +39,8 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(SELECT_BY_FOOD_CAL);
 			pstmt.setInt(1, foodNo);
 			rs = pstmt.executeQuery();
@@ -95,7 +96,8 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(select_ALL);
 			rs = pstmt.executeQuery();
 			result = new ArrayList<FoodCalVO>();
@@ -156,7 +158,8 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 		ResultSet rs = null;
 		try {
 			result = new FoodCalVO();
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(INSERT,
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, vo.getName());
@@ -220,7 +223,8 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 		PreparedStatement pstmt = null;
 		try {
 			result = new FoodCalVO();
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(UPDATE);
 			pstmt.setString(1, vo.getName());
 			pstmt.setInt(2, vo.getMenuNo());
@@ -266,7 +270,8 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = DriverManager.getConnection(URL, user, password);
+			conn = DriverManager.getConnection(GlobalService.URL,
+					GlobalService.USERNAME, GlobalService.PASSWORD);
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setInt(1, foodNo);
 			int i = pstmt.executeUpdate();
