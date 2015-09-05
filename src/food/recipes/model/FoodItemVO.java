@@ -6,13 +6,13 @@ public class FoodItemVO implements Serializable{
 	private int useFoodNo;
 	private String name;
 	private String type;
-	private String conut;
+	private String count;
 	
 	public FoodItemVO(){
 		
 	}
 	public String toString(){
-		return "("+name+":"+type+":"+conut+")";
+		return "("+name+":"+type+":"+count+")";
 	}
 	public boolean equals(Object obj){
 		if(obj!=null && (obj instanceof FoodItemVO)){
@@ -42,10 +42,10 @@ public class FoodItemVO implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getConut() {
-		return conut;
+	public String getCount() {
+		return count;
 	}
-	public void setConut(String conut) {
-		this.conut = conut;
+	public void setCount(String count) {
+		this.count = count;
 	}
 }

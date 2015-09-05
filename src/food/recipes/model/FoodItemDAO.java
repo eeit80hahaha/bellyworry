@@ -3,13 +3,13 @@ package food.recipes.model;
 import java.util.List;
 
 public interface FoodItemDAO {
-	public abstract FoodItemDAO selectByPrimaryKey(int useFoodNo);
+	public abstract FoodItemVO selectByPrimaryKey(int useFoodNo);
 
-	public abstract List<FoodItemDAO> getAll();
+	public abstract List<FoodItemVO> getAll();
 
-	public abstract FoodItemDAO insert(FoodItemDAO vo);
+	public abstract FoodItemVO insert(FoodItemVO vo);
 
-	public abstract FoodItemDAO update(FoodItemDAO vo);
+	public abstract FoodItemVO update(FoodItemVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int useFoodNo);
 }

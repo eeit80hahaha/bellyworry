@@ -11,5 +11,5 @@ public interface FoodListDAO {
 
 	public abstract FoodListVO update(FoodListVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int cookNo, int useFoodNo);
 }

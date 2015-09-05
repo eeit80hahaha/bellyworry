@@ -11,5 +11,5 @@ public interface CookDAO {
 
 	public abstract CookVO update(CookVO vo);
 
-	public abstract boolean delete(int id);
+	public abstract boolean delete(int cookno);
 }
