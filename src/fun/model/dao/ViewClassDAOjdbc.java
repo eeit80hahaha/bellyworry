@@ -176,10 +176,10 @@ public class ViewClassDAOjdbc implements ViewClassDAO {
 			if (vo != null) {				
 				stmt.setString(1, vo.getName());
 				stmt.setInt(2, vo.getViewClassNo());
-				stmt.executeUpdate();
-//				if (i == 1) {
+				int i =stmt.executeUpdate();
+				if (i == 1) {
 					result = this.selectByPrimaryKey(vo.getViewClassNo());
-//				} 
+				} 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
