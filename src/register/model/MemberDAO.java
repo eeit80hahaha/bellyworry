@@ -14,9 +14,9 @@ public interface MemberDAO {
 
 	public abstract List<MemberVO> getAll();
 
-	public abstract MemberVO insert(MemberVO bean);
+	public abstract int insert(MemberVO bean);
 
-	public abstract MemberVO update(MemberVO bean);
+	public abstract int update(MemberVO bean);
 
 	public abstract boolean delete(int memberNo);
 
