@@ -9,9 +9,9 @@ public interface ExerciseRecordDAO {
 
 	public abstract List<ExerciseRecordVO> getAll();
 
-	public abstract ExerciseRecordVO insert(ExerciseRecordVO vo);
+	public abstract long insert(ExerciseRecordVO vo);
 
-	public abstract ExerciseRecordVO update(ExerciseRecordVO vo);
+	public abstract int update(ExerciseRecordVO vo);
 
 	public abstract boolean delete(long no);
 }

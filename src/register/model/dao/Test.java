@@ -48,7 +48,7 @@ public class Test {
 		memVo3.setPurview(101);
 		int temp2 = memDao.update(memVo3);
 		if(temp2>0){
-			System.out.println("update: "+memDao.selectByPrimaryKey(temp2));
+			System.out.println("update: "+memDao.selectByPrimaryKey(memVo3.getMemberNo()));
 		}else{
 			System.out.println("update error: "+temp2);
 		}
