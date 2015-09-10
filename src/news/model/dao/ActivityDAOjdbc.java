@@ -2,6 +2,10 @@ package news.model.dao;
 
 import init.GlobalService;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,6 +19,7 @@ import news.model.ActivityDAO;
 import news.model.ActivityVO;
 
 public class ActivityDAOjdbc implements ActivityDAO {
+	private static String inFile = "C:/Users/sa/Desktop/picture1.jpg";
 //	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
 //	private static final String USERNAME = "sa";
 //	private static final String PASSWORD = "sa123456";
@@ -125,7 +130,7 @@ public class ActivityDAOjdbc implements ActivityDAO {
 	private static final String INSERT =
 			"insert into activity (name, content, startTime, endTime, address,picture) values (?, ?, ?, ?, ?, ?)";
 	@Override
-	public ActivityVO insert(ActivityVO vo) {
+	public ActivityVO insert(ActivityVO vo, InputStream is, long size) {
 		ActivityVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -149,12 +154,20 @@ public class ActivityDAOjdbc implements ActivityDAO {
 					stmt.setTimestamp(4, null);
 				}
 				stmt.setString(5, vo.getAddress());
-				stmt.setBlob(6, vo.getPicture());						
+				File f = new File(inFile);
+				FileInputStream fis;
+				try {
+					fis = new FileInputStream(f);
+					stmt.setBinaryStream(6, fis);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}						
 				stmt.executeUpdate();
-//				rset = stmt.getGeneratedKeys();
-//				if(rset.next()){
+				rset = stmt.getGeneratedKeys();
+				if(rset.next()){
 					result = this.selectByPrimaryKey(vo.getNo());
-//				}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

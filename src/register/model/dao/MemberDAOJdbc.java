@@ -302,51 +302,57 @@ public class MemberDAOJdbc implements MemberDAO {
 			+ "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	@Override
-	public MemberVO insert(MemberVO bean){
-		MemberVO result = null;
+	public int insert(MemberVO bean){
+		int result = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
-		try {
-			conn = DriverManager.getConnection(GlobalService.URL,
-					GlobalService.USERNAME,GlobalService.PASSWORD);
-			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-			if (bean!=null) {
-				stmt.setString(1, bean.getId());
-				stmt.setString(2, bean.getPassword());
-				stmt.setString(3, bean.getFirstName());
-				stmt.setString(4, bean.getLastName());
-				stmt.setString(5, bean.getNickname());
-				stmt.setString(6, bean.getEmail());
-				java.util.Date birthday = bean.getBirthday();
-				if (birthday != null) {
-					stmt.setDate(7, new java.sql.Date(birthday.getTime()));
-				} else {
-					stmt.setDate(7, null);
+		if(this.selectById(bean.getId())!=null){
+			result = -100;
+		}else if(this.selectByEmail(bean.getEmail())!=null){
+			result = -100;
+		}else{
+			try {
+				conn = DriverManager.getConnection(GlobalService.URL,
+						GlobalService.USERNAME,GlobalService.PASSWORD);
+				stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+				if (bean!=null) {
+					stmt.setString(1, bean.getId());
+					stmt.setString(2, bean.getPassword());
+					stmt.setString(3, bean.getFirstName());
+					stmt.setString(4, bean.getLastName());
+					stmt.setString(5, bean.getNickname());
+					stmt.setString(6, bean.getEmail());
+					java.util.Date birthday = bean.getBirthday();
+					if (birthday != null) {
+						stmt.setDate(7, new java.sql.Date(birthday.getTime()));
+					} else {
+						stmt.setDate(7, null);
+					}
+					stmt.setString(8, bean.getGender());
+					stmt.setInt(9, bean.getPurview());
+					stmt.executeUpdate();
+					rset = stmt.getGeneratedKeys();
+					if(rset.next()){
+						result = rset.getInt(1);
+					}
 				}
-				stmt.setString(8, bean.getGender());
-				stmt.setInt(9, bean.getPurview());
-				stmt.executeUpdate();
-				rset = stmt.getGeneratedKeys();
-				if(rset.next()){
-					result = this.selectByPrimaryKey(rset.getInt(1));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				if (stmt!=null) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			if (stmt!=null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (conn!=null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				if (conn!=null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -356,33 +362,36 @@ public class MemberDAOJdbc implements MemberDAO {
 			"update Member set id=?, password=?, firstName=?, lastName=?, nickname=?, email=?, birthday=?, gender=?, purview=? where memberNo=?";
 
 	@Override
-	public MemberVO update(MemberVO bean){
-		MemberVO result = null;
-		try(
-				Connection conn = DriverManager.getConnection(GlobalService.URL,
-						GlobalService.USERNAME, GlobalService.PASSWORD);
-				PreparedStatement stmt = conn.prepareStatement(UPDATE);) {
-			stmt.setString(1, bean.getId());
-			stmt.setString(2, bean.getPassword());
-			stmt.setString(3, bean.getFirstName());
-			stmt.setString(4, bean.getLastName());
-			stmt.setString(5, bean.getNickname());
-			stmt.setString(6, bean.getEmail());
-			if(bean.getBirthday()!=null){
-				long date = bean.getBirthday().getTime();
-				stmt.setDate(7, new java.sql.Date(date));
-			}else {
-				stmt.setDate(7, null);				
+	public int update(MemberVO bean){
+		int result = 0;
+		if(this.selectById(bean.getId())!=null){
+			result = -100;
+		}else if(this.selectByEmail(bean.getEmail())!=null){
+			result = -100;
+		}else{
+			try(
+					Connection conn = DriverManager.getConnection(GlobalService.URL,
+							GlobalService.USERNAME, GlobalService.PASSWORD);
+					PreparedStatement stmt = conn.prepareStatement(UPDATE);) {
+				stmt.setString(1, bean.getId());
+				stmt.setString(2, bean.getPassword());
+				stmt.setString(3, bean.getFirstName());
+				stmt.setString(4, bean.getLastName());
+				stmt.setString(5, bean.getNickname());
+				stmt.setString(6, bean.getEmail());
+				if(bean.getBirthday()!=null){
+					long date = bean.getBirthday().getTime();
+					stmt.setDate(7, new java.sql.Date(date));
+				}else {
+					stmt.setDate(7, null);				
+				}
+				stmt.setString(8, bean.getGender());
+				stmt.setInt(9, bean.getPurview());
+				stmt.setInt(10, bean.getMemberNo());
+				result = stmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-			stmt.setString(8, bean.getGender());
-			stmt.setInt(9, bean.getPurview());
-			stmt.setInt(10, bean.getMemberNo());
-			int i = stmt.executeUpdate();
-			if(i==1) {
-				result = this.selectByPrimaryKey(bean.getMemberNo());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return result;
 	}

@@ -1,5 +1,7 @@
 package health.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,9 +15,9 @@ import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
 
 public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "sa123456";
+//	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 //	private DataSource dataSource;
 //	public MenuDaoJdbc() {
 //		try {
@@ -32,7 +34,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 		HealthDiaryVO result = null;
 		ResultSet rset = null;
 		try(
-			Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //			Connection conn = dataSource.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(SELECT_BY_ID);) {
 			
@@ -71,7 +73,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 		HealthDiaryVO result = null;
 		ResultSet rset = null;
 		try(
-			Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //			Connection conn = dataSource.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(SELECT_BY_memberNo);) {
 			
@@ -109,7 +111,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 	public List<HealthDiaryVO> getAll() {
 		List<HealthDiaryVO> result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(SELECT_ALL);
 				ResultSet rset = stmt.executeQuery();) {
@@ -142,7 +144,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 	public HealthDiaryVO insert(HealthDiaryVO vo) {
 		HealthDiaryVO result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(INSERT);) {
 			if(vo!=null) {				
@@ -178,7 +180,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 	public HealthDiaryVO update(HealthDiaryVO vo) {
 		HealthDiaryVO result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(UPDATE);) {
 			stmt.setInt(1, vo.getMemberNo());
@@ -210,7 +212,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 	@Override
 	public boolean delete(long no) {
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(DELETE);) {			
 			stmt.setLong(1,no);

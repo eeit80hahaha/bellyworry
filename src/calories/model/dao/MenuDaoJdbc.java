@@ -1,5 +1,7 @@
 package calories.model.dao;
 
+import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,9 +14,9 @@ import calories.model.MenuDAO;
 import calories.model.MenuVO;
 
 public class MenuDaoJdbc implements MenuDAO{
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "sa123456";
+//	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
+//	private static final String USERNAME = "sa";
+//	private static final String PASSWORD = "sa123456";
 	
 //	private DataSource dataSource;
 //	public MenuDaoJdbc() {
@@ -32,7 +34,7 @@ public class MenuDaoJdbc implements MenuDAO{
 		MenuVO result = null;
 		ResultSet rset = null;
 		try(
-			Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //			Connection conn = dataSource.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(SELECT_BY_ID);) {
 			
@@ -64,7 +66,7 @@ public class MenuDaoJdbc implements MenuDAO{
 	public List<MenuVO> getAll() {
 		List<MenuVO> result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(SELECT_ALL);
 				ResultSet rset = stmt.executeQuery();) {
@@ -88,7 +90,7 @@ public class MenuDaoJdbc implements MenuDAO{
 	public MenuVO insert(MenuVO vo) {
 		MenuVO result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(INSERT);) {
 			if(vo!=null) {
@@ -110,7 +112,7 @@ public class MenuDaoJdbc implements MenuDAO{
 	public MenuVO update(MenuVO bean) {
 		MenuVO result = null;
 		try(
-				Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(UPDATE);) {
 			stmt.setString(1, bean.getName());
@@ -130,7 +132,7 @@ public class MenuDaoJdbc implements MenuDAO{
 	@Override
 	public boolean delete(int menuNo) {
 		try(
-			Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //			Connection conn = dataSource.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(DELETE);) {			
 			conn.setAutoCommit(false);
