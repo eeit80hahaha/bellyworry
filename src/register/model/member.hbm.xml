@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="register.model.MemberVO" table="member" >
+        <id name="memberNo" column="memberNo">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="id" column="id" />
+        <property name="password" column="password" />
+        <property name="firstName" column="firstName" />
+        <property name="lastName" column="lastName" />
+        <property name="nickname" column="nickname" />
+        <property name="email" column="email" />
+        <property name="birthday" column="birthday" />
+        <property name="gender" column="gender" />
+        <property name="purview" column="purview" />
+        
+<!--         <set name="diarys" table="health_diary" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="memberNo"></column></key> -->
+<!--         		<one-to-many class="health.model.HealthDiaryVO"/> -->
+<!--         </set> -->
+        
+    </class>
+</hibernate-mapping>

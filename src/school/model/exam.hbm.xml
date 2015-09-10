@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="school.model.ExamVO" table="exam" >
+        
+        <id name="no" column="no">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="content" column="content" />
+        <property name="correct" column="correct" />
+        <property name="optA" column="optA" />
+        <property name="optB" column="optB" />
+        <property name="optC" column="optC" />
+        
+    </class>
+</hibernate-mapping>
+
