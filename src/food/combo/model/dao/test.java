@@ -36,7 +36,7 @@ public class test {
 		// System.out.println(dao.delete(100007));
 
 		// =========================================================
-		
+
 		// *****MealDetailDAOjdbc 測試檔!*****
 		// MealDetailVO vo = new MealDetailVO();
 		// MealDetailDAO dao = new MealDetailDAOjdbc();
@@ -63,7 +63,7 @@ public class test {
 		// System.out.println(dao.delete(100005, 100005));
 
 		// =========================================================
-		
+
 		// *****DayMealDAOjdbc 測試檔!*****
 		// DayMealVO vo = new DayMealVO();
 		// DayMealDAO dao = new DayMealDAOjdbc();

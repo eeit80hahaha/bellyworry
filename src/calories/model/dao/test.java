@@ -1,12 +1,15 @@
 package calories.model.dao;
 
+import calories.model.FoodCalDAO;
+import calories.model.FoodCalVO;
+
 public class test {
 
 	public static void main(String[] args) {
 
 		// *****FoodCalDAOjdbc 測試檔!*****
-		// FoodCalVO vo = new FoodCalVO();
-		// FoodCalDAO dao = new FoodCalDAOjdbc();
+		FoodCalVO vo = new FoodCalVO();
+		FoodCalDAO dao = new FoodCalDAOjdbc();
 
 		// // selectByPrimaryKey
 		// vo = dao.selectByPrimaryKey(100009);
