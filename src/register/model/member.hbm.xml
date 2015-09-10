@@ -18,5 +18,10 @@
         <property name="gender" column="gender" />
         <property name="purview" column="purview" />
         
+<!--         <set name="diarys" table="health_diary" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="memberNo"></column></key> -->
+<!--         		<one-to-many class="health.model.HealthDiaryVO"/> -->
+<!--         </set> -->
+        
     </class>
 </hibernate-mapping>

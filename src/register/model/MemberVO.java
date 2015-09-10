@@ -1,6 +1,10 @@
 package register.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import health.model.HealthDiaryVO;
 
 public class MemberVO implements Serializable{
 	private int memberNo;
@@ -13,6 +17,15 @@ public class MemberVO implements Serializable{
 	private java.util.Date birthday;
 	private String gender;
 	private int purview;
+	
+	private Set<HealthDiaryVO> diarys = new HashSet<HealthDiaryVO>();
+	
+	public Set<HealthDiaryVO> getDiarys() {
+		return diarys;
+	}
+	public void setDiarys(Set<HealthDiaryVO> diarys) {
+		this.diarys = diarys;
+	}
 	
 	@Override
 	public String toString() {

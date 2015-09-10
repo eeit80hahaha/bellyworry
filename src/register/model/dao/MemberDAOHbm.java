@@ -1,17 +1,11 @@
 package register.model.dao;
 
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import hibernate.util.HibernateUtil;
-import init.GlobalService;
 import register.model.MemberDAO;
 import register.model.MemberVO;
 
@@ -33,7 +27,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_BY_ID =
-			"from Member where id=?";
+			"from MemberVO where id=?";
 
 	@Override
 	public MemberVO selectById(String id){
@@ -42,9 +36,11 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_ID);
-			query.setParameter(1, id);
+			query.setParameter(0, id);
 			List<MemberVO> list = query.list();
-			memberVO = list.get(0);
+			if(list.size()!=0){
+				memberVO = list.get(0);
+			}
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -54,7 +50,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_BY_EMAIL =
-			"from Member where email=?";
+			"from MemberVO where email=?";
 
 	@Override
 	public MemberVO selectByEmail(String email){
@@ -63,9 +59,11 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_EMAIL);
-			query.setParameter(1, email);
+			query.setParameter(0, email);
 			List<MemberVO> list = query.list();
-			memberVO = list.get(0);
+			if(list.size()!=0){
+				memberVO = list.get(0);
+			}
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -75,7 +73,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_BY_PURVIEW =
-			"from Member where Purview=?";
+			"from MemberVO where Purview=?";
 
 	@Override
 	public List<MemberVO> selectByPurview(int purview){
@@ -84,7 +82,7 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_PURVIEW);
-			query.setParameter(1, purview);
+			query.setParameter(0, purview);
 			result = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -95,7 +93,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_ALL =
-			"from Member order by memberNo";
+			"from MemberVO order by memberNo";
 
 	@Override
 	public List<MemberVO> getAll(){
@@ -138,9 +136,7 @@ public class MemberDAOHbm implements MemberDAO {
 	@Override
 	public int update(MemberVO vo){
 		int result = 0;
-		if(this.selectByPrimaryKey(vo.getMemberNo())==null){
-			result = 0;
-		}else if(this.selectById(vo.getId())!=null){
+		if(this.selectById(vo.getId())!=null){
 			result = -100;
 		}else if(this.selectByEmail(vo.getEmail())!=null){
 			result = -100;
@@ -166,9 +162,11 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			MemberVO vo = (MemberVO) session.get(MemberVO.class, memberNo);
-			session.delete(vo);
+			if(vo != null){
+				session.delete(vo);
+				result = true;
+			}
 			session.getTransaction().commit();
-			result = true;
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
