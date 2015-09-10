@@ -27,7 +27,6 @@ public class ReflectDAOHbm implements ReflectDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		
 		return reflectVO;
 	}
 
@@ -50,7 +49,7 @@ public class ReflectDAOHbm implements ReflectDAO {
 	}
 
 	@Override
-	public ReflectVO insert(ReflectVO vo) {
+	public int insert(ReflectVO vo) {
 		ReflectVO reflectVO = null;
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -63,45 +62,52 @@ public class ReflectDAOHbm implements ReflectDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return reflectVO;
+		return reflectVO.getNo();
 	}
 
+	private static final String UPDATE = "update ReflectVO set "
+			+ " reflectedNo=?, authorNo=?, reflectedDate=?, authorDate=? where no=?";
+
 	@Override
-	public ReflectVO update(ReflectVO vo) {
-		ReflectVO reflectVO = null;
+	public int update(ReflectVO vo) {
+		int result = 0;
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(vo);
-			reflectVO = (ReflectVO) session.get(ReflectVO.class, vo.getNo());
+			Query query = session.createQuery(UPDATE);
+			query.setParameter(0, vo.getReflectedNo());
+			query.setParameter(1, vo.getAuthorNo());
+			query.setParameter(2, vo.getReflectedDate());
+			query.setParameter(3, vo.getAuthorDate());
+			query.setParameter(4, vo.getNo());
+			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return reflectVO;
+		return result;
 	}
 
 	@Override
 	public boolean delete(int no) {
-		boolean flag1= false;
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-
-			ReflectVO reflectVO = new ReflectVO();
-			reflectVO.setNo(no);
-			session.delete(reflectVO);
-
-			session.getTransaction().commit();
-			flag1= true;
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-//			throw ex;
+		boolean result= false;
+		if( this.selectByPrimaryKey(no) != null){
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				ReflectVO reflectVO = new ReflectVO();
+				reflectVO.setNo(no);
+				session.delete(reflectVO);
+				session.getTransaction().commit();
+				result= true;
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
 		}
-		return flag1;
+		return result;
 	}
 
 }

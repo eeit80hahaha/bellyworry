@@ -120,7 +120,7 @@ public class HeroDAOJdbc implements HeroDAO {
 	}
 	private static final String INSERT = "insert into hero (memberNo,weightDiff, num) values (?, ?, ?)";
 	@Override
-	public HeroVO insert(HeroVO vo) {
+	public int insert(HeroVO vo) {
 		HeroVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -164,12 +164,13 @@ public class HeroDAOJdbc implements HeroDAO {
 				}
 			}
 		}
-		return result;
+//		return result;
+		return 100;
 	}
 
 	private static final String UPDATE ="update hero set weightDiff=?, num=? where memberNo=?";
 	@Override
-	public HeroVO update(HeroVO vo) {
+	public int update(HeroVO vo) {
 		HeroVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -205,7 +206,8 @@ public class HeroDAOJdbc implements HeroDAO {
 				}
 			}
 		}
-		return result;
+//		return result;
+		return 100;
 	}
 
 	

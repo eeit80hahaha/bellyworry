@@ -50,7 +50,7 @@ public class HeroDAOHbm implements HeroDAO {
 	}
 
 	@Override
-	public HeroVO insert(HeroVO vo) {
+	public int insert(HeroVO vo) {
 		HeroVO heroVO = null;
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -63,45 +63,50 @@ public class HeroDAOHbm implements HeroDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return heroVO;
+		return heroVO.getMemberNo();
 	}
 
+	private static final String UPDATE = "update HeroVO set "
+			+ " weightDiff=?, num=? where memberNo=?";
+	
 	@Override
-	public HeroVO update(HeroVO vo) {
-		HeroVO heroVO = null;
+	public int update(HeroVO vo) {
+		int result = 0;
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(vo);
-			heroVO = (HeroVO) session.get(HeroVO.class, vo.getMemberNo());
+			Query query = session.createQuery(UPDATE);
+			query.setParameter(0, vo.getWeightDiff());
+			query.setParameter(1, vo.getNum());
+			query.setParameter(2, vo.getMemberNo());
+			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return heroVO;
+		return result;
 	}
 
 	@Override
 	public boolean delete(int memberNo) {
-		boolean flag1= false;
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-
-			HeroVO heroVO = new HeroVO();
-			heroVO.setMemberNo(memberNo);
-			session.delete(heroVO);
-
-			session.getTransaction().commit();
-			flag1= true;
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-//			throw ex;
+		boolean result= false;
+		if( this.selectByPrimaryKey(memberNo) != null){
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				HeroVO heroVO = new HeroVO();
+				heroVO.setMemberNo(memberNo);
+				session.delete(heroVO);
+				session.getTransaction().commit();
+				result= true;
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
 		}
-		return flag1;
+		return result;
 	}
 
 }

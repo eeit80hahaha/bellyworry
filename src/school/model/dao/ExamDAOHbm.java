@@ -31,7 +31,7 @@ public class ExamDAOHbm implements ExamDAO {
 		return examVO;
 	}
 
-	private static final String GET_ALL_STMT = "from ExamVO order by no";
+	private static final String SELECT_ALL = "from ExamVO order by no";
 	
 	@Override
 	public List<ExamVO> getAll() {
@@ -39,7 +39,7 @@ public class ExamDAOHbm implements ExamDAO {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(GET_ALL_STMT);
+			Query query = session.createQuery(SELECT_ALL);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -50,9 +50,8 @@ public class ExamDAOHbm implements ExamDAO {
 	}
 
 	@Override
-	public ExamVO insert(ExamVO vo) {
+	public int insert(ExamVO vo) {
 		ExamVO examVO = null;
-		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -63,47 +62,54 @@ public class ExamDAOHbm implements ExamDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return examVO;
+		return examVO.getNo();
 	}
 
+	private static final String UPDATE = "update ExamVO set"
+			+ " content=?, correct=?, optA=?, optB=?, optC=? where no=?";
+
 	@Override
-	public ExamVO update(ExamVO vo) {
-		ExamVO examVO = null;
-		
+	public int update(ExamVO vo) {
+		int result = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(vo);
-			examVO = (ExamVO) session.get(ExamVO.class, vo.getNo());
+			Query query = session.createQuery(UPDATE);
+			query.setParameter(0, vo.getContent());
+			query.setParameter(1, vo.getCorrect());
+			query.setParameter(2, vo.getOptA());
+			query.setParameter(3, vo.getOptB());
+			query.setParameter(4, vo.getOptC());
+			query.setParameter(5, vo.getNo());
+			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return examVO;
+		return result;
 	}
 
 	@Override
 	public boolean delete(int no) {
 		
-		boolean flag1= false;
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-
-			ExamVO examVO = new ExamVO();
-			examVO.setNo(no);
-			session.delete(examVO);
-
-			session.getTransaction().commit();
-			flag1= true;
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-//			throw ex;
-		}
-		
-		return flag1;
+		boolean result= false;
+		if( this.selectByPrimaryKey(no) != null){
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+					session.beginTransaction();
+					ExamVO examVO = new ExamVO();
+					examVO.setNo(no);
+					session.delete(examVO);
+					session.getTransaction().commit();
+					result= true;
+	
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
+		}		
+		return result;
 	}
 
 }

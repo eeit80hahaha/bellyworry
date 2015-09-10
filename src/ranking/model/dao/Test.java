@@ -20,7 +20,7 @@ public class Test {
 		//test selectByPrimaryKey for Hero ok
 //		System.out.println("test selectByPrimaryKey(int) ==========================");
 //		HeroDAO hero1 = new HeroDAOHbm();
-//		HeroVO herovo1 = hero1.selectByPrimaryKey(1000006);
+//		HeroVO herovo1 = hero1.selectByPrimaryKey(1000015);
 //		System.out.println(herovo1);
 
 		//test getAll for Hero ok
@@ -38,16 +38,17 @@ public class Test {
 //		herovo3.setMemberNo(1000017);
 //		herovo3.setWeightDiff(3);
 //		herovo3.setNum(32);
-//		System.out.println(hero3.insert(herovo3).toString());
+//		System.out.println(hero3.selectByPrimaryKey(hero3.insert(herovo3)));
 		
 		//test update for Hero ok
 //		System.out.println("test update() ==================================");
 //		HeroDAO hero4 = new HeroDAOHbm();
 //		HeroVO herovo4 = new HeroVO();
 //		herovo4.setMemberNo(1000017);
-//		herovo4.setWeightDiff(5);
-//		herovo4.setNum(23);
-//		System.out.println(hero4.update(herovo4).toString());
+//		herovo4.setWeightDiff(3);
+//		herovo4.setNum(27);
+//		System.out.println("update num :"+hero4.update(herovo4));
+//		System.out.println(hero4.selectByPrimaryKey(herovo4.getMemberNo()));
 		
 		//test delete for Hero delete is null error
 //		System.out.println("test delete() ==================================");
@@ -82,25 +83,27 @@ public class Test {
 //		reflectvo3.setAuthorNo(1000003);
 //		reflectvo3.setReflectedDate((java.util.Date) sFormat.parse("2015-09-07"));
 //		reflectvo3.setAuthorDate((java.util.Date) sFormat.parse("2015-09-07"));
-//		System.out.println(reflect3.insert(reflectvo3).toString());
+//		System.out.println(reflect3.selectByPrimaryKey(reflect3.insert(reflectvo3)));
 		//Date 未完成
 		
 		//test update for Reflect date format error
 //		System.out.println("test update() ==================================");
 //		ReflectDAO reflect4 = new ReflectDAOHbm();
 //		ReflectVO reflectvo4 = new ReflectVO();
-//		reflectvo4.setNo(100014);
+//		reflectvo4.setNo(100015);
 //		reflectvo4.setReflectedNo(1000004);
 //		reflectvo4.setAuthorNo(1000005);
 //		reflectvo4.setReflectedDate((java.util.Date) sFormat.parse("2015-09-08"));
 //		reflectvo4.setAuthorDate((java.util.Date) sFormat.parse("2015-09-06"));
-//		System.out.println(reflect4.update(reflectvo4).toString());
+//		System.out.println("update num :"+reflect4.update(reflectvo4));
+//		System.out.println(reflect4.selectByPrimaryKey(reflectvo4.getNo()));		
+		
 		//Date 未完成
 		
 		//test delete for Reflect  date format error
 //		System.out.println("test delete() ==================================");
 //		ReflectDAO reflect5 = new ReflectDAOHbm();
-//		System.out.println("delete is " + reflect5.delete(100014));
+//		System.out.println("delete is " + reflect5.delete(100015));
 		
 		
 	}
