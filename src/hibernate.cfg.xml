@@ -43,8 +43,9 @@
 		<mapping resource="food/recipes/model/cook.hbm.xml" />
 		<mapping resource="food/recipes/model/foodItem.hbm.xml" />
 		<mapping resource="food/recipes/model/foodList.hbm.xml" />
-
-
+		<mapping resource="fun/model/viewclass.hbm.xml" />
+		<mapping resource="fun/model/healthview.hbm.xml" />
+		<mapping resource="news/model/activity.hbm.xml" />
 	</session-factory>
 	
 </hibernate-configuration>
