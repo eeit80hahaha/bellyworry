@@ -140,9 +140,11 @@ public class MemberDAOHbm implements MemberDAO {
 	@Override
 	public int update(MemberVO vo){
 		int result = 0;
-		if(this.selectById(vo.getId())!=null){
+		MemberVO temp1 = this.selectById(vo.getId());
+		MemberVO temp2 = this.selectByEmail(vo.getEmail());
+		if(temp1!=null && temp1.getMemberNo()!=vo.getMemberNo()){
 			result = -100;
-		}else if(this.selectByEmail(vo.getEmail())!=null){
+		}else if(temp2!=null && temp2.getMemberNo()!=vo.getMemberNo()){
 			result = -100;
 		}else{
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
