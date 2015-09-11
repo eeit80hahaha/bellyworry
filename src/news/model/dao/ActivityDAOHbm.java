@@ -48,46 +48,61 @@ public class ActivityDAOHbm implements ActivityDAO {
 	}
 
 	@Override
-	public ActivityVO insert(ActivityVO vo) {
+	public int insert(ActivityVO vo) {
+		ActivityVO activityVO = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(vo);
+			activityVO = (ActivityVO) session.get(ActivityVO.class, vo.getNo());
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return vo;
+		return activityVO.getNo();
 	}
 
+	private static final String UPDATE = "update ActivityVO set"
+			+ " name=?, content=?, startTime=?, endTime=?, address=?, picture=?  where no=?";
 	@Override
-	public ActivityVO update(ActivityVO vo) {
+	public int update(ActivityVO vo) {
+		int result = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(vo);
+			Query query = session.createQuery(UPDATE);
+			query.setParameter(0, vo.getName());
+			query.setParameter(1, vo.getContent());
+			query.setParameter(2, vo.getStartTime());
+			query.setParameter(3, vo.getEndTime());
+			query.setParameter(4, vo.getAddress());
+			query.setParameter(5, vo.getPicture());
+			query.setParameter(6, vo.getNo());
+			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return vo;
+		return result;
 	}
 
 	@Override
 	public boolean delete(int no) {
 		boolean result = false;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			ActivityVO activityVO = (ActivityVO) session.get(ActivityVO.class, no);
-			session.delete(activityVO);
-			session.getTransaction().commit();
-			result = true;
-		} catch (RuntimeException ex) {
+		if( this.selectByPrimaryKey(no) != null){
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				ActivityVO activityVO = (ActivityVO) session.get(ActivityVO.class, no);
+				session.delete(activityVO);
+				session.getTransaction().commit();
+				result = true;
+			} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
+			}
 		}
 		return result;
 	}
