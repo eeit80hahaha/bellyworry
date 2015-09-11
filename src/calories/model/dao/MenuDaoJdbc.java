@@ -1,7 +1,6 @@
 package calories.model.dao;
 
 import init.GlobalService;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +13,7 @@ import calories.model.MenuDAO;
 import calories.model.MenuVO;
 
 public class MenuDaoJdbc implements MenuDAO{
+
 //	private static final String URL = "jdbc:sqlserver://localhost:1433;database=bellyworry";
 //	private static final String USERNAME = "sa";
 //	private static final String PASSWORD = "sa123456";
@@ -31,6 +31,9 @@ public class MenuDaoJdbc implements MenuDAO{
 			"select * from menu where menuNo=?";
 	@Override
 	public MenuVO selectByPrimaryKey(int menuNo) {
+				
+//====================JDBC======================================
+		
 		MenuVO result = null;
 		ResultSet rset = null;
 		try(
@@ -58,12 +61,15 @@ public class MenuDaoJdbc implements MenuDAO{
 			}
 		}
 		return result;
+		
 	}
 	
 	private static final String SELECT_ALL =
 			"select * from menu";
 	@Override
 	public List<MenuVO> getAll() {
+//====================JDBC======================================
+		
 		List<MenuVO> result = null;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
@@ -87,8 +93,9 @@ public class MenuDaoJdbc implements MenuDAO{
 	private static final String INSERT =
 			"insert into Menu (name) values (?)";
 	@Override
-	public MenuVO insert(MenuVO vo) {
-		MenuVO result = null;
+	public int insert(MenuVO vo) {
+//====================JDBC======================================
+		int result = 0;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
@@ -97,20 +104,22 @@ public class MenuDaoJdbc implements MenuDAO{
 				stmt.setString(1, vo.getName());
 				int i = stmt.executeUpdate();
 				if(i==1) {
-					result = vo;
+					result = vo.getMenuNo();
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
-	}
+//====================Hibernate======================================
+		}
 	
 	private static final String UPDATE =
 			"update menu set name=? where menuNo=?";
 	@Override
-	public MenuVO update(MenuVO bean) {
-		MenuVO result = null;
+	public int update(MenuVO bean) {
+//====================JDBC======================================
+		int result = 0;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
@@ -119,7 +128,7 @@ public class MenuDaoJdbc implements MenuDAO{
 			stmt.setInt(2, bean.getMenuNo());
 			int i = stmt.executeUpdate();
 			if(i==1) {
-				result = this.selectByPrimaryKey(bean.getMenuNo());
+				result = 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,6 +140,7 @@ public class MenuDaoJdbc implements MenuDAO{
 			"delete from menu where menuNo=?";	
 	@Override
 	public boolean delete(int menuNo) {
+//====================JDBC======================================
 		try(
 			Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //			Connection conn = dataSource.getConnection();
@@ -151,6 +161,8 @@ public class MenuDaoJdbc implements MenuDAO{
 			e.printStackTrace();
 		}
 		return false;
+
+		
 	}
 		
 }

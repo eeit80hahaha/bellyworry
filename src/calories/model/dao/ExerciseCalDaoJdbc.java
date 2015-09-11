@@ -88,8 +88,8 @@ public class ExerciseCalDaoJdbc implements ExerciseCalDAO {
 	private static final String INSERT =
 			"insert into exercise_cal (name,calHour) values (?,?)";
 	@Override
-	public ExerciseCalVO insert(ExerciseCalVO vo) {
-		ExerciseCalVO result = null;
+	public int insert(ExerciseCalVO vo) {
+		int result = 0;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
@@ -101,7 +101,7 @@ public class ExerciseCalDaoJdbc implements ExerciseCalDAO {
 				ResultSet rs = stmt.getGeneratedKeys();
 				if(i==1) {
 					 if (rs.next()) { 						
-						 result = this.selectByPrimaryKey(rs.getInt(1));;
+						 result = -100;
                          
                  } 
 					
@@ -116,8 +116,8 @@ public class ExerciseCalDaoJdbc implements ExerciseCalDAO {
 	private static final String UPDATE =
 			"update exercise_cal set name=?,calHour=? where exerciseNo=?";
 	@Override
-	public ExerciseCalVO update(ExerciseCalVO vo) {
-		ExerciseCalVO result = null;
+	public int update(ExerciseCalVO vo) {
+		int result = 0;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
@@ -128,7 +128,7 @@ public class ExerciseCalDaoJdbc implements ExerciseCalDAO {
 			
 			int i = stmt.executeUpdate();
 			if(i==1) {
-				result = this.selectByPrimaryKey(vo.getExerciseNo());
+				result = 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

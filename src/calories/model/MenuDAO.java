@@ -7,9 +7,9 @@ public interface MenuDAO {
 
 	public abstract List<MenuVO> getAll();
 
-	public abstract MenuVO insert(MenuVO vo);
+	public abstract int insert(MenuVO vo);
 
-	public abstract MenuVO update(MenuVO vo);
+	public abstract int update(MenuVO vo);
 
 	public abstract boolean delete(int menuNo);
 }
