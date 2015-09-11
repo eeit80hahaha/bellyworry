@@ -1,45 +1,43 @@
-package school.model.dao;
+package fun.model.dao;
 
 import hibernate.util.HibernateUtil;
 
 import java.util.List;
 
+import news.model.ActivityVO;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import school.model.ExamDAO;
-import school.model.ExamVO;
+import fun.model.HealthViewDAO;
+import fun.model.HealthViewVO;
 
-public class ExamDAOHbm implements ExamDAO {
 
+public class HealthViewDAOHbm implements HealthViewDAO {
+
+	private static final String GET_ALL_STMT = "from HealthViewVO order by no";
 	@Override
-	public ExamVO selectByPrimaryKey(int no) {
-
-		ExamVO examVO = null;
-
+	public HealthViewVO selectByPrimaryKey(int no) {
+		HealthViewVO vo = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		
 		try {
 			session.beginTransaction();
-			examVO = (ExamVO) session.get(ExamVO.class, no);
+			vo = (HealthViewVO) session.get(HealthViewVO.class, no);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		
-		return examVO;
+		return vo;
 	}
 
-	private static final String SELECT_ALL = "from ExamVO order by no";
-	
 	@Override
-	public List<ExamVO> getAll() {
-		List<ExamVO> list = null;
+	public List<HealthViewVO> getAll() {
+		List<HealthViewVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(SELECT_ALL);
+			Query query = session.createQuery(GET_ALL_STMT);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -50,37 +48,35 @@ public class ExamDAOHbm implements ExamDAO {
 	}
 
 	@Override
-	public int insert(ExamVO vo) {
-		ExamVO examVO = null;
+	public int insert(HealthViewVO vo) {
+		HealthViewVO healthViewVO = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(vo);
-			examVO = (ExamVO) session.get(ExamVO.class, vo.getNo());
+			healthViewVO = (HealthViewVO) session.get(HealthViewVO.class, vo.getNo());
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return examVO.getNo();
+		return healthViewVO.getNo();
 	}
 
-	private static final String UPDATE = "update ExamVO set"
-			+ " content=?, correct=?, optA=?, optB=?, optC=? where no=?";
-
+	private static final String UPDATE = "update HealthViewVO set"
+			+ " name=?, viewClassNo=?, lat=?, lng=?  where no=?";
 	@Override
-	public int update(ExamVO vo) {
+	public int update(HealthViewVO vo) {
 		int result = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(UPDATE);
-			query.setParameter(0, vo.getContent());
-			query.setParameter(1, vo.getCorrect());
-			query.setParameter(2, vo.getOptA());
-			query.setParameter(3, vo.getOptB());
-			query.setParameter(4, vo.getOptC());
-			query.setParameter(5, vo.getNo());
+			query.setParameter(0, vo.getName());
+			query.setParameter(1, vo.getViewClassNo());
+			query.setParameter(2, vo.getLat());
+			query.setParameter(3, vo.getLng());
+			query.setParameter(4, vo.getNo());
 			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -92,23 +88,20 @@ public class ExamDAOHbm implements ExamDAO {
 
 	@Override
 	public boolean delete(int no) {
-		
-		boolean result= false;
+		boolean result = false;
 		if( this.selectByPrimaryKey(no) != null){
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			try {
-					session.beginTransaction();
-					ExamVO examVO = new ExamVO();
-					examVO.setNo(no);
-					session.delete(examVO);
-					session.getTransaction().commit();
-					result= true;
-	
+				session.beginTransaction();
+				HealthViewVO healthviewVO = (HealthViewVO) session.get(HealthViewVO.class, no);
+				session.delete(healthviewVO);
+				session.getTransaction().commit();
+				result = true;
 			} catch (RuntimeException ex) {
-				session.getTransaction().rollback();
-				throw ex;
+			session.getTransaction().rollback();
+			throw ex;
 			}
-		}		
+		}
 		return result;
 	}
 

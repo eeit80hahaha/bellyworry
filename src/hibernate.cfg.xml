@@ -34,13 +34,22 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<!--Java物件與資料庫表格的映射檔 -->
-<!-- 		<mapping resource="ranking/model/hero.hbm.xml" /> -->
-<!-- 		<mapping resource="register/model/member.hbm.xml" /> -->
-<!-- 		<mapping resource="school/model/exam.hbm.xml" /> -->
 		<mapping resource="calories/model/exercisecal.hbm.xml" />
 		<mapping resource="calories/model/menu.hbm.xml" />
 		<mapping resource="health/model/healthdiary.hbm.xml" />
 		<mapping resource="news/model/activityVO.hbm.xml" />
+		<mapping resource="ranking/model/hero.hbm.xml" />
+		<mapping resource="ranking/model/reflect.hbm.xml" />
+		<mapping resource="register/model/member.hbm.xml" />
+		<mapping resource="school/model/exam.hbm.xml" />
+		<mapping resource="health/model/eatrecord.hbm.xml" />
+		<mapping resource="health/model/exerciserecord.hbm.xml" />
+		<mapping resource="food/recipes/model/cook.hbm.xml" />
+		<mapping resource="food/recipes/model/foodItem.hbm.xml" />
+		<mapping resource="food/recipes/model/foodList.hbm.xml" />
+		<mapping resource="fun/model/viewclass.hbm.xml" />
+		<mapping resource="fun/model/healthview.hbm.xml" />
+		<mapping resource="news/model/activity.hbm.xml" />
 	</session-factory>
 	
 </hibernate-configuration>

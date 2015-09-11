@@ -1,17 +1,11 @@
 package register.model.dao;
 
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import hibernate.util.HibernateUtil;
-import init.GlobalService;
 import register.model.MemberDAO;
 import register.model.MemberVO;
 
@@ -33,7 +27,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_BY_ID =
-			"from Member where id=?";
+			"from MemberVO where id=?";
 
 	@Override
 	public MemberVO selectById(String id){
@@ -42,9 +36,11 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_ID);
-			query.setParameter(1, id);
+			query.setParameter(0, id);
 			List<MemberVO> list = query.list();
-			memberVO = list.get(0);
+			if(list.size()!=0){
+				memberVO = list.get(0);
+			}
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -54,7 +50,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_BY_EMAIL =
-			"from Member where email=?";
+			"from MemberVO where email=?";
 
 	@Override
 	public MemberVO selectByEmail(String email){
@@ -63,9 +59,11 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_EMAIL);
-			query.setParameter(1, email);
+			query.setParameter(0, email);
 			List<MemberVO> list = query.list();
-			memberVO = list.get(0);
+			if(list.size()!=0){
+				memberVO = list.get(0);
+			}
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -75,7 +73,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_BY_PURVIEW =
-			"from Member where Purview=?";
+			"from MemberVO where Purview=?";
 
 	@Override
 	public List<MemberVO> selectByPurview(int purview){
@@ -84,7 +82,7 @@ public class MemberDAOHbm implements MemberDAO {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_PURVIEW);
-			query.setParameter(1, purview);
+			query.setParameter(0, purview);
 			result = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -95,7 +93,7 @@ public class MemberDAOHbm implements MemberDAO {
 	}
 	
 	private static final String SELECT_ALL =
-			"from Member order by memberNo";
+			"from MemberVO order by memberNo";
 
 	@Override
 	public List<MemberVO> getAll(){
@@ -134,22 +132,36 @@ public class MemberDAOHbm implements MemberDAO {
 		}
 		return result;
 	}
+	
+	private static final String UPDATE =
+			"update MemberVO set id=?, password=?, firstName=?, lastName=?, nickname=?,"
+			+ "email=?, birthday=?, gender=?, purview=? where memberNo=?";
 
 	@Override
 	public int update(MemberVO vo){
 		int result = 0;
-		if(this.selectByPrimaryKey(vo.getMemberNo())==null){
-			result = 0;
-		}else if(this.selectById(vo.getId())!=null){
+		MemberVO temp1 = this.selectById(vo.getId());
+		MemberVO temp2 = this.selectByEmail(vo.getEmail());
+		if(temp1!=null && temp1.getMemberNo()!=vo.getMemberNo()){
 			result = -100;
-		}else if(this.selectByEmail(vo.getEmail())!=null){
+		}else if(temp2!=null && temp2.getMemberNo()!=vo.getMemberNo()){
 			result = -100;
 		}else{
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			try {
 				session.beginTransaction();
-				session.saveOrUpdate(vo);
-				result = vo.getMemberNo();
+				Query query = session.createQuery(UPDATE);
+				query.setParameter(0, vo.getId());
+				query.setParameter(1, vo.getPassword());
+				query.setParameter(2, vo.getFirstName());
+				query.setParameter(3, vo.getLastName());
+				query.setParameter(4, vo.getNickname());
+				query.setParameter(5, vo.getEmail());
+				query.setParameter(6, vo.getBirthday());
+				query.setParameter(7, vo.getGender());
+				query.setParameter(8, vo.getPurview());
+				query.setParameter(9, vo.getMemberNo());
+				result = query.executeUpdate();
 				session.getTransaction().commit();
 			} catch (RuntimeException ex) {
 				session.getTransaction().rollback();
@@ -162,16 +174,18 @@ public class MemberDAOHbm implements MemberDAO {
 	@Override
 	public boolean delete(int memberNo){
 		boolean result = false;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			MemberVO vo = (MemberVO) session.get(MemberVO.class, memberNo);
-			session.delete(vo);
-			session.getTransaction().commit();
-			result = true;
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
+		if(this.selectByPrimaryKey(memberNo)!=null){
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				MemberVO memberVO = (MemberVO) session.get(MemberVO.class, memberNo);
+				session.delete(memberVO);
+				session.getTransaction().commit();
+				result = true;
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
 		}		
 		return result;
 	}

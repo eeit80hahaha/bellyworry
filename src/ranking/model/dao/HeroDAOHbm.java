@@ -1,4 +1,4 @@
-package school.model.dao;
+package ranking.model.dao;
 
 import hibernate.util.HibernateUtil;
 
@@ -7,39 +7,39 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import school.model.ExamDAO;
+import ranking.model.HeroDAO;
+import ranking.model.HeroVO;
 import school.model.ExamVO;
 
-public class ExamDAOHbm implements ExamDAO {
+public class HeroDAOHbm implements HeroDAO {
 
 	@Override
-	public ExamVO selectByPrimaryKey(int no) {
-
-		ExamVO examVO = null;
+	public HeroVO selectByPrimaryKey(int memberNo) {
+		HeroVO heroVO = null;
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		
 		try {
 			session.beginTransaction();
-			examVO = (ExamVO) session.get(ExamVO.class, no);
+			heroVO = (HeroVO) session.get(HeroVO.class, memberNo);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
 		
-		return examVO;
+		return heroVO;
 	}
 
-	private static final String SELECT_ALL = "from ExamVO order by no";
+	private static final String GET_ALL_STMT = "from HeroVO order by memberNo";
 	
 	@Override
-	public List<ExamVO> getAll() {
-		List<ExamVO> list = null;
+	public List<HeroVO> getAll() {
+		List<HeroVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(SELECT_ALL);
+			Query query = session.createQuery(GET_ALL_STMT);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -50,37 +50,36 @@ public class ExamDAOHbm implements ExamDAO {
 	}
 
 	@Override
-	public int insert(ExamVO vo) {
-		ExamVO examVO = null;
+	public int insert(HeroVO vo) {
+		HeroVO heroVO = null;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(vo);
-			examVO = (ExamVO) session.get(ExamVO.class, vo.getNo());
+			heroVO = (HeroVO) session.get(HeroVO.class, vo.getMemberNo());
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return examVO.getNo();
+		return heroVO.getMemberNo();
 	}
 
-	private static final String UPDATE = "update ExamVO set"
-			+ " content=?, correct=?, optA=?, optB=?, optC=? where no=?";
-
+	private static final String UPDATE = "update HeroVO set "
+			+ " weightDiff=?, num=? where memberNo=?";
+	
 	@Override
-	public int update(ExamVO vo) {
+	public int update(HeroVO vo) {
 		int result = 0;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(UPDATE);
-			query.setParameter(0, vo.getContent());
-			query.setParameter(1, vo.getCorrect());
-			query.setParameter(2, vo.getOptA());
-			query.setParameter(3, vo.getOptB());
-			query.setParameter(4, vo.getOptC());
-			query.setParameter(5, vo.getNo());
+			query.setParameter(0, vo.getWeightDiff());
+			query.setParameter(1, vo.getNum());
+			query.setParameter(2, vo.getMemberNo());
 			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -91,24 +90,22 @@ public class ExamDAOHbm implements ExamDAO {
 	}
 
 	@Override
-	public boolean delete(int no) {
-		
+	public boolean delete(int memberNo) {
 		boolean result= false;
-		if( this.selectByPrimaryKey(no) != null){
+		if( this.selectByPrimaryKey(memberNo) != null){
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			try {
-					session.beginTransaction();
-					ExamVO examVO = new ExamVO();
-					examVO.setNo(no);
-					session.delete(examVO);
-					session.getTransaction().commit();
-					result= true;
-	
+				session.beginTransaction();
+				HeroVO heroVO = new HeroVO();
+				heroVO.setMemberNo(memberNo);
+				session.delete(heroVO);
+				session.getTransaction().commit();
+				result= true;
 			} catch (RuntimeException ex) {
 				session.getTransaction().rollback();
 				throw ex;
 			}
-		}		
+		}
 		return result;
 	}
 

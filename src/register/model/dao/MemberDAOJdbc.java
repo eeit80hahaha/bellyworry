@@ -364,9 +364,11 @@ public class MemberDAOJdbc implements MemberDAO {
 	@Override
 	public int update(MemberVO bean){
 		int result = 0;
-		if(this.selectById(bean.getId())!=null){
+		MemberVO temp1 = this.selectById(bean.getId());
+		MemberVO temp2 = this.selectByEmail(bean.getEmail());
+		if(temp1!=null && temp1.getMemberNo()!=bean.getMemberNo()){
 			result = -100;
-		}else if(this.selectByEmail(bean.getEmail())!=null){
+		}else if(temp2!=null && temp2.getMemberNo()!=bean.getMemberNo()){
 			result = -100;
 		}else{
 			try(

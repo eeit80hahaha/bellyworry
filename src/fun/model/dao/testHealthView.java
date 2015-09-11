@@ -1,8 +1,13 @@
 package fun.model.dao;
 
-
+import java.util.List;
 
 import fun.model.HealthViewDAO;
+import fun.model.HealthViewVO;
+
+
+
+
 
 
 
@@ -11,13 +16,13 @@ public class testHealthView {
 //		
 //		test selectByPrimaryKey for Exam
 //		System.out.println("test selectByPrimaryKey(int) ==========================");
-//		HealthViewDAO exam1 = new HealthViewDAOjdbc();
+//		HealthViewDAO exam1 = new HealthViewDAOHbm();
 //		HealthViewVO examvo1 = exam1.selectByPrimaryKey(100001);
 //		System.out.println(examvo1);
 
 //		//test getAll for Exam
 //		System.out.println("test getAll() =============================");
-//		HealthViewDAO exam2 = new HealthViewDAOjdbc();
+//		HealthViewDAO exam2 = new HealthViewDAOHbm();
 //		List<HealthViewVO> list1 = exam2.getAll();
 //
 //		for(HealthViewVO examvo2:list1){
@@ -26,32 +31,32 @@ public class testHealthView {
 //		
 //		//test insert for Exam	
 //		System.out.println("test insert() ==================================");
-//		HealthViewDAO exam3 = new HealthViewDAOjdbc();
+//		HealthViewDAO exam3 = new HealthViewDAOHbm();
 //		HealthViewVO examvo3 = new HealthViewVO();
 //		examvo3.setName("2015 宜蘭國道馬拉松賽");
 //		examvo3.setViewClassNo(100001);
 //		examvo3.setLat((float) 24.9926349);
 //		examvo3.setLng((float) 24.9926349);
-//		exam3.insert(examvo3);
-////		System.out.println(exam3.insert(examvo3).toString());
+//
+//		System.out.println(exam3.insert(examvo3));
 		
 ////		test update for Exam
 //		System.out.println("test update() ==================================");
-//		HealthViewDAO exam4 = new HealthViewDAOjdbc();
+//		HealthViewDAO exam4 = new HealthViewDAOHbm();
 //		HealthViewVO examvo4 = new HealthViewVO();
 //
 //		examvo4.setName("河濱公園99999999999");
 //		examvo4.setViewClassNo(100002);		
 //		examvo4.setLat((float) 24.9926349);
 //		examvo4.setLng((float) 24.9926349);
-//		examvo4.setNo(100007);
-//		exam4.update(examvo4);
-////		System.out.println(exam4.update(examvo4).toString());
+//		examvo4.setNo(100013);
+//
+//		System.out.println(exam4.update(examvo4));
 //		
 		//test delete for Exam
-		System.out.println("test delete() ==================================");
-		HealthViewDAO exam5 = new HealthViewDAOjdbc();
-		exam5.delete(100007);
+//		System.out.println("test delete() ==================================");
+//		HealthViewDAO exam5 = new HealthViewDAOHbm();
+//		System.out.println(exam5.delete(100013));
 		
 		
 	}

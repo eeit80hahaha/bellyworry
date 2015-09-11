@@ -18,5 +18,26 @@
         <property name="gender" column="gender" />
         <property name="purview" column="purview" />
         
+<!--         <set name="diarys" table="health_diary" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="memberNo"/></key> -->
+<!--         		<one-to-many class="health.model.HealthDiaryVO"/> -->
+<!--         </set> -->
+<!--         <set name="eatRecords" table="eat_record" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="memberNo"/></key> -->
+<!--         		<one-to-many class="health.model.EatRecordVO"/> -->
+<!--         </set> -->
+<!--         <set name="exerciseRecords" table="exercise_record" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="memberNo"/></key> -->
+<!--         		<one-to-many class="health.model.ExerciseRecordVO"/> -->
+<!--         </set> -->
+<!--         <set name="reflects" table="reflect" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="reflectedNo"/></key> -->
+<!--         		<one-to-many class="ranking.model.ReflectVO"/> -->
+<!--         </set> -->
+<!--         <set name="authors" table="reflect" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="authorNo"/></key> -->
+<!--         		<one-to-many class="ranking.model.ReflectVO"/> -->
+<!--         </set> -->
+        
     </class>
 </hibernate-mapping>

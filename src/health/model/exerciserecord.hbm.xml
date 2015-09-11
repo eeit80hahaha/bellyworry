@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="health.model.ExerciseRecordVO" table="exercise_record">
+        <id name="no" column="no">
+            <generator class="identity"/>
+        </id>
+        <property name="memberNo" column="memberNo"/>
+<!--         <many-to-one name="memberVO" class="register.model.MemberVO" lazy="false"> -->
+<!--             <column name="memberNo"/> -->
+<!--         </many-to-one> -->
+        <property name="exerciseNo" column="exerciseNo"/>
+<!--         <many-to-one name="exerciseCalVO" class="calories.model.ExerciseCalVO" lazy="false"> -->
+<!--             <column name="exerciseNo"/> -->
+<!--         </many-to-one> -->
+        <property name="date" column="date"/>
+        <property name="count" column="count"/>
+    </class>
+</hibernate-mapping>

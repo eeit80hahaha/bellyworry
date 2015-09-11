@@ -175,8 +175,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 			"insert into exercise_record (memberNo, exerciseNo, date, count) values (?, ?, ?, ?)";
 
 	@Override
-	public ExerciseRecordVO insert(ExerciseRecordVO vo) {
-		ExerciseRecordVO result = null;
+	public long insert(ExerciseRecordVO vo) {
+		long result = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
@@ -197,7 +197,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 				stmt.executeUpdate();
 				rset = stmt.getGeneratedKeys();
 				if(rset.next()){
-					result = this.selectByPrimaryKey(rset.getLong(1));
+					result = rset.getLong(1);
 				}
 			}
 		} catch (SQLException e) {
@@ -232,8 +232,8 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 			"update exercise_record set memberNo=?, exerciseNo=?, date=?, count=? where No=?";
 	
 	@Override
-	public ExerciseRecordVO update(ExerciseRecordVO vo) {
-		ExerciseRecordVO result = null;
+	public int update(ExerciseRecordVO vo) {
+		int result = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
@@ -251,10 +251,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 				}
 				stmt.setInt(4, vo.getCount());
 				stmt.setLong(5, vo.getNo());
-				int i = stmt.executeUpdate();
-				if (i == 1) {
-					result = this.selectByPrimaryKey(vo.getNo());
-				} 
+				result = stmt.executeUpdate();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

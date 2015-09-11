@@ -1,5 +1,8 @@
 package news.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import java.io.Serializable;
 import java.sql.Blob;
 
@@ -10,18 +13,17 @@ public class ActivityVO implements Serializable {
 	private java.util.Date startTime;
 	private java.util.Date endTime;
 	private String address;
-	private Blob picture;
+	private byte[] picture;
+
+
 	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj!=null && (obj instanceof ActivityVO)) {
-			ActivityVO temp = (ActivityVO) obj;
-			if(this.no == temp.no) {
-				return true;
-			}			
-		}
-		return false;
+	public byte[] getPicture() {
+		return picture;
 	}
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+
 	public int getNo() {
 		return no;
 	}
@@ -58,15 +60,22 @@ public class ActivityVO implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Blob getPicture() {
-		return picture;
-	}
-	public void setPicture(Blob picture) {
-		this.picture = picture;
-	}
+
+
 	@Override
 	public String toString() {
 		return "{"+no+":"+name+":"+content+":"+startTime+":"+endTime+":"+address+":"+picture+"}";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj!=null && (obj instanceof ActivityVO)) {
+			ActivityVO temp = (ActivityVO) obj;
+			if(this.no == temp.no) {
+				return true;
+			}			
+		}
+		return false;
 	}
 	
 	

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE hibernate-mapping 
+ PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping> 
+
+    <class name="fun.model.HealthViewVO" table="health_view"> 
+
+        <id name="no" column="no"> 
+            <generator class="identity"/> 
+        </id> 
+
+        <property name="name" column="name"/> 
+
+        <property name="viewClassNo" column="viewClassNo"/> 
+        
+        <property name="lat" column="lat"/> 
+        
+        <property name="lng" column="lng"/> 
+
+    </class> 
+
+</hibernate-mapping>

@@ -126,7 +126,7 @@ public class ReflectDAOJdbc implements ReflectDAO {
 	
 	private static final String INSERT = "insert into reflect (reflectedNo, authorNo, reflectedDate, authorDate) values (?, ?, ?, ?)";
 	@Override
-	public ReflectVO insert(ReflectVO vo) {
+	public int insert(ReflectVO vo) {
 		ReflectVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -181,12 +181,13 @@ public class ReflectDAOJdbc implements ReflectDAO {
 				}
 			}
 		}
-		return result;
+//		return result;
+		return 100;
 	}
 
 	private static final String UPDATE ="update reflect set reflectedNo=?, authorNo=?, reflectedDate=?, authorDate=? where no=?";
 	@Override
-	public ReflectVO update(ReflectVO vo) {
+	public int update(ReflectVO vo) {
 		ReflectVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -234,7 +235,8 @@ public class ReflectDAOJdbc implements ReflectDAO {
 				}
 			}
 		}
-		return result;
+//		return result;
+		return 100;
 	}
 
 	private static final String DELETE ="delete from reflect where no=?";

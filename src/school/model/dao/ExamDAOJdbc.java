@@ -128,7 +128,7 @@ public class ExamDAOJdbc implements ExamDAO {
 	private static final String INSERT =
 			"insert into exam (content, correct, optA, optB, optC) values (?, ?, ?, ?, ?)";
 	@Override
-	public ExamVO insert(ExamVO vo) {
+	public int insert(ExamVO vo) {
 		ExamVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -174,14 +174,15 @@ public class ExamDAOJdbc implements ExamDAO {
 				}
 			}
 		}
-		return result;
+//		return result;
+		return 100;
 	}
 
 	
 	private static final String UPDATE =
 			"update exam set content=?, correct=?, optA=?, optB=?, optC=? where no=?";
 	@Override
-	public ExamVO update(ExamVO vo) {
+	public int update(ExamVO vo) {
 		ExamVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -219,7 +220,8 @@ public class ExamDAOJdbc implements ExamDAO {
 				}
 			}
 		}
-		return result;
+//		return result;
+		return 100;
 	}
 
 	private static final String DELETE =

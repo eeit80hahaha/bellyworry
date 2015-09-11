@@ -1,47 +1,51 @@
 package food.recipes.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class CookVO implements Serializable{
-	private int cookno;
-	private String wayno;
-	private java.sql.Blob picture;
+	private int cookNo;
+	private String wayNo;
+	private Blob picture;	
 	public CookVO(){
 		
 	}	
-	
+
 	public boolean equals(Object obj){
 		if(obj!=null && (obj instanceof CookVO)){
 			CookVO temp = (CookVO) obj;
-			if(this.cookno == temp.cookno){
+			if(this.cookNo == temp.cookNo){
 				return true;
 			}
 		}
 		return false;
 	}
+
 	public String toString(){
-		return "("+cookno+":"+ wayno+")";
+		return "("+cookNo+":"+ wayNo+")";
 	}
 	
-	public int getCookno() {
-		return cookno;
+	public int getCookNo() {
+		return cookNo;
 	}
-	public void setCookno(int cookno) {
-		this.cookno = cookno;
+	public void setCookNo(int cookNo) {
+		this.cookNo = cookNo;
 	}
 	public String getWayNo() {
-		return wayno;
+		return wayNo;
 	}
 	public void setWayNo(String wayNo) {
-		this.wayno = wayNo;
+		this.wayNo = wayNo;
 	}
 
-	public java.sql.Blob getPicture() {
+	public Blob getPicture() {
 		return picture;
 	}
 
-	public void setPicture(java.sql.Blob picture) {
+	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
+
+
 	
 }

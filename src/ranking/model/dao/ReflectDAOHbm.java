@@ -1,4 +1,4 @@
-package school.model.dao;
+package ranking.model.dao;
 
 import hibernate.util.HibernateUtil;
 
@@ -7,39 +7,38 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import school.model.ExamDAO;
-import school.model.ExamVO;
+import ranking.model.HeroVO;
+import ranking.model.ReflectDAO;
+import ranking.model.ReflectVO;
 
-public class ExamDAOHbm implements ExamDAO {
+public class ReflectDAOHbm implements ReflectDAO {
 
 	@Override
-	public ExamVO selectByPrimaryKey(int no) {
-
-		ExamVO examVO = null;
+	public ReflectVO selectByPrimaryKey(int no) {
+		ReflectVO reflectVO = null;
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		
 		try {
 			session.beginTransaction();
-			examVO = (ExamVO) session.get(ExamVO.class, no);
+			reflectVO = (ReflectVO) session.get(ReflectVO.class, no);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		
-		return examVO;
+		return reflectVO;
 	}
 
-	private static final String SELECT_ALL = "from ExamVO order by no";
+	private static final String GET_ALL_STMT = "from ReflectVO order by no";
 	
 	@Override
-	public List<ExamVO> getAll() {
-		List<ExamVO> list = null;
+	public List<ReflectVO> getAll() {
+		List<ReflectVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(SELECT_ALL);
+			Query query = session.createQuery(GET_ALL_STMT);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -50,37 +49,38 @@ public class ExamDAOHbm implements ExamDAO {
 	}
 
 	@Override
-	public int insert(ExamVO vo) {
-		ExamVO examVO = null;
+	public int insert(ReflectVO vo) {
+		ReflectVO reflectVO = null;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(vo);
-			examVO = (ExamVO) session.get(ExamVO.class, vo.getNo());
+			reflectVO = (ReflectVO) session.get(ReflectVO.class, vo.getNo());
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return examVO.getNo();
+		return reflectVO.getNo();
 	}
 
-	private static final String UPDATE = "update ExamVO set"
-			+ " content=?, correct=?, optA=?, optB=?, optC=? where no=?";
+	private static final String UPDATE = "update ReflectVO set "
+			+ " reflectedNo=?, authorNo=?, reflectedDate=?, authorDate=? where no=?";
 
 	@Override
-	public int update(ExamVO vo) {
+	public int update(ReflectVO vo) {
 		int result = 0;
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(UPDATE);
-			query.setParameter(0, vo.getContent());
-			query.setParameter(1, vo.getCorrect());
-			query.setParameter(2, vo.getOptA());
-			query.setParameter(3, vo.getOptB());
-			query.setParameter(4, vo.getOptC());
-			query.setParameter(5, vo.getNo());
+			query.setParameter(0, vo.getReflectedNo());
+			query.setParameter(1, vo.getAuthorNo());
+			query.setParameter(2, vo.getReflectedDate());
+			query.setParameter(3, vo.getAuthorDate());
+			query.setParameter(4, vo.getNo());
 			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -92,23 +92,21 @@ public class ExamDAOHbm implements ExamDAO {
 
 	@Override
 	public boolean delete(int no) {
-		
 		boolean result= false;
 		if( this.selectByPrimaryKey(no) != null){
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			try {
-					session.beginTransaction();
-					ExamVO examVO = new ExamVO();
-					examVO.setNo(no);
-					session.delete(examVO);
-					session.getTransaction().commit();
-					result= true;
-	
+				session.beginTransaction();
+				ReflectVO reflectVO = new ReflectVO();
+				reflectVO.setNo(no);
+				session.delete(reflectVO);
+				session.getTransaction().commit();
+				result= true;
 			} catch (RuntimeException ex) {
 				session.getTransaction().rollback();
 				throw ex;
 			}
-		}		
+		}
 		return result;
 	}
 
