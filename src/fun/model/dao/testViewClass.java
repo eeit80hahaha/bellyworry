@@ -31,22 +31,20 @@ public class testViewClass {
 //		ViewClassDAO exam3 = new ViewClassDAOHbm();
 //		ViewClassVO examvo3 = new ViewClassVO();
 //		examvo3.setName("2015 宜蘭國道馬拉松賽1");
-//		exam3.insert(examvo3);
-////		System.out.println(exam3.insert(examvo3).toString());
+//		System.out.println(exam3.insert(examvo3));
 		
 ////		test update for Exam
 //		System.out.println("test update() ==================================");
-//		ViewClassDAO exam4 = new ViewClassDAOHbm();
-//		ViewClassVO examvo4 = new ViewClassVO();
-//		examvo4.setName("河濱公園11111");
-//		examvo4.setViewClassNo(100006);
-//		exam4.update(examvo4);
-////		System.out.println(exam4.update(examvo4).toString());
+		ViewClassDAO exam4 = new ViewClassDAOHbm();
+		ViewClassVO examvo4 = new ViewClassVO();
+		examvo4.setName("公園");
+		examvo4.setViewClassNo(10006);
+		System.out.println(exam4.update(examvo4));
 //		
 //		//test delete for Exam
 //		System.out.println("test delete() ==================================");
 //		ViewClassDAO exam5 = new ViewClassDAOHbm();
-//		exam5.delete(100008);
+//		System.out.println(exam5.delete(100003));
 		
 		
 	}

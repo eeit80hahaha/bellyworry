@@ -8,9 +8,9 @@ public interface ActivityDAO {
 
 	public abstract List<ActivityVO> getAll();
 
-	public abstract ActivityVO insert(ActivityVO vo);
+	public abstract int insert(ActivityVO vo);
 
-	public abstract ActivityVO update(ActivityVO vo);
+	public abstract int update(ActivityVO vo);
 
 	public abstract boolean delete(int no);
 }

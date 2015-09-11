@@ -7,9 +7,9 @@ public interface ExerciseCalDAO {
 
 	public abstract List<ExerciseCalVO> getAll();
 
-	public abstract ExerciseCalVO insert(ExerciseCalVO vo);
+	public abstract int insert(ExerciseCalVO vo);
 
-	public abstract ExerciseCalVO update(ExerciseCalVO vo);
+	public abstract int update(ExerciseCalVO vo);
 
 	public abstract boolean delete(int exerciseNo);
 }

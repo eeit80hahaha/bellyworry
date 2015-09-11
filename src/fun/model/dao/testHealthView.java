@@ -37,8 +37,8 @@ public class testHealthView {
 //		examvo3.setViewClassNo(100001);
 //		examvo3.setLat((float) 24.9926349);
 //		examvo3.setLng((float) 24.9926349);
-//		exam3.insert(examvo3);
-////		System.out.println(exam3.insert(examvo3).toString());
+//
+//		System.out.println(exam3.insert(examvo3));
 		
 ////		test update for Exam
 //		System.out.println("test update() ==================================");
@@ -49,14 +49,14 @@ public class testHealthView {
 //		examvo4.setViewClassNo(100002);		
 //		examvo4.setLat((float) 24.9926349);
 //		examvo4.setLng((float) 24.9926349);
-//		examvo4.setNo(100012);
-//		exam4.update(examvo4);
-////		System.out.println(exam4.update(examvo4).toString());
+//		examvo4.setNo(100013);
+//
+//		System.out.println(exam4.update(examvo4));
 //		
 		//test delete for Exam
 //		System.out.println("test delete() ==================================");
 //		HealthViewDAO exam5 = new HealthViewDAOHbm();
-//		exam5.delete(100011);
+//		System.out.println(exam5.delete(100013));
 		
 		
 	}

@@ -7,9 +7,9 @@ public interface HealthViewDAO {
 
 	public abstract List<HealthViewVO> getAll();
 
-	public abstract   HealthViewVO  insert(HealthViewVO vo);
+	public abstract   int  insert(HealthViewVO vo);
 
-	public abstract  HealthViewVO  update(HealthViewVO vo);
+	public abstract  int  update(HealthViewVO vo);
 
 	public abstract boolean delete(int no);
 }

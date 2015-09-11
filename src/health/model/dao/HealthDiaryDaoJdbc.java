@@ -69,8 +69,8 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 	private static final String SELECT_BY_memberNo =
 			"select * from health_diary where memberNo =?";
 	@Override
-	public HealthDiaryVO selectByMemberNo(int memberNo ) {
-		HealthDiaryVO result = null;
+	public List<HealthDiaryVO> selectByMemberNo(int memberNo ) {
+		List<HealthDiaryVO> result = null;
 		ResultSet rset = null;
 		try(
 			Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
@@ -78,18 +78,19 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 			PreparedStatement stmt = conn.prepareStatement(SELECT_BY_memberNo);) {
 			
 			stmt.setInt(1, memberNo);
-			rset = stmt.executeQuery();
-			if(rset.next()) {
-				result = new HealthDiaryVO();
-				result.setNo(rset.getLong("no"));
-				result.setMemberNo(rset.getInt("memberNo"));
-				result.setDate(rset.getDate("date"));
-				result.setHeight(rset.getFloat("height"));
-				result.setWeight(rset.getFloat("weight"));
-				result.setWaistline(rset.getFloat("waistline"));
-				result.setTitle(rset.getString("title"));
-				result.setContent(rset.getString("content"));
-				result.setShare(rset.getString("share"));
+			rset = stmt.executeQuery();			
+			while(rset.next()) {
+				HealthDiaryVO bean = new HealthDiaryVO();
+				bean.setNo(rset.getLong("no"));
+				bean.setMemberNo(rset.getInt("memberNo"));
+				bean.setDate(rset.getDate("date"));
+				bean.setHeight(rset.getFloat("height"));
+				bean.setWeight(rset.getFloat("weight"));
+				bean.setWaistline(rset.getFloat("waistline"));
+				bean.setTitle(rset.getString("title"));
+				bean.setContent(rset.getString("content"));
+				bean.setShare(rset.getString("share"));
+				result.add(bean);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,8 +142,8 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 			+ "(memberNo,date,height,weight,waistline,title,content,share) "
 			+ "values (?,?,?,?,?,?,?,?)";
 	@Override
-	public HealthDiaryVO insert(HealthDiaryVO vo) {
-		HealthDiaryVO result = null;
+	public long insert(HealthDiaryVO vo) {
+		long result = 0;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
@@ -164,7 +165,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 				stmt.setString(8,vo.getShare());				
 				int i = stmt.executeUpdate();
 				if(i==1) {
-					result = vo;
+					result = vo.getNo();
 				}
 			}
 		} catch (SQLException e) {
@@ -177,8 +178,8 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 			"update health_diary set MemberNo=?, date=?,height=?,weight=?,waistline=?,"
 			+ "title=?,content=?,share=? where no=?";
 	@Override
-	public HealthDiaryVO update(HealthDiaryVO vo) {
-		HealthDiaryVO result = null;
+	public int update(HealthDiaryVO vo) {
+		int result = 0;
 		try(
 				Connection conn = DriverManager.getConnection(GlobalService.URL, GlobalService.USERNAME, GlobalService.PASSWORD);
 //				Connection conn = dataSource.getConnection();
@@ -199,7 +200,7 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 			stmt.setLong(9, vo.getNo());
 			int i = stmt.executeUpdate();
 			if(i==1) {
-				result = this.selectByPrimaryKey(vo.getMemberNo());
+				result = 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
