@@ -130,7 +130,7 @@ public class ActivityDAOjdbc implements ActivityDAO {
 	private static final String INSERT =
 			"insert into activity (name, content, startTime, endTime, address,picture) values (?, ?, ?, ?, ?, ?)";
 	@Override
-	public ActivityVO insert(ActivityVO vo, InputStream is, long size) {
+	public ActivityVO insert(ActivityVO vo) {
 		ActivityVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;

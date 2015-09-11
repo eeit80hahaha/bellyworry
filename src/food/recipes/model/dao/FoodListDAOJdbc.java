@@ -162,51 +162,51 @@ public  class FoodListDAOJdbc implements FoodListDAO{
 		return result;
 	}
 
-	private static final String UPDATE =
-			"update food_list set cookNo=? and useFoodNo=?";
-
-	@Override
-	public FoodListVO update(FoodListVO vo){
-		FoodListVO result = null;
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rset = null;
-		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			stmt = conn.prepareStatement(UPDATE);		
-			       conn.setAutoCommit(false);		       
-			       
-			if (vo != null) {
-				vo = new FoodListVO();
-				stmt.setInt(1,vo.getCookNo());
-				stmt.setInt(2,vo.getUseFoodNo());
-				int i = stmt.executeUpdate();
-				if(i==1) {
-					result = this.selectByPrimaryKey(vo.getCookNo(),vo.getUseFoodNo());
-				}
-				conn.commit();
-				conn.setAutoCommit(true);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			if (stmt!=null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (conn!=null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return result;
-	}
+//	private static final String UPDATE =
+//			"update food_list set cookNo=? and useFoodNo=?";
+//
+//	@Override
+//	public FoodListVO update(FoodListVO vo){
+//		FoodListVO result = null;
+//		Connection conn = null;
+//		PreparedStatement stmt = null;
+//		ResultSet rset = null;
+//		try {
+//			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+//			stmt = conn.prepareStatement(UPDATE);		
+//			       conn.setAutoCommit(false);		       
+//			       
+//			if (vo != null) {
+//				vo = new FoodListVO();
+//				stmt.setInt(1,vo.getCookNo());
+//				stmt.setInt(2,vo.getUseFoodNo());
+//				int i = stmt.executeUpdate();
+//				if(i==1) {
+//					result = this.selectByPrimaryKey(vo.getCookNo(),vo.getUseFoodNo());
+//				}
+//				conn.commit();
+//				conn.setAutoCommit(true);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally{
+//			if (stmt!=null) {
+//				try {
+//					stmt.close();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			if (conn!=null) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		return result;
+//	}
 	
 	private static final String DELETE =
 			"delete from food_list where cookNo=? and useFoodNo=?";

@@ -1,5 +1,8 @@
 package news.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import java.io.Serializable;
 import java.sql.Blob;
 
@@ -11,6 +14,8 @@ public class ActivityVO implements Serializable {
 	private java.util.Date endTime;
 	private String address;
 	private Blob picture;
+
+
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -58,6 +63,7 @@ public class ActivityVO implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public Blob getPicture() {
 		return picture;
 	}

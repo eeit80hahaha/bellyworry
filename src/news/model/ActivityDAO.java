@@ -8,8 +8,7 @@ public interface ActivityDAO {
 
 	public abstract List<ActivityVO> getAll();
 
-	public abstract ActivityVO insert(ActivityVO vo,InputStream is,
-			long size);
+	public abstract ActivityVO insert(ActivityVO vo);
 
 	public abstract ActivityVO update(ActivityVO vo);
 

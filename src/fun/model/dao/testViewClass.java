@@ -2,6 +2,8 @@ package fun.model.dao;
 
 
 
+import java.util.List;
+
 import fun.model.ViewClassDAO;
 import fun.model.ViewClassVO;
 
@@ -12,13 +14,13 @@ public class testViewClass {
 		
 //		test selectByPrimaryKey for Exam
 //		System.out.println("test selectByPrimaryKey(int) ==========================");
-//		ViewClassDAO exam1 = new ViewClassDAOjdbc();
+//		ViewClassDAO exam1 = new ViewClassDAOHbm();
 //		ViewClassVO examvo1 = exam1.selectByPrimaryKey(100001);
 //		System.out.println(examvo1);
 
 //		//test getAll for Exam
 //		System.out.println("test getAll() =============================");
-//		ViewClassDAOjdbc exam2 = new ViewClassDAOjdbc();
+//		ViewClassDAO exam2 = new ViewClassDAOHbm();
 //		List<ViewClassVO> list1 = exam2.getAll();
 //		for(ViewClassVO examvo2:list1){
 //			System.out.println(examvo2);
@@ -26,26 +28,26 @@ public class testViewClass {
 //		
 //		//test insert for Exam	
 //		System.out.println("test insert() ==================================");
-//		ViewClassDAO exam3 = new ViewClassDAOjdbc();
+//		ViewClassDAO exam3 = new ViewClassDAOHbm();
 //		ViewClassVO examvo3 = new ViewClassVO();
-//		examvo3.setName("2015 宜蘭國道馬拉松賽");
+//		examvo3.setName("2015 宜蘭國道馬拉松賽1");
 //		exam3.insert(examvo3);
 ////		System.out.println(exam3.insert(examvo3).toString());
 		
 ////		test update for Exam
 //		System.out.println("test update() ==================================");
-//		ViewClassDAO exam4 = new ViewClassDAOjdbc();
+//		ViewClassDAO exam4 = new ViewClassDAOHbm();
 //		ViewClassVO examvo4 = new ViewClassVO();
 //		examvo4.setName("河濱公園11111");
-//		examvo4.setViewClassNo(100019);
+//		examvo4.setViewClassNo(100006);
 //		exam4.update(examvo4);
 ////		System.out.println(exam4.update(examvo4).toString());
 //		
 //		//test delete for Exam
-		System.out.println("test delete() ==================================");
-		ViewClassDAO exam5 = new ViewClassDAOjdbc();
-		exam5.delete(100018);
-//		
-//		
+//		System.out.println("test delete() ==================================");
+//		ViewClassDAO exam5 = new ViewClassDAOHbm();
+//		exam5.delete(100008);
+		
+		
 	}
 }
