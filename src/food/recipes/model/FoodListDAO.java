@@ -9,7 +9,7 @@ public interface FoodListDAO {
 
 	public abstract FoodListVO insert(FoodListVO vo);
 
-	public abstract FoodListVO update(FoodListVO vo);
+//	public abstract FoodListVO update(FoodListVO vo);
 
 	public abstract boolean delete(int cookNo, int useFoodNo);
 }

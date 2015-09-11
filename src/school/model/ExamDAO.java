@@ -7,9 +7,9 @@ public interface ExamDAO {
 
 	public abstract List<ExamVO> getAll();
 
-	public abstract ExamVO insert(ExamVO vo);
+	public abstract int insert(ExamVO vo);
 
-	public abstract ExamVO update(ExamVO vo);
+	public abstract int update(ExamVO vo);
 
 	public abstract boolean delete(int no);
 }

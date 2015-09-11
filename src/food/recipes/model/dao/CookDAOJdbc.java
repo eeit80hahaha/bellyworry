@@ -37,7 +37,7 @@ public class CookDAOJdbc implements CookDAO{
 			rset = stmt.executeQuery();
 			if(rset.next()) {
 				result = new CookVO();
-				result.setCookno(rset.getInt(1));
+				result.setCookNo(rset.getInt(1));
 				result.setWayNo(rset.getString(2));
 				result.setPicture(rset.getBlob(3));
 			}
@@ -84,7 +84,7 @@ public class CookDAOJdbc implements CookDAO{
 			while(rset.next())
 			{	
 				CookVO vo = new CookVO();
-				vo.setCookno(rset.getInt(1));
+				vo.setCookNo(rset.getInt(1));
 				vo.setWayNo(rset.getString(2));
 				vo.setPicture(rset.getBlob(3));
 				result.add(vo);
@@ -179,10 +179,10 @@ public class CookDAOJdbc implements CookDAO{
 			if (vo != null) {
 				stmt.setString(1,vo.getWayNo());
 				stmt.setBlob(2,vo.getPicture());
-				stmt.setInt(3,vo.getCookno());
+				stmt.setInt(3,vo.getCookNo());
 				int i = stmt.executeUpdate();
 				if(i==1) {
-					result = this.selectByPrimaryKey(vo.getCookno());
+					result = this.selectByPrimaryKey(vo.getCookNo());
 				}
 			}
 		} catch (SQLException e) {

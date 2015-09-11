@@ -3,7 +3,7 @@ package food.recipes.model;
 import java.util.List;
 
 public interface CookDAO {
-	public abstract CookVO selectByPrimaryKey(int cookno);
+	public abstract CookVO selectByPrimaryKey(int cookNo);
 
 	public abstract List<CookVO> getAll();
 
@@ -11,5 +11,5 @@ public interface CookDAO {
 
 	public abstract CookVO update(CookVO vo);
 
-	public abstract boolean delete(int cookno);
+	public abstract boolean delete(int cookNo);
 }

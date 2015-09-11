@@ -1,6 +1,5 @@
 package food.combo.model.dao;
 
-import health.model.EatRecordVO;
 import init.GlobalService;
 
 import java.sql.Connection;
@@ -11,9 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.transform.Result;
-
-import calories.model.FoodCalVO;
 import food.combo.model.MealNameDAO;
 import food.combo.model.MealNameVO;
 

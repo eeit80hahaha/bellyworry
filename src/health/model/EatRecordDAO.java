@@ -10,9 +10,9 @@ public interface EatRecordDAO {
 
 	public abstract List<EatRecordVO> getAll();
 
-	public abstract EatRecordVO insert(EatRecordVO vo);
+	public abstract long insert(EatRecordVO vo);
 
-	public abstract EatRecordVO update(EatRecordVO vo);
+	public abstract int update(EatRecordVO vo);
 
 	public abstract boolean delete(long no);
 

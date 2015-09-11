@@ -7,9 +7,9 @@ public interface ReflectDAO {
 
 	public abstract List<ReflectVO> getAll();
 
-	public abstract ReflectVO insert(ReflectVO vo);
+	public abstract int insert(ReflectVO vo);
 
-	public abstract ReflectVO update(ReflectVO vo);
+	public abstract int update(ReflectVO vo);
 
 	public abstract boolean delete(int no);
 }

@@ -176,8 +176,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 			"insert into eat_Record (memberNo, date, time, foodNo, count) values (?, ?, ?, ?, ?)";
 
 	@Override
-	public EatRecordVO insert(EatRecordVO vo){
-		EatRecordVO result = null;
+	public long insert(EatRecordVO vo){
+		long result = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
@@ -199,7 +199,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 				stmt.executeUpdate();
 				rset = stmt.getGeneratedKeys();
 				if(rset.next()){
-					result = this.selectByPrimaryKey(rset.getLong(1));
+					result = rset.getLong(1);
 				}
 			}
 		} catch (SQLException e) {
@@ -234,8 +234,8 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 			"update eat_Record set memberNo=?, date=?, time=?, foodNo=?, count=? where No=?";
 
 	@Override
-	public EatRecordVO update(EatRecordVO vo){
-		EatRecordVO result = null;
+	public int update(EatRecordVO vo){
+		int result = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
@@ -254,10 +254,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 				stmt.setInt(4, vo.getFoodNo());
 				stmt.setInt(5, vo.getCount());
 				stmt.setLong(6, vo.getNo());
-				int i = stmt.executeUpdate();
-				if (i == 1) {
-					result = this.selectByPrimaryKey(vo.getNo());
-				} 
+				result = stmt.executeUpdate();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

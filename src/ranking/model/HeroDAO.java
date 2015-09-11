@@ -7,9 +7,9 @@ public interface HeroDAO {
 
 	public abstract List<HeroVO> getAll();
 
-	public abstract HeroVO insert(HeroVO vo);
+	public abstract int insert(HeroVO vo);
 
-	public abstract HeroVO update(HeroVO vo);
+	public abstract int update(HeroVO vo);
 
 	public abstract boolean delete(int memberNo);
 }
