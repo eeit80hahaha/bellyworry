@@ -40,6 +40,9 @@
 		<mapping resource="school/model/exam.hbm.xml" />
 		<mapping resource="health/model/eatrecord.hbm.xml" />
 		<mapping resource="health/model/exerciserecord.hbm.xml" />
+		<mapping resource="food/recipes/model/cook.hbm.xml" />
+		<mapping resource="food/recipes/model/foodItem.hbm.xml" />
+		<mapping resource="food/recipes/model/foodList.hbm.xml" />
 
 
 	</session-factory>
