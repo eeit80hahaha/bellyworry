@@ -1,7 +1,17 @@
 package food.recipes.model.dao;
 
-import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Blob;
+import java.sql.SQLException;
 
+import javax.sql.rowset.serial.SerialException;
+
+import food.recipes.model.CookDAO;
+import food.recipes.model.CookVO;
 import food.recipes.model.FoodListDAO;
 import food.recipes.model.FoodListVO;
 
@@ -28,8 +38,41 @@ public class text01 {
 //		CookDAO exam3 = new CookDAOHbm();
 //		CookVO examvo3 = new CookVO();
 //		examvo3.setWayNo("111111111111111111111");
-//		examvo3.setPicture(null);
+////		examvo3.setPicture(null);
+//		  String inFile = "C:/Users/Student/Desktop/picture1.jpg";
+//		  Path path=Paths.get(inFile);         //Paths.get????
+//		  byte[] data = null;
+//		  try {
+//		   data = Files.readAllBytes(path);       //readAllBytes????      Paths.get轉成byte[]
+//		  } catch (IOException e) {
+//		   e.printStackTrace();
+//		  }
+//		  
+//		  Blob blob = null;
+//		  try {
+//		   blob = new javax.sql.rowset.serial.SerialBlob(data);  //byte[]轉成Blob
+//		  } catch (SerialException e) {
+//		   e.printStackTrace();
+//		  } catch (SQLException e) {
+//		   e.printStackTrace();
+//		  }   
+//		  examvo3.setPicture(blob);
+//		  exam3.insert(examvo3);
 //		System.out.println(exam3.insert(examvo3).toString());
+		
+	//  讀圖!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//	  Blob b=exam3.selectByPrimaryKey(100015).getPicture();
+//	  FileOutputStream fos;
+//	  try {
+//	   fos = new FileOutputStream("C:/Users/Student/Desktop/duckcopy1.jpg");
+//	   byte[] data = b.getBytes(1, (int)b.length());
+//	   fos.write(data);
+//	   fos.close();  
+//	  } catch (Exception e1) {
+//	   // TODO Auto-generated catch block
+//	   e1.printStackTrace();
+//	  } 
+		
 //		
 //		//test update for Cook
 //		System.out.println("test update() ==================================");
@@ -44,7 +87,7 @@ public class text01 {
 		//test delete for Cook
 //		System.out.println("test delete() ==================================");
 //		CookDAO exam5 = new CookDAOHbm();
-//		System.out.println("delete is " + exam5.delete(100013));
+//		System.out.println("delete is " + exam5.delete(100015));
 //		
 //============================================================================================分隔線
 		
@@ -90,10 +133,10 @@ public class text01 {
 		
 //============================================================================================分隔線
 		//test selectByPrimaryKey for FoodList 
-		System.out.println("test selectByPrimaryKey(int) ==========================");
-		FoodListDAO exam1 = new FoodListDAOHbm();
-		FoodListVO examvo1 = exam1.selectByPrimaryKey(100003 , 100014);
-		System.out.println(examvo1);
+//		System.out.println("test selectByPrimaryKey(int) ==========================");
+//		FoodListDAO exam1 = new FoodListDAOHbm();
+//		FoodListVO examvo1 = exam1.selectByPrimaryKey(100003 , 100014);
+//		System.out.println(examvo1);
 
 //		//test getAll for FoodList
 //		System.out.println("test getAll() =============================");

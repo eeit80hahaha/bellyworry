@@ -1,11 +1,12 @@
 package food.recipes.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class CookVO implements Serializable{
 	private int cookNo;
 	private String wayNo;
-	private java.sql.Blob picture;
+	private Blob picture;	
 	public CookVO(){
 		
 	}	
@@ -37,12 +38,14 @@ public class CookVO implements Serializable{
 		this.wayNo = wayNo;
 	}
 
-	public java.sql.Blob getPicture() {
+	public Blob getPicture() {
 		return picture;
 	}
 
-	public void setPicture(java.sql.Blob picture) {
+	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
+
+
 	
 }
