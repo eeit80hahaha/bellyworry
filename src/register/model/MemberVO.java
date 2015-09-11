@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import health.model.EatRecordVO;
+import health.model.ExerciseRecordVO;
 import health.model.HealthDiaryVO;
+import ranking.model.ReflectVO;
 
 public class MemberVO implements Serializable{
 	private int memberNo;
@@ -18,14 +21,51 @@ public class MemberVO implements Serializable{
 	private String gender;
 	private int purview;
 	
-	private Set<HealthDiaryVO> diarys = new HashSet<HealthDiaryVO>();
-	
-	public Set<HealthDiaryVO> getDiarys() {
-		return diarys;
-	}
-	public void setDiarys(Set<HealthDiaryVO> diarys) {
-		this.diarys = diarys;
-	}
+//// one-to-many healthDiary
+//	private Set<HealthDiaryVO> diarys = new HashSet<HealthDiaryVO>();
+//	public Set<HealthDiaryVO> getDiarys() {
+//		return diarys;
+//	}
+//	
+//	public void setDiarys(Set<HealthDiaryVO> diarys) {
+//		this.diarys = diarys;
+//	}
+//	
+//// one-to-many eatRecord
+//	private Set<EatRecordVO> eatRecords = new HashSet<EatRecordVO>();
+//	public Set<EatRecordVO> getEatRecords() {
+//		return eatRecords;
+//	}
+//	public void setEatRecords(Set<EatRecordVO> eatRecords) {
+//		this.eatRecords = eatRecords;
+//	}
+//	
+//// one-to-many exerciseRecord
+//	private Set<ExerciseRecordVO> exerciseRecords = new HashSet<ExerciseRecordVO>();
+//	public Set<ExerciseRecordVO> getExerciseRecords() {
+//		return exerciseRecords;
+//	}
+//	public void setExerciseRecords(Set<ExerciseRecordVO> exerciseRecords) {
+//		this.exerciseRecords = exerciseRecords;
+//	}
+//	
+//// one-to-many reflectNo
+//	private Set<ReflectVO> reflects = new HashSet<ReflectVO>();
+//	public Set<ReflectVO> getReflects() {
+//		return reflects;
+//	}
+//	public void setReflects(Set<ReflectVO> reflects) {
+//		this.reflects = reflects;
+//	}
+//	
+//// one-to-many authorNo 
+//	private Set<ReflectVO> authors = new HashSet<ReflectVO>();
+//	public Set<ReflectVO> getAuthors() {
+//		return authors;
+//	}
+//	public void setAuthors(Set<ReflectVO> authors) {
+//		this.authors = authors;
+//	}
 	
 	@Override
 	public String toString() {
