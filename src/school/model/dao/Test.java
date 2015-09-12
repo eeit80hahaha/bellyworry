@@ -10,6 +10,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		//test selectByPrimaryKey for Exam ok
+		
 //		System.out.println("test selectByPrimaryKey(int) ==========================");
 //		ExamDAO exam1 = new ExamDAOHbm();
 //		ExamVO examvo1 = exam1.selectByPrimaryKey(100018);
