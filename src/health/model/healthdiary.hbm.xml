@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="health.model.HealthDiaryVO" table="health_diary" >
+        
+        <id name="no" column="no">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="memberNo" column="memberNo" />
+        <property name="date" column="date" />
+        <property name="height" column="height" />
+        <property name="weight" column="weight" />
+        <property name="waistline" column="waistline" />
+        <property name="title" column="title" />
+        <property name="content" column="content" />
+        <property name="share" column="share" />
+<!--         <many-to-one name="deptVO" class="com.dept.model.DeptVO" lazy="false"> -->
+<!--             <column name="deptno" /> -->
+<!--         </many-to-one> -->
+        
+    </class>
+</hibernate-mapping>
+

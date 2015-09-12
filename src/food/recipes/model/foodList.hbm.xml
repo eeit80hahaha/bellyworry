@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="food.recipes.model.FoodListVO" table="food_list" >
+        <composite-id>
+        	<key-property name="cookNo" column="cookNo"/>
+        	<key-property name="useFoodNo" column="useFoodNo"/>
+        </composite-id>
+        
+        
+        
+        
+<!--         <many-to-one name="CookVO" class="food.recipes.model.CookVO" lazy="false"> -->
+<!--         	<column name="cookNo"></column> -->
+<!--         </many-to-one> -->
+<!--         <many-to-one name="FoodItemVO" class="food.recipes.model.FoodItemVO" lazy="false"> -->
+<!--         	<column name="UseFoodNo"></column> -->
+<!--         </many-to-one>   -->
+    </class>
+    
+</hibernate-mapping>
+ 	

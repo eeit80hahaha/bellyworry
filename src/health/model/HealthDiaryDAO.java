@@ -1,0 +1,17 @@
+package health.model;
+
+import java.util.List;
+
+public interface HealthDiaryDAO {
+	public abstract HealthDiaryVO selectByPrimaryKey(long no);
+	
+	public abstract List<HealthDiaryVO> selectByMemberNo(int memberNo);
+
+	public abstract List<HealthDiaryVO> getAll();
+
+	public abstract long insert(HealthDiaryVO vo);
+
+	public abstract int update(HealthDiaryVO vo);
+
+	public abstract boolean delete(long no);
+}
