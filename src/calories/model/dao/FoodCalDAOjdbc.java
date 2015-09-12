@@ -54,7 +54,7 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 				result.setCount(rs.getString("count"));
 				result.setWeight(rs.getInt("weight"));
 				result.setCookNo(rs.getInt("cookno"));
-				result.setPicture(rs.getBlob("picture"));
+				result.setPicture(rs.getBytes("picture"));
 
 			}
 
@@ -110,7 +110,7 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 				vo.setCount(rs.getString(5));
 				vo.setWeight(rs.getInt(6));
 				vo.setCookNo(rs.getInt(7));
-				vo.setPicture(rs.getBlob(8));
+				vo.setPicture(rs.getBytes(8));
 				result.add(vo);
 			}
 
@@ -151,7 +151,8 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 	private static final String INSERT = "insert into food_cal(name,menuNo,cal,count,weight,cookNo,picture)values(?,?,?,?,?,?,?)";
 
 	@Override
-	public FoodCalVO insert(FoodCalVO vo, InputStream is, long size) {
+	public int insert(FoodCalVO vo) {
+		int r = 0;
 		FoodCalVO result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -172,7 +173,7 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 			FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
-				pstmt.setBinaryStream(7, fis);
+				pstmt.setBytes(7, vo.getPicture());
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -211,13 +212,14 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 				}
 			}
 		}
-		return result;
+		return r;
 	}
 
 	private static final String UPDATE = "update food_cal set name=?,menuNo=?,cal=?,count=?,weight=?,cookNo=?,picture=? where foodNo=?";
 
 	@Override
-	public FoodCalVO update(FoodCalVO vo) {
+	public int update(FoodCalVO vo) {
+		int r = 0;
 		FoodCalVO result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -232,8 +234,9 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 			pstmt.setString(4, vo.getCount());
 			pstmt.setInt(5, vo.getWeight());
 			pstmt.setInt(6, vo.getCookNo());
-			pstmt.setBinaryStream(7, null);
+			pstmt.setBytes(7, null);
 			pstmt.setInt(8, vo.getFoodNo());
+
 			int num = pstmt.executeUpdate();
 			result = this.selectByPrimaryKey(vo.getFoodNo());
 		} catch (SQLException e) {
@@ -259,7 +262,7 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 
 		}
 
-		return result;
+		return r;
 	}
 
 	public static final String DELETE = "delete from food_cal where foodNo=?";

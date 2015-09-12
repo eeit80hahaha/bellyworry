@@ -7,9 +7,9 @@ public interface MealNameDAO {
 
 	public abstract List<MealNameVO> getAll();
 
-	public abstract MealNameVO insert(MealNameVO vo);
+	public abstract int insert(MealNameVO vo);
 
-	public abstract MealNameVO update(MealNameVO vo);
+	public abstract int update(MealNameVO vo);
 
 	public abstract boolean delete(int mealNo);
 }

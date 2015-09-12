@@ -50,6 +50,10 @@
 		<mapping resource="fun/model/viewclass.hbm.xml" />
 		<mapping resource="fun/model/healthview.hbm.xml" />
 		<mapping resource="news/model/activity.hbm.xml" />
+		<mapping resource="food/combo/model/mealname.hbm.xml" />
+		<mapping resource="food/combo/model/daymeal.hbm.xml" />
+		<mapping resource="food/combo/model/mealdetail.hbm.xml" />
+		<mapping resource="calories/model/foodcal.hbm.xml" />
 	</session-factory>
 	
 </hibernate-configuration>

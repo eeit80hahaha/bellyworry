@@ -8,10 +8,9 @@ public interface FoodCalDAO {
 
 	public abstract List<FoodCalVO> getAll();
 
-	public abstract FoodCalVO insert(FoodCalVO vo,InputStream is,
-			long size);
+	public abstract int insert(FoodCalVO vo);
 
-	public abstract FoodCalVO update(FoodCalVO vo);
+	public abstract int update(FoodCalVO vo);
 
 	public abstract boolean delete(int foodNo);
 }

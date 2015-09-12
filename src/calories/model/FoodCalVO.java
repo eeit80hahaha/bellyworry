@@ -11,7 +11,7 @@ public class FoodCalVO implements Serializable{
 	private String count;
 	private int weight;
 	private int cookNo;
-	private Blob picture;	
+	private byte[] picture;	
 	
 	@Override
 	public String toString() {
@@ -52,6 +52,7 @@ public class FoodCalVO implements Serializable{
 	public void setCal(int cal) {
 		this.cal = cal;
 	}
+
 	public String getCount() {
 		return count;
 	}
@@ -70,10 +71,11 @@ public class FoodCalVO implements Serializable{
 	public void setCookNo(int cookNo) {
 		this.cookNo = cookNo;
 	}
-	public Blob getPicture() {
+	public byte[] getPicture() {
 		return picture;
 	}
-	public void setPicture(Blob picture) {
+	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
+
 }

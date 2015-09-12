@@ -121,7 +121,7 @@ public class MealNameDAOjdbc implements MealNameDAO {
 	private static final String INSERT = "insert into meal_name (name) values(?)";
 
 	@Override
-	public MealNameVO insert(MealNameVO vo) {
+	public int insert(MealNameVO vo) {
 		MealNameVO result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -171,13 +171,13 @@ public class MealNameDAOjdbc implements MealNameDAO {
 
 		}
 
-		return result;
+		return 0;
 	}
 
 	private static final String UPDATE = "update meal_name set name=? where mealno=?";
 
 	@Override
-	public MealNameVO update(MealNameVO vo) {
+	public int update(MealNameVO vo) {
 		MealNameVO result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -213,7 +213,7 @@ public class MealNameDAOjdbc implements MealNameDAO {
 				}
 			}
 		}
-		return result;
+		return 0;
 	}
 
 	public static final String DELETE = "delete from meal_name where mealno=?";
