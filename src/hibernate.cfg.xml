@@ -37,7 +37,6 @@
 		<mapping resource="calories/model/exercisecal.hbm.xml" />
 		<mapping resource="calories/model/menu.hbm.xml" />
 		<mapping resource="health/model/healthdiary.hbm.xml" />
-		<mapping resource="news/model/activityVO.hbm.xml" />
 		<mapping resource="ranking/model/hero.hbm.xml" />
 		<mapping resource="ranking/model/reflect.hbm.xml" />
 		<mapping resource="register/model/member.hbm.xml" />

@@ -11,14 +11,10 @@
             <generator class="identity"/> 
         </id> 
 
-        <property name="name" column="name"/> 
-
-        <property name="viewClassNo" column="viewClassNo"/> 
-        
-        <property name="lat" column="lat"/> 
-        
+        <property name="name" column="name"/>
+        <property name="viewClassNo" column="viewClassNo"/>
+        <property name="lat" column="lat"/>
         <property name="lng" column="lng"/> 
-
     </class> 
 
 </hibernate-mapping>
