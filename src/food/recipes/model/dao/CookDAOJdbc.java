@@ -39,7 +39,7 @@ public class CookDAOJdbc implements CookDAO{
 				result = new CookVO();
 				result.setCookNo(rset.getInt(1));
 				result.setWayNo(rset.getString(2));
-				result.setPicture(rset.getBlob(3));
+				result.setPicture(rset.getBytes(3));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class CookDAOJdbc implements CookDAO{
 				CookVO vo = new CookVO();
 				vo.setCookNo(rset.getInt(1));
 				vo.setWayNo(rset.getString(2));
-				vo.setPicture(rset.getBlob(3));
+				vo.setPicture(rset.getBytes(3));
 				result.add(vo);
 			}
 		} catch (SQLException e) {
@@ -120,7 +120,7 @@ public class CookDAOJdbc implements CookDAO{
 			"insert into cook (wayno, picture) values (?, ?)";
 
 	@Override
-	public CookVO insert(CookVO vo){
+	public int insert(CookVO vo){
 		CookVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -130,11 +130,11 @@ public class CookDAOJdbc implements CookDAO{
 			stmt = conn.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 					stmt.setString(1,vo.getWayNo());
-					stmt.setBlob(2,vo.getPicture());
+					stmt.setBytes(2,vo.getPicture());
 					stmt.executeUpdate();
 					rset = stmt.getGeneratedKeys();
 					if(rset.next()){
-						result = this.selectByPrimaryKey(rset.getInt(1));
+						result = this.selectByPrimaryKey(rset.getInt(0));
 					}
 			}
 		} catch (SQLException e) {
@@ -162,13 +162,13 @@ public class CookDAOJdbc implements CookDAO{
 				}
 			}
 		}
-		return result;
+		return 100;
 	}
 	private static final String UPDATE =
 			"update cook set wayno=?, picture=? where cookno=?";
 
 	@Override
-	public CookVO update(CookVO vo){
+	public int update(CookVO vo){
 		CookVO result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -178,7 +178,7 @@ public class CookDAOJdbc implements CookDAO{
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setString(1,vo.getWayNo());
-				stmt.setBlob(2,vo.getPicture());
+				stmt.setBytes(2,vo.getPicture());
 				stmt.setInt(3,vo.getCookNo());
 				int i = stmt.executeUpdate();
 				if(i==1) {
@@ -203,7 +203,7 @@ public class CookDAOJdbc implements CookDAO{
 				}
 			}
 		}
-		return result;
+		return 100;
 	}
 //	private static final String DELETE_LISTCOOKNO ="delete from food_cal where cookno=?";
 	private static final String DELETE = "delete from cook where cookno=?";
