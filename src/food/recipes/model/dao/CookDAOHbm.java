@@ -47,7 +47,7 @@ public class CookDAOHbm implements CookDAO {
 		return list;
 	}
 	@Override
-	public CookVO insert(CookVO vo) {
+	public int insert(CookVO vo) {
 		CookVO cookVO = null;
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -60,10 +60,10 @@ public class CookDAOHbm implements CookDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return cookVO;
+		return cookVO.getCookNo();
 	}
 	@Override
-	public CookVO update(CookVO vo) {
+	public int update(CookVO vo) {
 		CookVO cookVO = null;
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -76,7 +76,7 @@ public class CookDAOHbm implements CookDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return cookVO;
+		return cookVO.getCookNo();
 	}
 	@Override
 	public boolean delete(int cookNo) {

@@ -7,9 +7,9 @@ public interface CookDAO {
 
 	public abstract List<CookVO> getAll();
 
-	public abstract CookVO insert(CookVO vo);
+	public abstract int insert(CookVO vo);
 
-	public abstract CookVO update(CookVO vo);
+	public abstract int update(CookVO vo);
 
 	public abstract boolean delete(int cookNo);
 }

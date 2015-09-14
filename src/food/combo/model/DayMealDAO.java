@@ -7,9 +7,9 @@ public interface DayMealDAO {
 
 	public abstract List<DayMealVO> getAll();
 
-	public abstract DayMealVO insert(DayMealVO vo);
+	public abstract int insert(DayMealVO vo);
 
-	public abstract DayMealVO update(DayMealVO vo);
+	public abstract int update(DayMealVO vo);
 
 	public abstract boolean delete(int no);
 }

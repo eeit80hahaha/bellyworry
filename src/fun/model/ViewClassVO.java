@@ -1,10 +1,22 @@
 package fun.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ViewClassVO implements Serializable{
 	private int viewClassNo;
 	private String name;
+	
+////one-to-many HealthView========
+//	private Set<HealthViewVO> healthViews = new HashSet<HealthViewVO>();	
+//	public Set<HealthViewVO> getHealthViews() {
+//		return healthViews;
+//	}
+//	public void setHealthViews(Set<HealthViewVO> healthViews) {
+//		this.healthViews = healthViews;
+//	}
+////==============================
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -20,6 +32,13 @@ public class ViewClassVO implements Serializable{
 	public String toString() {
 		return "{"+viewClassNo+":"+name+"}";
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "{"+viewClassNo+":"+name+":"+healthViews+"}";
+//	}
+	
+	
 	
 	public int getViewClassNo() {
 		return viewClassNo;

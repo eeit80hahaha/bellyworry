@@ -9,10 +9,14 @@
 
         <id name="viewClassNo" column="viewClassNo"> 
             <generator class="identity"/> 
-        </id> 
-
-        <property name="name" column="name"/> 
-
+        </id>
+        
+        <property name="name" column="name"/>
+        
+<!--         <set name="healthViews" table="health_view" lazy="true" cascade="all" inverse="true" order-by="no asc"> -->
+<!--         		<key><column name="viewClassNo"/></key> -->
+<!--         		<one-to-many class="fun.model.HealthViewVO"/> -->
+<!--         </set> -->
     </class> 
 
 </hibernate-mapping>

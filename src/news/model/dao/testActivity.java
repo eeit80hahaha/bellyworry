@@ -36,6 +36,7 @@ public class testActivity {
 //		System.out.println("test insert() ==================================");
 //		ActivityDAO exam3 = new ActivityDAOHbm();
 //		ActivityVO examvo3 = new ActivityVO();
+
 //		examvo3.setName("2000 宜蘭國道馬拉松賽");
 //		examvo3.setContent("原視今（2015年）已邁向10年穩健成熟的發展階段，在這個重要的10年里程碑，原視特別規劃全台首創的原住民族主題路跑活動，早期的原住民以跑步作為傳遞訊息的方式，10年來原視也兼負這項文化傳承及訊息傳遞的使命，今年首次舉辦大眾喜愛的路跑活動，邀請每位參賽者都能成為原住民族文化傳遞的一份子，共同扎根、跨越、跑向原視界。");
 //		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -50,6 +51,22 @@ public class testActivity {
 //		} catch (ParseException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
+
+//		examvo3.setName("2000 宜蘭國道馬拉松賽");
+//		examvo3.setContent("原視今（2015年）已邁向10年穩健成熟的發展階段，在這個重要的10年里程碑，原視特別規劃全台首創的原住民族主題路跑活動，早期的原住民以跑步作為傳遞訊息的方式，10年來原視也兼負這項文化傳承及訊息傳遞的使命，今年首次舉辦大眾喜愛的路跑活動，邀請每位參賽者都能成為原住民族文化傳遞的一份子，共同扎根、跨越、跑向原視界。");
+//		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		try {
+//			examvo3.setStartTime(sFormat.parse("2015-11-07 18:00:00"));
+//		} catch (ParseException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		try {
+//			examvo3.setEndTime(sFormat.parse("2015-11-07 18:00:00"));
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+
 //		}	
 //		examvo3.setAddress("台北市政府廣場");		
 //		//存圖

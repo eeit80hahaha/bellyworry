@@ -128,7 +128,7 @@ public class DayMealDAOjdbc implements DayMealDAO {
 	private static final String INSERT = "insert into day_meal(name,breakfast,lunch,dinner)values(?,?,?,?)";
 
 	@Override
-	public DayMealVO insert(DayMealVO vo) {
+	public int insert(DayMealVO vo) {
 		DayMealVO result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -181,13 +181,13 @@ public class DayMealDAOjdbc implements DayMealDAO {
 
 		}
 
-		return result;
+		return 0;
 	}
 
 	private static final String UPDATE = "update day_meal set name=?,breakfast=?,lunch=?,dinner=? where no=?";
 
 	@Override
-	public DayMealVO update(DayMealVO vo) {
+	public int update(DayMealVO vo) {
 		DayMealVO result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -225,7 +225,7 @@ public class DayMealDAOjdbc implements DayMealDAO {
 				}
 			}
 		}
-		return result;
+		return 0;
 	}
 
 	public static final String DELETE = "delete from day_meal where no=?";
