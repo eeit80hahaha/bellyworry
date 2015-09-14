@@ -70,10 +70,18 @@ public class MenuDaoHbm implements MenuDAO{
 		int result=0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
-			session.saveOrUpdate(bean);
+			session.beginTransaction();		
+			Query query = session
+					.createQuery("update MenuVO set name=? where menuNo=?");
+
+			query.setParameter(0, bean.getName());
+			query.setParameter(1, bean.getMenuNo());
+			int i = query.executeUpdate();
 			session.getTransaction().commit();
-			result=1;
+			if (i > 0) {
+				result = i;
+			}
+			
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 //			System.out.println("違反UNIQUEKEY條件約束");

@@ -91,9 +91,23 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(vo);
+			Query query = session
+					.createQuery("update HealthDiaryVO set memberNo=?,date=?,height=?,weight=?,waistline=?,title=?,content=?,share=? where no=?");
+
+			query.setParameter(0, vo.getMemberNo());
+			query.setParameter(1, vo.getDate());
+			query.setParameter(2, vo.getHeight());
+			query.setParameter(3, vo.getWeight());
+			query.setParameter(4, vo.getWaistline());
+			query.setParameter(5, vo.getTitle());
+			query.setParameter(6, vo.getContent());
+			query.setParameter(7, vo.getShare());
+			query.setParameter(8, vo.getNo());
+			int i = query.executeUpdate();
 			session.getTransaction().commit();
-			result=1;
+			if (i > 0) {
+				result = i;
+			}		
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			result=0;
