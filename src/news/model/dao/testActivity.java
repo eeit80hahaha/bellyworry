@@ -14,8 +14,6 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import news.model.ActivityDAO;
 import news.model.ActivityVO;
 
-
-
 public class testActivity {
 	public static void main(String[] args) throws java.text.ParseException {
 //		

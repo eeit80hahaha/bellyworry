@@ -25,7 +25,7 @@ public class ExerciseCalDaoHbm implements ExerciseCalDAO {
 		ExerciseCalVO ExerciseCalVO = null;
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 	try {
-		session.beginTransaction();
+		session.beginTransaction();		
 		ExerciseCalVO = (ExerciseCalVO) session.get(ExerciseCalVO.class, exerciseNo);
 		session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -78,10 +78,18 @@ public class ExerciseCalDaoHbm implements ExerciseCalDAO {
 		int result=0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
-			session.saveOrUpdate(bean);
+			session.beginTransaction();			
+			Query query = session
+					.createQuery("update ExerciseCalVO set name=?,calHour=? where exerciseNo=?");
+
+			query.setParameter(0, bean.getName());
+			query.setParameter(1, bean.getCalHour());
+			query.setParameter(2, bean.getExerciseNo());
+			int i = query.executeUpdate();
 			session.getTransaction().commit();
-			result=1;
+			if (i > 0) {
+				result = i;
+			}			
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			String[] ss=ex.getCause().getMessage().split("'")[0].split(" ");

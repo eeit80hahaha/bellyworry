@@ -6,7 +6,7 @@ import java.sql.Blob;
 public class CookVO implements Serializable{
 	private int cookNo;
 	private String wayNo;
-	private Blob picture;	
+	private byte[] picture;	
 	public CookVO(){
 		
 	}	
@@ -37,14 +37,14 @@ public class CookVO implements Serializable{
 	public void setWayNo(String wayNo) {
 		this.wayNo = wayNo;
 	}
-
-	public Blob getPicture() {
+	public byte[] getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Blob picture) {
+	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
+
 
 
 	
