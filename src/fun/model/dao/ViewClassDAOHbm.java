@@ -80,6 +80,11 @@ public class ViewClassDAOHbm implements ViewClassDAO {
 	@Override
 	public int insert(ViewClassVO vo) {
 		ViewClassVO viewclassVO = null;
+		int result = 0;
+		ViewClassVO temp1 = this.selectByName(vo.getName());
+		if(temp1!=null && temp1.getViewClassNo()!=vo.getViewClassNo()){
+			result = -100;
+		}else{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -89,6 +94,7 @@ public class ViewClassDAOHbm implements ViewClassDAO {
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
+		}
 		}
 		return viewclassVO.getViewClassNo();
 	}
