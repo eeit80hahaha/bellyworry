@@ -11,8 +11,16 @@ public class FoodCalVO implements Serializable{
 	private String count;
 	private int weight;
 	private int cookNo;
-	private byte[] picture;	
+	private byte[] picture;
+	//16~23行轉圖專用，所創的
+	private String picture1;
 	
+	public String getPicture1() {
+		return picture1;
+	}
+	public void setPicture1(String picture1) {
+		this.picture1 = picture1;
+	}
 	@Override
 	public String toString() {
 		return "{"+foodNo+":"+name+":"+menuNo+":"+cal+":"+count+":"+weight+":"+cookNo+":"+picture+"}";

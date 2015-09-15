@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import calories.model.FoodCalService;
 import calories.model.FoodCalVO;
-import calories.model.dao.FoodCalService;
 
 
 @WebServlet(
@@ -38,6 +38,7 @@ public class FoodCalServlet extends HttpServlet{
 			String temp5 = request.getParameter("count");
 			String temp6 = request.getParameter("weight");
 			String temp7 = request.getParameter("cookNo");
+			String temp8 = request.getParameter("picture1");
 			String foodcalion = request.getParameter("foodcalion");
 			
 			//驗證資料
@@ -97,9 +98,13 @@ public class FoodCalServlet extends HttpServlet{
 			vo.setCount(temp5);
 			vo.setWeight(weight);
 			vo.setCookNo(cookNo);
+			vo.setPicture1(temp8);
 			
 			
-			List<FoodCalVO> result = service.select(vo);
+			
+			List<FoodCalVO> result = service.base(service.select(vo));
+			
+			
 			request.setAttribute("foodNo", result);
 			request.getRequestDispatcher(
 					"/ranking/cookCaling.jsp").forward(request, response);

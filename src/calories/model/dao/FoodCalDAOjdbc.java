@@ -29,7 +29,7 @@ import food.combo.model.MealNameVO;
 
 public class FoodCalDAOjdbc implements FoodCalDAO {
 
-	private static String inFile = "C:/Users/Kuei/Desktop/1.jpg";
+	private static String inFile = "C:/Users/Student/Desktop/picture1.jpg";
 	private static final String SELECT_BY_FOOD_CAL = "select * from food_cal where foodNo=?";
 
 	@Override
@@ -54,7 +54,7 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 				result.setCount(rs.getString("count"));
 				result.setWeight(rs.getInt("weight"));
 				result.setCookNo(rs.getInt("cookno"));
-				result.setPicture(rs.getBytes("picture"));
+//				result.setPicture(rs.getBytes("picture"));
 
 			}
 
