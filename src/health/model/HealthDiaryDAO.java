@@ -14,4 +14,6 @@ public interface HealthDiaryDAO {
 	public abstract int update(HealthDiaryVO vo);
 
 	public abstract boolean delete(long no);
+	
+	public abstract  List<HealthDiaryVO> dateSelect(int memberNo,java.util.Date date);
 }

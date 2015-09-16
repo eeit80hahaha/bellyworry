@@ -16,9 +16,7 @@ public class test {
 	public static void main(String[] args) {
 
 
-		// *****FoodCalDAOjdbc 測試檔!*****
-//		FoodCalVO vo = new FoodCalVO();
-//		FoodCalDAO dao = new FoodCalDAOjdbc();
+
 
 		// *****FoodCalDAOjdbc 測試檔!*****
 		// FoodCalVO vo = new FoodCalVO();

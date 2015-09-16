@@ -8,9 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import calories.model.MenuVO;
+
+//import calories.model.MenuVO;
 import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
 
@@ -225,6 +227,11 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	@Override
+	public List<HealthDiaryVO> dateSelect(int memberNo, Date date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
