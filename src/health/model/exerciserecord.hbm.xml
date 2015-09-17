@@ -10,10 +10,10 @@
 <!--         <many-to-one name="memberVO" class="register.model.MemberVO" lazy="false"> -->
 <!--             <column name="memberNo"/> -->
 <!--         </many-to-one> -->
-        <property name="exerciseNo" column="exerciseNo"/>
-<!--         <many-to-one name="exerciseCalVO" class="calories.model.ExerciseCalVO" lazy="false"> -->
-<!--             <column name="exerciseNo"/> -->
-<!--         </many-to-one> -->
+<!--         <property name="exerciseNo" column="exerciseNo"/> -->
+        <many-to-one name="exerciseCalVO" class="calories.model.ExerciseCalVO" lazy="false">
+            <column name="exerciseNo"/>
+        </many-to-one>
         <property name="date" column="date"/>
         <property name="count" column="count"/>
     </class>
