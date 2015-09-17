@@ -1,6 +1,5 @@
 package health.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import health.model.dao.EatRecordDAOHbm;
@@ -14,13 +13,13 @@ public class DiaryIndexService {
 	private ExerciseRecordDAO exerDao = null;
 	private EatRecordVO eatRecordVO = null;
 	private EatRecordDAO eatDao = null;
-	
-	public DiaryIndexService(){
+
+	public DiaryIndexService() {
 		dao = new HealthDiaryDaoHbm();
 		exerDao = new ExerciseRecordDAOHbm();
 		eatDao = new EatRecordDAOHbm();
 	}
-	
+
 	public HealthDiaryVO selectByPrimaryKey(int no) {
 		diaryVO = new HealthDiaryVO();
 		dao = new HealthDiaryDaoHbm();
@@ -36,35 +35,28 @@ public class DiaryIndexService {
 		List<HealthDiaryVO> list = null;
 		List<ExerciseRecordVO> listexer = null;
 		List<EatRecordVO> listeat = null;
-		if (memberNo != 0) {
-			list = dao.selectByMemberNo(memberNo);
-			listexer = exerDao.selectByMemberNo(memberNo);
-			listeat = eatDao.selectByMemberNo(memberNo);
-			for(HealthDiaryVO healthVo : list){
-				for(ExerciseRecordVO  exerVo : listexer){
-					if(healthVo.getMemberNo() == exerVo.getMemberNo()){
-						healthVo.setExerVo(exerVo);
-					}
-				}		
-				for(EatRecordVO  eatVo : listeat){
-					if(healthVo.getMemberNo() == eatVo.getMemberNo()){
-						healthVo.setEatVo(eatVo);
-					}
-				}		
+
+		list = dao.selectByMemberNo(memberNo);
+		listexer = exerDao.selectByMemberNo(memberNo);
+		listeat = eatDao.selectByMemberNo(memberNo);
+		for (HealthDiaryVO vo : list) {
+			for (ExerciseRecordVO exerVo : listexer) {
+				if (vo.getMemberNo() == exerVo.getMemberNo()
+						&& vo.getDate().toString()
+								.equals(exerVo.getDate().toString())) {
+					vo.setExerVo(exerVo);
+				}
+			}
+			for (EatRecordVO eatVo : listeat) {
+				if (vo.getMemberNo() == eatVo.getMemberNo()
+						&& vo.getDate().toString()
+								.equals(eatVo.getDate().toString())) {
+					vo.setEatVo(eatVo);
+				}
 			}
 		}
+
 		return list;
 	}
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 };
