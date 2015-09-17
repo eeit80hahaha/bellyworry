@@ -1,21 +1,17 @@
 package fun.model.dao;
 
-import hibernate.util.HibernateUtil;
-
 import java.util.List;
-
-import news.model.ActivityVO;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fun.model.HealthViewDAO;
 import fun.model.HealthViewVO;
+import hibernate.util.HibernateUtil;
 
 
 public class HealthViewDAOHbm implements HealthViewDAO {
 
-	private static final String GET_ALL_STMT = "from HealthViewVO order by no";
 	@Override
 	public HealthViewVO selectByPrimaryKey(int no) {
 		HealthViewVO vo = null;
@@ -30,7 +26,25 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 		}
 		return vo;
 	}
-
+	
+	private static final String SELECT_BY_CLASS = "from HealthViewVO where viewClassNo=? order by no";
+	public List<HealthViewVO> selectByViewClassNo(int viewClassNo) {
+		List<HealthViewVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(SELECT_BY_CLASS);
+			query.setParameter(0, viewClassNo);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	private static final String GET_ALL_STMT = "from HealthViewVO order by no";
 	@Override
 	public List<HealthViewVO> getAll() {
 		List<HealthViewVO> list = null;
