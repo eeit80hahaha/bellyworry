@@ -98,7 +98,7 @@ public class ExerciseRecordDAOHbm implements ExerciseRecordDAO {
 			session.beginTransaction();
 			Query query = session.createQuery(UPDATE);
 			query.setParameter(0, vo.getMemberNo());
-			query.setParameter(1, vo.getExerciseNo());
+			query.setParameter(1, vo.getExerciseCalVO());
 			query.setParameter(2, vo.getDate());
 			query.setParameter(3, vo.getCount());
 			query.setParameter(4, vo.getNo());

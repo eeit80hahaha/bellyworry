@@ -92,7 +92,7 @@ public class EatRecordDAOHbm implements EatRecordDAO {
 			query.setParameter(0, vo.getMemberNo());
 			query.setParameter(1, vo.getDate());
 			query.setParameter(2, vo.getTime());
-			query.setParameter(3, vo.getFoodNo());
+			query.setParameter(3, vo.getFoodCalVO());
 			query.setParameter(4, vo.getCount());
 			query.setParameter(5, vo.getNo());
 			result = query.executeUpdate();
