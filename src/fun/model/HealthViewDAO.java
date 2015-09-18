@@ -5,7 +5,7 @@ import java.util.List;
 public interface HealthViewDAO {
 	public abstract HealthViewVO selectByPrimaryKey(int no);
 
-	public abstract List<HealthViewVO> selectByViewClassNo(int viewClassNo);
+	public abstract List<HealthViewVO> selectByViewClassVO(ViewClassVO vo);
 	
 	public abstract List<HealthViewVO> getAll();
 

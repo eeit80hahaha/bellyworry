@@ -5,10 +5,16 @@ import java.io.Serializable;
 public class HealthViewVO implements Serializable{
 	private int no;
 	private String name;
-	private int viewClassNo;
+	private ViewClassVO viewClassVO;
 	private float lat;
 	private float lng;
 	
+	public ViewClassVO getViewClassVO() {
+		return viewClassVO;
+	}
+	public void setViewClassVO(ViewClassVO viewClassVO) {
+		this.viewClassVO = viewClassVO;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if(obj!=null && (obj instanceof HealthViewVO)) {
@@ -21,7 +27,7 @@ public class HealthViewVO implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "{"+no+":"+name+":"+viewClassNo+":"+lat+":"+lng+"}";
+		return "{"+no+":"+name+":"+viewClassVO.getName()+":"+lat+":"+lng+"}";
 	}
 	
 	public int getNo() {
@@ -36,12 +42,12 @@ public class HealthViewVO implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getViewClassNo() {
-		return viewClassNo;
-	}
-	public void setViewClassNo(int viewClassNo) {
-		this.viewClassNo = viewClassNo;
-	}
+//	public int getViewClassNo() {
+//		return viewClassNo;
+//	}
+//	public void setViewClassNo(int viewClassNo) {
+//		this.viewClassNo = viewClassNo;
+//	}
 	public float getLat() {
 		return lat;
 	}
