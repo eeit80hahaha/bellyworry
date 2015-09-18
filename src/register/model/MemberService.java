@@ -41,7 +41,7 @@ public class MemberService {
 			System.out.println(vo.getId()+":"+vo.getEmail());
 			if(vo.getEmail().trim().equals(mail.trim())){
 				result=true;
-				this.sendmail(vo.getLastName(),vo.getEmail());
+				
 			}
 		}
 		return result;
@@ -93,5 +93,29 @@ public class MemberService {
 		  }
 	}
 	
+	
+	
+	
+	public int changePassword(String username, String oldPassword, String newPassword) {
+		int result=0;
+		MemberVO bean = this.selectbyId(username);
+		if(bean!=null) {
+//			byte[] temp = newPassword.getBytes();		//使用者輸入：明碼
+//			temp = mDigest.digest(temp);				//使用者輸入：one-way hash
+			MemberVO vo=new MemberVO();
+			vo.setBirthday(bean.getBirthday());
+			vo.setEmail(bean.getEmail());
+			vo.setFirstName(bean.getFirstName());
+			vo.setGender(bean.getGender());
+			vo.setId(bean.getId());
+			vo.setLastName(bean.getLastName());
+			vo.setMemberNo(bean.getMemberNo());
+			vo.setNickname(bean.getNickname());
+			vo.setPassword(newPassword);
+			vo.setPurview(bean.getPurview());
+			return memberDAO.update(vo);
+		}
+		return result;
+	}
 	
 }
