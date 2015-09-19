@@ -1,6 +1,7 @@
 package health.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class HealthDiaryVO implements Serializable {
 	private long no;
@@ -12,8 +13,8 @@ public class HealthDiaryVO implements Serializable {
 	private String title;
 	private String content;
 	private String share;
-	private EatRecordVO eatVo;
-	private ExerciseRecordVO exerVo;
+	private List<EatRecordVO> eatVo;
+	private List<ExerciseRecordVO> exerVo;
 
 	@Override
 	public boolean equals(Object obj) {
@@ -105,20 +106,22 @@ public class HealthDiaryVO implements Serializable {
 		this.share = share;
 	}
 
-	public EatRecordVO getEatVo() {
+	public List<EatRecordVO> getEatVo() {
 		return eatVo;
 	}
 
-	public void setEatVo(EatRecordVO eatVo) {
+	public void setEatVo(List<EatRecordVO> eatVo) {
 		this.eatVo = eatVo;
 	}
 
-	public ExerciseRecordVO getExerVo() {
+	public List<ExerciseRecordVO> getExerVo() {
 		return exerVo;
 	}
 
-	public void setExerVo(ExerciseRecordVO exerVo) {
+	public void setExerVo(List<ExerciseRecordVO> exerVo) {
 		this.exerVo = exerVo;
 	}
-	
+
+
+
 }

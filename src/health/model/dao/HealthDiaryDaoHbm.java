@@ -44,7 +44,7 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		try {
 			session.beginTransaction();
 			Query query = session
-					.createQuery("from HealthDiaryVO where memberNo=?");
+					.createQuery("from HealthDiaryVO where memberNo=? order by date");
 			query.setParameter(0, memberNo);
 			healthDiaryVO = query.list();
 			// healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class,

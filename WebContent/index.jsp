@@ -141,7 +141,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="about.html">熱量計算</a></li>
-                                <li class="dropdown"><a href="gallery.html">健康管理</a></li>
+                                <li class="dropdown"><a href="diaryIndex.controller">健康管理</a></li>
                                 <li class="dropdown">
                                     <a href="page.html" class="dropdown-toggle">運動趣<b class="caret"></b></a>
                                     <ul class="dropdown-menu">

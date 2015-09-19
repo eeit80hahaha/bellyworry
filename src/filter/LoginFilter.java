@@ -21,7 +21,7 @@ import register.model.MemberVO;
  * Servlet Filter implementation class Login
  */
 @WebFilter(
-urlPatterns = { "/Menuservelt.controller","/UpdateServlet.controller" }
+urlPatterns = { "/Menuservelt.controller","/UpdateServlet.controller","/diaryIndex.controller" }
 		)
 public class LoginFilter implements Filter {
 	@Override

@@ -13,7 +13,7 @@ public class GlobalService {
 	public static final String KEY = "KittySnoopyMicky";
 	
 	
-	public static int convertInt(String data) {
+	public static int ConvertInt(String data) {
 		int result = 0;
 		try {
 			result = Integer.parseInt(data);
@@ -24,7 +24,7 @@ public class GlobalService {
 		return result;
 	}
 	
-	public static double convertDouble(String data) {
+	public static double ConvertDouble(String data) {
 		double result = 0;
 		try {
 			result = Double.parseDouble(data);
@@ -36,7 +36,7 @@ public class GlobalService {
 	}
 	
 	private static SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
-	public static java.util.Date convertDate(String data) {
+	public static java.util.Date ConvertDate(String data) {
 		java.util.Date result = null;
 		try {
 			result = sFormat.parse(data);
@@ -46,14 +46,9 @@ public class GlobalService {
 		}
 		return result;
 	}
-	public static float convertFloat(String data) {
-		float result = 0;
-		try {
-			result = Float.parseFloat(data);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-			result = -1000;
-		}
+	public static String ConvertString(java.util.Date date){
+		String result=null;
+		result = sFormat.format(date);
 		return result;
 	}
 	
