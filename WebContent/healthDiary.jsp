@@ -15,6 +15,7 @@
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <!-- Remove this Robots Meta Tag, to allow indexing of site -->
 
+
 <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="scripts/bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet">
@@ -58,8 +59,7 @@
 
 <link href="styles/custom.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 
 
 <style>
@@ -140,223 +140,210 @@
 		<div class="divPanel page-content">
 			<div class="breadcrumbs">
 				<a href="index.html">Home</a> &nbsp;/&nbsp; <span>健康管理日誌</span>
-
 			</div>
-			<div>
-				<div>
-					<h2>Tabs</h2>
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#home" data-toggle="tab">日誌首頁</a></li>
-						<li><a href="#profile" data-toggle="tab">今日紀錄</a></li>
-						<li><a href="#settings" data-toggle="tab">歷史紀錄</a></li>
-					</ul>
-					<div class="tab-content" style="height: 100%; width: 100%;">
-						<div class="tab-pane fade in active" id="home">
-							<table border='1'>
+			<div class="t" style="border: none;">
+				<h2>Tabs</h2>
+				<ul class="nav nav-tabs" style="background-color: white;">
+					<li class="active"><a href="#t-1">日誌首頁</a></li>
+					<li><a href="#t-2">今日紀錄</a></li>
+					<li><a href="#t-3">歷史紀錄</a></li>
+				</ul>
+				<div id="t-1" style="height: 100%;">
+					<div class="tab-content"
+						style="height: 100%; width: 100%; border: 2px solid blue;">
+						<table border='1'>
+							<tr>
+								<th width='70'>會員編號</th>
+								<th width='70'>健康管理id</th>
+								<th width='70'>日期</th>
+								<th width='70'>身高</th>
+								<th width='70'>體重</th>
+								<th width='70'>腰圍</th>
+								<th width='70'>BMI</th>
+								<th width='70'>建議</th>
+								<th width='70'>日誌標題</th>
+								<th width='70'>日誌內容</th>
+								<th width='70'>同意分享日誌</th>
+
+
+								<th width='70'>日期</th>
+								<th width='70'>運動</th>
+								<th width='70'>每一小時消耗熱量</th>
+								<th width='70'>分量</th>
+
+
+								<th width='70'>日期</th>
+								<th width='70'>時段</th>
+								<th width='70'>菜色名稱</th>
+								<th width='70'>熱量</th>
+								<th width='70'>一搬份量</th>
+								<th width='70'>每份公克數</th>
+								<th width='70'>份量</th>
+								<th width='70'>總熱量</th>
+							</tr>
+							<c:forEach var="vo" items="${list}">
 								<tr>
-									<th width='70'>會員編號</th>
-									<th width='70'>健康管理id</th>
-									<th width='70'>日期</th>
-									<th width='70'>身高</th>
-									<th width='70'>體重</th>
-									<th width='70'>腰圍</th>
-									<th width='70'>BMI</th>
-									<th width='70'>建議</th>
-									<th width='70'>日誌標題</th>
-									<th width='70'>日誌內容</th>
-									<th width='70'>同意分享日誌</th>
+									<td>${vo.memberNo}</td>
+									<td>${vo.no}</td>
+									<td>${vo.date}</td>
+									<td>${vo.height}</td>
+									<td>${vo.weight}</td>
+									<td>${vo.waistline}</td>
+									<td>${vo.weight/((vo.height/100)*(vo.height/100))}</td>
+									<!-- BMI -->
+									<c:choose>
+										<c:when
+											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 18.5 ) }">
+											<td>體重過輕</td>
+										</c:when>
+										<c:when
+											test="${ ( vo.weight/((vo.height/100)*(vo.height/100)) < 24 ) }">
+											<td>標準體重</td>
+										</c:when>
+										<c:when
+											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 27 ) }">
+											<td>過重</td>
+										</c:when>
+										<c:when
+											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 30 ) }">
+											<td>輕度肥胖</td>
+										</c:when>
+										<c:when
+											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 35 ) }">
+											<td>中度肥胖</td>
+										</c:when>
+										<c:when
+											test="${(vo.weight/((vo.height/100)*(vo.height/100)) >= 35 ) }">
+											<td>重度肥胖</td>
+										</c:when>
+									</c:choose>
 
 
-									<th width='70'>日期</th>
-									<th width='70'>運動</th>
-									<th width='70'>每一小時消耗熱量</th>
-									<th width='70'>分量</th>
+									<td>${vo.title}</td>
+									<td>${vo.content}</td>
+									<td>${vo.share}</td>
+
+									<td>${vo.exerVo[0].date}</td>
+									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.name}</c:forEach></td>
+									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.calHour}</c:forEach></td>
+									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.count}</c:forEach></td>
 
 
-									<th width='70'>日期</th>
-									<th width='70'>時段</th>
-									<th width='70'>菜色名稱</th>
-									<th width='70'>熱量</th>
-									<th width='70'>一搬份量</th>
-									<th width='70'>每份公克數</th>
-									<th width='70'>份量</th>
-									<th width='70'>總熱量</th>
+
+
+
+									<td>${vo.eatVo[0].date}</td>
+									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br>
+										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br>
+										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br>
+										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.count}<br>
+										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.weight}<br>
+										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count}<br>
+										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count*eat.foodCalVO.cal}<br>
+										</c:forEach></td>
 								</tr>
-								<c:forEach var="vo" items="${list}">
-									<tr>
-										<td>${vo.memberNo}</td>
-										<td>${vo.no}</td>
-										<td>${vo.date}</td>
-										<td>${vo.height}</td>
-										<td>${vo.weight}</td>
-										<td>${vo.waistline}</td>
-										<td>${vo.weight/((vo.height/100)*(vo.height/100))}</td>
-										<!-- BMI -->
-										<c:choose>
-											<c:when
-												test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 18.5 ) }">
-												<td>體重過輕</td>
-											</c:when>
-											<c:when
-												test="${ ( vo.weight/((vo.height/100)*(vo.height/100)) < 24 ) }">
-												<td>標準體重</td>
-											</c:when>
-											<c:when
-												test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 27 ) }">
-												<td>過重</td>
-											</c:when>
-											<c:when
-												test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 30 ) }">
-												<td>輕度肥胖</td>
-											</c:when>
-											<c:when
-												test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 35 ) }">
-												<td>中度肥胖</td>
-											</c:when>
-											<c:when
-												test="${(vo.weight/((vo.height/100)*(vo.height/100)) >= 35 ) }">
-												<td>重度肥胖</td>
-											</c:when>
-										</c:choose>
-
-
-										<td>${vo.title}</td>
-										<td>${vo.content}</td>
-										<td>${vo.share}</td>
-
-										<td>${vo.exerVo[0].date}</td>
-										<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.name}</c:forEach></td>
-										<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.calHour}</c:forEach></td>
-										<td><c:forEach var="exer" items="${vo.exerVo}">${exer.count}</c:forEach></td>
-
-
-
-
-
-										<td>${vo.eatVo[0].date}</td>
-										<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br>
-											</c:forEach></td>
-										<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br>
-											</c:forEach></td>
-										<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br>
-											</c:forEach></td>
-										<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.count}<br>
-											</c:forEach></td>
-										<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.weight}<br>
-											</c:forEach></td>
-										<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count}<br>
-											</c:forEach></td>
-										<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count*eat.foodCalVO.cal}<br>
-											</c:forEach></td>
-
-									</tr>
-								</c:forEach>
-							</table>
-						</div>
-						<!-- right div -->
-						<div class="fade" id="profile"
-							style="border: 2px solid blue; width: 95%; height: 100%;">
-							<form action="" method="post">
-								<!-- left -->
-								<div
-									style="width: 40%; float: left; border: 2px solid red; height: 100%;">
-
-									<div style="height: 500px;">
-										<div class="accordion">
-											<h3>瘦身指標</h3>
-											<div>
-												身高<input type="text" name="height" value="">${errorMessage.heightError}<br>
-												體重<input type="text" name="weight" value="">${errorMessage.weightError}<br>
-												腰圍<input type="text" name="waistline" value="">${errorMessage.waistlineError}<br>
-												<div>BMI</div>
-												<div>建議</div>
-											</div>
-										</div>
-										<div class="accordion">
-											<h3>熱量計算</h3>
-											<div>
-												<div>
-													早餐<br> 午餐<br> 晚餐<br> 飲食總熱量<br> 運動總熱量<br>
-													差值<br>
-												</div>
-												<br>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- right -->
-								<div
-									style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
-									<div style="height: 500px;">
-										<div class="accordion">
-											<h3>瘦身日誌</h3>
-											<div>
-												日誌標題<input type="text" name="title" value=""><br>
-												日誌內容
-												<textarea rows="" cols=""></textarea>
-											</div>
-										</div>
-									</div>
-								</div>
-								<input type="submit" value="SAVE">
-								<button>
-									<a href="#">back</a>
-								</button>
-							</form>
-						</div>
-
-						<div class="tab-pane fade" id="settings" style="position: absolute;">
-							<table border='2' style="float: left; margin-right: 20px;">
-								<tr>
-									<th width='130'>日期</th>
-									<th width='130'>體重</th>
-									<th width='130'>歷史變化量</th>
-
-								</tr>
-								<c:forEach var='vo' varStatus="i" items="${list}">
-									<tr>
-										<td>${vo.date}</td>
-										<td>${vo.weight}</td>
-										<c:choose>
-											<c:when test="${i.index == 0}">
-												<td>--</td>
-											</c:when>
-											<c:when test="${i.index > 0}">
-												<%-- 												<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
-												<!-- 未切字串,一坨拉庫 -->
-												<td>${fn:substring((list[i.index].weight - list[i.index-1].weight),0,6)}</td>
-												<!-- 取小數第二位，切字串 -->
-											</c:when>
-										</c:choose>
-
-									</tr>
-								</c:forEach>
-
-
-							</table>
-
-							<table border='2'>
-								<tr>
-									<th width='130'>日期</th>
-									<th width='130'>體重</th>
-									<th width='130'>歷史變化量</th>
-								</tr>
-								<c:forEach begin='11' end='20' var='vo' items='${list}'>
-									<tr>
-										<td>${vo.date}</td>
-										<td>${vo.weight}</td>
-										<td></td>
-									</tr>
-								</c:forEach>
-							</table>
-						</div>
+							</c:forEach>
+						</table>
 					</div>
-					<br />
+				</div>
+				<div id="t-2">
+					<div style="border: 2px solid blue; width: 95%; height: 100%;">
+						<form action="health.collection" method="post">
+							<!-- left -->
+							<div
+								style="width: 40%; float: left; border: 2px solid red; height: 100%;">
+								日期：<input type="text" id="date">
+								<div style="height: 500px;">
+									<div class="accordion">
+										<h3>瘦身指標</h3>
+										<div style="height: 100%">
+											身高<input type="text" name="height" value="">${errorMessage.heightError}<br>
+											體重<input type="text" name="weight" value="">${errorMessage.weightError}<br>
+											腰圍<input type="text" name="waistline" value="">${errorMessage.waistlineError}<br>
+											<div>BMI</div>
+											<div>建議</div>
+										</div>
+									</div>
+									<div class="accordion">
+										<h3>熱量計算</h3>
+										<div>
+											<div>
+												早餐<br> 午餐<br> 晚餐<br> 飲食總熱量<br> 運動總熱量<br>
+												差值<br>
+											</div>
+											<br>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- right -->
+							<div
+								style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
+								<div style="height: 500px;">
+									<div class="accordion" style="height: 100%">
+										<h3>瘦身日誌</h3>
+										<div style="height: 500px">
+											日誌標題<input type="text" name="title" value=""><br>
+											日誌內容<textarea class="ckeditor" name="content"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<input type="submit" value="SAVE">
+							<button>
+								<a href="#">back</a>
+							</button>
+						</form>
+					</div>
+				</div>
+				<div id="t-3">
+					<table border='2' style="float: left;">
+						<tr>
+							<th width='130'>日期</th>
+							<th width='130'>體重</th>
+							<th width='130'>歷史變化量</th>
+
+						</tr>
+						<c:forEach var='vo' varStatus="i" items="${list}">
+							<tr>
+								<td>${vo.date}</td>
+								<td>${vo.weight}</td>
+								<c:choose>
+									<c:when test="${i.index == 0}">
+										<td>--</td>
+									</c:when>
+									<c:when test="${i.index > 0}">
+										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
+										<!-- 未切字串,一坨拉庫 -->
+										<td>${fn:substring((list[i.index].weight - list[i.index-1].weight),0,6)}</td>
+										<!-- 取小數第二位，切字串 -->
+									</c:when>
+								</c:choose>
+							</tr>
+						</c:forEach>
+
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -453,9 +440,9 @@
 
 
 
-
-
-
+	<script src="ckeditor/ckeditor.js"></script>
+	
+	
 	<script src="scripts/jquery.min.js" type="text/javascript"></script>
 	<script src="scripts/bootstrap/js/bootstrap.min.js"
 		type="text/javascript"></script>
@@ -475,8 +462,15 @@
 			$(".accordion").accordion({
 				collapsible : true
 			});
-
+			$(function() {
+				$(".t").tabs();
+			});
 		})(jQuery);
+
+		//日期
+		$(function() {
+			$("#date").datepicker();
+		});
 	</script>
 
 

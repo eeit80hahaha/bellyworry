@@ -2,9 +2,12 @@ package ranking.model;
 
 import java.io.Serializable;
 
+import register.model.MemberVO;
+
 public class HeroVO implements Serializable{
 
 	private int memberNo;
+	MemberVO membervo;
 	private double weightDiff;
 	private int num;
 	
@@ -20,7 +23,7 @@ public class HeroVO implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "{"+memberNo+":"+weightDiff+":"+num+"}";
+		return "{"+memberNo+":"+membervo+":"+weightDiff+":"+num+"}";
 	}
 	
 	public int getMemberNo() {
@@ -28,6 +31,12 @@ public class HeroVO implements Serializable{
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+	public MemberVO getMembervo() {
+		return membervo;
+	}
+	public void setMembervo(MemberVO membervo) {
+		this.membervo = membervo;
 	}
 	public double getWeightDiff() {
 		return weightDiff;

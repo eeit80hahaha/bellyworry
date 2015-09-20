@@ -99,7 +99,7 @@ public class healthServlet extends HttpServlet {
 		if (share != null) {
 			shareCheange = "1";
 		}
-		Date date1 = globalService.ConvertDate(date);
+		Date date1 = globalService.convertDate(date);
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/healthDiary.jsp");
@@ -131,8 +131,8 @@ public class healthServlet extends HttpServlet {
 			service.insert(vo);
 			request.setAttribute("vo", vo);
 		} else {
-			String inputDate = globalService.ConvertString(vo.getDate()); // 把insert時間轉換成字串
-			String sqlDate = globalService.ConvertString(old.getDate()); // 資料庫取出的時間轉換成字串
+			String inputDate = globalService.convertString(vo.getDate()); // 把insert時間轉換成字串
+			String sqlDate = globalService.convertString(old.getDate()); // 資料庫取出的時間轉換成字串
 			if (inputDate.equals(sqlDate)) {
 				vo.setNo(old.getNo());								// 將新資料vo取代舊主鍵vo1內的資料(vo1資料庫內有的舊主鍵)
 				if (vo.getWaistline() == 0) {
