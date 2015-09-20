@@ -34,7 +34,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 				result = new ExerciseRecordVO();
 				result.setNo(rset.getLong(1));
 				result.setMemberNo(rset.getInt(2));
-				result.setExerciseNo(rset.getInt(3));
+//				result.setExerciseNo(rset.getInt(3));
 				result.setDate(rset.getDate(4));
 				result.setCount(rset.getInt(5));
 			}
@@ -86,7 +86,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 				ExerciseRecordVO vo = new ExerciseRecordVO();
 				vo.setNo(rset.getLong(1));
 				vo.setMemberNo(rset.getInt(2));
-				vo.setExerciseNo(rset.getInt(3));
+//				vo.setExerciseNo(rset.getInt(3));
 				vo.setDate(rset.getDate(4));
 				vo.setCount(rset.getInt(5));
 				result.add(vo);
@@ -138,7 +138,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 				ExerciseRecordVO vo = new ExerciseRecordVO();
 				vo.setNo(rset.getLong(1));
 				vo.setMemberNo(rset.getInt(2));
-				vo.setExerciseNo(rset.getInt(3));
+//				vo.setExerciseNo(rset.getInt(3));
 				vo.setDate(rset.getDate(4));
 				vo.setCount(rset.getInt(5));
 				result.add(vo);
@@ -186,7 +186,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 			stmt = conn.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			if(vo != null){
 				stmt.setInt(1, vo.getMemberNo());
-				stmt.setInt(2, vo.getExerciseNo());
+//				stmt.setInt(2, vo.getExerciseNo());
 				if(vo.getDate()!=null){
 					long date = vo.getDate().getTime();
 					stmt.setDate(3, new java.sql.Date(date));
@@ -242,7 +242,7 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 			stmt = conn.prepareStatement(UPDATE);
 			if (vo != null) {
 				stmt.setInt(1, vo.getMemberNo());
-				stmt.setInt(2, vo.getExerciseNo());
+//				stmt.setInt(2, vo.getExerciseNo());
 				if (vo.getDate() != null) {
 					long date = vo.getDate().getTime();
 					stmt.setDate(3, new java.sql.Date(date));

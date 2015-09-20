@@ -58,14 +58,14 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user", bean);
 			Map<String, String> success = new HashMap<String, String>();
 			session.setAttribute("suc", success);
-			success.put("update", "<a href='${pageContext.request.contextPath}/updatemember.jsp'>修改會員資料</a>");
-			success.put("out", "'<a href='${pageContext.request.contextPath}/logout.controller'>登出</a>");
+			String path = request.getContextPath();
+			success.put("update", "<a href='"+path+"/updatemember.jsp'>修改會員資料</a>");
+			success.put("out", "'<a href='"+path+"/logout.controller'>登出</a>");
 			String dest = (String) session.getAttribute("dest");
 			if(dest!=null && dest.length()!=0) {
 				session.removeAttribute("dest");
 				response.sendRedirect(dest);
 			} else {
-				String path = request.getContextPath();
 				response.sendRedirect(path+"/index.jsp");
 			}
 		}
