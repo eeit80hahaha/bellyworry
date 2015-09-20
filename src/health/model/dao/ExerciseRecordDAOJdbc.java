@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import health.model.EatRecordVO;
@@ -311,4 +312,16 @@ public class ExerciseRecordDAOJdbc implements ExerciseRecordDAO {
 		return false;
 	}
 
+	@Override
+	public int exercal(int memberNo, java.util.Date date) {
+
+		return 0;
+	}
+	
+	@Override
+	public List<ExerciseRecordVO> exerday(int memberNo, Date date) {
+		return null;
+	}
+	
+	
 }

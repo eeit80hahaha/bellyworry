@@ -150,7 +150,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="about.html">活動情報</a></li>
-                                <li class="dropdown"><a href="gallery.html">英雄事蹟</a></li>
+                                <li class="dropdown"><a href="${pageContext.request.contextPath}/hero.controller">英雄事蹟</a></li>
                                 <li class="dropdown"><a href="about.html">小學堂</a></li>
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/login.jsp" id="dropdown-my">會員登入</a></li>
                             </ul>

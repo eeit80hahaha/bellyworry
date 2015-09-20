@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EatRecordDAOJdbc implements EatRecordDAO {
@@ -313,4 +314,15 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public int eatcal(int memberNo, java.util.Date date) {
+		return 0;
+	}
+
+	@Override
+	public List<EatRecordVO> eatday(int memberNo, Date date) {
+		return null;
+	}
+	
 }

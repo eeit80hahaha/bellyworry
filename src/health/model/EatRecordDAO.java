@@ -16,4 +16,8 @@ public interface EatRecordDAO {
 
 	public abstract boolean delete(long no);
 
+	public abstract int eatcal(int memberNo, java.util.Date date);
+	
+	public abstract List<EatRecordVO> eatday(int memberNo, java.util.Date date);
+
 }
