@@ -112,7 +112,7 @@
                         <a href="index.html" id="divTagLine">Enjoy Your Life</a>
                     </div>
 
-                    <div id="divMenuRight" class="pull-right">
+                    <div id="divMenuRight" class="pull-right" ">
 <!-- 登入成功秀修改登出-->     <div class="navbar"><h2>${user.id}</h2><span>${suc.update}</span><span>${suc.out}</span>
                         <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
                             功能選單 <span class="icon-chevron-down icon-white"></span>
