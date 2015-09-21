@@ -12,7 +12,7 @@
 
 <h1>${herovo.membervo.nickname} ${healthdiary.date} 健康紀錄</h1>
 <p>會員帳號：${herovo.membervo.id}</p>
-<p><a href="#">日誌檢舉</a></p>
+<p><a href="${pageContext.request.contextPath}/reflectdiary.controller?memberno=${healthdiary.memberNo}&date=${healthdiary.date}">日誌檢舉</a></p>
 
 <%-- ${healthdiary} --%>
 <!-- <hr/> -->
