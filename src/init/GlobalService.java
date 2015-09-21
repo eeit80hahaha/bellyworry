@@ -46,16 +46,6 @@ public class GlobalService {
 		}
 		return result;
 	}
-	public static float convertFloat(String data) {
-		float result = 0;
-		try {
-			result = Float.parseFloat(data);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-			result = -1000;
-		}
-		return result;  
-	}
 	public static String convertString(java.util.Date date){
 		String result=null;
 		result = sFormat.format(date);
