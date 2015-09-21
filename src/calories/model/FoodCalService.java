@@ -9,6 +9,7 @@ import calories.model.dao.FoodCalDAOHbm;
 
 public class FoodCalService {
 	private FoodCalDAO foodDao = new FoodCalDAOHbm();
+	private FoodCalDAOHbm foodCaldao = new FoodCalDAOHbm();
 	
 	public List<FoodCalVO> base (List<FoodCalVO> vo){
 		List<FoodCalVO> bean = new ArrayList<FoodCalVO>();		
@@ -68,5 +69,16 @@ public class FoodCalService {
 		FoodCalService service = new FoodCalService();
 		List<FoodCalVO> list = service.select(null);
 		System.out.println("beans="+list);
+	}
+	
+	//換頁所使用的
+	public PagesFoodCalVO getDatePage(int pageNo, int pageSize){
+		List<FoodCalVO> list = foodCaldao.getDatePage(pageNo, pageSize);
+					
+		int rowCount = foodCaldao.getDateTotalCount();
+		
+		PagesFoodCalVO result = new PagesFoodCalVO(pageNo, pageSize, rowCount, list);
+		
+		return result;
 	}
 }

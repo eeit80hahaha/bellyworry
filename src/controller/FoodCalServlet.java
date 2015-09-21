@@ -1,6 +1,5 @@
 package controller;
 
-import food.recipes.model.CookVO;
 import init.GlobalService;
 
 import java.io.IOException;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import calories.model.FoodCalService;
 import calories.model.FoodCalVO;
+import calories.model.PagesFoodCalVO;
 
 
 @WebServlet(
@@ -40,6 +40,7 @@ public class FoodCalServlet extends HttpServlet{
 			String temp7 = request.getParameter("cookNo");
 			String temp8 = request.getParameter("picture1");
 			String foodcalion = request.getParameter("foodcalion");
+			String pageNoTemp = request.getParameter("pageNo");
 			
 			//驗證資料
 			Map<String, String> errors = new HashMap<String, String>();
@@ -89,6 +90,14 @@ public class FoodCalServlet extends HttpServlet{
 				}
 			}
 			
+			int pageNo = 0;
+			if(pageNoTemp!=null && pageNoTemp.length()!=0) {
+				pageNo = GlobalService.convertInt(pageNoTemp);
+				if(pageNo==-1000) {
+					errors.put("pageNo", "pageNo must be an integer");
+				}
+			}
+			
 			//呼叫model
 			FoodCalVO vo = new FoodCalVO();
 			vo.setCookNo(foodNo);
@@ -99,13 +108,17 @@ public class FoodCalServlet extends HttpServlet{
 			vo.setWeight(weight);
 			vo.setCookNo(cookNo);
 			vo.setPicture1(temp8);
+	
+			//換頁所呼叫的Service
+			PagesFoodCalVO PagesFoodCalVO = service.getDatePage(pageNo, 3);	
+	
+			PagesFoodCalVO.setHerohealdiarypage(service.base(PagesFoodCalVO.getHerohealdiarypage()));
+			
+//			List<FoodCalVO> result = service.base(service.select(vo));
 			
 			
-			System.out.println();
-			List<FoodCalVO> result = service.base(service.select(vo));
-			
-			
-			request.setAttribute("foodNo", result);
+//			request.setAttribute("foodNo", result);
+			request.setAttribute("PagesFoodCalVO", PagesFoodCalVO);
 			request.getRequestDispatcher(
 					"/ranking/cookCaling.jsp").forward(request, response);
 			
