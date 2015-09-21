@@ -9,14 +9,17 @@
 </head>
 <body>
 <div>
-<a href="${pageContext.request.contextPath}/ranking/foodCal.controller">飲食查詢</a><br>
+<a href="${pageContext.request.contextPath}/ranking/foodCal.controller?pageNo=1">熱量計算</a><br>
 </div>
+
 <div>
 <a href="${pageContext.request.contextPath}/ranking/cookCalingproduct.jsp">飲食查詢後台</a><br>
 </div>
 <div>
 <a href="${pageContext.request.contextPath}/ranking/execiseCal.controller">運動查詢</a>
 </div>
+
+
 
 
 </body>

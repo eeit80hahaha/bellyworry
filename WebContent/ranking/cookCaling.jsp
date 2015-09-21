@@ -42,7 +42,9 @@
 <div>
 <table border=1 width=23% id="table1">
 
-<c:forEach var="vo" items="${foodNo}" varStatus="varStatus">
+
+
+<c:forEach var="vo" items="${PagesFoodCalVO.herohealdiarypage}" varStatus="varStatus">
 <c:set var="isItem" value="${varStatus.count}"/>
 
 	<tr>
@@ -61,7 +63,45 @@
 <%-- 		<p>食譜編號${vo.cookNo}</p> --%>
 </c:forEach>
 </table>
-</div> 
+</div>
+<div id="paging">
+<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
+<table border="0">
+  <tr>
+    <td width='76'>
+        <c:if test="${PagesFoodCalVO.pageNo > 1}">
+           <div id="pfirst">
+              <a href="<c:url value='/ranking/foodCal.controller?pageNo=1' />">第一頁</a>&nbsp;&nbsp;&nbsp;
+           </div>
+        </c:if>
+     </td>
+     <td width='76'>
+        <c:if test="${PagesFoodCalVO.pageNo > 1}">
+           <div id="pprev">
+              <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
+           </div>
+        </c:if>  
+     </td>
+     <td width='76'>
+            <c:if test="${PagesFoodCalVO.pageNo != PagesFoodCalVO.totalPages}">
+                <div id="pnext">
+                   <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </c:if>
+     </td>  
+     <td width='76'>
+            <c:if test="${PagesFoodCalVO.pageNo != PagesFoodCalVO.totalPages}">
+                <div id="plast">
+                    <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </c:if>
+     </td>
+     <td width='176' align="center">
+           第${PagesFoodCalVO.pageNo}頁 / 共${PagesFoodCalVO.totalPages}頁
+     </td>  
+</tr>
+</table>
+</div>
 <select id="time">
 	<option value="1">早餐 </option>
 	<option value="2">中餐 </option>

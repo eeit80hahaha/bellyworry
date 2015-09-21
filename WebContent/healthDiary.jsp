@@ -15,7 +15,7 @@
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <!-- Remove this Robots Meta Tag, to allow indexing of site -->
 
-
+<!--今日日誌時間用-->
 <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="scripts/bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet">
@@ -59,7 +59,16 @@
 
 <link href="styles/custom.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+<!-- 因為edit受侷限,且css一動則動全身,所以暫時關閉 -->
 
+
+<link rel="stylesheet" type="text/css" href="jeasyui/easyui.css">
+<link rel="stylesheet" type="text/css" href="jeasyui/icon.css">
+<link rel="stylesheet" type="text/css" href="jeasyui/demo.css">
+<script type="text/javascript" src="jeasyui/jquery.min.js"></script>
+<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
+<!-- 以上月曆用 -->
 
 
 <style>
@@ -149,8 +158,19 @@
 					<li><a href="#t-3">歷史紀錄</a></li>
 				</ul>
 				<div id="t-1" style="height: 100%;">
-					<div class="tab-content"
-						style="height: 100%; width: 100%; border: 2px solid blue;">
+					<div style="border: 2px solid blue; width: 100%; height: 100%;">
+					</div>
+					<div
+						style="width: 70%; float: left; border: 2px solid red; height: 100%;">
+						網誌內容</div>
+					<div
+						style="width: 29%; float: right; border: 2px solid yellow; height: 100%;">
+						
+						<div style="width: 100%;"></div>
+						<div class="easyui-calendar" style="width: 335px; height: 360px;"></div>
+					</div>
+
+					<div class="tab-content" style="height: 100%; width: 100%;">
 						<table border='1'>
 							<tr>
 								<th width='70'>會員編號</th>
@@ -218,7 +238,6 @@
 										</c:when>
 									</c:choose>
 
-
 									<td>${vo.title}</td>
 									<td>${vo.content}</td>
 									<td>${vo.share}</td>
@@ -258,10 +277,17 @@
 							<!-- left -->
 							<div
 								style="width: 40%; float: left; border: 2px solid red; height: 100%;">
+
+
+								<!--     								<input class="easyui-datebox" ></input> -->
+
+								<!-- 時間!!! -->
 								日期：<input type="text" id="date">
-								<div style="height: 500px;">
-									<div class="accordion">
-										<h3>瘦身指標</h3>
+								<div
+									style="height: 500px; cursor: pointer; display: block; font-size: 100%;">
+									<div class="accordion" style="border: 1px solid #DDDDDD;">
+										<h3
+											style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3>
 										<div style="height: 100%">
 											身高<input type="text" name="height" value="">${errorMessage.heightError}<br>
 											體重<input type="text" name="weight" value="">${errorMessage.weightError}<br>
@@ -270,8 +296,9 @@
 											<div>建議</div>
 										</div>
 									</div>
-									<div class="accordion">
-										<h3>熱量計算</h3>
+									<div class="accordion" style="border: 1px solid #DDDDDD;">
+										<h3 style="background-color: #FFDD55"
+											style="border: 1px solid #DDDDDD;">熱量計算</h3>
 										<div>
 											<div>
 												早餐<br> 午餐<br> 晚餐<br> 飲食總熱量<br> 運動總熱量<br>
@@ -287,19 +314,25 @@
 							<div
 								style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
 								<div style="height: 500px;">
-									<div class="accordion" style="height: 100%">
-										<h3>瘦身日誌</h3>
-										<div style="height: 500px">
+									<div class="accordion"
+										style="overflow: auto; height: 500px; border: 1px solid #DDDDDD;">
+										<h3
+											style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身日誌</h3>
+										<div>
 											日誌標題<input type="text" name="title" value=""><br>
-											日誌內容<textarea class="ckeditor" name="content"></textarea>
+											日誌內容
+											<textarea class="ckeditor" name="content"></textarea>
 										</div>
 									</div>
 								</div>
 							</div>
-							<input type="submit" value="SAVE">
-							<button>
-								<a href="#">back</a>
-							</button>
+							<div>
+								<input type="submit" value="SAVE"
+									style="width: 110px; height: 45px; margin: 10px">
+								<button style="width: 110px; height: 45px;">
+									<a href="#">back</a>
+								</button>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -441,21 +474,21 @@
 
 
 	<script src="ckeditor/ckeditor.js"></script>
-	
-	
+
+
 	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
 	<script src="scripts/bootstrap/js/bootstrap.min.js"
 		type="text/javascript"></script>
 	<script src="scripts/default.js" type="text/javascript"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 	<script src="scripts/carousel/jquery.carouFredSel-6.2.0-packed.js"
 		type="text/javascript"></script>
 	<script src="scripts/camera/scripts/camera.min.js"
 		type="text/javascript"></script>
 	<script src="scripts/easing/jquery.easing.1.3.js"
 		type="text/javascript"></script>
-
 
 	<script>
 		(function($) {

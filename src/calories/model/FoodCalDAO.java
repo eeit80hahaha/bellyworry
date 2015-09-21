@@ -1,5 +1,7 @@
 package calories.model;
 
+import health.model.HealthDiaryVO;
+
 import java.io.InputStream;
 import java.util.List;
 
@@ -13,4 +15,12 @@ public interface FoodCalDAO {
 	public abstract int update(FoodCalVO vo);
 
 	public abstract boolean delete(int foodNo);
+
+	
+	//換頁所需要的getDatePage
+	public abstract List<FoodCalVO> getDatePage(int pageNo, int pageSize);
+	
+	public abstract int getDateTotalCount();
+	
+	
 }
