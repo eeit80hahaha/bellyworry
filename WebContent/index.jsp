@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE HTML>
+﻿﻿﻿<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -44,7 +44,6 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<!--<=====這裡-->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <!--     //結束(hui)=================js版本有衝突，要刪掉其一========================== -->
@@ -60,7 +59,7 @@
 
 	//新增會員Start
 	$(function() {
-		$("#dialog").dialog({
+		$("#dialog").dialog({   //dialog==>新增會員方塊
 			autoOpen : false,
 			show : {
 				effect : "blind",
@@ -78,7 +77,7 @@
 	
 	//註冊訊息Start
 	$(function() {
-		$("#dialog0").dialog({
+		$("#dialog0").dialog({   //dialog==>訊息方塊
 			autoOpen : false,
 			show : {
 				effect : "blind",
@@ -89,9 +88,16 @@
 				duration : 1000
 			}
 		});
-		${error.open}
+		
 	});
-
+	$(function() {
+		${error.open}//會員註冊資料輸入失敗
+		${error.open1}//會員註冊失敗
+		${up.suc}//修改會員資料成功
+		${change.openpwd}//修改密碼成功
+		
+	});
+	
 	//註冊訊息End
 	//註冊結束(hui)==============================================
 </script>
@@ -103,7 +109,7 @@
 <div id="decorative2">
     <div class="container">
 
-        <div class="divPanel topArea notop nobottom">
+       <div class="divPanel topArea notop nobottom">
             <div class="row-fluid">
                 <div class="span12">
 
@@ -193,45 +199,52 @@
 													<div>
 														<label><span style="color: red">*</span> 姓:</label><input
 															type="text" name="firstname" size="20" autofocus
-															placeholder="請輸入" autocomplete="off" required="" />
+															placeholder="請輸入" autocomplete="off" required="" value="${param.firstname} "/>
+															<div>${error.firstName}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span> 名:</label><input
 															type="text" name="lastname" size="20" autofocus
-															placeholder="請輸入" autocomplete="off" required="" />
+															placeholder="請輸入" autocomplete="off" required="" value="${param.lastname}"/>
+															<div>${error.lastName}</div>
 													</div>
 													<div>
 														<label>暱稱:</label><input type="text" name="nickname"
 															size="20" autofocus placeholder="請輸入" autocomplete="off"
-															required="" />
+															required="" value="${param.nickname}"/>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>帳號:</label><input
-															type="text" name="account" size="20" required="" />
+															type="text" name="account" size="20" required="" value="${param.account}"/>
+															<div>${error.username}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>密碼:</label><input
 															type="password" name="pwd" size="20" required=""
-															maxlength="20" />
+															maxlength="20" /><div>${error.password}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>密碼確認:</label><input
 															type="password" name="pwd1" size="20" required=""
-															maxlength="20" />
+															maxlength="20" /><div>${error.password2}</div>
+															<div>${error.password1}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>Mail:</label> <input
 															type="email" name="mail" size="20" autofocus
-															placeholder="請輸入E-mail" autocomplete="off" />
+															placeholder="請輸入E-mail" autocomplete="off" value="${param.mail}"/>
+															<div>${error.email}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>生日:</label> <input
-															type="text" name="date" id="datepicker">
+															type="text" name="date" id="datepicker" value="${param.date}">
+															<div>${error.birth}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>性別:</label><input
 															type="radio" name="gender" size="20" value="males" />男 <input
 															type="radio" name="gender" size="20" value="female" />女
+															<div>${error.gender}</div>
 													</div>
 												</fieldset>
 												<div>
@@ -240,21 +253,17 @@
 												</div>
 											</form>
 									<!-- ==============註冊錯誤訊息=================================================================== -->
-									<div id="dialog0">										
-<%-- 										<p>${error.open}</p> --%>
-										<p>${error.add}</p>
-										<p>${error.password1}</p>
-										<p>${error.username}</p>
-										<p>${error.password}</p>
-										<p>${error.firstName}</p>
-										<p>${error.lastName}</p>
-										<p>${error.email}</p>
-										<p>${error.birth}</p>
-										<p>${error.gender}</p>
-										<p>${error.er}</p>
-										<p>${error.success}</p>
+									<div id="dialog0">	
+										<p>${error.add}</p><!-- 註冊失敗，請重新輸入 -->
+										<p>${error.er}</p><!-- 帳號重複，請重新輸入 -->
+										<p>${error.success}</p><!-- 新增會員成功 -->
 					<!-- ==============忘記密碼寄信成功訊息=================================================================== -->
 										<p>${error.success2}</p>
+					<!-- ==============修改會員資料成功=================================================================== -->					
+										<p>${up.update}</p>
+					<!-- ==============修改密碼成功=================================================================== -->					
+										<p>${change.success1}</p>
+									
 									</div>
 					<!-- ======================================================================================== -->
                                		 </div>

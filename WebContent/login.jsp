@@ -70,13 +70,14 @@ $(function() {
 			method="post">
 			<div>
 				<label><span style="color: red">*</span>帳號:</label><input
-					type="text" name="loginaccount" size="25" required="" />
-
+					type="text" name="loginaccount" size="25" required="" value="${param.loginaccount}"/>
+				<dir>${error.username1}</dir>
 			</div>
 			<div>
 				<label><span style="color: red">*</span>密碼:</label><input
 					type="password" name="loginpwd" size="25" required=""
 					maxlength="20" />
+				<dir>${error.password1}</dir>	
 			</div>
 			<br>
 			<div id="submit">
