@@ -75,10 +75,8 @@ public class HeroDiaryServlet extends HttpServlet {
 	    List<HeroVO> herovolist = heroservice.select(herovo);
 		List<HealthDiaryVO> healthdiarylist = heroservice.Selectday(memberNo, date);
 		
-			
+		request.setAttribute("memberNo", memberNo);		
 		if(healthdiarylist != null){
-//			System.out.println(list.get(0));
-//			request.setAttribute("memberNo", memberNo);
 			request.setAttribute("herovo", herovolist.get(0));
 			request.setAttribute("healthdiary", healthdiarylist.get(0));
 			request.getRequestDispatcher(

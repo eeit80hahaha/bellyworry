@@ -82,9 +82,9 @@ public class HerolistServlet extends HttpServlet {
 	    		heroservice.getDatePage(pageNo, 3, memberNo, year, month);
 	    
 	    List<HeroVO> herovolist = heroservice.select(herovo);
-
+	    
+		request.setAttribute("memberNo", memberNo);
 		if(herohealthdiaryvo !=null ){
-			request.setAttribute("memberNo", memberNo);
 			request.setAttribute("herovo", herovolist.get(0));
 			request.setAttribute("herohealthdiaryvo", herohealthdiaryvo);
 			request.setAttribute("year", year);
