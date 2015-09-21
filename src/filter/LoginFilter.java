@@ -41,7 +41,13 @@ public class LoginFilter implements Filter {
 		if(bean!=null) {
 			chain.doFilter(request, response);
 		} else {
-			String uri = request.getRequestURI();
+			String uri=null;
+			System.out.println(request.getQueryString());
+			if(request.getQueryString()!=null){
+				uri = request.getRequestURI()+"?"+request.getQueryString();
+			}else{
+				uri = request.getRequestURI();
+			}
 			System.out.println(uri);
 			session.setAttribute("dest", uri);
 			String path = request.getContextPath();
