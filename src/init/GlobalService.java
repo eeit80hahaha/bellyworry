@@ -54,7 +54,7 @@ public class GlobalService {
 			e.printStackTrace();
 			result = -1000;
 		}
-		return result;
+		return result;  
 	}
 	
 }
