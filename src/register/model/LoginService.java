@@ -23,7 +23,6 @@ public class LoginService {
 	public MemberVO login(String username, String password) {
 		
 		MemberVO bean = memberDao.selectById(username); 
-		
 		if(bean!=null) {
 			if(password!=null && password.length()!=0) {
 				
@@ -33,7 +32,6 @@ public class LoginService {
 //				temp = mDigest.digest(temp);			//使用者輸入：one-way hash
 //				if(Arrays.equals(pass, temp))
 				if(pass.equals(password)){
-					
 					return bean;
 					
 				}
@@ -41,5 +39,4 @@ public class LoginService {
 		}
 		return null;
 	}
-	
 }

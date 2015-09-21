@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+﻿﻿﻿<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -73,7 +73,6 @@
 		$("#opener").click(function() {
 			$("#dialog").dialog("open");
 		});
-		
 	});//新增會員End
 	
 	//註冊訊息Start
@@ -110,7 +109,7 @@
 <div id="decorative2">
     <div class="container">
 
-        <div class="divPanel topArea notop nobottom">
+       <div class="divPanel topArea notop nobottom">
             <div class="row-fluid">
                 <div class="span12">
 
