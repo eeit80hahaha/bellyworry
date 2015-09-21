@@ -62,7 +62,6 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("suc", success);
 			success.put("update", "<a href='" + request.getContextPath()+"/updatemember.jsp'>修改會員資料</a>");
 			success.put("out", "'<a href='"+request.getContextPath()+"/logout.controller'>登出</a>");
-
 			String dest = (String) session.getAttribute("dest");
 			if(dest!=null && dest.length()!=0) {
 				session.removeAttribute("dest");
