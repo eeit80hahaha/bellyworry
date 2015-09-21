@@ -40,6 +40,52 @@
     <link href="http://fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet" type="text/css">
 
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+    <style>
+		#map {
+			height: 700px;
+		}
+
+		#info {
+			display: none;			
+	    }
+
+#panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+}
+
+#panel, .panel {
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#panel select, #panel input, .panel select, .panel input {
+  font-size: 15px;
+}
+
+#panel select, .panel select {
+  width: 100%;
+}
+
+#panel i, .panel i {
+  font-size: 12px;
+}
+
+      .panel {
+        height: 100%;
+		overflow: auto;
+      }
+
+
+		
+    </style>
 </head>
 <body id="pageBody">
 
@@ -51,38 +97,51 @@
                 <div class="span12">
 
                     <div id="divLogo" class="pull-left">
-                        <a href="index.html" id="divSiteTitle">Your Name Here</a><br />
-                        <a href="index.html" id="divTagLine">Your Tag Line Here</a>
+                        <a href="index.html" id="divSiteTitle">Belly Worry</a><br />
+                        <a href="index.html" id="divTagLine">Enjoy Your Life</a>
                     </div>
 
                     <div id="divMenuRight" class="pull-right">
                     <div class="navbar">
                         <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
-                            NAVIGATION <span class="icon-chevron-down icon-white"></span>
+                            功能選單 <span class="icon-chevron-down icon-white"></span>
                         </button>
                         <div class="nav-collapse collapse">
                             <ul class="nav nav-pills ddmenu">
-                                <li class="dropdown"><a href="index.html">Home</a></li>
-								<li class="dropdown active"><a href="about.html">About</a></li>
+                            <!--
+                                <li class="dropdown active"><a href="index.html">回首頁</a></li>
+                            -->
                                 <li class="dropdown">
-                                    <a href="page.html" class="dropdown-toggle">Page <b class="caret"></b></a>
+                                    <a href="page.html" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                            <li><a href="full.html">Full Page</a></li>
-                            <li><a href="2-column.html">Two Column</a></li>
-                            <li><a href="3-column.html">Three Column</a></li>
-							<li><a href="../documentation/index.html">Documentation</a></li>
-							<li class="dropdown">
-                            <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
-                            <ul class="dropdown-menu sub-menu">
-                            <li><a href="#">Dropdown Item</a></li>
-                            <li><a href="#">Dropdown Item</a></li>
-                            <li><a href="#">Dropdown Item</a></li>
-                            </ul>
-                            </li>
-                            </ul>
+                                        <li><a href="about.html">關於我</a></li>
+                                        <li><a href="gallery.html">相片流</a></li>
+                                        <li><a href="contact.html">與我聯絡(表單)</a></li>
+                                        <li><a href="page.html">元件庫</a></li>
+                                        <li><a href="../documentation/index.html">說明文件</a></li>
+                                        <li class="dropdown">
+                                        <a href="full.html" class="dropdown-toggle">分欄參考</a>
+                                        <ul class="dropdown-menu sub-menu">
+                                        <li><a href="full.html">單欄版型</a></li>
+                                        <li><a href="2-column.html">兩欄版型</a></li>
+                                        <li><a href="3-column.html">三欄版型</a></li>
+                                        </ul>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="dropdown"><a href="gallery.html">Gallery</a></li>
-                                <li class="dropdown"><a href="contact.php">Contact</a></li>
+                                <li class="dropdown"><a href="about.html">熱量計算</a></li>
+                                <li class="dropdown"><a href="gallery.html">健康管理</a></li>
+                                <li class="dropdown active" >
+                                    <a href="page.html" class="dropdown-toggle">運動趣<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="full.html">YouBike路線規劃</a></li>
+                                        <li><a href="fun/healthView.controller">健康景點查詢</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="about.html">活動情報</a></li>
+                                <li class="dropdown"><a href="gallery.html">英雄事蹟</a></li>
+                                <li class="dropdown"><a href="about.html">小學堂</a></li>
+                                <li class="dropdown"><a href="contact.html" id="dropdown-my">會員登入</a></li>
                             </ul>
                         </div>
                     </div>
@@ -108,15 +167,13 @@
         <div class="row-fluid">
                 <div class="span8" id="divMain">
 
-                    <h1>About Us</h1>
+                    <h1>健康景點查詢</h1>
 					<p>
                                              
-					<p>Content on this page is for presentation purposes only. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>		
-                    <img src="images/fingerfood-main.jpg" class="img-polaroid" style="margin:12px 0px;">  </p>    
+							
+<!--                     <img src="images/fingerfood-main.jpg" class="img-polaroid" style="margin:12px 0px;">  </p>     -->
                                                      
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum est at luctus tincidunt. Fusce pretium quam vel velit fringilla fringilla. Fusce sollicitudin, ligula vel tempus congue, ligula nisi facilisis lacus, et adipiscing justo arcu nec justo.  </p>
-					<p>Proin ipsum nulla, cursus vitae mollis iaculis, malesuada a dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla eu augue eu mauris sodales viverra at sed libero. Vivamus rhoncus volutpat hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-					<p>Quisque eu aliquam felis. Nam elementum dui eget fringilla vulputate. Suspendisse augue turpis, eleifend ac diam id, condimentum fermentum elit. Nunc laoreet turpis a risus luctus imperdiet. Suspendisse metus tellus, sodales nec elementum eu, facilisis at ante. Sed pharetra cursus metus, eget tempor dui. Nulla facilisi. Quisque congue justo odio, vitae fringilla sem sollicitudin sed.</p>
+                    <div id="map"></div>
 
                 </div>
 				<!--Edit Sidebar Content Area here-->
@@ -124,56 +181,44 @@
 
                     <div class="sidebox">
                         <h3 class="sidebox-title">健康景點查詢</h3>
+                        <div class="row-fluid">
+							<input class="span12" id="pac-input" class="controls" type="text"
+			placeholder="輸入出發地，例如：台北車站">
+						</div>
 						<div class="row-fluid">
 							<p class="span12">景點類型
-								<select class="span12">
-								  <c:forEach var="row" items="${viewClass}">
-									<option value="${row.viewClassNo}">${row.name}</option>
-								  </c:forEach>
+								<select class="span12" id="viewClass">
+<%-- 								  <c:forEach var="row" items="${viewClass}"> --%>
+<%-- 									<option value="${row.viewClassNo}">${row.name}</option> --%>
+<%-- 								  </c:forEach> --%>
+									
 								</select>
 							</p>
 						</div>
 						<div class="row-fluid">
 							<p class="span12">景點選擇
-								<select class="span12" multiple="multiple">
-								  <option>土城運動中心</option>
-								  <option>板橋運動中心</option>
-								  <option>樹林活動中心</option>
+								<select class="span12" multiple="multiple" id="healthview">
+<!-- 								  <option>土城運動中心</option> -->
+<!-- 								  <option>板橋運動中心</option> -->
+<!-- 								  <option>樹林活動中心</option> -->
 								</select>
 							</p>
 						</div>
-						<hr>
-        <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
-        </div>
+				        <div class="row-fluid" id="info">
+				        <hr>
+				        		<div class="span12">
+				        			<p>Total Distance: <span id="total"></span></p>
+				        		</div>
+						        <div id="directionsPanel" class="panel" style="float:right;height:350px"></div>
+						</div>		 
 
-        <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
-        </div>
-
-        <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
-        </div>
-
-        <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
-        </div>	
+<!-- 				        <div class="row-fluid">		 -->
+<!-- 						        <div class="span4">                            -->
+<!-- 				                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>           -->
+<!-- 				                <div class="span8">             -->
+<!-- 				                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p> -->
+<!-- 				                </div>		  -->
+<!-- 				        </div>	 -->
 	
                     </div>
                     
@@ -196,72 +241,42 @@
         <div class="divPanel">
 
             <div class="row-fluid">
-                <div class="span3" id="footerArea1">
+                <div class="span6" id="footerArea1">
                 
-                    <h3>About Company</h3>
+                    <h3>關於我</h3>
 
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+                    <p>Belly Worry 希望幫助每個為卡路里煩腦的人，輕鬆做好個人卡路里控制，並且提供您良好的介面：查詢運動景點、健康知識等相關情報，讓你天天擁有美好的健康生活。</p>
                     
                     <p> 
-                        <a href="#" title="Terms of Use">Terms of Use</a><br />
-                        <a href="#" title="Privacy Policy">Privacy Policy</a><br />
-                        <a href="#" title="FAQ">FAQ</a><br />
-                        <a href="#" title="Sitemap">Sitemap</a>
+                        <a href="#" title="Terms of Use">開始使用</a><br />
+                        <a href="#" title="FAQ">常見問題</a><br />
+                        <a href="#" title="Sitemap">網站地圖</a>
                     </p>
 
                 </div>
-                <div class="span3" id="footerArea2">
+                
+                <div class="span6" id="footerArea2">
 
-                    <h3>Recent Blog Posts</h3> 
-                    <p>
-                        <a href="#" title="">Lorem Ipsum is simply dummy text</a><br />
-                        <span style="text-transform:none;">2 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="#" title="">Duis mollis, est non commodo luctus</a><br />
-                        <span style="text-transform:none;">5 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="#" title="">Maecenas sed diam eget risus varius</a><br />
-                        <span style="text-transform:none;">19 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="#" title="">VIEW ALL POSTS</a>
-                    </p>
-
-                </div>
-                <div class="span3" id="footerArea3">
-
-                    <h3>Sample Content</h3> 
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s. 
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
-                    </p>
-
-                </div>
-                <div class="span3" id="footerArea4">
-
-                    <h3>Get in Touch</h3>  
+                    <h3>聯絡我們</h3>  
                                                                
                     <ul id="contact-info">
                     <li>                                    
                         <i class="general foundicon-phone icon"></i>
-                        <span class="field">Phone:</span>
+                        <span class="field">電話:</span>
                         <br />
-                        (123) 456 7890 / 456 7891                                                                      
+                        (02) 6631 6666 / 6631 6667                                                                      
                     </li>
                     <li>
                         <i class="general foundicon-mail icon"></i>
                         <span class="field">Email:</span>
                         <br />
-                        <a href="mailto:info@yourdomain.com" title="Email">info@yourdomain.com</a>
+                        <a href="mailto:EEIT80hahaha@gmail.com" title="Email">BellyWorry@gmail.com</a>
                     </li>
                     <li>
                         <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
-                        <span class="field">Address:</span>
+                        <span class="field">地址:</span>
                         <br />
-                        123 Street<br />
-                        12345 City, State<br />
-                        Country
+                        台北市大安區復興南路一段390號2樓201室
                     </li>
                     </ul>
 
@@ -272,7 +287,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <p class="copyright">
-                        Copyright © 2013 Your Company. All Rights Reserved.
+                        Copyright © 2015 Belly Worry. All Rights Reserved.
                     </p>
 
                     <p class="social_bookmarks">
@@ -295,8 +310,217 @@
 <script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="scripts/default.js" type="text/javascript"></script>
 
+<script>
+	(function($) {
+		$("#viewClass").on('change', function() {
+			getViews($(this).val());
+		});
+		$.ajax({
+			"type" : "get",
+			"url" : "services/viewclass",
+			"dataType" : "json",
+			"success" : function(data) {
+				$.each(data, function() {
+					var val = this.viewClassNo;
+					var name = this.name;
+					$("#viewClass")
+							.append(
+									"<option value='"+val+"'>" + name
+											+ "</option>");
+				});
+				getViews($("#viewClass").val());
+			}
+		})
+
+		function getViews(value) {
+			$("#healthview").empty();
+			$.ajax({
+				"type" : "get",
+				"url" : "services/healthview/" + value,
+				"dataType" : "json",
+				"success" : function(data) {
+					$.each(data, function() {
+						var val = this.no;
+						var name = this.name;
+						$("#healthview").append(
+	//								"<option value='{lat:"+this.lat+", lng:"+this.lng+"}'>"
+								"<option value='"+this.lat+","+this.lng+"'>"
+										+ name + "</option>");
+
+					});
+				}
+			})
+		}
+	})(jQuery);
+</script>
 
 
+<script>
+	var start = {
+			lat : 25.0332663,
+			lng : 121.5439115
+		};
+	var end = {
+			lat : 25.0332663,
+			lng : 123.5439115
+		};
+	var start_test;
+	var end_test;
+	var map = null;
+	var markers = [];
+	var directionsService;
+	var directionsDisplay;
+
+	function initMap() {
+		var start_test = new google.maps.LatLng(25.046112,121.517267);
+		var end_test = new google.maps.LatLng(25.0332663,121.5439115);
+		
+		map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : 25.0332663,
+				lng : 121.5439115
+			},
+			zoom : 9
+		});
+		var input = document.getElementById('pac-input');
+
+		var searchBox = new google.maps.places.SearchBox(input);
+// 		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+		directionsService = new google.maps.DirectionsService;	//路線規劃服務
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			draggable: true,
+			map: map,
+			panel: document.getElementById('directionsPanel')
+		});
+		
+		directionsDisplay.addListener('directions_changed', function() {	//挪動路線就重新計算距離
+			computeTotalDistance(directionsDisplay.getDirections());
+		});
+		
+		// Bias the SearchBox results towards current map's viewport.
+		map.addListener('bounds_changed', function() {
+			searchBox.setBounds(map.getBounds());
+		});
+
+		markers = [];
+		// [START region_getplaces]
+		// Listen for the event fired when the user selects a prediction and retrieve
+		// more details for that place.
+		searchBox.addListener('places_changed', function() {
+			var places = searchBox.getPlaces();
+			if (places.length == 0) {
+				return;
+			}
+			start = places[0].geometry.location;
+			if (end == null) {
+				setStartMap(markers, places);
+			} else {
+				clearMarker();
+				displayRoute(start, end, directionsService, directionsDisplay);
+			}
+		});
+		document.getElementById('healthview').addEventListener('change', function() {
+			var name = this.options[this.selectedIndex].text;
+			var lat1 = this.value.split(",")[0];
+			var lng1 = this.value.split(",")[1];
+			end = new google.maps.LatLng(lat1, lng1);
+			if (start == null) {
+				setEndMap(name,end);
+			} else {
+				clearMarker();
+				displayRoute(start, end, directionsService, directionsDisplay);
+			}
+		});
+		//	displayRoute(start_test, end_test, directionsService, directionsDisplay);
+	}
+	var setStartMap = function(markers, places) {
+		clearMarker();
+
+		// For each place, get the icon, name and location.
+		var bounds = new google.maps.LatLngBounds();
+		places.forEach(function(place) {
+			//var icon = {
+			//	url : place.icon,
+			//	size : new google.maps.Size(71, 71),
+			//	origin : new google.maps.Point(0, 0),
+			//	anchor : new google.maps.Point(17, 34),
+			//	scaledSize : new google.maps.Size(25, 25)
+			//};
+			//
+			////Create a marker for each place.
+			//markers.push(new google.maps.Marker({
+			//	map : map,
+			//	icon : icon,
+			//	title : place.name,
+			//	position : place.geometry.location
+			//}));
+			addMarker(place.geometry.location);
+
+			if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
+		});
+		map.fitBounds(bounds);
+	}
+	var setEndMap = function(name,point) {
+			clearMarker();
+			
+		map.setCenter(point);
+		map.setZoom(15);
+		markers = [];
+		addMarker(point);
+	}
+	function addMarker(location) {
+		var marker = new google.maps.Marker({
+			position : location,
+			map : map,
+			animation : google.maps.Animation.BOUNCE
+		});
+		markers.push(marker);
+	}
+	function clearMarker() {
+		// Clear out the old markers.
+		markers.forEach(function(marker) {
+			marker.setMap(null);
+		});
+		markers = [];
+	}
+	function displayRoute(origin, destination, service, display) {
+		document.getElementById("info").style.display="block";
+		service.route({
+			origin: origin,
+			destination: destination,
+		//		waypoints: [{location: 'Cocklebiddy, WA'}, {location: 'Broken Hill, NSW'}],		//中間道路陣列
+			travelMode: google.maps.TravelMode.DRIVING,
+			avoidTolls: true,	//避開收費道路
+			avoidHighways:true	//避開高速公路
+		}, function(response, status) {
+			if (status === google.maps.DirectionsStatus.OK) {
+				display.setDirections(response);
+			} else {
+				alert('Could not display directions due to: ' + status);
+			}
+		});
+	}
+
+	function computeTotalDistance(result) {
+		var total = 0;
+		var myroute = result.routes[0];
+		for (var i = 0; i < myroute.legs.length; i++) {			// legs 似乎是總路線的步驟數
+			total += myroute.legs[i].distance.value;				//	distance.value 距離
+		}
+		total = total / 1000;
+		document.getElementById('total').innerHTML = total + ' km';
+	}
+	
+</script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA558ZIHYucpFnkLnuKFxdAqdRnz4H92io&signed_in=true&libraries=places&callback=initMap"
+	async defer></script>
 
 
 </body>

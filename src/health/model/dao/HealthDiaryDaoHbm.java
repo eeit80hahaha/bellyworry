@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
-import calories.model.MenuVO;
+
+//import calories.model.MenuVO;
 import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
 import hibernate.util.HibernateUtil;
@@ -23,36 +25,39 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 	@Override
 	public HealthDiaryVO selectByPrimaryKey(long no) {
 		HealthDiaryVO healthDiaryVO = null;
-		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-	try {
-		session.beginTransaction();
-		healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class, no);
-		session.getTransaction().commit();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			healthDiaryVO = (HealthDiaryVO) session
+					.get(HealthDiaryVO.class, no);
+			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
-		session.getTransaction().rollback();
-		throw ex;
-		}
-		return healthDiaryVO;
-	}	
-	@Override
-	public List<HealthDiaryVO> selectByMemberNo(int memberNo) {
-		List<HealthDiaryVO> healthDiaryVO = null;
-		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-	try {
-		session.beginTransaction();
-		Query query=session.createQuery("from HealthDiaryVO where memberNo=?");
-		query.setParameter(0, memberNo);
-		healthDiaryVO=query.list();
-//		healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class, memberNo);
-		session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-		session.getTransaction().rollback();
-		throw ex;
+			session.getTransaction().rollback();
+			throw ex;
 		}
 		return healthDiaryVO;
 	}
-	
-	
+
+	@Override
+	public List<HealthDiaryVO> selectByMemberNo(int memberNo) {
+		List<HealthDiaryVO> healthDiaryVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session
+					.createQuery("from HealthDiaryVO where memberNo=? order by date desc");
+			query.setParameter(0, memberNo);
+			healthDiaryVO = query.list();
+			// healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class,
+			// memberNo);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return healthDiaryVO;
+	}
+
 	@Override
 	public List<HealthDiaryVO> getAll() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -68,26 +73,27 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public long insert(HealthDiaryVO vo) {
-		long result=0;
+		long result = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(vo);
 			session.getTransaction().commit();
-			result=vo.getNo();
+			result = vo.getNo();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
-			result=0;
+			result = 0;
 			throw ex;
 		}
 		return result;
 	}
+
 	@Override
 	public int update(HealthDiaryVO vo) {
-		int result=0;
+		int result = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -107,57 +113,137 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 			session.getTransaction().commit();
 			if (i > 0) {
 				result = i;
-			}		
+			}
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
-			result=0;
+			result = 0;
 			throw ex;
 		}
 		return result;
 	}
 
-	
 	@Override
 	public boolean delete(long no) {
-		boolean result=false;
+		boolean result = false;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 
-//        【此時多方(宜)可採用HQL刪除】
-//			Query query = session.createQuery("delete from menu where menuNo=?");
-//			query.setParameter(0, menuNo);
-//			System.out.println("刪除的筆數=" + query.executeUpdate());
-			Query query = session.createQuery("delete from HealthDiaryVO where no=?");
-			query.setParameter(0, no);			
-			int i = query.executeUpdate();			
-			if(i>0){
+			// 【此時多方(宜)可採用HQL刪除】
+			// Query query =
+			// session.createQuery("delete from menu where menuNo=?");
+			// query.setParameter(0, menuNo);
+			// System.out.println("刪除的筆數=" + query.executeUpdate());
+			Query query = session
+					.createQuery("delete from HealthDiaryVO where no=?");
+			query.setParameter(0, no);
+			int i = query.executeUpdate();
+			if (i > 0) {
 				result = true;
 			}
 			session.getTransaction().commit();
 			System.out.println("刪除的筆數=" + i);
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
-			throw ex;			
+			throw ex;
 		}
-//        【或此時多方(也)可採用去除關聯關係後，再刪除的方式】
-//			EmpVO empVO = new EmpVO();
-//			empVO.setEmpno(empno);
-//			session.delete(empVO);
+		// 【或此時多方(也)可採用去除關聯關係後，再刪除的方式】
+		// EmpVO empVO = new EmpVO();
+		// empVO.setEmpno(empno);
+		// session.delete(empVO);
 
-//        【此時多方不可(不宜)採用cascade聯級刪除】
-//        【多方emp2.hbm.xml如果設為 cascade="all"或 cascade="delete"將會刪除所有相關資料-包括所屬部門與同部門的其它員工將會一併被刪除】
-//			HealthDiaryVO healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class, no);
-//			session.delete(healthDiaryVO);
-//			session.getTransaction().commit();
-//			result =true;
-//		} catch (RuntimeException ex) {
-//			session.getTransaction().rollback();
-//			throw ex;
-//			
-//		}
+		// 【此時多方不可(不宜)採用cascade聯級刪除】
+		// 【多方emp2.hbm.xml如果設為 cascade="all"或
+		// cascade="delete"將會刪除所有相關資料-包括所屬部門與同部門的其它員工將會一併被刪除】
+		// HealthDiaryVO healthDiaryVO = (HealthDiaryVO)
+		// session.get(HealthDiaryVO.class, no);
+		// session.delete(healthDiaryVO);
+		// session.getTransaction().commit();
+		// result =true;
+		// } catch (RuntimeException ex) {
+		// session.getTransaction().rollback();
+		// throw ex;
+		//
+		// }
 		return result;
 	}
 
+	public List<HealthDiaryVO> dateSelect(int memberNo, java.util.Date date) {
+		List<HealthDiaryVO> vo = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session
+					.createQuery("from HealthDiaryVO where memberNo=? and date=? ");
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			vo = query.list();
+			// healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class,
+			// memberNo);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return vo;
+	}
 
+	private static final String GETDATEPAGE = "from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1' order by date";
+	
+	@Override
+	public List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
+			int memberNo ,int year ,int month){
+		
+		List<HealthDiaryVO> result = null;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETDATEPAGE);
+			
+			query.setParameter(0, memberNo);
+			query.setParameter(1, year);
+			query.setParameter(2, month);
+	        query.setFirstResult((pageNo - 1) * pageSize);  
+	        query.setMaxResults(pageSize);  
+			
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String GETDATETOTALCOUNT = "select count(no) from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1'";
+	
+	@Override
+	public int getDateTotalCount(int memberNo ,int year ,int month) {
+		int result=-1000;
+		long sum=0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETDATETOTALCOUNT);
+			
+			query.setParameter(0, memberNo);
+			query.setParameter(1, year);
+			query.setParameter(2, month);
+			
+			List<Object> tmp = query.list();
+		    if(tmp.get(0)!=null){
+		    	sum = (long) tmp.get(0);
+		    }
+			result = (int) sum;
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return result;
+	}
+	
 }

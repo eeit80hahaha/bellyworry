@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -98,7 +99,7 @@ public class ExerciseRecordDAOHbm implements ExerciseRecordDAO {
 			session.beginTransaction();
 			Query query = session.createQuery(UPDATE);
 			query.setParameter(0, vo.getMemberNo());
-			query.setParameter(1, vo.getExerciseNo());
+			query.setParameter(1, vo.getExerciseCalVO());
 			query.setParameter(2, vo.getDate());
 			query.setParameter(3, vo.getCount());
 			query.setParameter(4, vo.getNo());
@@ -129,4 +130,51 @@ public class ExerciseRecordDAOHbm implements ExerciseRecordDAO {
 		}		
 		return result;
 	}
+	
+	private static final String GETEXERCALLIST = "select sum(e.count) from ExerciseRecordVO e where e.memberNo=? and e.date=?";
+
+	@Override
+	public int exercal(int memberNo, java.util.Date date) {
+		int result = -1000;
+		long sum=0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETEXERCALLIST);
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			List<Object> tmp = query.list();
+		    if(tmp.get(0)!=null){
+		    	sum = (long) tmp.get(0);
+		    }
+			result = (int) sum;
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String GETEXERDAY = "from ExerciseRecordVO e where e.memberNo=? and e.date=?";
+	
+	@Override
+	public List<ExerciseRecordVO> exerday(int memberNo, Date date) {
+		List<ExerciseRecordVO> result = null;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETEXERDAY);
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+	
 }

@@ -92,7 +92,7 @@ public class EatRecordDAOHbm implements EatRecordDAO {
 			query.setParameter(0, vo.getMemberNo());
 			query.setParameter(1, vo.getDate());
 			query.setParameter(2, vo.getTime());
-			query.setParameter(3, vo.getFoodNo());
+			query.setParameter(3, vo.getFoodCalVO());
 			query.setParameter(4, vo.getCount());
 			query.setParameter(5, vo.getNo());
 			result = query.executeUpdate();
@@ -122,4 +122,51 @@ public class EatRecordDAOHbm implements EatRecordDAO {
 		}		
 		return result;
 	}
+	
+
+	private static final String GETEATCALLIST = "select sum(e.count) from EatRecordVO e where e.memberNo=? and e.date=?";
+	
+	@Override
+	public int eatcal(int memberNo, java.util.Date date) {
+		int result = -1000;
+		long sum=0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETEATCALLIST);
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			List<Object> tmp = query.list();
+		    if(tmp.get(0)!=null){
+		    	sum = (long) tmp.get(0);
+		    }
+			result = (int) sum;
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String GETEATDAY = "from EatRecordVO e where e.memberNo=? and e.date=?";
+	
+	@Override
+	public List<EatRecordVO> eatday(int memberNo, java.util.Date date) {
+		List<EatRecordVO> result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETEATDAY);
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+	
 }

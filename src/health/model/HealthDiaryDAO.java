@@ -14,4 +14,12 @@ public interface HealthDiaryDAO {
 	public abstract int update(HealthDiaryVO vo);
 
 	public abstract boolean delete(long no);
+	
+	public abstract  List<HealthDiaryVO> dateSelect(int memberNo,java.util.Date date);
+	
+	public abstract List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
+			int memberNo ,int year ,int month);
+	
+	public abstract int getDateTotalCount(int memberNo ,int year ,int month);
+	
 }

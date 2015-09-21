@@ -12,7 +12,11 @@
         </id> 
 
         <property name="name" column="name"/>
-        <property name="viewClassNo" column="viewClassNo"/>
+<!--         <property name="viewClassNo" column="viewClassNo"/> -->
+        <many-to-one name="viewClassVO" class="fun.model.ViewClassVO" lazy="false">
+            <column name="viewClassNo"/>
+        </many-to-one>
+        
         <property name="lat" column="lat"/>
         <property name="lng" column="lng"/> 
     </class> 
