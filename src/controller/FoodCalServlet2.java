@@ -15,13 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import calories.model.FoodCalService;
 import calories.model.FoodCalVO;
-import calories.model.PagesFoodCalVO;
 
 
 @WebServlet(
-		urlPatterns={"/ranking/foodCal.controller"}
+		urlPatterns={"/ranking/foodCal.product"}
 )
-public class FoodCalServlet extends HttpServlet{
+public class FoodCalServlet2 extends HttpServlet{
 		private FoodCalService service;
 		@Override
 		public void init() throws ServletException {
@@ -40,7 +39,6 @@ public class FoodCalServlet extends HttpServlet{
 			String temp7 = request.getParameter("cookNo");
 			String temp8 = request.getParameter("picture1");
 			String foodcalion = request.getParameter("foodcalion");
-			String pageNoTemp = request.getParameter("pageNo");
 			
 			//驗證資料
 			Map<String, String> errors = new HashMap<String, String>();
@@ -49,7 +47,7 @@ public class FoodCalServlet extends HttpServlet{
 			if(foodcalion!=null) {
 				if(foodcalion.equals("Insert") || foodcalion.equals("Update") || foodcalion.equals("Delete")) {
 					if(temp1==null || temp1.length()==0) {
-						errors.put("cookNo", "Please enter cookNo for "+foodcalion);
+						errors.put("foodNo", "Please enter cookNo for "+foodcalion);
 					}
 				}
 			}
@@ -89,14 +87,12 @@ public class FoodCalServlet extends HttpServlet{
 					errors.put("cookNo", "cookNo must be an integer");
 				}
 			}
-			
-			int pageNo = 0;
-			if(pageNoTemp!=null && pageNoTemp.length()!=0) {
-				pageNo = GlobalService.convertInt(pageNoTemp);
-				if(pageNo==-1000) {
-					errors.put("pageNo", "pageNo must be an integer");
-				}
+			if(errors!=null && !errors.isEmpty()) {
+				request.getRequestDispatcher(
+						"/ranking/cookCalingproduct.jsp").forward(request, response);
+				return;
 			}
+			
 			
 			//呼叫model
 			FoodCalVO vo = new FoodCalVO();
@@ -108,19 +104,50 @@ public class FoodCalServlet extends HttpServlet{
 			vo.setWeight(weight);
 			vo.setCookNo(cookNo);
 			vo.setPicture1(temp8);
-	
-			//換頁所呼叫的Service
-			PagesFoodCalVO PagesFoodCalVO = service.getDatePage(pageNo, 3);	
-	
-			PagesFoodCalVO.setHerohealdiarypage(service.base(PagesFoodCalVO.getHerohealdiarypage()));
-			
-//			List<FoodCalVO> result = service.base(service.select(vo));
-			
-			
+					
+//			List<FoodCalVO> result = service.base(service.select(vo));			
 //			request.setAttribute("foodNo", result);
-			request.setAttribute("PagesFoodCalVO", PagesFoodCalVO);
-			request.getRequestDispatcher(
-					"/ranking/cookCaling.jsp").forward(request, response);
+//			request.getRequestDispatcher(
+//					"/ranking/cookCaling.jsp").forward(request, response);
+			
+			//根據Model執行結果導向View
+			if(foodcalion!=null && foodcalion.equals("Select")) {
+				List<FoodCalVO> result = service.select(vo);
+				request.setAttribute("select", result);
+				request.getRequestDispatcher(
+						"/ranking/cookCalindisplay.jsp").forward(request, response);
+			} else if(foodcalion!=null && foodcalion.equals("Insert")) {
+				int result = service.insert(vo);
+				if(result==1) {
+					errors.put("action", "Insert fail");
+				} else {
+					request.setAttribute("insert", result);
+				}
+				request.getRequestDispatcher(
+						"/ranking/cookCalingproduct.jsp").forward(request, response);
+			} else if(foodcalion!=null && foodcalion.equals("Update")) {
+				int result = service.update(vo);
+				if(result==1) {
+					errors.put("action", "Update fail");
+				} else {
+					request.setAttribute("update", result);
+				}
+				request.getRequestDispatcher(
+						"/ranking/cookCalingproduct.jsp").forward(request, response);
+			} else if(foodcalion!=null && foodcalion.equals("Delete")) {
+				boolean result = service.delete(vo);
+				if(!result) {
+					request.setAttribute("delete", 0);
+				} else {
+					request.setAttribute("delete", 1);
+				}
+				request.getRequestDispatcher(
+						"/ranking/cookCalingproduct.jsp").forward(request, response);
+			} else  {
+				errors.put("action", "Unknown Action:"+foodcalion);
+				request.getRequestDispatcher(
+						"/ranking/cookCalingproduct.jsp").forward(request, response);
+			}
 			
 					
 		}

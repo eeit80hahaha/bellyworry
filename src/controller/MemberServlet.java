@@ -33,7 +33,7 @@ public class MemberServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("account");		
 		String password = request.getParameter("pwd");
 		String password1 = request.getParameter("pwd1");
@@ -49,34 +49,43 @@ public class MemberServlet extends HttpServlet {
 		request.setAttribute("error", errors);
 		
 		if(id==null || id.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("username", "請輸入帳號");			
 		}
 		if(password==null || password.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("password", "請輸入密碼");			
 		}
 		if(password1==null || password1.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("password1", "請輸入密碼確認");			
 		}
 		if(password.equals(password1)==false) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("password2", "請確認兩次密碼輸入是否相同");			
 		}
-		if(firstName==null || id.length()==0) {
+		if(firstName==null || firstName.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("firstName", "請輸入姓氏");			
 		}
-		if(lastName==null || password.length()==0) {
+		if(lastName==null || lastName.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("lastName", "請輸入名字");			
 		}
-		if(email==null || id.length()==0) {
+		if(email==null || email.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("email", "請輸入e-mail");			
 		}
-		if(birthday==null || password.length()==0) {
+		if(birthday==null || birthday.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("birth", "請選擇生日");			
 		}
-		if(gender==null || password.length()==0) {
+		if(gender==null || gender.length()==0) {
+			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("gender", "請選擇性別");			
 		}
 		if(errors!=null && !errors.isEmpty()) {
-			errors.put("open","$(\"#dialog0\").dialog(\"open\");");
+			errors.put("open1","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("add", "註冊失敗，請重新輸入");
 			request.getRequestDispatcher(
 					"/index.jsp").forward(request, response);
@@ -90,7 +99,7 @@ public class MemberServlet extends HttpServlet {
 //根據model執行結果，導向view
 		if(bean!=null) {
 			System.out.println(1);
-			errors.put("open","$(\"#dialog0\").dialog(\"open\");");
+			errors.put("open1","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("er", "帳號重複，請重新輸入");			
 			request.getRequestDispatcher(
 					"/index.jsp").forward(request, response);
@@ -115,11 +124,10 @@ public class MemberServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("user", bean);
-			errors.put("open","$(\"#dialog0\").dialog(\"open\");");
+			errors.put("open1","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("success", "新增會員成功");
 			request.getRequestDispatcher(
-					"index.jsp").forward(request, response);
-//			
+					"index.jsp").forward(request, response);			
 		}
 	}
 
