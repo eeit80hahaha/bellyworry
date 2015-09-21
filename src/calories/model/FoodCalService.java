@@ -10,7 +10,7 @@ import calories.model.dao.FoodCalDAOHbm;
 public class FoodCalService {
 	private FoodCalDAO foodDao = new FoodCalDAOHbm();
 	
-	public List<FoodCalVO> base(List<FoodCalVO> vo){
+	public List<FoodCalVO> base (List<FoodCalVO> vo){
 		List<FoodCalVO> bean = new ArrayList<FoodCalVO>();		
 		 for(FoodCalVO element : vo) {
 			 FoodCalVO element1=new FoodCalVO();
