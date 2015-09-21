@@ -1,5 +1,7 @@
 package register.model;
 
+import init.GlobalService;
+
 import java.util.Properties;
 import java.util.Random;
 
@@ -11,9 +13,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
-import calories.model.FoodCalVO;
 import register.model.dao.MemberDAOHbm;
+import sun.print.resources.serviceui;
 
 public class MemberService {
 	private MemberDAO memberDAO=new MemberDAOHbm();
@@ -51,7 +54,7 @@ public class MemberService {
 		String host = "smtp.gmail.com";
 		  int port = 587;
 		  final String username = "c02360236@gmail.com";
-		  final String password = "f711111f";//your password
+		  final String password = "f720221f";//your password
 
 		  Properties props = new Properties();
 		  props.put("mail.smtp.host", host);
@@ -59,7 +62,8 @@ public class MemberService {
 		  props.put("mail.smtp.starttls.enable", "true");
 		  props.put("mail.smtp.port", port);
 		  Session session = Session.getInstance(props, new Authenticator() {
-		   protected PasswordAuthentication getPasswordAuthentication() {
+		   
+		  protected PasswordAuthentication getPasswordAuthentication() {
 		    return new PasswordAuthentication(username, password);
 		   }
 		  });
@@ -75,27 +79,39 @@ public class MemberService {
 	        Random r = new Random();   
 	        int range = buffer.length();   
 	        for (int i = 0; i < 6; i ++) {   
-	            sb.append(buffer.charAt(r.nextInt(range)));   
+	            sb.append(buffer.charAt(r.nextInt(range)));	            
 	        }   
 		   //==========================================
-		   message.setSubject("密碼確認信");
-		   message.setText("Dear "+name+" 您好, \n\n 您新密碼為"+sb+"請登入後立即更新您的密碼 !");
-
+	           MemberVO vo =memberDAO.selectById(name);		  
+		       MemberVO vo1=new MemberVO();
+		       vo1.setBirthday(vo.getBirthday());
+		       vo1.setEmail(vo.getEmail());
+		       vo1.setFirstName(vo.getFirstName());
+		       vo1.setGender(vo.getGender());
+		       vo1.setId(vo.getId());
+		       vo1.setLastName(vo.getLastName());
+		       vo1.setMemberNo(vo.getMemberNo());
+		       vo1.setNickname(vo.getNickname());
+		       System.out.println(1);
+		       vo1.setPassword(sb.toString());
+		       System.out.println(2);
+		       vo1.setPurview(vo.getPurview());
+		       System.out.println(vo1);
+		       memberDAO.update(vo1);
+		       
+	       message.setSubject("密碼確認信");
+		   message.setText("Dear "+vo.getId()+" 您好, \n\n 您新密碼為"+sb+"請登入後立即更新您的密碼 !");
 		   Transport transport = session.getTransport("smtp");
 		   transport.connect(host, port, username, password);
 
 		   Transport.send(message);
-
 		   System.out.println("寄送email結束.");
 
 		  } catch (MessagingException e) {
 		   throw new RuntimeException(e);
 		  }
 	}
-	
-	
-	
-	
+		
 	public int changePassword(String username, String oldPassword, String newPassword) {
 		int result=0;
 		MemberVO bean = this.selectbyId(username);
@@ -118,4 +134,11 @@ public class MemberService {
 		return result;
 	}
 	
+	public int update(MemberVO vo){
+		int result=0;
+		if(vo!=null) {
+			result = memberDAO.update(vo);
+		}
+		return result;
+	}
 }

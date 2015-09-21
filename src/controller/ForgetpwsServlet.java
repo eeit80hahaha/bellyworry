@@ -37,6 +37,7 @@ public class ForgetpwsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String account = request.getParameter("forgetaccount");		
 		String mail = request.getParameter("forgetmail");
 		
@@ -70,9 +71,9 @@ public class ForgetpwsServlet extends HttpServlet {
 			request.getRequestDispatcher(
 					"/login.jsp").forward(request, response);
 		} else {
+			System.out.println(account);
+			service.sendmail(service.selectbyId(account).getId(), mail);
 			
-			service.sendmail(service.selectbyId(account).getLastName(), mail);
-			HttpSession session = request.getSession();
 			errors.put("open","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("success2", "寄信完成，請至您的E-mail信箱確認新密碼!");
 			request.getRequestDispatcher(
