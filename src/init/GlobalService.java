@@ -56,5 +56,10 @@ public class GlobalService {
 		}
 		return result;  
 	}
+	public static String convertString(java.util.Date date){
+		String result=null;
+		result = sFormat.format(date);
+		return result;
+	}
 	
 }

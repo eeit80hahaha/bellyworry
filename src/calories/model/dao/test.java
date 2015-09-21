@@ -1,13 +1,14 @@
 package calories.model.dao;
 
 
+import calories.model.ExerciseCalVO;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import calories.model.FoodCalDAO;
-import calories.model.FoodCalVO;
+import calories.model.MenuVO;
 
 
 public class test {
@@ -15,14 +16,12 @@ public class test {
 	public static void main(String[] args) {
 
 
-		// *****FoodCalDAOjdbc 測試檔!*****
-//		FoodCalVO vo = new FoodCalVO();
-//		FoodCalDAO dao = new FoodCalDAOjdbc();
+
 
 		// *****FoodCalDAOjdbc 測試檔!*****
-//		 FoodCalVO vo = new FoodCalVO();
-//		 FoodCalDAO dao = new FoodCalDAOjdbc();
-//		 FoodCalDAOHbm hbm = new FoodCalDAOHbm();
+		// FoodCalVO vo = new FoodCalVO();
+		// FoodCalDAO dao = new FoodCalDAOjdbc();
+		// FoodCalDAOHbm hbm = new FoodCalDAOHbm();
 
 
 		// // selectByPrimaryKey
@@ -41,30 +40,30 @@ public class test {
 		// // INSERT
 
 //		 vo.setName("水蜜桃");
-//		 vo.setMenuNo(100001);
+//		 vo.setMenuNo(100007);
 //		 vo.setCal(38);
 //		 vo.setCount("顆");
 //		 vo.setWeight(102);
 //		 vo.setCookNo(100001);
-//		 System.out.println(dao.insert(vo));
+//		 System.out.println(dao.insert(vo,null,0));
 //		 System.out.println(dao.selectByPrimaryKey(100018));
-//
-//		File file = new File("C:/Users/Student/Desktop/picture1.jpg");
-//		FileInputStream fis = null;
-//		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-//		int read;
-//		byte[] data = new byte[1024];
-//		try {
-//			fis = new FileInputStream(file);
-//			while ((read = fis.read(data, 0, data.length)) != -1) {
-//				buffer.write(data, 0, read);
-//			}
-//			buffer.flush();
-//		} catch (IOException e) {
-//
-//			e.printStackTrace();
-//			}
-//		}
+
+		File file = new File("C:/Users/Kuei/Desktop/1.jpg");
+		FileInputStream fis = null;
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+		int read;
+		byte[] data = new byte[1024];
+		try {
+			fis = new FileInputStream(file);
+			while ((read = fis.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, read);
+			}
+			buffer.flush();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			}
+		}
 
 		// vo.setName("松果");
 		// vo.setMenuNo(100007);
@@ -89,8 +88,8 @@ public class test {
 		// System.out.println(dao.selectByPrimaryKey(100001));
 
 		// // UPDATE
-//		 vo.setFoodNo(100001);
-//		 vo.setName("大叔好雷");
+		// vo.setFoodNo(100026);
+		// vo.setName("大叔好雷");
 		// vo.setMenuNo(100013);
 		// vo.setCal(99);
 		// vo.setCount("碗");
@@ -99,27 +98,10 @@ public class test {
 		// vo.setPicture(buffer.toByteArray());
 		// System.out.println(hbm.update(vo));
 		// System.out.println(dao.update(vo));
-		 
-//			File file = new File("C:/Users/Student/Desktop/picture1.jpg");
-//			FileInputStream fis = null;
-//			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-//			int read;
-//			byte[] data = new byte[1024];
-//			try {
-//				fis = new FileInputStream(file);
-//				while ((read = fis.read(data, 0, data.length)) != -1) {
-//					buffer.write(data, 0, read);
-//				}
-//				buffer.flush();
-//			} catch (IOException e) {
-//
-//				e.printStackTrace();
-//				}
-//			}
 
 		// // DELETE
 		// System.out.println(dao.delete(100008));
-//		 System.out.println(hbm.delete(100009));
+		// System.out.println(hbm.delete(100025));
 
 		// =========================================================
 
@@ -185,5 +167,4 @@ public class test {
 
 	
 
-}
 }
