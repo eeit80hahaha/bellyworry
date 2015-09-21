@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿﻿<!DOCTYPE HTML>
-=======
-﻿<!DOCTYPE HTML>
->>>>>>> branch 'master' of https://github.com/eeit80hahaha/bellyworry.git
 <html>
 <head>
     <meta charset="utf-8">
