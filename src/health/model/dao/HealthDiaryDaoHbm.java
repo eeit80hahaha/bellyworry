@@ -14,6 +14,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
+
 //import calories.model.MenuVO;
 import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
@@ -44,7 +45,7 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		try {
 			session.beginTransaction();
 			Query query = session
-					.createQuery("from HealthDiaryVO where memberNo=?");
+					.createQuery("from HealthDiaryVO where memberNo=? order by date desc");
 			query.setParameter(0, memberNo);
 			healthDiaryVO = query.list();
 			// healthDiaryVO = (HealthDiaryVO) session.get(HealthDiaryVO.class,
@@ -173,7 +174,7 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		try {
 			session.beginTransaction();
 			Query query = session
-					.createQuery("from HealthDiaryVO where memberNo=? and date=?");
+					.createQuery("from HealthDiaryVO where memberNo=? and date=? ");
 			query.setParameter(0, memberNo);
 			query.setParameter(1, date);
 			vo = query.list();
@@ -187,4 +188,62 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		return vo;
 	}
 
+	private static final String GETDATEPAGE = "from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1' order by date";
+	
+	@Override
+	public List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
+			int memberNo ,int year ,int month){
+		
+		List<HealthDiaryVO> result = null;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETDATEPAGE);
+			
+			query.setParameter(0, memberNo);
+			query.setParameter(1, year);
+			query.setParameter(2, month);
+	        query.setFirstResult((pageNo - 1) * pageSize);  
+	        query.setMaxResults(pageSize);  
+			
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String GETDATETOTALCOUNT = "select count(no) from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1'";
+	
+	@Override
+	public int getDateTotalCount(int memberNo ,int year ,int month) {
+		int result=-1000;
+		long sum=0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETDATETOTALCOUNT);
+			
+			query.setParameter(0, memberNo);
+			query.setParameter(1, year);
+			query.setParameter(2, month);
+			
+			List<Object> tmp = query.list();
+		    if(tmp.get(0)!=null){
+		    	sum = (long) tmp.get(0);
+		    }
+			result = (int) sum;
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return result;
+	}
+	
 }

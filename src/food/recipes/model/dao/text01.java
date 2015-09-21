@@ -1,6 +1,5 @@
 package food.recipes.model.dao;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,8 +11,6 @@ import javax.sql.rowset.serial.SerialException;
 
 import food.recipes.model.CookDAO;
 import food.recipes.model.CookVO;
-import food.recipes.model.FoodListDAO;
-import food.recipes.model.FoodListVO;
 
 public class text01 {
 	public static void main(String[] args) {
@@ -56,7 +53,7 @@ public class text01 {
 //		  } catch (SQLException e) {
 //		   e.printStackTrace();
 //		  }   
-//		  examvo3.setPicture(blob);
+//		  examvo3.setp(blob);
 //		  exam3.insert(examvo3);
 //		System.out.println(exam3.insert(examvo3).toString());
 		
@@ -87,7 +84,7 @@ public class text01 {
 		//test delete for Cook
 //		System.out.println("test delete() ==================================");
 //		CookDAO exam5 = new CookDAOHbm();
-//		System.out.println("delete is " + exam5.delete(100015));
+//		System.out.println("delete is " + exam5.delete(100017));
 //		
 //============================================================================================分隔線
 		

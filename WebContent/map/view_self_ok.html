@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#map {
+	height: 700px;
+}
+
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 300px;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+}
+
+.pac-container {
+	font-family: Roboto;
+}
+
+#type-selector {
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
+</style>
+</head>
+<body>
+	<input id="pac-input" class="controls" type="text"
+		placeholder="請在此輸入出發地，例如：台北車站">
+
+	<div class="row-fluid">
+		<p class="span12">
+			景點類型 <select class="span12" id="viewClass"></select>
+		</p>
+	</div>
+	<div class="row-fluid">
+		<p class="span12">
+			景點選擇 <select class="span12" multiple="multiple" id="healthview"></select>
+		</p>
+	</div>
+	<div id="map"></div>
+
+
+
+
+	<script src="../scripts/jquery.min.js" type="text/javascript"></script>
+	<script>
+		(function($) {
+			$("#viewClass").on('change', function() {
+				getViews($(this).val());
+			});
+			$.ajax({
+				"type" : "get",
+				// 	"url" : "services/viewclass",
+				"url" : "../services/viewclass",
+				"dataType" : "json",
+				"success" : function(data) {
+					$.each(data, function() {
+						var val = this.viewClassNo;
+						var name = this.name;
+						$("#viewClass")
+								.append(
+										"<option value='"+val+"'>" + name
+												+ "</option>");
+					});
+					getViews($("#viewClass").val());
+				}
+			})
+
+			function getViews(value) {
+				$("#healthview").empty();
+				$.ajax({
+					"type" : "get",
+					"url" : "../services/healthview/" + value,
+					// 	"url" : "services/healthview/" + value,
+					"dataType" : "json",
+					"success" : function(data) {
+						$.each(data, function() {
+							var val = this.no;
+							var name = this.name;
+							$("#healthview").append(
+// 									"<option value='{lat:"+this.lat+", lng:"+this.lng+"}'>"
+									"<option value='"+this.lat+","+this.lng+"'>"
+											+ name + "</option>");
+
+						});
+					}
+				})
+			}
+		})(jQuery);
+	</script>
+
+
+	<script>
+		var start = null;
+		var end = null;
+		var map = null;
+		var markers = [];
+
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center : {
+					lat : 25.0332663,
+					lng : 121.5439115
+				},
+				zoom : 9
+			});
+			var input = document.getElementById('pac-input');
+
+			var searchBox = new google.maps.places.SearchBox(input);
+			map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+			// Bias the SearchBox results towards current map's viewport.
+			map.addListener('bounds_changed', function() {
+				searchBox.setBounds(map.getBounds());
+			});
+
+			markers = [];
+			// [START region_getplaces]
+			// Listen for the event fired when the user selects a prediction and retrieve
+			// more details for that place.
+			searchBox.addListener('places_changed', function() {
+				start = searchBox.getPlaces();
+				if (start.length == 0) {
+					return;
+				}
+				if (end == null) {
+					setStartMap(markers, start);
+				} else {
+					test();
+				}
+			});
+			document.getElementById('healthview').addEventListener('change', function() {
+// 				console.log(this.options[this.selectedIndex].text);
+// 				console.log(this.value);
+				var name = this.options[this.selectedIndex].text;
+				var lat1 = this.value.split(",")[0];
+				var lng1 = this.value.split(",")[1];
+				end = new google.maps.LatLng(lat1, lng1);
+				if (start == null) {
+					setEndMap(name,end);
+				} else {
+					test();
+				}
+			});
+		}
+		var setStartMap = function(markers, places) {
+			// Clear out the old markers.
+			markers.forEach(function(marker) {
+				marker.setMap(null);
+			});
+			markers = [];
+
+			// For each place, get the icon, name and location.
+			var bounds = new google.maps.LatLngBounds();
+			places.forEach(function(place) {
+				//var icon = {
+				//	url : place.icon,
+				//	size : new google.maps.Size(71, 71),
+				//	origin : new google.maps.Point(0, 0),
+				//	anchor : new google.maps.Point(17, 34),
+				//	scaledSize : new google.maps.Size(25, 25)
+				//};
+				//
+				////Create a marker for each place.
+				//markers.push(new google.maps.Marker({
+				//	map : map,
+				//	icon : icon,
+				//	title : place.name,
+				//	position : place.geometry.location
+				//}));
+				addMarker(place.geometry.location);
+
+				if (place.geometry.viewport) {
+					// Only geocodes have viewport.
+					bounds.union(place.geometry.viewport);
+				} else {
+					bounds.extend(place.geometry.location);
+				}
+			});
+			map.fitBounds(bounds);
+		}
+		var setEndMap = function(name,point) {
+// 			markers.forEach(function(marker) {
+// 				marker.setMap(null);
+// 			});
+// 			markers = [];
+			
+			end = point;
+			map.setCenter(point);
+			map.setZoom(15);
+			markers = [];
+			addMarker(point);
+		}
+		function addMarker(location) {
+			var marker = new google.maps.Marker({
+				position : location,
+				map : map,
+				animation : google.maps.Animation.BOUNCE
+			});
+			markers.push(marker);
+		}
+		function test() {
+			alert("hahaha");
+		}
+	</script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA558ZIHYucpFnkLnuKFxdAqdRnz4H92io&libraries=places&callback=initMap"
+		async defer></script>
+
+
+
+
+	<!--   temp.addEventListener("change", function(){alert("0")}, false);	//關鍵 呼叫同一個方法判斷 -->
+
+</body>
+</html>

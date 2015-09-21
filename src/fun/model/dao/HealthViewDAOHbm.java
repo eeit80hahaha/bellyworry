@@ -7,6 +7,7 @@ import org.hibernate.Session;
 
 import fun.model.HealthViewDAO;
 import fun.model.HealthViewVO;
+import fun.model.ViewClassVO;
 import hibernate.util.HibernateUtil;
 
 
@@ -27,14 +28,35 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 		return vo;
 	}
 	
-	private static final String SELECT_BY_CLASS = "from HealthViewVO where viewClassNo=? order by no";
-	public List<HealthViewVO> selectByViewClassNo(int viewClassNo) {
+	private static final String SELECT_BY_LAT_LNG = "from HealthViewVO where lat=? and lng=?";
+	public HealthViewVO selectByLatLng(float lat,float lng) {
+		HealthViewVO vo = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(SELECT_BY_LAT_LNG);
+			query.setParameter(0, lat);
+			query.setParameter(1, lng);
+			List<HealthViewVO> list = query.list();
+			if(list.size()!=0){
+				vo = list.get(0);
+			}
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return vo;
+	}
+	
+	private static final String SELECT_BY_CLASS = "from HealthViewVO where viewClassVO=? order by no";
+	public List<HealthViewVO> selectByViewClassVO(ViewClassVO vo) {
 		List<HealthViewVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_CLASS);
-			query.setParameter(0, viewClassNo);
+			query.setParameter(0, vo);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -63,31 +85,39 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 
 	@Override
 	public int insert(HealthViewVO vo) {
-		HealthViewVO healthViewVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(vo);
-			healthViewVO = (HealthViewVO) session.get(HealthViewVO.class, vo.getNo());
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
+		int result = 0;
+		if(this.selectByLatLng(vo.getLat(), vo.getLng())!=null){	//相同地點座標
+			result = -100;
+		}else{
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				session.saveOrUpdate(vo);
+				result = vo.getNo();
+				session.getTransaction().commit();
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
 		}
-		return healthViewVO.getNo();
+		return result;
 	}
 
 	private static final String UPDATE = "update HealthViewVO set"
-			+ " name=?, viewClassNo=?, lat=?, lng=?  where no=?";
+			+ " name=?, viewClassVO=?, lat=?, lng=?  where no=?";
 	@Override
 	public int update(HealthViewVO vo) {
 		int result = 0;
+		HealthViewVO temp1 = this.selectByLatLng(vo.getLat(), vo.getLng());
+		if(temp1!=null && temp1.getNo()!=vo.getNo()){
+			result = -100;
+		}
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(UPDATE);
 			query.setParameter(0, vo.getName());
-			query.setParameter(1, vo.getViewClassNo());
+			query.setParameter(1, vo.getViewClassVO());
 			query.setParameter(2, vo.getLat());
 			query.setParameter(3, vo.getLng());
 			query.setParameter(4, vo.getNo());

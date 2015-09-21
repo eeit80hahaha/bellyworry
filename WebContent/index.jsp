@@ -118,7 +118,7 @@
                         <a href="index.html" id="divTagLine">Enjoy Your Life</a>
                     </div>
 
-                    <div id="divMenuRight" class="pull-right">
+                    <div id="divMenuRight" class="pull-right" ">
 <!-- 登入成功秀修改登出-->     <div class="navbar"><h2>${user.id}</h2><span>${suc.update}</span><span>${suc.out}</span>
                         <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
                             功能選單 <span class="icon-chevron-down icon-white"></span>
@@ -147,7 +147,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="about.html">熱量計算</a></li>
-                                <li class="dropdown"><a href="gallery.html">健康管理</a></li>
+                                <li class="dropdown"><a href="diaryIndex.controller">健康管理</a></li>
                                 <li class="dropdown">
                                     <a href="page.html" class="dropdown-toggle">運動趣<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
@@ -156,7 +156,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="about.html">活動情報</a></li>
-                                <li class="dropdown"><a href="gallery.html">英雄事蹟</a></li>
+                                <li class="dropdown"><a href="${pageContext.request.contextPath}/hero.controller">英雄事蹟</a></li>
                                 <li class="dropdown"><a href="about.html">小學堂</a></li>
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/login.jsp" id="dropdown-my">會員登入</a></li>
                             </ul>

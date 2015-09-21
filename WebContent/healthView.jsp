@@ -49,6 +49,41 @@
 			display: none;			
 	    }
 
+#panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+}
+
+#panel, .panel {
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#panel select, #panel input, .panel select, .panel input {
+  font-size: 15px;
+}
+
+#panel select, .panel select {
+  width: 100%;
+}
+
+#panel i, .panel i {
+  font-size: 12px;
+}
+
+      .panel {
+        height: 100%;
+		overflow: auto;
+      }
+
+
 		
     </style>
 </head>
@@ -174,7 +209,7 @@
 				        		<div class="span12">
 				        			<p>Total Distance: <span id="total"></span></p>
 				        		</div>
-						        <div id="directionsPanel" class="span12"></div>
+						        <div id="directionsPanel" class="panel" style="float:right;height:350px"></div>
 						</div>		 
 
 <!-- 				        <div class="row-fluid">		 -->
@@ -321,8 +356,14 @@
 
 
 <script>
-	var start = null;
-	var end = null;
+	var start = {
+			lat : 25.0332663,
+			lng : 121.5439115
+		};
+	var end = {
+			lat : 25.0332663,
+			lng : 123.5439115
+		};
 	var start_test;
 	var end_test;
 	var map = null;

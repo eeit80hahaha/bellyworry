@@ -101,7 +101,7 @@ public class FoodCalServlet extends HttpServlet{
 			vo.setPicture1(temp8);
 			
 			
-			
+			System.out.println();
 			List<FoodCalVO> result = service.base(service.select(vo));
 			
 			
