@@ -36,6 +36,7 @@ public class HerolistServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
 		//接收資料
 		String memberNoTemp = request.getParameter("memberNo");
 		String pageNoTemp = request.getParameter("pageNo");

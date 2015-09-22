@@ -51,18 +51,19 @@ public class ReflectDAOHbm implements ReflectDAO {
 	@Override
 	public int insert(ReflectVO vo) {
 		ReflectVO reflectVO = null;
-		
+		int result = -300;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(vo);
 			reflectVO = (ReflectVO) session.get(ReflectVO.class, vo.getNo());
 			session.getTransaction().commit();
+			result=reflectVO.getNo();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return reflectVO.getNo();
+		return result;
 	}
 
 	private static final String UPDATE = "update ReflectVO set "
@@ -110,4 +111,35 @@ public class ReflectDAOHbm implements ReflectDAO {
 		return result;
 	}
 
+	private static final String REPEATREFLECT = "from ReflectVO where reflectedNo=? and authorNo=? and reflectedDate=?";
+	
+	@Override
+	public int repeatReflect(ReflectVO vo) {
+		int result = -300;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(REPEATREFLECT);
+			
+			query.setParameter(0, vo.getReflectedNo());
+			query.setParameter(1, vo.getAuthorNo());
+			query.setParameter(2, vo.getReflectedDate()); 
+			
+			List<ReflectVO> tmp = query.list();
+		    if(tmp.isEmpty()){
+		    	//ok
+		    	result = 1000;
+		    }else{
+		    	//Repeat
+		    	result = -100;
+		    }
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+	
 }

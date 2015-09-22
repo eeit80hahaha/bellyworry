@@ -1,5 +1,8 @@
 package ranking.model.dao;
 
+import health.model.HealthDiaryDAO;
+import health.model.dao.HealthDiaryDaoHbm;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -59,8 +62,6 @@ public class Test {
 		
 		//test MS SQL for Reflect to Hibernate******************************************		
 		
-		
-		
 		//test selectByPrimaryKey for Reflect date format error
 //		System.out.println("test selectByPrimaryKey(int) ==========================");
 //		ReflectDAO reflect1 = new ReflectDAOHbm();
@@ -104,6 +105,23 @@ public class Test {
 //		System.out.println("test delete() ==================================");
 //		ReflectDAO reflect5 = new ReflectDAOHbm();
 //		System.out.println("delete is " + reflect5.delete(100015));
+		
+		//test repeat for Reflect  date format error
+//		System.out.println("test repeat() ==================================");		
+//		ReflectDAO reflect = new ReflectDAOHbm();
+//		ReflectVO reflectvo = new ReflectVO();
+//		reflectvo.setReflectedNo(1000002);
+//		reflectvo.setAuthorNo(1000001);
+//		reflectvo.setReflectedDate((java.util.Date) sFormat.parse("2015-08-06"));
+//		System.out.println(reflect.repeatReflect(reflectvo));
+		
+		
+//		HealthDiaryDAO xxx = new HealthDiaryDaoHbm();
+//		ReflectVO xxxvo = new ReflectVO();
+//		xxxvo.setReflectedNo(1000002);
+//		xxxvo.setAuthorNo(1000001);
+//		xxxvo.setReflectedDate((java.util.Date) sFormat.parse("2015-08-04"));
+//		System.out.println(xxx.repeatDiary(xxxvo.getReflectedNo(), xxxvo.getReflectedDate()));
 		
 		
 	}

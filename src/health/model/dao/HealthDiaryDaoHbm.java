@@ -15,6 +15,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 
+
+
+
+import ranking.model.ReflectVO;
 //import calories.model.MenuVO;
 import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
@@ -243,6 +247,36 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 			throw ex;
 		}
 		
+		return result;
+	}
+	
+	private static final String REPEATDIARY= "from HealthDiaryVO where memberNo=? and date=?";
+
+	@Override
+	public int repeatDiary(int memberNo, java.util.Date date) {
+		int result = -300;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(REPEATDIARY);
+			
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date); 
+			
+			List<ReflectVO> tmp = query.list();
+		    if(tmp.isEmpty()){
+		    	//Not available
+		    	result = -400;
+		    }else{
+		    	//ok
+		    	result = 1000;
+		    }
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
 		return result;
 	}
 	

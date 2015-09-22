@@ -13,6 +13,8 @@ import java.util.List;
 
 
 
+
+import ranking.model.ReflectVO;
 //import calories.model.MenuVO;
 import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
@@ -245,4 +247,11 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 		return 0;
 	}
 
+	@Override
+	public int repeatDiary(int memberNo, java.util.Date date) {
+		
+		
+		return 0;
+	}
+	
 }
