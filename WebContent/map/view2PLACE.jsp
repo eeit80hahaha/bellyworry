@@ -62,12 +62,12 @@
 
 	<div class="row-fluid">
 		<p class="span12">
-			起點站 <select class="span12" multiple="multiple" id="viewClass"></select>
+			起點站 <select class="span12" multiple="multiple" id="startSelect"></select>
 		</p>
 	</div>
 	<div class="row-fluid">
 		<p class="span12">
-			終點站 <select class="span12" multiple="multiple" id="healthview"></select>
+			終點站 <select class="span12" multiple="multiple" id="endSelect"></select>
 		</p>
 	</div>
 	<div id="map"></div>
@@ -77,58 +77,15 @@
 
 	<script src="../scripts/jquery.min.js" type="text/javascript"></script>
 	<script>
-		(function($) {
-			$("#viewClass").on('change', function() {
-				getViews($(this).val());
-			});
-			$.ajax({
-				"type" : "get",
-				// 	"url" : "services/viewclass",
-				"url" : "../services/viewclass",
-				"dataType" : "json",
-				"success" : function(data) {
-					$.each(data, function() {
-						var val = this.viewClassNo;
-						var name = this.name;
-						$("#viewClass")
-								.append(
-										"<option value='"+val+"'>" + name
-												+ "</option>");
-					});
-					getViews($("#viewClass").val());
-				}
-			})
-
-			function getViews(value) {
-				$("#healthview").empty();
-				$.ajax({
-					"type" : "get",
-					"url" : "../services/healthview/" + value,
-					// 	"url" : "services/healthview/" + value,
-					"dataType" : "json",
-					"success" : function(data) {
-						$.each(data, function() {
-							var val = this.no;
-							var name = this.name;
-							$("#healthview").append(
-// 									"<option value='{lat:"+this.lat+", lng:"+this.lng+"}'>"
-									"<option value='"+this.lat+","+this.lng+"'>"
-											+ name + "</option>");
-
-						});
-					}
-				})
-			}
-		})(jQuery);
-	</script>
-
-
-	<script>
 		var start = null;
 		var end = null;
 		var map = null;
 		var markers = [];
-
+		var directionsService;
+		var directionsDisplay;
+		var startStation = null;
+		var endStation = null;
+		//初始化地圖
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map'), {
 				center : {
@@ -137,11 +94,22 @@
 				},
 				zoom : 9
 			});
+			
 			var inputStart = document.getElementById('inputStart');
 			var inputEnd = document.getElementById('inputEnd');
 			var searchStart = new google.maps.places.SearchBox(inputStart);
 			var searchEnd = new google.maps.places.SearchBox(inputEnd);
 // 			map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+			directionsService = new google.maps.DirectionsService;	//路線規劃服務
+			directionsDisplay = new google.maps.DirectionsRenderer({
+				draggable: true,
+				map: map,
+				panel: document.getElementById('directionsPanel')
+			});
+			directionsDisplay.addListener('directions_changed', function() {	//挪動路線就重新計算距離
+				computeTotalDistance(directionsDisplay.getDirections());
+			});
 
 			// Bias the SearchBox results towards current map's viewport.
 			map.addListener('bounds_changed', function() {
@@ -153,45 +121,58 @@
 			// [START region_getplaces]
 			// Listen for the event fired when the user selects a prediction and retrieve
 			// more details for that place.
+			
+			//事件監聽，起點變更執行
 			searchStart.addListener('places_changed', function() {
+				startStation = null;
 				start = searchStart.getPlaces();
 				if (start.length == 0) {
 					return;
 				}
+				var startSel = document.getElementById('startSelect');
+				temp(start[0].geometry.location,startSel);
 				if (end == null) {
 					setStartMap(markers, start);
-					console.log(start[0].geometry.location);
-					temp(start[0].geometry.location);
-					
 				} else {
-					test();
+					displayRoute(start[0].geometry.location, end[0].geometry.location,
+							directionsService, directionsDisplay);
 				}
 			});
+			//事件監聽，終點變更執行
 			searchEnd.addListener('places_changed', function() {
+				endStation = null;
 				end = searchEnd.getPlaces();
 				if (end.length == 0) {
 					return;
 				}
+				var endSel = document.getElementById('endSelect');
+				temp(end[0].geometry.location,endSel);
 				if (start == null) {
 					setStartMap(markers, end);
 				} else {
-					test();
+					displayRoute(start[0].geometry.location, end[0].geometry.location,
+							directionsService, directionsDisplay);
 				}
 			});
-			document.getElementById('healthview').addEventListener('change', function() {
-// 				console.log(this.options[this.selectedIndex].text);
-// 				console.log(this.value);
+			document.getElementById('startSelect').addEventListener('change', function() {
 				var name = this.options[this.selectedIndex].text;
 				var lat1 = this.value.split(",")[0];
 				var lng1 = this.value.split(",")[1];
-				end = new google.maps.LatLng(lat1, lng1);
-				if (start == null) {
-					setEndMap(name,end);
-				} else {
-					test();
-				}
+				startStation = new google.maps.LatLng(lat1, lng1);
+				console.log(startStation);
+				displayRoute(start[0].geometry.location, end[0].geometry.location,
+						directionsService, directionsDisplay);
+			});
+			document.getElementById('endSelect').addEventListener('change', function() {
+				var name = this.options[this.selectedIndex].text;
+				var lat1 = this.value.split(",")[0];
+				var lng1 = this.value.split(",")[1];
+				endStation = new google.maps.LatLng(lat1, lng1);
+				displayRoute(start[0].geometry.location, end[0].geometry.location,
+						directionsService, directionsDisplay);
 			});
 		}
+		//建立單點MAP
 		var setStartMap = function(markers, places) {
 			// Clear out the old markers.
 			markers.forEach(function(marker) {
@@ -248,9 +229,6 @@
 			});
 			markers.push(marker);
 		}
-		function test() {
-			alert("hahaha");
-		}
 		//get the point-to-point length
 		function distHaversine(p1, p2) {
             var rad = function (x) { return x * Math.PI / 180; }
@@ -267,8 +245,8 @@
             return parseFloat(d.toFixed(3));
         }
 		
-		//use taipei.data
-		function temp(point){
+		//取得資料庫的所有站點，並且取出與目標點最近的5個點放進SELECT
+		function temp(point,sel){
 			//station data
 			<jsp:useBean id="YouBike" class="fun.model.YouBikeService">
 				var temp = ${YouBike.jsonDataFromFile}
@@ -283,7 +261,6 @@
 				station.lng = temp2[i].lng;
 				stations = stations.concat(station);
 			}
-			console.log(stations[0].name);
 			
 			var curLatLng = point;
 			for (var i = 0; i < stations.length; i++) {
@@ -291,23 +268,71 @@
                 station.distance = //計算兩個LatLng間的距離
                         distHaversine(new google.maps.LatLng(station.lat,station.lng), curLatLng);
             }
-			console.log(stations[0].distance);
 			stations.sort(function (a, b) {
                 if (a.distance == b.distance) return 0;
                 return (a.distance > b.distance) ? 1 : -1;
             });
 			
 // 			for (var i = 0; i < station.length; i++) {
-			var sel = document.getElementById('healthview');
 			sel.innerHTML="";
 			for (var i = 0; i < 5; i++) {
 				var b = stations[i];
-				console.log(b);
 				var opt = document.createElement("option");
-				var txtOpt = document.createTextNode(JSON.stringify(b));
+				opt.setAttribute("value",b.lat+","+b.lng)
+				var txtOpt = document.createTextNode(b.name);
 				opt.appendChild(txtOpt);
 				sel.appendChild(opt);
 			}
+		}
+		//清除所有Marker
+		function clearMarker() {
+			// Clear out the old markers.
+			markers.forEach(function(marker) {
+				marker.setMap(null);
+			});
+			markers = [];
+		}
+		//路線規劃
+		function displayRoute(origin, destination, service, display) {
+			clearMarker();
+// 			document.getElementById("info").style.display="block";
+			var waypoints = [];
+			if(startStation!=null && endStation!=null){
+				waypoints = [{location:startStation},{location:endStation}];
+			}else if(startStation==null && endStation!=null){
+				waypoints = [{location:endStation}];
+			}else if(startStation!=null && endStation==null){
+				waypoints = [{location:startStation}];
+			}
+			console.log(waypoints);
+			service.route({
+				origin: origin,
+				destination: destination,
+				waypoints: waypoints,		//中間道路陣列
+// 				waypoints: [],	//中間道路陣列
+
+				travelMode: google.maps.TravelMode.DRIVING,
+				avoidTolls: true,	//避開收費道路
+				avoidHighways:true	//避開高速公路
+			}, function(response, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					display.setDirections(response);
+				} else {
+					alert('Could not display directions due to: ' + status);
+				}
+			});
+		}
+		//計算距離
+		function computeTotalDistance(result) {
+			var total = 0;
+			var myroute = result.routes[0];
+			for (var i = 0; i < myroute.legs.length; i++) {			// legs 似乎是總路線的步驟數
+				total += myroute.legs[i].distance.value;				//	distance.value 距離
+			}
+			total = total / 1000;
+// 			document.getElementById('total').innerHTML = total + ' km';
+			console.log(result.routes[0].legs[1].distance.value);	//兩個腳踏車站點距離;
+// 			console.log(result.routes[0].legs[1].distance.value);
 		}
 		
 	</script>

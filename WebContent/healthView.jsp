@@ -88,7 +88,7 @@
     </style>
 </head>
 <body id="pageBody">
-
+<c:set var="funcName" value="FUN" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -98,7 +98,7 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">首頁</a> &nbsp;/&nbsp; <span>健康景點查詢</span>
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>健康景點查詢</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
