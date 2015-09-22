@@ -1,5 +1,6 @@
 package calories.model.dao;
 
+import health.model.HealthDiaryVO;
 import init.GlobalService;
 
 import java.io.BufferedReader;
@@ -305,6 +306,18 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 
 		return false;
 
+	}
+
+	@Override
+	public List<FoodCalVO> getDatePage(int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getDateTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	// public static final String DELETE =

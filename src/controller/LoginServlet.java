@@ -23,6 +23,8 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
 //接收資料
 		String username = request.getParameter("loginaccount");		
 		String password = request.getParameter("loginpwd");		
@@ -58,8 +60,9 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user", bean);
 			Map<String, String> success = new HashMap<String, String>();
 			session.setAttribute("suc", success);
-			success.put("update", "<a href='${pageContext.request.contextPath}/updatemember.jsp'>修改會員資料</a>");
-			success.put("out", "'<a href='${pageContext.request.contextPath}/logout.controller'>登出</a>");
+
+			success.put("update", "<a href='" + request.getContextPath()+"/updatemember.jsp'>修改會員資料</a>");
+			success.put("out", "'<a href='"+request.getContextPath()+"/logout.controller'>登出</a>");
 			String dest = (String) session.getAttribute("dest");
 			if(dest!=null && dest.length()!=0) {
 				session.removeAttribute("dest");

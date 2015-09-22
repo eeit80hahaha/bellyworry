@@ -46,6 +46,12 @@ public class GlobalService {
 		}
 		return result;
 	}
+	public static String convertString(java.util.Date date){
+		String result=null;
+		result = sFormat.format(date);
+		return result;
+	}
+	
 	public static float convertFloat(String data) {
 		float result = 0;
 		try {
@@ -54,7 +60,7 @@ public class GlobalService {
 			e.printStackTrace();
 			result = -1000;
 		}
-		return result;
+		return result;  
 	}
 	
 }

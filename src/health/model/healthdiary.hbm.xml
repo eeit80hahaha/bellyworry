@@ -10,6 +10,7 @@
         </id>
         
         <property name="memberNo" column="memberNo" />
+        
         <property name="date" column="date" />
         <property name="height" column="height" />
         <property name="weight" column="weight" />
@@ -17,6 +18,7 @@
         <property name="title" column="title" />
         <property name="content" column="content" />
         <property name="share" column="share" />
+        
 <!--         <many-to-one name="deptVO" class="com.dept.model.DeptVO" lazy="false"> -->
 <!--             <column name="deptno" /> -->
 <!--         </many-to-one> -->

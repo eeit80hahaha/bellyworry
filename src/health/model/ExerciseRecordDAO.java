@@ -14,4 +14,9 @@ public interface ExerciseRecordDAO {
 	public abstract int update(ExerciseRecordVO vo);
 
 	public abstract boolean delete(long no);
+	
+	public abstract int exercal(int memberNo, java.util.Date date);
+	
+	public abstract List<ExerciseRecordVO> exerday(int memberNo, java.util.Date date);
+	
 }

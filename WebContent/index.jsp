@@ -1,4 +1,7 @@
-﻿<!DOCTYPE HTML>
+﻿﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
@@ -44,7 +47,6 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<!--<=====這裡-->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <!--     //結束(hui)=================js版本有衝突，要刪掉其一========================== -->
@@ -60,7 +62,7 @@
 
 	//新增會員Start
 	$(function() {
-		$("#dialog").dialog({
+		$("#dialog").dialog({   //dialog==>新增會員方塊
 			autoOpen : false,
 			show : {
 				effect : "blind",
@@ -78,7 +80,7 @@
 	
 	//註冊訊息Start
 	$(function() {
-		$("#dialog0").dialog({
+		$("#dialog0").dialog({   //dialog==>訊息方塊
 			autoOpen : false,
 			show : {
 				effect : "blind",
@@ -89,9 +91,16 @@
 				duration : 1000
 			}
 		});
-		${error.open}
+		
 	});
-
+	$(function() {
+		${error.open}//會員註冊資料輸入失敗
+		${error.open1}//會員註冊失敗
+		${up.suc}//修改會員資料成功
+		${change.openpwd}//修改密碼成功
+		
+	});
+	
 	//註冊訊息End
 	//註冊結束(hui)==============================================
 </script>
@@ -99,71 +108,8 @@
 </head>
 
 <body id="pageBody">
-
-<div id="decorative2">
-    <div class="container">
-
-        <div class="divPanel topArea notop nobottom">
-            <div class="row-fluid">
-                <div class="span12">
-
-                    <div id="divLogo" class="pull-left">
-                        <a href="index.html" id="divSiteTitle">Belly Worry</a><br />
-                        <a href="index.html" id="divTagLine">Enjoy Your Life</a>
-                    </div>
-
-                    <div id="divMenuRight" class="pull-right">
-<!-- 登入成功秀修改登出-->     <div class="navbar"><h2>${user.id}</h2><span>${suc.update}</span><span>${suc.out}</span>
-                        <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
-                            功能選單 <span class="icon-chevron-down icon-white"></span>
-                        </button>
-                        <div class="nav-collapse collapse">
-                            <ul class="nav nav-pills ddmenu">
-                            <!--
-                                <li class="dropdown active"><a href="index.html">回首頁</a></li>
-                            -->
-                                <li class="dropdown">
-                                    <a href="page.html" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="about.html">關於我</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Menuservelt.controller">filter</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/logout.controller">登出</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/updatemember.jsp">更新</a></li>
-                                        <li><a href="../documentation/index.html">說明文件</a></li>
-                                        <li class="dropdown">
-                                        <a href="full.html" class="dropdown-toggle">分欄參考</a>
-                                        <ul class="dropdown-menu sub-menu">
-                                        <li><a href="full.html">單欄版型</a></li>
-                                        <li><a href="2-column.html">兩欄版型</a></li>
-                                        <li><a href="3-column.html">三欄版型</a></li>
-                                        </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="about.html">熱量計算</a></li>
-                                <li class="dropdown"><a href="gallery.html">健康管理</a></li>
-                                <li class="dropdown">
-                                    <a href="page.html" class="dropdown-toggle">運動趣<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="full.html">YouBike路線規劃</a></li>
-                                        <li><a href="fun/healthView.controller">健康景點查詢</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="about.html">活動情報</a></li>
-                                <li class="dropdown"><a href="gallery.html">英雄事蹟</a></li>
-                                <li class="dropdown"><a href="about.html">小學堂</a></li>
-                                <li class="dropdown"><a href="${pageContext.request.contextPath}/login.jsp" id="dropdown-my">會員登入</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+<c:set var="funcName" value="HOME" scope="session"/>
+<jsp:include page="/page/header.jsp"/>
 
 <div id="decorative1" style="position:relative">
     <div class="container">
@@ -193,45 +139,52 @@
 													<div>
 														<label><span style="color: red">*</span> 姓:</label><input
 															type="text" name="firstname" size="20" autofocus
-															placeholder="請輸入" autocomplete="off" required="" />
+															placeholder="請輸入" autocomplete="off" required="" value="${param.firstname} "/>
+															<div>${error.firstName}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span> 名:</label><input
 															type="text" name="lastname" size="20" autofocus
-															placeholder="請輸入" autocomplete="off" required="" />
+															placeholder="請輸入" autocomplete="off" required="" value="${param.lastname}"/>
+															<div>${error.lastName}</div>
 													</div>
 													<div>
 														<label>暱稱:</label><input type="text" name="nickname"
 															size="20" autofocus placeholder="請輸入" autocomplete="off"
-															required="" />
+															required="" value="${param.nickname}"/>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>帳號:</label><input
-															type="text" name="account" size="20" required="" />
+															type="text" name="account" size="20" required="" value="${param.account}"/>
+															<div>${error.username}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>密碼:</label><input
 															type="password" name="pwd" size="20" required=""
-															maxlength="20" />
+															maxlength="20" /><div>${error.password}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>密碼確認:</label><input
 															type="password" name="pwd1" size="20" required=""
-															maxlength="20" />
+															maxlength="20" /><div>${error.password2}</div>
+															<div>${error.password1}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>Mail:</label> <input
 															type="email" name="mail" size="20" autofocus
-															placeholder="請輸入E-mail" autocomplete="off" />
+															placeholder="請輸入E-mail" autocomplete="off" value="${param.mail}"/>
+															<div>${error.email}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>生日:</label> <input
-															type="text" name="date" id="datepicker">
+															type="text" name="date" id="datepicker" value="${param.date}">
+															<div>${error.birth}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>性別:</label><input
 															type="radio" name="gender" size="20" value="males" />男 <input
 															type="radio" name="gender" size="20" value="female" />女
+															<div>${error.gender}</div>
 													</div>
 												</fieldset>
 												<div>
@@ -240,21 +193,17 @@
 												</div>
 											</form>
 									<!-- ==============註冊錯誤訊息=================================================================== -->
-									<div id="dialog0">										
-<%-- 										<p>${error.open}</p> --%>
-										<p>${error.add}</p>
-										<p>${error.password1}</p>
-										<p>${error.username}</p>
-										<p>${error.password}</p>
-										<p>${error.firstName}</p>
-										<p>${error.lastName}</p>
-										<p>${error.email}</p>
-										<p>${error.birth}</p>
-										<p>${error.gender}</p>
-										<p>${error.er}</p>
-										<p>${error.success}</p>
+									<div id="dialog0">	
+										<p>${error.add}</p><!-- 註冊失敗，請重新輸入 -->
+										<p>${error.er}</p><!-- 帳號重複，請重新輸入 -->
+										<p>${error.success}</p><!-- 新增會員成功 -->
 					<!-- ==============忘記密碼寄信成功訊息=================================================================== -->
 										<p>${error.success2}</p>
+					<!-- ==============修改會員資料成功=================================================================== -->					
+										<p>${up.update}</p>
+					<!-- ==============修改密碼成功=================================================================== -->					
+										<p>${change.success1}</p>
+									
 									</div>
 					<!-- ======================================================================================== -->
                                		 </div>
@@ -373,77 +322,7 @@
 
 <div id="footerOuterSeparator"></div>
 
-<div id="divFooter" class="footerArea">
-
-    <div class="container">
-
-        <div class="divPanel">
-
-            <div class="row-fluid">
-                <div class="span6" id="footerArea1">
-                
-                    <h3>關於我</h3>
-
-                    <p>Belly Worry 希望幫助每個為卡路里煩腦的人，輕鬆做好個人卡路里控制，並且提供您良好的介面：查詢運動景點、健康知識等相關情報，讓你天天擁有美好的健康生活。</p>
-                    
-                    <p> 
-                        <a href="#" title="Terms of Use">開始使用</a><br />
-                        <a href="#" title="FAQ">常見問題</a><br />
-                        <a href="#" title="Sitemap">網站地圖</a>
-                    </p>
-
-                </div>
-                
-                <div class="span6" id="footerArea2">
-
-                    <h3>聯絡我們</h3>  
-                                                               
-                    <ul id="contact-info">
-                    <li>                                    
-                        <i class="general foundicon-phone icon"></i>
-                        <span class="field">電話:</span>
-                        <br />
-                        (02) 6631 6666 / 6631 6667                                                                      
-                    </li>
-                    <li>
-                        <i class="general foundicon-mail icon"></i>
-                        <span class="field">Email:</span>
-                        <br />
-                        <a href="mailto:EEIT80hahaha@gmail.com" title="Email">BellyWorry@gmail.com</a>
-                    </li>
-                    <li>
-                        <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
-                        <span class="field">地址:</span>
-                        <br />
-                        台北市大安區復興南路一段390號2樓201室
-                    </li>
-                    </ul>
-
-                </div>
-            </div>
-
-            <br /><br />
-            <div class="row-fluid">
-                <div class="span12">
-                    <p class="copyright">
-                        Copyright © 2015 Belly Worry. All Rights Reserved.
-                    </p>
-
-                    <p class="social_bookmarks">
-                        <a href="#"><i class="social foundicon-facebook"></i> Facebook</a>
-			<a href=""><i class="social foundicon-twitter"></i> Twitter</a>
-			<a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
-			<a href="#"><i class="social foundicon-rss"></i> Rss</a>
-                    </p>
-                </div>
-            </div>
-            <br />
-
-        </div>
-
-    </div>
-    
-</div>
+<jsp:include page="/page/footer.jsp"/>
 
 <!-- <script src="scripts/jquery.min.js" type="text/javascript"></script>  -->
 <script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

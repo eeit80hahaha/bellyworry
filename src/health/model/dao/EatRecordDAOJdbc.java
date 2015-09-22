@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EatRecordDAOJdbc implements EatRecordDAO {
@@ -35,7 +36,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 				result.setMemberNo(rset.getInt(2));
 				result.setDate(rset.getDate(3));
 				result.setTime(rset.getString(4));
-				result.setFoodNo(rset.getInt(5));
+//				result.setFoodNo(rset.getInt(5));
 				result.setCount(rset.getInt(6));
 			}
 		} catch (SQLException e) {
@@ -88,7 +89,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 				vo.setMemberNo(rset.getInt(2));
 				vo.setDate(rset.getDate(3));
 				vo.setTime(rset.getString(4));
-				vo.setFoodNo(rset.getInt(5));
+//				vo.setFoodNo(rset.getInt(5));
 				vo.setCount(rset.getInt(6));
 				result.add(vo);
 			}
@@ -141,7 +142,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 				vo.setMemberNo(rset.getInt(2));
 				vo.setDate(rset.getDate(3));
 				vo.setTime(rset.getString(4));
-				vo.setFoodNo(rset.getInt(5));
+//				vo.setFoodNo(rset.getInt(5));
 				vo.setCount(rset.getInt(6));
 				result.add(vo);
 			}
@@ -194,7 +195,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 					stmt.setDate(2, null);
 				}
 				stmt.setString(3, vo.getTime());
-				stmt.setInt(4, vo.getFoodNo());
+//				stmt.setInt(4, vo.getFoodNo());
 				stmt.setInt(5, vo.getCount());
 				stmt.executeUpdate();
 				rset = stmt.getGeneratedKeys();
@@ -251,7 +252,7 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 					stmt.setDate(2, null);
 				}
 				stmt.setString(3, vo.getTime());
-				stmt.setInt(4, vo.getFoodNo());
+//				stmt.setInt(4, vo.getFoodNo());
 				stmt.setInt(5, vo.getCount());
 				stmt.setLong(6, vo.getNo());
 				result = stmt.executeUpdate();
@@ -313,4 +314,15 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public int eatcal(int memberNo, java.util.Date date) {
+		return 0;
+	}
+
+	@Override
+	public List<EatRecordVO> eatday(int memberNo, Date date) {
+		return null;
+	}
+	
 }

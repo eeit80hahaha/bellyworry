@@ -273,5 +273,9 @@ public class ReflectDAOJdbc implements ReflectDAO {
 		}
 		return false;
 	}
+	@Override
+	public int repeatReflect(ReflectVO vo) {
+		return 0;
+	}
 
 }

@@ -2,6 +2,8 @@ package health.model;
 
 import java.util.List;
 
+import ranking.model.ReflectVO;
+
 public interface HealthDiaryDAO {
 	public abstract HealthDiaryVO selectByPrimaryKey(long no);
 	
@@ -16,4 +18,15 @@ public interface HealthDiaryDAO {
 	public abstract boolean delete(long no);
 	
 	public abstract  List<HealthDiaryVO> dateSelect(int memberNo,java.util.Date date);
+	
+	public abstract List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
+			int memberNo ,int year ,int month);
+	
+	public abstract int getDateTotalCount(int memberNo ,int year ,int month);
+	
+	public abstract List<HealthDiaryVO> gethighChart(int memberNo ,int year ,int month);
+
+	public abstract int repeatDiary(int memberNo, java.util.Date date);
+
+	
 }

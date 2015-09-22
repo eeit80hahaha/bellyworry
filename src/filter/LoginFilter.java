@@ -21,7 +21,8 @@ import register.model.MemberVO;
  * Servlet Filter implementation class Login
  */
 @WebFilter(
-urlPatterns = { "/Menuservelt.controller","/UpdateServlet.controller" }
+urlPatterns = { "/Menuservelt.controller","/UpdateServlet.controller",
+		"/diaryIndex.controller","/reflectdiary.controller" }
 		)
 public class LoginFilter implements Filter {
 	@Override
@@ -40,10 +41,16 @@ public class LoginFilter implements Filter {
 		if(bean!=null) {
 			chain.doFilter(request, response);
 		} else {
-			String uri = request.getRequestURI();
+			String uri=null;
+			if(request.getQueryString()!=null){
+				uri = request.getRequestURI()+"?"+request.getQueryString();
+			}else{
+				uri = request.getRequestURI();
+			}
 			session.setAttribute("dest", uri);
 			String path = request.getContextPath();
 			response.sendRedirect(path+"/login.jsp");
+			
 		}
 	}
 

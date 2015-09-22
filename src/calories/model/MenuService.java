@@ -7,7 +7,6 @@ import org.apache.tomcat.util.codec.binary.Base64;
 
 import calories.model.dao.FoodCalDAOHbm;
 import food.recipes.model.CookVO;
-import food.recipes.model.dao.CookService;
 
 public class MenuService {
 private FoodCalDAO foodCalDao = new FoodCalDAOHbm();
