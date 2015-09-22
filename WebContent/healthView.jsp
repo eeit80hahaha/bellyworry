@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Your Name Here - Simple</title>
+    <title>健康景點查詢</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -88,7 +88,7 @@
     </style>
 </head>
 <body id="pageBody">
-
+<c:set var="funcName" value="FUN" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -98,16 +98,14 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">首頁</a> &nbsp;/&nbsp; <span>健康景點查詢</span>
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>健康景點查詢</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
                 <div class="span8" id="divMain">
 
                     <h1>健康景點查詢</h1>
-					<p>
-                                             
-							
+					<p>	
 <!--                     <img src="images/fingerfood-main.jpg" class="img-polaroid" style="margin:12px 0px;">  </p>     -->
                                                      
                     <div id="map"></div>

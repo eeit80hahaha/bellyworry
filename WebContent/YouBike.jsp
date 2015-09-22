@@ -1,82 +1,168 @@
+﻿<!DOCTYPE HTML>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-#map {
-	height: 700px;
+    <meta charset="utf-8">
+    <title>YouBike路線規劃</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Icons -->
+    <link href="scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />  
+    <link href="scripts/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 8]>
+        <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome.min.css">
+    <!--[if IE 7]>
+        <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+
+    <link href="http://fonts.googleapis.com/css?family=Allura" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet" type="text/css">
+
+    <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+    <style>
+		#map {
+			height: 700px;
+		}
+
+		#info,#startDiv,#endDiv{
+			display: none;			
+	    }
+
+#panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
 }
 
-.controls {
-	margin-top: 10px;
-	border: 1px solid transparent;
-	border-radius: 2px 0 0 2px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 32px;
-	outline: none;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+#panel, .panel {
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
 }
 
-#pac-input {
-	background-color: #fff;
-	font-family: Roboto;
-	font-size: 15px;
-	font-weight: 300;
-	margin-left: 12px;
-	padding: 0 11px 0 13px;
-	text-overflow: ellipsis;
-	width: 300px;
+#panel select, #panel input, .panel select, .panel input {
+  font-size: 15px;
 }
 
-#pac-input:focus {
-	border-color: #4d90fe;
+#panel select, .panel select {
+  width: 100%;
 }
 
-.pac-container {
-	font-family: Roboto;
+#panel i, .panel i {
+  font-size: 12px;
 }
 
-#type-selector {
-	color: #fff;
-	background-color: #4d90fe;
-	padding: 5px 11px 0px 11px;
-}
+      .panel {
+        height: 100%;
+		overflow: auto;
+      }
 
-#type-selector label {
-	font-family: Roboto;
-	font-size: 13px;
-	font-weight: 300;
-}
-</style>
+
+		
+    </style>
 </head>
-<body>
-	<input id="inputStart" class="controls" type="text"
-		placeholder="請在此輸入出發地，例如：台北車站">
-	<input id="inputEnd" class="controls" type="text"
-		placeholder="請在此輸入目的地，例如：西門町">
+<body id="pageBody">
+<c:set var="funcName" value="FUN" scope="session"/>
+<jsp:include page="/page/header.jsp"/>
 
-	<div class="row-fluid">
-		<p class="span12">
-			起點站 <select class="span12" multiple="multiple" id="startSelect"></select>
-		</p>
-	</div>
-	<div class="row-fluid">
-		<p class="span12">
-			終點站 <select class="span12" multiple="multiple" id="endSelect"></select>
-		</p>
-	</div>
-	<div id="map"></div>
+<div id="contentOuterSeparator"></div>
+
+<div class="container">
+
+    <div class="divPanel page-content">
+
+        <div class="breadcrumbs">
+			<a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>YouBike路線規劃</span>
+		</div> 
+        <!--Edit Main Content Area here-->
+        <div class="row-fluid">
+			<div class="span8" id="divMain">
+				<h1>YouBike路線規劃</h1>
+				<div class="row-fluid">
+					<div class="span6"><p>出發地：<input type="text" class="input-large" placeholder="出發地位置" style="width:80%" id="inputStart"></p></div>
+					<div class="span6"><p>目的地：<input type="text" class="input-large" placeholder="目的地位置"  style="width:80%" id="inputEnd"></p></div>
+				</div>
+				<div id="map"></div>
+			</div>
+				<!--Edit Sidebar Content Area here-->
+                <div class="span4 sidebar">
+
+                    <div class="sidebox">
+                        <h3 class="sidebox-title">YouBike 站點資訊</h3>
+						<div class="row-fluid" id="initInfo">
+							<p class="span12">請先於左側輸入出發地、目的地</p>
+						</div>
+						<div class="row-fluid" id="startDiv">
+							<p class="span12">選擇出發地周邊站點
+								<select class="span12" multiple="multiple" id="startSelect">
+									
+								</select>
+							</p>
+						</div>
+						<div class="row-fluid" id="endDiv">
+							<p class="span12">選擇目的地周邊站點
+								<select class="span12" multiple="multiple" id="endSelect">
+									
+								</select>
+							</p>
+						</div>
+				        <div class="row-fluid" id="info">
+				        <hr>
+<!-- 				        		<div class="span12"> -->
+<!-- 				        			<p>Total Distance: <span id="total"></span></p> -->
+<!-- 				        		</div> -->
+<!-- 						        <div id="directionsPanel" class="panel" style="float:right;height:350px"></div> -->
+							
+						</div>		 
 
 
+	
+                    </div>
+                    
+                </div>
+				<!--End Sidebar Area here-->
+            </div>
+			<!--End Main Content Area here-->
 
+        <div id="footerInnerSeparator"></div>
+    </div>
 
-	<script src="../scripts/jquery.min.js" type="text/javascript"></script>
-	<script>
+</div>
+
+<div id="footerOuterSeparator"></div>
+
+<jsp:include page="/page/footer.jsp"/>
+
+<script src="scripts/jquery.min.js" type="text/javascript"></script> 
+<script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="scripts/default.js" type="text/javascript"></script>
+<script>
 		var start = null;
 		var end = null;
 		var map = null;
@@ -159,7 +245,6 @@
 				var lat1 = this.value.split(",")[0];
 				var lng1 = this.value.split(",")[1];
 				startStation = new google.maps.LatLng(lat1, lng1);
-				console.log(startStation);
 				displayRoute(start[0].geometry.location, end[0].geometry.location,
 						directionsService, directionsDisplay);
 			});
@@ -294,8 +379,11 @@
 		}
 		//路線規劃
 		function displayRoute(origin, destination, service, display) {
+			document.getElementById("initInfo").style.display="none";
+			document.getElementById("startDiv").style.display="block";
+			document.getElementById("endDiv").style.display="block";
 			clearMarker();
-// 			document.getElementById("info").style.display="block";
+
 			var waypoints = [];
 			if(startStation!=null && endStation!=null){
 				waypoints = [{location:startStation},{location:endStation}];
@@ -304,14 +392,13 @@
 			}else if(startStation!=null && endStation==null){
 				waypoints = [{location:startStation}];
 			}
-			console.log(waypoints);
 			service.route({
 				origin: origin,
 				destination: destination,
 				waypoints: waypoints,		//中間道路陣列
 // 				waypoints: [],	//中間道路陣列
 
-				travelMode: google.maps.TravelMode.DRIVING,
+				travelMode: google.maps.TravelMode.WALKING,
 				avoidTolls: true,	//避開收費道路
 				avoidHighways:true	//避開高速公路
 			}, function(response, status) {
@@ -331,19 +418,17 @@
 			}
 			total = total / 1000;
 // 			document.getElementById('total').innerHTML = total + ' km';
+			console.log(result.routes[0].legs[1].distance);
 			console.log(result.routes[0].legs[1].distance.value);	//兩個腳踏車站點距離;
 // 			console.log(result.routes[0].legs[1].distance.value);
+			document.getElementById("info").style.display="block";
+			document.getElementById('info').innerHTML = '<hr>約需騎乘自行車' + (result.routes[0].legs[1].distance.value)/17000*60 + '分鐘';
 		}
 		
 	</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA558ZIHYucpFnkLnuKFxdAqdRnz4H92io&libraries=places&callback=initMap"
 		async defer></script>
-
-
-
-
-	<!--   temp.addEventListener("change", function(){alert("0")}, false);	//關鍵 呼叫同一個方法判斷 -->
 
 </body>
 </html>
