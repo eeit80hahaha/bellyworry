@@ -253,5 +253,10 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 		
 		return 0;
 	}
+	@Override
+	public List<HealthDiaryVO> gethighChart(int memberNo, int year, int month) {
+
+		return null;
+	}
 	
 }
