@@ -83,7 +83,7 @@
 					            </c:if>
                                     <a href="#" class="dropdown-toggle">運動趣<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="full.html">YouBike路線規劃</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/YouBike.jsp">YouBike路線規劃</a></li>
                                         <li><a href="${pageContext.request.contextPath}/healthView.jsp">健康景點查詢</a></li>
                                     </ul>
                                 </li>

@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Your Name Here - Simple</title>
+    <title>健康景點查詢</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -105,9 +105,7 @@
                 <div class="span8" id="divMain">
 
                     <h1>健康景點查詢</h1>
-					<p>
-                                             
-							
+					<p>	
 <!--                     <img src="images/fingerfood-main.jpg" class="img-polaroid" style="margin:12px 0px;">  </p>     -->
                                                      
                     <div id="map"></div>
