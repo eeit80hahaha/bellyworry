@@ -162,15 +162,22 @@
 <script src="scripts/jquery.min.js" type="text/javascript"></script> 
 <script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="scripts/default.js" type="text/javascript"></script>
+<script src="map/maker.js" type="text/javascript"></script>
 <script>
 		var start = null;
+		var startName = null;
 		var end = null;
+		var endName = null;
+		var startStation = null;
+		var startStationName = null;
+		var endStation = null;
+		var endStationName = null;
+		
 		var map = null;
 		var markers = [];
 		var directionsService;
 		var directionsDisplay;
-		var startStation = null;
-		var endStation = null;
+		
 		//初始化地圖
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map'), {
@@ -191,7 +198,8 @@
 			directionsDisplay = new google.maps.DirectionsRenderer({
 				draggable: true,
 				map: map,
-				panel: document.getElementById('directionsPanel')
+				panel: document.getElementById('directionsPanel'),
+				suppressMarkers : true
 			});
 			directionsDisplay.addListener('directions_changed', function() {	//挪動路線就重新計算距離
 				computeTotalDistance(directionsDisplay.getDirections());
@@ -211,7 +219,9 @@
 			//事件監聽，起點變更執行
 			searchStart.addListener('places_changed', function() {
 				startStation = null;
+				startStationName = null;
 				start = searchStart.getPlaces();
+				startName = inputStart.value;
 				if (start.length == 0) {
 					return;
 				}
@@ -227,7 +237,9 @@
 			//事件監聽，終點變更執行
 			searchEnd.addListener('places_changed', function() {
 				endStation = null;
+				endStationName = null;
 				end = searchEnd.getPlaces();
+				endName = inputEnd.value;
 				if (end.length == 0) {
 					return;
 				}
@@ -241,7 +253,7 @@
 				}
 			});
 			document.getElementById('startSelect').addEventListener('change', function() {
-				var name = this.options[this.selectedIndex].text;
+				startStationName = this.options[this.selectedIndex].text;
 				var lat1 = this.value.split(",")[0];
 				var lng1 = this.value.split(",")[1];
 				startStation = new google.maps.LatLng(lat1, lng1);
@@ -249,7 +261,7 @@
 						directionsService, directionsDisplay);
 			});
 			document.getElementById('endSelect').addEventListener('change', function() {
-				var name = this.options[this.selectedIndex].text;
+				endStationName = this.options[this.selectedIndex].text;
 				var lat1 = this.value.split(",")[0];
 				var lng1 = this.value.split(",")[1];
 				endStation = new google.maps.LatLng(lat1, lng1);
@@ -267,7 +279,8 @@
 
 			// For each place, get the icon, name and location.
 			var bounds = new google.maps.LatLngBounds();
-			places.forEach(function(place) {
+// 			places.forEach(function(place) {
+			var place = places[0];
 				//var icon = {
 				//	url : place.icon,
 				//	size : new google.maps.Size(71, 71),
@@ -291,7 +304,7 @@
 				} else {
 					bounds.extend(place.geometry.location);
 				}
-			});
+// 			});
 			map.fitBounds(bounds);
 		}
 		var setEndMap = function(name,point) {
@@ -310,7 +323,8 @@
 			var marker = new google.maps.Marker({
 				position : location,
 				map : map,
-				animation : google.maps.Animation.BOUNCE
+// 				animation : google.maps.Animation.BOUNCE
+				animation : google.maps.Animation.DROP
 			});
 			markers.push(marker);
 		}
@@ -404,6 +418,8 @@
 			}, function(response, status) {
 				if (status === google.maps.DirectionsStatus.OK) {
 					display.setDirections(response);
+					clearMarker();
+					showSteps(response);
 				} else {
 					alert('Could not display directions due to: ' + status);
 				}
@@ -418,12 +434,54 @@
 			}
 			total = total / 1000;
 // 			document.getElementById('total').innerHTML = total + ' km';
-			console.log(result.routes[0].legs[1].distance);
-			console.log(result.routes[0].legs[1].distance.value);	//兩個腳踏車站點距離;
-// 			console.log(result.routes[0].legs[1].distance.value);
-			document.getElementById("info").style.display="block";
-			document.getElementById('info').innerHTML = '<hr>約需騎乘自行車' + (result.routes[0].legs[1].distance.value)/17000*60 + '分鐘';
+			console.log(result);
+// 			console.log(result.routes[0].legs[1].distance.value);	//兩個腳踏車站點距離;
+			if(startStation!=null && endStation!=null){
+				document.getElementById("info").style.display="block";
+				document.getElementById('info').innerHTML = '<hr>約需騎乘自行車' + (result.routes[0].legs[1].distance.value)/17000*60 + '分鐘';
+			}else{
+				document.getElementById("info").style.display="none";
+				document.getElementById('info').innerHTML = '<hr>';
+			}
 		}
+		
+		
+		function showSteps(directionResult) {
+			var myRoute = directionResult.routes[0];
+			var pointName = new Array();
+			if(myRoute.legs.length==1){
+				pointName = [startName+"(起點)",endName+"(終點)"];
+			}else if(myRoute.legs.length==2){
+				if(startStationName==null){
+					pointName = [startName+"(起點)",endStationName,endName+"(終點)"];
+				}else{
+					pointName = [startName+"(起點)",startStationName,endName+"(終點)"];
+				}
+			}else if(myRoute.legs.length==3){
+				pointName = [startName+"(起點)",startStationName,endStationName,endName+"(終點)"];
+			}
+			for (var i = 0; i < myRoute.legs.length; i++) {
+				var marker = new google.maps.Marker({
+					position: myRoute.legs[i].steps[0].start_point, 
+					map: map,
+					icon: createMarkerIcon(pointName[i], {bgColor: "brown"}),
+				});
+				markers.push(marker);
+			}
+			var marker = new google.maps.Marker({
+				position: myRoute.legs[i-1].steps[(myRoute.legs[i-1].steps.length-1)].end_point,
+				map: map,
+				icon: createMarkerIcon(pointName[myRoute.legs.length], {bgColor: "brown"})
+			});
+		}
+//	 	function attachInstructionText(marker, text) {
+//	 	    google.maps.event.addListener(marker, 'click', function() {
+//	 	      // Open an info window when the marker is clicked on,
+//	 	      // containing the text of the step.
+//	 	      stepDisplay.setContent(text);
+//	 	      stepDisplay.open(mapCanvas, marker);
+//	 	    });
+//	 	  }
 		
 	</script>
 	<script

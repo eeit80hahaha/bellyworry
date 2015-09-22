@@ -32,8 +32,8 @@
                 <div class="span12">
 
                     <div id="divLogo" class="pull-left">
-                        <a href="index.html" id="divSiteTitle">Belly Worry</a><br />
-                        <a href="index.html" id="divTagLine">Enjoy Your Life</a>
+                        <a href="index.jsp" id="divSiteTitle">Belly Worry</a><br />
+                        <a href="index.jsp" id="divTagLine">Enjoy Your Life</a>
                     </div>
 
                     <div id="divMenuRight" class="pull-right" ">
