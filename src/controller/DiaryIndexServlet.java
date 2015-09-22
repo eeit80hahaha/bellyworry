@@ -22,7 +22,6 @@ import register.model.MemberVO;
 @WebServlet("/diaryIndex.controller")
 public class DiaryIndexServlet extends HttpServlet {
 	private DiaryIndexService service;
-	private HealthDiaryService healthservice;
 
 	public void init() throws ServletException {
 		service = new DiaryIndexService();
