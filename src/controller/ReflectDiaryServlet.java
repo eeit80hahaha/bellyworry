@@ -35,11 +35,13 @@ public class ReflectDiaryServlet extends HttpServlet {
 
 	
 	private ReflectService reflectService;
+	private HeroService heroservice;
 
 	@Override
 	public void init() throws ServletException {
 		
 		reflectService = new ReflectService();
+		heroservice = new HeroService();
 	}
 	
 	@Override
@@ -50,6 +52,7 @@ public class ReflectDiaryServlet extends HttpServlet {
 		//接收資料
 		String memberNoTemp = request.getParameter("memberno");
 		String dateTemp = request.getParameter("date");
+		String pageNoTemp = request.getParameter("pageNo");
 		
 		//驗證資料
 		Map<String, String> errorMessage = new HashMap<String, String>();
@@ -63,6 +66,7 @@ public class ReflectDiaryServlet extends HttpServlet {
 				errorMessage.put("memberNo", "memberNo must be an integer");
 			}
 		}
+		
 		java.util.Date date = new java.util.Date();
 		if(dateTemp!=null && dateTemp.length()!=0) {
 			date = GlobalService.convertDate(dateTemp);
@@ -70,6 +74,15 @@ public class ReflectDiaryServlet extends HttpServlet {
 				errorMessage.put("date", "date must be an date");
 			}
 		}
+		
+		int pageNo = 0;
+		if(pageNoTemp!=null && pageNoTemp.length()!=0) {
+			pageNo = GlobalService.convertInt(pageNoTemp);
+			if(pageNo==-1000) {
+				errorMessage.put("pageNo", "pageNo must be an integer");
+			}
+		}
+		
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/healthForm.jsp");
@@ -88,10 +101,13 @@ public class ReflectDiaryServlet extends HttpServlet {
 		reflectvo.setReflectedDate(date);
 		reflectvo.setAuthorDate(authorDate);
 		
+		HeroVO herovo = new HeroVO();
+		herovo.setMemberNo(memberNo);
+		
 		//根據Model執行結果導向View
 		
 		int result = reflectService.insert(reflectvo);
-		System.out.println(result);
+
 		if(result == -300){
 			request.setAttribute("error", "資料庫存取錯誤");
 			request.getRequestDispatcher(
@@ -106,7 +122,12 @@ public class ReflectDiaryServlet extends HttpServlet {
 			"/reflecterror.jsp").forward(request, response);
 		}else{
 			ReflectVO reflectvoel = reflectService.selectByPrimaryKey(result);
+			List<HeroVO> herovolist = heroservice.select(herovo);
+			
+			request.setAttribute("memberNo", memberNo);	
+			request.setAttribute("pageNo", pageNo);		
 			request.setAttribute("reflectvo", reflectvoel);
+			request.setAttribute("herovo", herovolist.get(0));
 			request.getRequestDispatcher(
 			"/reflectok.jsp").forward(request, response);
 		}

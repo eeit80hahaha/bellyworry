@@ -98,7 +98,8 @@
 	<div class="divPanel page-content">
 
 		<div class="breadcrumbs">
-			<a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>英雄事蹟</span>
+			<a href="index.jsp">首頁</a> &nbsp;/&nbsp; 
+			<span>英雄事蹟</span>
 		</div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
