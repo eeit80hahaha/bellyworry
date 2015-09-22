@@ -22,4 +22,6 @@ public interface HealthDiaryDAO {
 	
 	public abstract int getDateTotalCount(int memberNo ,int year ,int month);
 	
+	public abstract List<HealthDiaryVO> gethighChart(int memberNo ,int year ,int month);
+	
 }

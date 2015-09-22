@@ -7,12 +7,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+
+
+
 
 
 //import calories.model.MenuVO;
@@ -245,5 +251,28 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		
 		return result;
 	}
+
+	private static final String GethighChart = " from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=?";
+	@Override
+	public List<HealthDiaryVO> gethighChart(int memberNo, int year, int month) {
 	
+		List<HealthDiaryVO> result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GethighChart);
+			
+			query.setParameter(0, memberNo);
+			query.setParameter(1, year);
+			query.setParameter(2, month);
+			
+			result = query.list();
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
 }
