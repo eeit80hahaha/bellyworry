@@ -7,14 +7,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
-
+import ranking.model.ReflectVO;
 //import calories.model.MenuVO;
 import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
@@ -189,24 +192,24 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 	}
 
 	private static final String GETDATEPAGE = "from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1' order by date";
-	
+
 	@Override
-	public List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
-			int memberNo ,int year ,int month){
-		
+	public List<HealthDiaryVO> getDatePage(int pageNo, int pageSize,
+			int memberNo, int year, int month) {
+
 		List<HealthDiaryVO> result = null;
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GETDATEPAGE);
-			
+
 			query.setParameter(0, memberNo);
 			query.setParameter(1, year);
 			query.setParameter(2, month);
-	        query.setFirstResult((pageNo - 1) * pageSize);  
-	        query.setMaxResults(pageSize);  
-			
+			query.setFirstResult((pageNo - 1) * pageSize);
+			query.setMaxResults(pageSize);
+
 			result = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -217,33 +220,88 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 	}
 
 	private static final String GETDATETOTALCOUNT = "select count(no) from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1'";
-	
+
 	@Override
-	public int getDateTotalCount(int memberNo ,int year ,int month) {
-		int result=-1000;
-		long sum=0;
+	public int getDateTotalCount(int memberNo, int year, int month) {
+		int result = -1000;
+		long sum = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GETDATETOTALCOUNT);
-			
+
 			query.setParameter(0, memberNo);
 			query.setParameter(1, year);
 			query.setParameter(2, month);
-			
+
 			List<Object> tmp = query.list();
-		    if(tmp.get(0)!=null){
-		    	sum = (long) tmp.get(0);
-		    }
+			if (tmp.get(0) != null) {
+				sum = (long) tmp.get(0);
+			}
 			result = (int) sum;
-			
+
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		
+
 		return result;
 	}
-	
+
+	private static final String GethighChart = " from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=?";
+
+	@Override
+	public List<HealthDiaryVO> gethighChart(int memberNo, int year, int month) {
+
+		List<HealthDiaryVO> result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GethighChart);
+
+			query.setParameter(0, memberNo);
+			query.setParameter(1, year);
+			query.setParameter(2, month);
+
+			result = query.list();
+
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String REPEATDIARY = "from HealthDiaryVO where memberNo=? and date=?";
+
+	@Override
+	public int repeatDiary(int memberNo, java.util.Date date) {
+		int result = -300;
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(REPEATDIARY);
+
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+
+			List<ReflectVO> tmp = query.list();
+			if (tmp.isEmpty()) {
+				// Not available
+				result = -400;
+			} else {
+				// ok
+				result = 1000;
+			}
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
 }

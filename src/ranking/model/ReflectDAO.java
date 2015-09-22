@@ -12,4 +12,7 @@ public interface ReflectDAO {
 	public abstract int update(ReflectVO vo);
 
 	public abstract boolean delete(int no);
+	
+	public abstract int repeatReflect(ReflectVO vo);
+	
 }

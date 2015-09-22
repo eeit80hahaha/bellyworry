@@ -15,7 +15,7 @@
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <!-- Remove this Robots Meta Tag, to allow indexing of site -->
 
-
+<!--今日日誌時間用-->
 <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="scripts/bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet">
@@ -59,11 +59,19 @@
 
 <link href="styles/custom.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+<!-- 因為edit受侷限,且css一動則動全身,所以暫時關閉 -->
 
 
+<link rel="stylesheet" type="text/css" href="jeasyui/easyui.css">
+<link rel="stylesheet" type="text/css" href="jeasyui/icon.css">
+<link rel="stylesheet" type="text/css" href="jeasyui/demo.css">
+<script type="text/javascript" src="jeasyui/jquery.min.js"></script>
+<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
+ <script type="text/javascript" src="jeasyui/easyui-lang-zh_TW.js"></script>
+<!-- 以上月曆用 -->
 
-<style>
-</style>
+
 
 
 </head>
@@ -149,8 +157,82 @@
 					<li><a href="#t-3">歷史紀錄</a></li>
 				</ul>
 				<div id="t-1" style="height: 100%;">
-					<div class="tab-content"
-						style="height: 100%; width: 100%; border: 2px solid blue;">
+					<div style="border: 2px solid blue; width: 100%; height: 100%;">
+					</div>
+					
+					
+					<c:forEach var="vo" items="${list}">
+					<div style="width: 70%; float: left; border: 2px solid red; height: 100%;">
+						<div>
+							<div style="border: 2px solid;">
+								<span style="font-size: 0.5cm">2014/09/21${vo.date}</span>
+								<span style="padding-left: 20px;font-size: 0.8cm">hahaha${vo.title}</span>
+							</div>
+			
+							<div style="height:200px;border: 2px solid green;"> 
+							
+								<div style="border: 2px solid orange;width: 199.7px;height: 100%;float: left;">
+								早上<br>
+								<c:forEach var="eat" items="${vo.eatVo}">  <!-- eat_record因為很多筆相同時段.菜色,所以用foreach -->
+									<c:if test="${eat.time == '早上' }">
+											
+											${eat.foodCalVO.name}
+											${eat.foodCalVO.cal}
+											${eat.foodCalVO.count}
+											${eat.foodCalVO.weight}
+											${eat.count}<br>	
+									</c:if>
+									</c:forEach>
+								</div>
+							
+ 							<div style="border: 2px solid orange;width: 199.7px;height: 100%;float: left;">
+ 							中午<br>
+ 							<c:forEach var="eat" items="${vo.eatVo}">
+ 							<c:if test="${eat.time =='中午'}">
+ 							${eat.foodCalVO.name}
+ 							${eat.foodCalVO.cal}
+ 							${eat.foodCalVO.count}
+ 							${eat.foodCalVO.weight}
+ 							${eat.count}<br>
+ 							</c:if>
+ 							</c:forEach>
+ 							</div>
+ 							<div style="border: 2px solid orange;width: 199.7px;height: 100%;float: left;">
+ 							晚上<br>
+ 							<c:forEach var="eat" items="${vo.eatVo}">
+ 							<c:if test="${eat.time=='晚上'}">
+ 							${eat.foodCalVO.name}
+ 							${eat.foodCalVO.cal}
+ 							${eat.foodCalVO.count}
+ 							${eat.foodCalVO.weight}
+ 							${eat.count}<br>						
+ 							</c:if>
+ 							</c:forEach>
+ 							</div> 
+							<div style="border: 2px solid orange;width: 199.7px;height: 100%;float: left;">
+							活動<br>
+							<c:forEach var="exer" items="${vo.exerVo}">
+							${exer.exerciseCalVO.name}
+							${exer.exerciseCalVO.calHour}
+							${exer.count}<br>							
+							</c:forEach>
+							</div>
+							</div>
+							<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div>
+							<div>運動總熱量</div>
+							<div>詳讀內文</div>
+						<hr>
+						</div>
+					</div>
+					</c:forEach>
+					<div
+						style="width: 29%; float: right; border: 2px solid yellow; height: 100%;">
+						
+						<div style="width: 100%;"></div>
+						<div class="easyui-calendar" style="width: 335px; height: 360px;"></div>
+					</div>
+
+					<div class="tab-content" style="height: 100%; width: 100%;">
 						<table border='1'>
 							<tr>
 								<th width='70'>會員編號</th>
@@ -218,7 +300,6 @@
 										</c:when>
 									</c:choose>
 
-
 									<td>${vo.title}</td>
 									<td>${vo.content}</td>
 									<td>${vo.share}</td>
@@ -258,20 +339,28 @@
 							<!-- left -->
 							<div
 								style="width: 40%; float: left; border: 2px solid red; height: 100%;">
-								日期：<input type="text" id="date">
-								<div style="height: 500px;">
-									<div class="accordion">
-										<h3>瘦身指標</h3>
+
+
+								<!--     								<input class="easyui-datebox" ></input> -->
+
+								<!-- 時間!!! -->
+								日期：     <input class="easyui-datebox" name="date"></input>
+								<div
+									style="height: 500px; cursor: pointer; display: block; font-size: 100%;">
+									<div class="accordion" style="border: 1px solid #DDDDDD;">
+										<h3
+											style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3>
 										<div style="height: 100%">
-											身高<input type="text" name="height" value="">${errorMessage.heightError}<br>
-											體重<input type="text" name="weight" value="">${errorMessage.weightError}<br>
-											腰圍<input type="text" name="waistline" value="">${errorMessage.waistlineError}<br>
+											身高<input type="text" name="height" value="${param.height}">${errorMessage.heightError}<br>
+											體重<input type="text" name="weight" value="${param.weight}">${errorMessage.weightError}<br>
+											腰圍<input type="text" name="waistline" value="${param.waistline}">${errorMessage.waistlineError}<br>
 											<div>BMI</div>
 											<div>建議</div>
 										</div>
 									</div>
-									<div class="accordion">
-										<h3>熱量計算</h3>
+									<div class="accordion" style="border: 1px solid #DDDDDD;">
+										<h3 style="background-color: #FFDD55"
+											style="border: 1px solid #DDDDDD;">熱量計算</h3>
 										<div>
 											<div>
 												早餐<br> 午餐<br> 晚餐<br> 飲食總熱量<br> 運動總熱量<br>
@@ -287,23 +376,31 @@
 							<div
 								style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
 								<div style="height: 500px;">
-									<div class="accordion" style="height: 100%">
-										<h3>瘦身日誌</h3>
-										<div style="height: 500px">
-											日誌標題<input type="text" name="title" value=""><br>
-											日誌內容<textarea class="ckeditor" name="content"></textarea>
+									<div class="accordion"
+										style="overflow: auto; height: 500px; border: 1px solid #DDDDDD;">
+										<h3
+											style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身日誌</h3>
+										<div>
+											日誌標題<input type="text" name="title" value="${param.title}"><br>
+											日誌內容
+											<textarea class="ckeditor" name="content">${param.content}</textarea>
 										</div>
 									</div>
 								</div>
 							</div>
-							<input type="submit" value="SAVE">
-							<button>
-								<a href="#">back</a>
-							</button>
+							<div>
+								<input type="submit" value="SAVE"
+									style="width: 110px; height: 45px; margin: 10px">
+								<button style="width: 110px; height: 45px;">
+									<a href="#">back</a>
+								</button>
+							</div>
 						</form>
 					</div>
 				</div>
 				<div id="t-3">
+					<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				
 					<table border='2' style="float: left;">
 						<tr>
 							<th width='130'>日期</th>
@@ -441,21 +538,22 @@
 
 
 	<script src="ckeditor/ckeditor.js"></script>
-	
-	
+
+
 	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/modules/exporting.js"></script>
+
 	<script src="scripts/bootstrap/js/bootstrap.min.js"
 		type="text/javascript"></script>
 	<script src="scripts/default.js" type="text/javascript"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 	<script src="scripts/carousel/jquery.carouFredSel-6.2.0-packed.js"
 		type="text/javascript"></script>
 	<script src="scripts/camera/scripts/camera.min.js"
 		type="text/javascript"></script>
 	<script src="scripts/easing/jquery.easing.1.3.js"
 		type="text/javascript"></script>
-
 
 	<script>
 		(function($) {
@@ -465,12 +563,63 @@
 			$(function() {
 				$(".t").tabs();
 			});
+			
+			//日期
+			$(function() {
+				$("#date").datepicker();
+			});
+			
+			
+			
+			//圖表
+			 $('#container').highcharts({
+			        title: {
+			            text: 'Monthly Average Temperature',
+			            x: -20 //center
+			        },
+			        subtitle: {
+			            text: 'Source: WorldClimate.com',
+			            x: -20
+			        },
+			        xAxis: {
+			            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+			                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+			        },
+			        yAxis: {
+			            title: {
+			                text: 'Temperature (°C)'
+			            },
+			            plotLines: [{
+			                value: 0,
+			                width: 1,
+			                color: '#808080'
+			            }]
+			        },
+			        tooltip: {
+			            valueSuffix: '°C'
+			        },
+			        legend: {
+			            layout: 'vertical',
+			            align: 'right',
+			            verticalAlign: 'middle',
+			            borderWidth: 0
+			        },
+			        series: [{
+			            name: 'Tokyo',
+			            data: [7.0, 80, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+			        }, {
+			            name: 'New York',
+			            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+			        }, {
+			            name: 'Berlin',
+			            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+			        }, {
+			            name: 'London',
+			            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+			        }]
+			    });
 		})(jQuery);
 
-		//日期
-		$(function() {
-			$("#date").datepicker();
-		});
 	</script>
 
 
