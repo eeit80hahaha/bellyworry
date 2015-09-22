@@ -62,7 +62,9 @@ $(function() {
 //登入與密碼錯誤訊息End
 
 </script>
+<jsp:include page="/page/header.jsp"/>
 <body>
+<%-- <jsp:include page="/page/header.jsp"/> --%>
 	<!--==================================== -->
 	<div title="登入" >
 		<form
