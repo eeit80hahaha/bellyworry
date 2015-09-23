@@ -4,6 +4,8 @@ import fun.model.HealthViewVO;
 import hibernate.util.HibernateUtil;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -30,7 +32,39 @@ public class ActivityDAOHbm implements ActivityDAO {
 		}
 		return vo;
 	}
-
+	
+	@Override
+	public List<java.sql.Timestamp> sawendtime() {
+	List<java.sql.Timestamp> list = null;
+	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("select endTime from ActivityVO");
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+			throw ex;
+			}
+		return list;
+	}
+	
+	@Override
+	public List<String> sawaddress() {
+	List<String> list = null;
+	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("select address from ActivityVO");
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+			throw ex;
+			}
+		return list;
+	}
+	
 	@Override
 	public List<ActivityVO> getAll() {
 		List<ActivityVO> list = null;
@@ -46,6 +80,14 @@ public class ActivityDAOHbm implements ActivityDAO {
 		}
 		return list;
 	}
+	
+	public String getDateTime(){
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date = new Date();
+		String strDate = sdFormat.format(date);
+//		System.out.println(strDate);
+		return strDate;
+		}
 
 	@Override
 	public int insert(ActivityVO vo) {
@@ -64,7 +106,7 @@ public class ActivityDAOHbm implements ActivityDAO {
 	}
 
 	private static final String UPDATE = "update ActivityVO set"
-			+ " name=?, content=?, startTime=?, endTime=?, address=?, picture=?  where no=?";
+			+ " name=?, content=?, startTime=?, endTime=?, address=?, picture=?, url=?, boss=?  where no=?";
 	@Override
 	public int update(ActivityVO vo) {
 		int result = 0;
@@ -78,7 +120,9 @@ public class ActivityDAOHbm implements ActivityDAO {
 			query.setParameter(3, vo.getEndTime());
 			query.setParameter(4, vo.getAddress());
 			query.setParameter(5, vo.getPicture());
-			query.setParameter(6, vo.getNo());
+			query.setParameter(6, vo.getUrl());
+			query.setParameter(7, vo.getBoss());
+			query.setParameter(8, vo.getNo());
 			result = query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -106,4 +150,22 @@ public class ActivityDAOHbm implements ActivityDAO {
 		}
 		return result;
 	}
+	
+	
+	@Override
+	public List<ActivityVO> findBySname(String aa) {
+		List<ActivityVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("from ActivityVO s where s.address like'%"+aa+"%'");
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
 }
