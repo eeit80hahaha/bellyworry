@@ -9,7 +9,7 @@ public class ExamVO implements Serializable{
 	private String optA;
 	private String optB;
 	private String optC;
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if(obj!=null && (obj instanceof ExamVO)) {
@@ -61,4 +61,5 @@ public class ExamVO implements Serializable{
 	public void setOptC(String optC) {
 		this.optC = optC;
 	}
+
 }

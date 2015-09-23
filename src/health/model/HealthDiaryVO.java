@@ -17,6 +17,8 @@ public class HealthDiaryVO implements Serializable {
 	private List<ExerciseRecordVO> exerVo;
 	private int eatcalcount;
 	private int exercalcount;
+	private EatRecordVO eatRecordVO;
+	private ExerciseRecordVO exerciseRecordVO;
 
 	@Override
 	public boolean equals(Object obj) {
@@ -140,5 +142,22 @@ public class HealthDiaryVO implements Serializable {
 	public void setExercalcount(int exercalcount) {
 		this.exercalcount = exercalcount;
 	}
+	public EatRecordVO getEatRecordVO() {
+		return eatRecordVO;
+	}
 
+	public void setEatRecordVO(EatRecordVO eatRecordVO) {
+		this.eatRecordVO = eatRecordVO;
+	}
+
+	public ExerciseRecordVO getExerciseRecordVO() {
+		return exerciseRecordVO;
+	}
+
+	public void setExerciseRecordVO(ExerciseRecordVO exerciseRecordVO) {
+		this.exerciseRecordVO = exerciseRecordVO;
+	}
+
+
+	
 }

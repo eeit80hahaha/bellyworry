@@ -63,7 +63,7 @@ public class DiaryIndexServlet extends HttpServlet {
 
 		// ****************************************************************************//
 		List<HealthDiaryVO> list = service.selecthealth(vo.getMemberNo());
-
+		
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/healthDiary.jsp");
 		rd.forward(request, response);

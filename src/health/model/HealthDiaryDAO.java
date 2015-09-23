@@ -30,5 +30,4 @@ public interface HealthDiaryDAO {
 
 	public abstract int repeatDiary(int memberNo, java.util.Date date);
 
-	
 }
