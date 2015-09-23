@@ -88,7 +88,7 @@
     </style>
 </head>
 <body id="pageBody">
-
+<c:set var="funcName" value="RANK" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -118,6 +118,7 @@
 
         <div id="footerInnerSeparator"></div>
 </div>
-
+<div id="footerOuterSeparator"></div>
+<jsp:include page="/page/footer.jsp"/>
 </body>
 </html>

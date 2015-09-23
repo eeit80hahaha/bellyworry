@@ -1,32 +1,31 @@
-package health.model;
+package school.model;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class HeroHealthDiaryVO implements Serializable  {
+
+
+//為了換頁所新增的PagesFoodCalVO 
+public class PageExamVO implements Serializable  {
 
 	int pageNo;
 	int pageSize;
 	int rowCount;
 	int totalPages;
-	List<HealthDiaryVO> herohealdiarypage;
+	List<ExamVO> exampage;
 	
-	public HeroHealthDiaryVO(){
-		
-	}
-	
-	public HeroHealthDiaryVO(int pageNo, int pageSize, int rowCount,
-			List<HealthDiaryVO> herohealdiarypage) {
+	public PageExamVO(int pageNo, int pageSize, int rowCount,
+			List<ExamVO> exampage) {
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
-		this.totalPages = ( rowCount / pageSize ) + 1;
-		this.herohealdiarypage = herohealdiarypage;
+		this.totalPages = ( rowCount / pageSize );
+		this.exampage = exampage;
 	}
 	
 	@Override
 	public String toString() {
-		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + herohealdiarypage + "}";
+		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + exampage + "}";
 	}
 
 	public int getPageNo() {
@@ -52,11 +51,18 @@ public class HeroHealthDiaryVO implements Serializable  {
 		return totalPages;
 	}
 
-	public List<HealthDiaryVO> getHerohealdiarypage() {
-		return herohealdiarypage;
+	public List<ExamVO> getExampage() {
+		return exampage;
 	}
-	public void setHerohealdiarypage(List<HealthDiaryVO> herohealdiarypage) {
-		this.herohealdiarypage = herohealdiarypage;
+
+	public void setExampage(List<ExamVO> exampage) {
+		this.exampage = exampage;
 	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+
 	
 }
