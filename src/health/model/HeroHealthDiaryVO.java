@@ -11,6 +11,10 @@ public class HeroHealthDiaryVO implements Serializable  {
 	int totalPages;
 	List<HealthDiaryVO> herohealdiarypage;
 	
+	public HeroHealthDiaryVO(){
+		
+	}
+	
 	public HeroHealthDiaryVO(int pageNo, int pageSize, int rowCount,
 			List<HealthDiaryVO> herohealdiarypage) {
 		this.pageNo = pageNo;
