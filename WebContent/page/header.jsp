@@ -5,25 +5,39 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Your Name Here - Simple</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta name="description" content="">      
+	<meta name="author" content="Html5TemplatesDreamweaver.com">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW"> <!-- Remove this Robots Meta Tag, to allow indexing of site -->
     <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />  
+	<link href="scripts/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />  
     <link href="scripts/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
-  	<link rel="stylesheet" href="scripts/fontawesome/css/font-awesome.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Allura" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome.min.css">
+    <link href="scripts/carousel/style.css" rel="stylesheet" type="text/css" />
+    <link href="scripts/camera/css/camera.css" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Allura" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet" type="text/css">
-    <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+	<link href="styles/custom.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="scripts/default.js" type="text/javascript"></script>
+	<script src="scripts/carousel/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
+	<script type="text/javascript">$('#list_photos').carouFredSel({ responsive: true, width: '100%', scroll: 2, items: {width: 320,visible: {min: 2, max: 6}} });</script>
+	<script src="scripts/camera/scripts/camera.min.js" type="text/javascript"></script>
+	<script src="scripts/easing/jquery.easing.1.3.js" type="text/javascript"></script>
+	<script type="text/javascript">function startCamera() {$('#camera_wrap').camera({ fx: 'scrollLeft', time: 2000, loader: 'none', playPause: false, navigation: true, height: '65%', pagination: true });}$(function(){startCamera()});</script>
+
  </head>
+ <body>
 <div id="decorative2">
     <div class="container">
 
@@ -107,4 +121,5 @@
 
     </div>
 </div>
+</body>
 </html>
