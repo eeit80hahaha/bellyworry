@@ -66,7 +66,12 @@
                                 </li>
 	                            
                                 <li class="dropdown"><a href="about.html">活動情報</a></li>
+                                <c:if test="${ funcName != 'RANK' }"> 
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/hero.controller">英雄事蹟</a></li>
+                                </c:if>
+                                <c:if test="${ funcName == 'RANK' }"> 
+                                <li class="dropdown active"><a href="#">英雄事蹟</a></li>
+                                </c:if>
                                 <li class="dropdown"><a href="about.html">小學堂</a></li>                                
                             </ul>
                         </div>
