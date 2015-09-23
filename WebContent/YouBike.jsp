@@ -438,7 +438,7 @@
 // 			console.log(result.routes[0].legs[1].distance.value);	//兩個腳踏車站點距離;
 			if(startStation!=null && endStation!=null){
 				document.getElementById("info").style.display="block";
-				document.getElementById('info').innerHTML = '<hr>約需騎乘自行車' + (result.routes[0].legs[1].distance.value)/17000*60 + '分鐘';
+				document.getElementById('info').innerHTML = '<hr>約需騎乘自行車' + Math.round((result.routes[0].legs[1].distance.value)/10000*60) + '分鐘';
 			}else{
 				document.getElementById("info").style.display="none";
 				document.getElementById('info').innerHTML = '<hr>';
@@ -473,6 +473,7 @@
 				map: map,
 				icon: createMarkerIcon(pointName[myRoute.legs.length], {bgColor: "brown"})
 			});
+			markers.push(marker);
 		}
 //	 	function attachInstructionText(marker, text) {
 //	 	    google.maps.event.addListener(marker, 'click', function() {
