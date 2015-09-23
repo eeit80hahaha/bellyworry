@@ -113,7 +113,10 @@ public class ExamsessionServlet extends HttpServlet {
 			return;
 		}else if(combol==10){
 			session.removeAttribute("combol");
-			response.sendRedirect(request.getContextPath()+"/gread.jsp");
+			request.setAttribute("a", session.getAttribute("gread"));
+			session.removeAttribute("gread");
+			request.getRequestDispatcher("/gread.jsp").forward(request, response);
+//			response.sendRedirect(request.getContextPath()+"/gread.jsp");
 			return;
 		}
 //		else{

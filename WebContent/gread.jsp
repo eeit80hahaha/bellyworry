@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	分數：${gread}
+	分數：${a}
 	<!-- 移除放在session物件內的屬性物件 -->
-	<c:remove var="gread" scope="session" />
+<%-- 	<c:remove var="gread" scope="session" /> --%>
 </body>
 </html>
