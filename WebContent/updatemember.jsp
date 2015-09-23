@@ -58,6 +58,7 @@ $(function() {
 </script>
 <title>Insert title here</title>
 </head>
+<jsp:include page="/page/header.jsp"/>
 <body>
 	<form
 		action="${pageContext.request.contextPath}/UpdateServlet.controller"

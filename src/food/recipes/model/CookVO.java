@@ -1,12 +1,22 @@
 package food.recipes.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CookVO implements Serializable{
 	private int cookNo;
 	private String wayNo;
 	private byte[] picture;	
+	private Set<FoodItemVO> fooditems = new HashSet<FoodItemVO>();
+	public Set<FoodItemVO> getFooditems() {
+		return fooditems;
+	}
+
+	public void setFooditems(Set<FoodItemVO> fooditems) {
+		this.fooditems = fooditems;
+	}
+
 	public CookVO(){
 		
 	}	

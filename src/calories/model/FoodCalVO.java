@@ -1,7 +1,11 @@
 package calories.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
+import java.util.HashSet;
+import java.util.Set;
+
+import food.combo.model.MealNameVO;
+import food.recipes.model.CookVO;
 
 public class FoodCalVO implements Serializable{
 	private int foodNo;
@@ -10,11 +14,32 @@ public class FoodCalVO implements Serializable{
 	private int cal;
 	private String count;
 	private int weight;
-	private int cookNo;
+	private Integer cookNo;
 	private byte[] picture;
 	//16~23行轉圖專用，所創的
 	private String picture1;
+	private Set<MealNameVO> mealnames = new HashSet<MealNameVO>();
+	private CookVO cooks;
+	private MenuVO menus;
 	
+	public MenuVO getMenus() {
+		return menus;
+	}
+	public void setMenus(MenuVO menus) {
+		this.menus = menus;
+	}
+	public Set<MealNameVO> getMealnames() {
+		return mealnames;
+	}
+	public void setMealnames(Set<MealNameVO> mealnames) {
+		this.mealnames = mealnames;
+	}
+	public CookVO getCooks() {
+		return cooks;
+	}
+	public void setCooks(CookVO cooks) {
+		this.cooks = cooks;
+	}
 	public String getPicture1() {
 		return picture1;
 	}
@@ -73,10 +98,10 @@ public class FoodCalVO implements Serializable{
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	public int getCookNo() {
+	public Integer getCookNo() {
 		return cookNo;
 	}
-	public void setCookNo(int cookNo) {
+	public void setCookNo(Integer cookNo) {
 		this.cookNo = cookNo;
 	}
 	public byte[] getPicture() {

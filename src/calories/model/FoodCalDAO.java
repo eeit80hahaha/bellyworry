@@ -21,6 +21,8 @@ public interface FoodCalDAO {
 	public abstract List<FoodCalVO> getDatePage(int pageNo, int pageSize);
 	
 	public abstract int getDateTotalCount();
+
+	public abstract List<FoodCalVO> selectByMenuNo(int menuNo);
 	
 	
 }

@@ -1,13 +1,22 @@
 package food.recipes.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FoodItemVO implements Serializable{
 	private int useFoodNo;
 	private String name;
 	private String type;
 	private String count;
+	private Set<CookVO> cooks = new HashSet<CookVO>();
 	
+	public Set<CookVO> getCooks() {
+		return cooks;
+	}
+	public void setCooks(Set<CookVO> cooks) {
+		this.cooks = cooks;
+	}
 	public FoodItemVO(){
 		
 	}

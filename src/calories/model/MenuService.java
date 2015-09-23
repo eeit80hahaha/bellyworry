@@ -1,18 +1,47 @@
 package calories.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import calories.model.dao.FoodCalDAOHbm;
-import food.recipes.model.CookVO;
+import calories.model.dao.MenuDaoHbm;
+import food.combo.model.MealNameDAO;
+import food.combo.model.MealNameVO;
+import food.combo.model.dao.MealNameDAOHbm;
 
 public class MenuService {
 private FoodCalDAO foodCalDao = new FoodCalDAOHbm();
-	
-	public List<FoodCalVO> base(List<FoodCalVO> vo){
-		List<FoodCalVO> bean = new ArrayList<FoodCalVO>();		
+private MealNameDAO mealNameDao = new MealNameDAOHbm();
+private MenuDAO menuDao = new MenuDaoHbm();
+
+	public List<MenuVO>selectMenu(MenuVO vo) {
+	List<MenuVO> result = null;
+	if(vo!=null && vo.getMenuNo()!=0) {
+		MenuVO temp = menuDao.selectByPrimaryKey(vo.getMenuNo());
+		if(temp!=null) {
+			result = new ArrayList<MenuVO>();
+			result.add(temp);	
+		}
+	} else {
+		result = menuDao.getAll(); 
+	}
+	return result;
+}
+
+	public Collection<FoodCalVO> base(Collection<FoodCalVO> vo){
+		Collection<FoodCalVO> bean = null;
+		if(vo instanceof Set){
+			bean = new HashSet<FoodCalVO>();	
+		}
+		else if(vo instanceof List){
+			bean = new ArrayList<FoodCalVO>();	
+		}
+			
 		 for(FoodCalVO element : vo) {
 			 FoodCalVO element1=new FoodCalVO();
 			 element1.setFoodNo(element.getFoodNo());
@@ -22,6 +51,9 @@ private FoodCalDAO foodCalDao = new FoodCalDAOHbm();
 			 element1.setCount(element.getCount());
 			 element1.setWeight(element.getWeight());
 			 element1.setCookNo(element.getCookNo());
+			 element1.setCooks(element.getCooks());
+			 element1.setMenus(element.getMenus());
+			 element1.setMealnames(element.getMealnames());
 			 element1.setPicture1(Base64.encodeBase64String(element.getPicture()));
 		     bean.add(element1);
 		 }
@@ -55,6 +87,13 @@ private FoodCalDAO foodCalDao = new FoodCalDAOHbm();
 		}
 		return result;
 	}
+	public List<FoodCalVO> selectbyMenuNo(int vo) {
+		List<FoodCalVO> result = null;
+		if(vo!=0) {
+			result = foodCalDao.selectByMenuNo(vo);
+		}
+		return result;
+	}
 	
 	public int update(FoodCalVO vo) {
 		int result = 0;
@@ -68,6 +107,20 @@ private FoodCalDAO foodCalDao = new FoodCalDAOHbm();
 		boolean result = false;
 		if(vo!=null) {
 			result = foodCalDao.delete(vo.getCookNo());
+		}
+		return result;
+	}
+	
+	public List<MealNameVO>selectMealName(MealNameVO vo) {
+		List<MealNameVO> result = null;
+		if(vo!=null && vo.getMealNo()!=0) {
+			MealNameVO temp = mealNameDao.selectByPrimaryKey(vo.getMealNo());
+			if(temp!=null) {
+				result = new ArrayList<MealNameVO>();
+				result.add(temp);	
+			}
+		} else {
+			result = mealNameDao.getAll(); 
 		}
 		return result;
 	}
