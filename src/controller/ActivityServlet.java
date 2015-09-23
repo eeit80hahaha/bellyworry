@@ -113,13 +113,8 @@ public class ActivityServlet extends HttpServlet {
 //				List<ActivityVO> ss=service.base(result);
 //				System.out.println(ss);
 //				request.setAttribute("menu", ss);
-				
-//				模糊收索
-////				List<ActivityVO> result = service.select(vo);	
-//				
-//				List<ActivityVO> ss=service.findBySname(temp6);
-//				request.setAttribute("aa",ss);
-				
+
+
 //              name測試			
 				List<ActivityVO> selectallvo=service.selcetall();
 				request.setAttribute("selectallvo",selectallvo);
@@ -148,9 +143,9 @@ public class ActivityServlet extends HttpServlet {
 				//System.out.println(listTemp1);
 //				request.setAttribute("threeaddress", listTemp1);
 				
-				//getDateTime部分
-//				String getDateTime=service.getDateTime();
-//				request.setAttribute("getDateTime", getDateTime);
+//				getDateTime部分
+				String getDateTime=service.getDateTime();
+				request.setAttribute("getDateTime", getDateTime);
 				
 				//findBySname
 				List<ActivityVO> findBySname=service.findBySname(temp2);				
@@ -164,6 +159,7 @@ public class ActivityServlet extends HttpServlet {
 					tempVo.setName(vo.getName());
 					tempVo.setEndTime(vo.getEndTime());
 					tempVo.setStartTime(vo.getEndTime());
+					tempVo.setPicture1(vo.getPicture1());
 					tempVo.setUrl(vo.getUrl());
 					tempVo.setBoss(vo.getBoss());
 					temp.add(tempVo);

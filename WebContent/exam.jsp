@@ -261,33 +261,33 @@ ${PageExamVO.exampage[0].content}
     <td width='76'>
         <c:if test="${PageExamVO.pageNo > 1}">
            <div id="pfirst">
-              <a href="<c:url value='/exam.controller?pageNo=1' />">第一頁</a>&nbsp;&nbsp;&nbsp;
+              <a href="<c:url value='/exam.controller?pageNo=1' />">第一題</a>&nbsp;&nbsp;&nbsp;
            </div>
         </c:if>
      </td>
      <td width='76'>
         <c:if test="${PageExamVO.pageNo > 1}">
            <div id="pprev">
-              <a href="<c:url value='/exam.controller?pageNo=${PageExamVO.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
+              <a href="<c:url value='/exam.controller?pageNo=${PageExamVO.pageNo-1}' />">上一題</a>&nbsp;&nbsp;&nbsp;
            </div>
         </c:if>  
      </td>
      <td width='76'>
             <c:if test="${PageExamVO.pageNo != PageExamVO.totalPages}">
                 <div id="pnext">
-                   <a href="<c:url value='/exam.controller?pageNo=${PageExamVO.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
+                   <a href="<c:url value='/exam.controller?pageNo=${PageExamVO.pageNo+1}' />">下一題</a>&nbsp;&nbsp;&nbsp;
                 </div>
             </c:if>
      </td>  
      <td width='76'>
             <c:if test="${PageExamVO.pageNo != PageExamVO.totalPages}">
                 <div id="plast">
-                    <a href="<c:url value='/exam.controller?pageNo=${PageExamVO.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
+                    <a href="<c:url value='/exam.controller?pageNo=${PageExamVO.totalPages}' />">最末題</a>&nbsp;&nbsp;&nbsp;
                 </div>
             </c:if>
      </td>
      <td width='176' align="center">
-           第${PageExamVO.pageNo}頁 / 共${PageExamVO.totalPages}頁
+           第${PageExamVO.pageNo}題 / 共${PageExamVO.totalPages}題
      </td>  
 </tr>
 </table>

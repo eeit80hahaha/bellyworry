@@ -23,18 +23,18 @@ public class testActivity {
 //		
 		//test selectByPrimaryKey for Exam
 //		System.out.println("test selectByPrimaryKey(int) ==========================");
-		ActivityDAO exam1 = new ActivityDAOHbm();
-		ActivityVO examvo1 = exam1.selectByPrimaryKey(100001);
-		System.out.println(examvo1);
+//		ActivityDAO exam1 = new ActivityDAOHbm();
+//		ActivityVO examvo1 = exam1.selectByPrimaryKey(100001);
+//		System.out.println(examvo1);
 
 //		//test getAll for Exam
 //		System.out.println("test getAll() =============================");
-//		ActivityDAO exam2 = new ActivityDAOHbm();
-//		List<ActivityVO> list1 = exam2.getAll();
-//
-//		for(ActivityVO examvo2:list1){
-//			System.out.println(examvo2);
-//		}
+		ActivityDAO exam2 = new ActivityDAOHbm();
+		List<ActivityVO> list1 = exam2.getAll();
+
+		for(ActivityVO examvo2:list1){
+			System.out.println(examvo2);
+		}
 //		
 		//test insert for Exam	
 //		System.out.println("test insert() ==================================");
@@ -94,7 +94,7 @@ public class testActivity {
 //		}	
 //		examvo4.setAddress("宜蘭運動公園");
 //		
-//		String inFile1 = "C:/Users/Student/Desktop/100002.jpg";
+//		String inFile1 = "C:/Users/sa/Desktop/2.jpg";
 //		Path path1=Paths.get(inFile1);									//Paths.get????
 //		byte[] data1 = null;
 //		try {
@@ -107,7 +107,7 @@ public class testActivity {
 //		examvo4.setUrl("www.yahoo.com.tw");
 //		examvo4.setBoss("Nike");
 //		
-//		examvo4.setNo(100001);
+//		examvo4.setNo(100012);
 //		exam4.update(examvo4);
 //		System.out.println(exam4.selectByPrimaryKey(examvo4.getNo()));
 		

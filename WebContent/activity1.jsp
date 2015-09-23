@@ -265,7 +265,7 @@
                 <div class="span8" id="divMain">
 
                     <h1>About Us</h1>
-
+${selectallvo[0]}
 <form action="${pageContext.request.contextPath}/activity.controller" method="get" >
 <select name="name">
 　<option value="台北">台北</option>
@@ -322,7 +322,7 @@
                 </div>
 				<!--Edit Sidebar Content Area here-->
                 <div class="span4 sidebar">
-
+<%-- ${findBySname[0].getPicture1 } --%>
                     <div class="sidebox">
                         <h3 class="sidebox-title">Sample Sidebar Content</h3>
 						<p>Lorem Ipsum is simply dummy text of the printing and &lt;a href='#'&gt;type setting industry&lt;/a&gt;.  Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>

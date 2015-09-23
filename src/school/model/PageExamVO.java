@@ -13,6 +13,9 @@ public class PageExamVO implements Serializable  {
 	int rowCount;
 	int totalPages;
 	List<ExamVO> exampage;
+	public  PageExamVO() {
+		
+	}
 	
 	public PageExamVO(int pageNo, int pageSize, int rowCount,
 			List<ExamVO> exampage) {
