@@ -303,5 +303,4 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		}
 		return result;
 	}
-
 }

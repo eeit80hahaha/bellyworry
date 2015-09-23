@@ -44,7 +44,6 @@ public class HealthDiaryService {
 	public List<HealthDiaryVO> dateSelect(int memberNo, java.util.Date date) {
 		List<HealthDiaryVO> list = null;
 		dao = new HealthDiaryDaoHbm();
-		diaryVo = new HealthDiaryVO();
 		if (memberNo != 0 && date != null) {
 			list = dao.dateSelect(memberNo, date);
 		}
@@ -53,7 +52,6 @@ public class HealthDiaryService {
 	public List<HealthDiaryVO> gethighChart(int memberNo ,int year ,int month) {
 		List<HealthDiaryVO> list = null;
 		dao = new HealthDiaryDaoHbm();
-		diaryVo = new HealthDiaryVO();
 		if(memberNo!=0 && year!=0 && month!=0){
 			list = dao.gethighChart(memberNo, year, month);
 		}

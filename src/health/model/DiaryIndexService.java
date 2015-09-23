@@ -21,15 +21,28 @@ public class DiaryIndexService {
 		eatDao = new EatRecordDAOHbm();
 	}
 
-	public HealthDiaryVO selectByPrimaryKey(int no) {
-		diaryVO = new HealthDiaryVO();
-		dao = new HealthDiaryDaoHbm();
-		diaryVO = dao.selectByPrimaryKey(no);
-
-		if (diaryVO != null) {
-			return diaryVO;
+	public HealthDiaryVO selectByPrimaryKey(HealthDiaryVO vo) {
+		HealthDiaryVO result = null;
+		List<ExerciseRecordVO> listexer = null;
+		List<EatRecordVO> listeat = null;
+		listexer = exerDao.selectByMemberNo(vo.getMemberNo());
+		listeat = eatDao.selectByMemberNo(vo.getMemberNo());		
+		result = dao.selectByPrimaryKey(vo.getNo());
+		
+		for (ExerciseRecordVO exerVo : listexer) {
+			if (vo.getMemberNo() == exerVo.getMemberNo()&& vo.getDate().toString().equals(exerVo.getDate().toString())) {
+				resultExer.add(exerVo);
+				vo.setExerVo(resultExer);
+			}
 		}
-		return null;
+		for (EatRecordVO eatVo : listeat) {
+			if (vo.getMemberNo() == eatVo.getMemberNo()&& vo.getDate().toString().equals(eatVo.getDate().toString())) {
+				resultEat.add(eatVo);
+				vo.setEatVo(resultEat);
+			}
+		}
+
+		return result;
 	}
 
 	public List<HealthDiaryVO> selecthealth(int memberNo) {
@@ -61,6 +74,7 @@ public class DiaryIndexService {
 		listexer.clear();
 		return list;
 	}
+	
 
 	
 };

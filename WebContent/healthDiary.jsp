@@ -4,10 +4,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<!-- head -->
 <title>Belly Worry - Enjoy Your Life</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -15,14 +20,14 @@
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <!-- Remove this Robots Meta Tag, to allow indexing of site -->
 
-<!--今日日誌時間用-->
+<!--今日日誌時間用 -->
 <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="scripts/bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <![endif] -->
 
 <!-- Icons -->
 <link href="scripts/icons/general/stylesheets/general_foundicons.css"
@@ -32,12 +37,12 @@
 <!--[if lt IE 8]>
         <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
-    <![endif]-->
+    <![endif] -->
 <link rel="stylesheet"
 	href="scripts/fontawesome/css/font-awesome.min.css">
 <!--[if IE 7]>
         <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
-    <![endif]-->
+    <![endif] -->
 
 <link href="scripts/carousel/style.css" rel="stylesheet" type="text/css" />
 <link href="scripts/camera/css/camera.css" rel="stylesheet"
@@ -56,8 +61,12 @@
 <!--     <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css"> -->
 <link href="http://fonts.googleapis.com/css?family=Calligraffitti"
 	rel="stylesheet" type="text/css">
-
 <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- head -->
+
+
+
 <link rel="stylesheet" href="/resources/demos/style.css">
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 <!-- 因為edit受侷限,且css一動則動全身,所以暫時關閉 -->
@@ -72,75 +81,15 @@
 <!-- 以上月曆用 -->
 
 
-
+<jsp:include page="/page/header.jsp"/>
 
 </head>
 <body id="pageBody">
 
-	<div id="decorative2">
-		<div class="container">
 
-			<div class="divPanel topArea notop nobottom">
-				<div class="row-fluid">
-					<div class="span12">
 
-						<div id="divLogo" class="pull-left">
-							<a href="index.html" id="divSiteTitle">Belly Worry</a><br /> <a
-								href="index.html" id="divTagLine">Enjoy Your Life</a>
-						</div>
 
-						<div id="divMenuRight" class="pull-right">
-							<div class="navbar">
-								<button type="button"
-									class="btn btn-navbar-highlight btn-large btn-primary"
-									data-toggle="collapse" data-target=".nav-collapse">
-									功能選單 <span class="icon-chevron-down icon-white"></span>
-								</button>
-								<div class="nav-collapse collapse">
-									<ul class="nav nav-pills ddmenu">
-										<!--
-                                <li class="dropdown active"><a href="index.html">回首頁</a></li>
-                            -->
-										<li class="dropdown"><a href="page.html"
-											class="dropdown-toggle">健康食譜<b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<li><a href="about.html">關於我</a></li>
-												<li><a href="gallery.html">相片流</a></li>
-												<li><a href="contact.html">與我聯絡(表單)</a></li>
-												<li><a href="page.html">元件庫</a></li>
-												<li><a href="../documentation/index.html">說明文件</a></li>
-												<li class="dropdown"><a href="full.html"
-													class="dropdown-toggle">分欄參考</a>
-													<ul class="dropdown-menu sub-menu">
-														<li><a href="full.html">單欄版型</a></li>
-														<li><a href="2-column.html">兩欄版型</a></li>
-														<li><a href="3-column.html">三欄版型</a></li>
-													</ul></li>
-											</ul></li>
-										<li class="dropdown"><a href="about.html">熱量計算</a></li>
-										<li class="dropdown"><a href="gallery.html">健康管理</a></li>
-										<li class="dropdown"><a href="page.html"
-											class="dropdown-toggle">運動趣<b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<li><a href="full.html">YouBike路線規劃</a></li>
-												<li><a href="fun/healthView.controller">健康景點查詢</a></li>
-											</ul></li>
-										<li class="dropdown"><a href="about.html">活動情報</a></li>
-										<li class="dropdown"><a href="gallery.html">英雄事蹟</a></li>
-										<li class="dropdown"><a href="about.html">小學堂</a></li>
-										<li class="dropdown"><a href="contact.html"
-											id="dropdown-my">會員登入</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
 
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
 
 	<div id="contentOuterSeparator"></div>
 
@@ -162,6 +111,10 @@
 					
 					
 					<c:forEach var="vo" items="${list}">
+					<c:url value="oneday.controller" var="path">
+					<c:param name="no" value="${vo.no}"></c:param>
+					
+					</c:url>
 					<div style="width: 70%; float: left; border: 2px solid red; height: 100%;">
 						<div>
 							<div style="border: 2px solid;">
@@ -220,7 +173,7 @@
 							</div>
 							<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div>
 							<div>運動總熱量</div>
-							<div>詳讀內文</div>
+							<div><a href="${path}">詳讀內文</a></div>
 						<hr>
 						</div>
 					</div>
