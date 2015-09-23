@@ -10,20 +10,20 @@ public class PagesFoodCalVO implements Serializable  {
 	int pageSize;
 	int rowCount;
 	int totalPages;
-	List<FoodCalVO> herohealdiarypage;
+	List<FoodCalVO> foodCalpage;
 	
 	public PagesFoodCalVO(int pageNo, int pageSize, int rowCount,
-			List<FoodCalVO> herohealdiarypage) {
+			List<FoodCalVO> foodCalpage) {
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
 		this.totalPages = ( rowCount / pageSize ) + 1;
-		this.herohealdiarypage = herohealdiarypage;
+		this.foodCalpage = foodCalpage;
 	}
 	
 	@Override
 	public String toString() {
-		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + herohealdiarypage + "}";
+		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + foodCalpage + "}";
 	}
 
 	public int getPageNo() {
@@ -49,11 +49,11 @@ public class PagesFoodCalVO implements Serializable  {
 		return totalPages;
 	}
 
-	public List<FoodCalVO> getHerohealdiarypage() {
-		return herohealdiarypage;
+	public List<FoodCalVO> getFoodCalpage() {
+		return foodCalpage;
 	}
-	public void setHerohealdiarypage(List<FoodCalVO> herohealdiarypage) {
-		this.herohealdiarypage = herohealdiarypage;
+	public void setFoodCalpage(List<FoodCalVO> foodCalpage) {
+		this.foodCalpage = foodCalpage;
 	}
 	
 }

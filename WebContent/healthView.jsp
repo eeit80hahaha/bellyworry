@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Your Name Here - Simple</title>
+    <title>健康景點查詢</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -88,7 +88,7 @@
     </style>
 </head>
 <body id="pageBody">
-
+<c:set var="funcName" value="FUN" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -98,16 +98,14 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">首頁</a> &nbsp;/&nbsp; <span>健康景點查詢</span>
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>健康景點查詢</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
                 <div class="span8" id="divMain">
 
                     <h1>健康景點查詢</h1>
-					<p>
-                                             
-							
+					<p>	
 <!--                     <img src="images/fingerfood-main.jpg" class="img-polaroid" style="margin:12px 0px;">  </p>     -->
                                                      
                     <div id="map"></div>
@@ -144,7 +142,7 @@
 				        <div class="row-fluid" id="info">
 				        <hr>
 				        		<div class="span12">
-				        			<p>Total Distance: <span id="total"></span></p>
+				        			<p>路線總距離: <span id="total"></span></p>
 				        		</div>
 						        <div id="directionsPanel" class="panel" style="float:right;height:350px"></div>
 						</div>		 
@@ -176,7 +174,7 @@
 <script src="scripts/jquery.min.js" type="text/javascript"></script> 
 <script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="scripts/default.js" type="text/javascript"></script>
-
+<script src="map/maker.js" type="text/javascript"></script>
 <script>
 	(function($) {
 		$("#viewClass").on('change', function() {
@@ -219,12 +217,10 @@
 			})
 		}
 	})(jQuery);
-</script>
 
-
-<script>
 	var start = null;
 	var end = null;
+	var endName = null;
 	var map = null;
 	var markers = [];
 	var directionsService;
@@ -247,7 +243,8 @@
 		directionsDisplay = new google.maps.DirectionsRenderer({
 			draggable: true,
 			map: map,
-			panel: document.getElementById('directionsPanel')
+			panel: document.getElementById('directionsPanel'),
+			suppressMarkers : true
 		});
 		
 		directionsDisplay.addListener('directions_changed', function() {	//挪動路線就重新計算距離
@@ -277,7 +274,7 @@
 			}
 		});
 		document.getElementById('healthview').addEventListener('change', function() {
-			var name = this.options[this.selectedIndex].text;
+			endName = this.options[this.selectedIndex].text;
 			var lat1 = this.value.split(",")[0];
 			var lng1 = this.value.split(",")[1];
 			end = new google.maps.LatLng(lat1, lng1);
@@ -295,7 +292,8 @@
 
 		// For each place, get the icon, name and location.
 		var bounds = new google.maps.LatLngBounds();
-		places.forEach(function(place) {
+		//places.forEach(function(place) {
+		var place = places[0];
 			//var icon = {
 			//	url : place.icon,
 			//	size : new google.maps.Size(71, 71),
@@ -319,7 +317,7 @@
 			} else {
 				bounds.extend(place.geometry.location);
 			}
-		});
+		//});
 		map.fitBounds(bounds);
 	}
 	var setEndMap = function(name,point) {
@@ -334,7 +332,8 @@
 		var marker = new google.maps.Marker({
 			position : location,
 			map : map,
-			animation : google.maps.Animation.BOUNCE
+// 			animation : google.maps.Animation.BOUNCE
+			animation : google.maps.Animation.DROP
 		});
 		markers.push(marker);
 	}
@@ -357,6 +356,8 @@
 		}, function(response, status) {
 			if (status === google.maps.DirectionsStatus.OK) {
 				display.setDirections(response);
+				clearMarker();
+				showSteps(response);
 			} else {
 				alert('Could not display directions due to: ' + status);
 			}
@@ -372,6 +373,23 @@
 		total = total / 1000;
 		document.getElementById('total').innerHTML = total + ' km';
 	}
+	
+	function showSteps(directionResult) {
+		var myRoute = directionResult.routes[0].legs[0];
+		var markerStrat = new google.maps.Marker({
+			position: myRoute.steps[0].start_point, 
+			map: map,
+			icon: createMarkerIcon("出發地", {bgColor: "brown"})
+		});
+		markers.push(markerStrat);
+		var markerEnd = new google.maps.Marker({
+			position: myRoute.steps[myRoute.steps.length-1].end_point, 
+			map: map,
+			icon: createMarkerIcon(endName , {bgColor: "brown"})
+		});
+		markers.push(markerEnd);
+	}
+	
 	
 </script>
 <script

@@ -112,13 +112,13 @@ public class FoodCalServlet extends HttpServlet{
 			//換頁所呼叫的Service
 			PagesFoodCalVO PagesFoodCalVO = service.getDatePage(pageNo, 3);	
 	
-			PagesFoodCalVO.setHerohealdiarypage(service.base(PagesFoodCalVO.getHerohealdiarypage()));
+			PagesFoodCalVO.setFoodCalpage(service.base(PagesFoodCalVO.getFoodCalpage()));
 			
 //			List<FoodCalVO> result = service.base(service.select(vo));
 			
 			
 //			request.setAttribute("foodNo", result);
-			request.setAttribute("PagesFoodCalVO", PagesFoodCalVO);
+			request.setAttribute("PagesFoodCalVO1", PagesFoodCalVO);
 			request.getRequestDispatcher(
 					"/ranking/cookCaling.jsp").forward(request, response);
 			

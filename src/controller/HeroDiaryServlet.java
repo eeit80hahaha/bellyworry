@@ -36,10 +36,13 @@ public class HeroDiaryServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 
 		//接收資料
 		String memberNoTemp = request.getParameter("memberno");
 		String dateTemp = request.getParameter("date");
+		String pageNoTemp = request.getParameter("pageNo");
+		
 		
 		//驗證資料
 		Map<String, String> errorMessage = new HashMap<String, String>();
@@ -53,6 +56,7 @@ public class HeroDiaryServlet extends HttpServlet {
 				errorMessage.put("memberNo", "memberNo must be an integer");
 			}
 		}
+		
 		java.util.Date date = new java.util.Date();
 		if(dateTemp!=null && dateTemp.length()!=0) {
 			date = GlobalService.convertDate(dateTemp);
@@ -60,12 +64,23 @@ public class HeroDiaryServlet extends HttpServlet {
 				errorMessage.put("date", "date must be an date");
 			}
 		}
+		
+		int pageNo = 0;
+		if(pageNoTemp!=null && pageNoTemp.length()!=0) {
+			pageNo = GlobalService.convertInt(pageNoTemp);
+			if(pageNo==-1000) {
+				errorMessage.put("pageNo", "pageNo must be an integer");
+			}
+		}
+		
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/healthForm.jsp");
 			rd.forward(request, response);
 			return;
 		}
+
+		
 		
 		//呼叫Model
 		HeroVO herovo = new HeroVO();
@@ -76,6 +91,7 @@ public class HeroDiaryServlet extends HttpServlet {
 		List<HealthDiaryVO> healthdiarylist = heroservice.Selectday(memberNo, date);
 		
 		request.setAttribute("memberNo", memberNo);		
+		request.setAttribute("pageNo", pageNo);		
 		if(healthdiarylist != null){
 			request.setAttribute("herovo", herovolist.get(0));
 			request.setAttribute("healthdiary", healthdiarylist.get(0));

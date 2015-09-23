@@ -4,14 +4,15 @@ import health.model.HealthDiaryVO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import health.model.EatRecordDAO;
 import health.model.EatRecordVO;
 import health.model.ExerciseRecordDAO;
 import health.model.ExerciseRecordVO;
+import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
 
 
@@ -21,8 +22,9 @@ public class test {
 	public static void main(String[] args) {
 		
 
+			
 		// *****HealthDiaryDaoHbm 測試檔!*****		
-		HealthDiaryDaoHbm result=new HealthDiaryDaoHbm();
+//		HealthDiaryDaoHbm hddao=new HealthDiaryDaoHbm();
 //		System.out.println(result.selectByPrimaryKey(1000001));
 //		System.out.println(result.selectByMemberNo(1000008));
 //		System.out.println(result.getAll());

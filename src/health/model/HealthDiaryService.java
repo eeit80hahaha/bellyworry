@@ -50,5 +50,13 @@ public class HealthDiaryService {
 		}
 		return list;
 	}
-	
+	public List<HealthDiaryVO> gethighChart(int memberNo ,int year ,int month) {
+		List<HealthDiaryVO> list = null;
+		dao = new HealthDiaryDaoHbm();
+		diaryVo = new HealthDiaryVO();
+		if(memberNo!=0 && year!=0 && month!=0){
+			list = dao.gethighChart(memberNo, year, month);
+		}
+		return list;
+	}
 };

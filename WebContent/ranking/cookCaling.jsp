@@ -44,7 +44,7 @@
 
 
 
-<c:forEach var="vo" items="${PagesFoodCalVO.herohealdiarypage}" varStatus="varStatus">
+<c:forEach var="vo" items="${PagesFoodCalVO1.foodCalpage}" varStatus="varStatus">
 <c:set var="isItem" value="${varStatus.count}"/>
 
 	<tr>
@@ -69,35 +69,35 @@
 <table border="0">
   <tr>
     <td width='76'>
-        <c:if test="${PagesFoodCalVO.pageNo > 1}">
+        <c:if test="${PagesFoodCalVO1.pageNo > 1}">
            <div id="pfirst">
               <a href="<c:url value='/ranking/foodCal.controller?pageNo=1' />">第一頁</a>&nbsp;&nbsp;&nbsp;
            </div>
         </c:if>
      </td>
      <td width='76'>
-        <c:if test="${PagesFoodCalVO.pageNo > 1}">
+        <c:if test="${PagesFoodCalVO1.pageNo > 1}">
            <div id="pprev">
-              <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
+              <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO1.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
            </div>
         </c:if>  
      </td>
      <td width='76'>
-            <c:if test="${PagesFoodCalVO.pageNo != PagesFoodCalVO.totalPages}">
+            <c:if test="${PagesFoodCalVO1.pageNo != PagesFoodCalVO1.totalPages}">
                 <div id="pnext">
-                   <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
+                   <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO1.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
                 </div>
             </c:if>
      </td>  
      <td width='76'>
-            <c:if test="${PagesFoodCalVO.pageNo != PagesFoodCalVO.totalPages}">
+            <c:if test="${PagesFoodCalVO1.pageNo != PagesFoodCalVO1.totalPages}">
                 <div id="plast">
-                    <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
+                    <a href="<c:url value='/ranking/foodCal.controller?pageNo=${PagesFoodCalVO1.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
                 </div>
             </c:if>
      </td>
      <td width='176' align="center">
-           第${PagesFoodCalVO.pageNo}頁 / 共${PagesFoodCalVO.totalPages}頁
+           第${PagesFoodCalVO1.pageNo}頁 / 共${PagesFoodCalVO1.totalPages}頁
      </td>  
 </tr>
 </table>
@@ -105,9 +105,11 @@
 <select id="time">
 	<option value="1">早餐 </option>
 	<option value="2">中餐 </option>
-	<option value="3">晚餐 </option>
+	<option value="3">晚餐 </option>	
 </select>
+<p>日期: <input type="text" id="datepicker"></p>
 
+ 
 <!--       <div><ul> -->
 <!--                 <li><a href="#textArea11" data-toggle="tab">早餐</a></li> -->
 <!--                 <li><a href="#textArea12" data-toggle="tab">中餐</a></li> -->
@@ -121,14 +123,15 @@
 		<form ><textarea class="for2" cols=40 rows=4  id="textArea12" ></textarea></form><br>
 		<H3 class="textArea4"></H3>
 		<form ><textarea class="for3" cols=40 rows=4  id="textArea13" ></textarea></form><br>
-		<H3 class="textArea5"></H3>
-		<form ><textarea class="for4" cols=40 rows=4  id="textArea14" ></textarea></form><br>
-		<h1 id="Totalcals"></h1>
+<!-- 		<H3 class="textArea5"></H3> -->
+<!-- 		<form ><textarea class="for4" cols=40 rows=4  id="textArea14" ></textarea></form><br> -->
+		<input type="submit" name="write" value="保存紀錄">
+		<h1 id="Totalcals"></h1>	
 		</div>		
 			
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
+
  var list = new Array();
 
  var cals = 0;
@@ -199,11 +202,25 @@
  	})
  
   })
-
   
-  
- 
- 
 </script>
 </body>
+
+<head>
+					<!-- 以下是時間 -->
+  <meta >
+  <title>jQuery UI Datepicker - Show week of the year</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      showWeek: true,
+      firstDay: 1
+    });
+  });
+  </script>
+</head>
 </html>
