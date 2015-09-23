@@ -108,6 +108,7 @@ public class MemberService {
 		   System.out.println("寄送email結束.");
 
 		  } catch (MessagingException e) {
+			  System.out.println("Exception====================");
 		   throw new RuntimeException(e);
 		  }
 	}

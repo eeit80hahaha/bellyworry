@@ -184,4 +184,23 @@ private static final String GETDATEPAGE = "from FoodCalVO";
 		return result;
 	}
 
+	private static final String selectByMenuNo = "from FoodCalVO where menuNo=?";
+	@Override
+	public List<FoodCalVO> selectByMenuNo (int menuNo) {
+		List<FoodCalVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {			
+			session.beginTransaction();
+			Query query = session.createQuery(selectByMenuNo);
+			query.setParameter(0, menuNo);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}
+		return list;
+
+	}
+	
+
 }

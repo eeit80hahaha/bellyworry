@@ -17,7 +17,33 @@
 		<property name="cookNo" column="cookNo" />
 		<property name="picture" column="picture" />
 
-
+		<set name="mealnames" 
+             table="meal_detail" 
+             cascade="save-update"
+             lazy="false" 
+             inverse="true"> 
+ 			
+            <key column="foodNo"/> 
+            <many-to-many class="food.combo.model.MealNameVO" column="mealNo"/> 
+        </set>        
+        	<many-to-one name="cooks" 
+                     column="cookNo" 
+                     class="food.recipes.model.CookVO"
+                     cascade="all"
+                     outer-join="true"
+                     unique="true"
+                     insert="false"
+                     lazy="false"
+                     update="false"/>
+             <many-to-one name="menus" 
+                     column="menuNo" 
+                     class="calories.model.MenuVO"
+                     cascade="all"
+                     outer-join="true"
+                     unique="true"
+                     lazy="false"
+                     insert="false"
+                     update="false"/>
 		<!-- <set name="emps" table="emp2" lazy="false" cascade="all" inverse="true" 
 			order-by="empno asc"> -->
 		<!-- <key> -->

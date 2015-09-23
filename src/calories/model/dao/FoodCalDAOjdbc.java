@@ -378,5 +378,7 @@ public class FoodCalDAOjdbc implements FoodCalDAO {
 	//
 	// return result;
 	// }
-
+	public List<FoodCalVO> selectByMenuNo(int menuNo) {
+		return null;
+	}
 }

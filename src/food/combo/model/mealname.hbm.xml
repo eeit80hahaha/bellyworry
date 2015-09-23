@@ -11,7 +11,15 @@
 
 		<property name="name" column="name" />
 
-
+		<set name="foodcals" 
+             table="meal_detail" 
+             cascade="save-update"
+             lazy="false" 
+             inverse="true"> 
+ 			
+            <key column="mealNo"/> 
+            <many-to-many class="calories.model.FoodCalVO" column="foodNo"/> 
+        </set>
 <!-- 		<set name="emps" table="emp2" lazy="false" cascade="all"  inverse="true"  order-by="empno asc">			 -->
 <!-- 			<key> -->
 <!-- 				<column name="deptno" /> -->

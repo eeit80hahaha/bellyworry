@@ -13,6 +13,15 @@
         <property name="type" column="type" />
         <property name="count" column="count" />
         
+        <set name="cooks" 
+             table="food_list" 
+             cascade="save-update"
+             lazy="false" 
+             inverse="true"> 
+ 			
+            <key column="useFoodNo"/> 
+            <many-to-many class="food.recipes.model.CookVO" column="cookNo"/> 
+        </set>
 <!--         <set name="food_lists" table="food_list" lazy="false"  -->
 <!--         						cascade="all" inverse="true" order-by="useFoodNo asc"> -->
 <!--         <key><column name="useFoodNo"/></key> -->

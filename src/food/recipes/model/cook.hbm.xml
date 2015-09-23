@@ -12,6 +12,17 @@
         <property name="wayNo" column="wayNo" />
         <property name="picture" column="picture" />
         
+         <set name="fooditems" 
+             table="food_list" 
+             cascade="save-update"
+             lazy="false" 
+             inverse="true"
+             > 
+ 			
+            <key column="cookNo"/> 
+            <many-to-many class="food.recipes.model.FoodItemVO" column="useFoodNo" order-by="type asc"/> 
+        </set>
+        
 <!--         <set name="food_lists" table="food_list" lazy="false"  -->
 <!--         						cascade="all" inverse="true" order-by="cookNo asc"> -->
 <!-- 	        <key><column name="cookno"/></key> -->
