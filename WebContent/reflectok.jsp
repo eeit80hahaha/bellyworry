@@ -120,5 +120,9 @@
 </div>
 <div id="footerOuterSeparator"></div>
 <jsp:include page="/page/footer.jsp"/>
+
+<script src="scripts/jquery.min.js" type="text/javascript"></script>
+<script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="scripts/default.js" type="text/javascript"></script>
 </body>
 </html>

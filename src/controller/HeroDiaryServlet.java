@@ -88,7 +88,7 @@ public class HeroDiaryServlet extends HttpServlet {
 		
 		//根據Model執行結果導向View
 	    List<HeroVO> herovolist = heroservice.select(herovo);
-		List<HealthDiaryVO> healthdiarylist = heroservice.Selectday(memberNo, date);
+		List<HealthDiaryVO> healthdiarylist = heroservice.selectday(memberNo, date);
 		
 		request.setAttribute("memberNo", memberNo);		
 		request.setAttribute("pageNo", pageNo);		

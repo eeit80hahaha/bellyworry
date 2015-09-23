@@ -238,6 +238,12 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 	}
 
 	@Override
+	public List<HealthDiaryVO> selectMemberNo(int memberNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
 			int memberNo ,int year ,int month){
 		return null;

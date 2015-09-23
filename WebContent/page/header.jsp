@@ -58,7 +58,7 @@
                                 <c:if test="${ funcName == 'FUN' }"> 
 					            <li class="dropdown active" >
 					            </c:if>
-                                    <a href="#" class="dropdown-toggle">運動趣<b class="caret"></b></a>
+                                    <a href="" class="dropdown-toggle">運動趣<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="${pageContext.request.contextPath}/YouBike.jsp">YouBike路線規劃</a></li>
                                         <li><a href="${pageContext.request.contextPath}/healthView.jsp">健康景點查詢</a></li>
@@ -70,7 +70,7 @@
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/hero.controller">英雄事蹟</a></li>
                                 </c:if>
                                 <c:if test="${ funcName == 'RANK' }"> 
-                                <li class="dropdown active"><a href="#">英雄事蹟</a></li>
+                                <li class="dropdown active"><a href="">英雄事蹟</a></li>
                                 </c:if>
                                 <li class="dropdown"><a href="about.html">小學堂</a></li>                                
                             </ul>
