@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.jsp">BellyWorry 管理界面</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/backend/index.jsp">BellyWorry 管理界面</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
