@@ -120,14 +120,14 @@
 						</div>
 						<div class="row-fluid" id="startDiv">
 							<p class="span12">選擇出發地周邊站點
-								<select class="span12" multiple="multiple" id="startSelect">
+								<select class="span12" id="startSelect" size=5>
 									
 								</select>
 							</p>
 						</div>
 						<div class="row-fluid" id="endDiv">
 							<p class="span12">選擇目的地周邊站點
-								<select class="span12" multiple="multiple" id="endSelect">
+								<select class="span12" id="endSelect" size=5>
 									
 								</select>
 							</p>

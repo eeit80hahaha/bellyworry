@@ -41,7 +41,6 @@
 <script type="text/javascript">function startCamera() {$('#camera_wrap').camera({ fx: 'scrollLeft', time: 2000, loader: 'none', playPause: false, navigation: true, height: '65%', pagination: true });}$(function(){startCamera()});</script>
 
 <title>會員登入</title>
-<jsp:include page="/page/header.jsp"/>
 </head>
 <script type="text/javascript">
 //忘記密碼Start
@@ -85,34 +84,40 @@ $(function() {
 </script>
 
 <body>
-
-<%-- <jsp:include page="/page/header.jsp"/> --%>
+<jsp:include page="/page/header.jsp"/>
+<div id="contentOuterSeparator"></div>
+<div class="container">
+	<div class="row-fluid">
+	<div class="span4"></div>
 	<!--==================================== -->
-	<div title="登入" >
+	<div title="登入" class="well span4">
 		<form
 			action="${pageContext.request.contextPath}/LoginServlet.controller"
 			method="post">
-			<div>
-				<label><span style="color: red">*</span>帳號:</label><input
+			<div class="row-fluid">
+				<h3>會員登入</h3>
+				<br>
+			</div>
+			<div class="row-fluid">
+				<label class="span3"><span style="color: red">*</span>帳號:</label><input class="span9"
 					type="text" name="loginaccount" size="25" required="" value="${param.loginaccount}"/>
 				<dir>${error.username1}</dir>
 			</div>
-			<div>
-				<label><span style="color: red">*</span>密碼:</label><input
+			<div class="row-fluid">
+				<label class="span3"><span style="color: red">*</span>密碼:</label><input class="span9"
 					type="password" name="loginpwd" size="25" required=""
 					maxlength="20" />
 				<dir>${error.password1}</dir>	
 			</div>
 			<br>
-			<div id="submit">
-				<input type="submit" value="送出" /> <input type="reset" value="清除" />
-				<button id="opener3">忘記密碼</button> <a href="${pageContext.request.contextPath}/index.jsp">回首頁</a>
+			<div id="submit" class="row-fluid">
+				<input type="submit" value="送出" class="btn span3"/> <input type="reset" value="清除" class="btn span3"/>
+				<button id="opener3" class="btn">忘記密碼</button>　<a href="${pageContext.request.contextPath}/index.jsp">回首頁</a>
 			</div>
 		</form>
 	</div>
 	<div id="dialog3" title="忘記密碼" style="display: none;">
-		<form
-			action="${pageContext.request.contextPath}/ForgetpwsServlet.controller"
+		<form　action="${pageContext.request.contextPath}/ForgetpwsServlet.controller"
 			method="post">
 			<div>
 				<label><span style="color: red">*</span>帳號:</label><input
@@ -143,6 +148,11 @@ $(function() {
 	<!-- =========停權========== -->
 	<p>${error.stop}</p>
 	</div>
+	
+	</div>
+	<div class="span4"></div>
+</div>
+<div id="footerOuterSeparator"></div>
 <jsp:include page="/page/footer.jsp"/>
 </body>
 </html>

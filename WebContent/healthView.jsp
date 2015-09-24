@@ -132,7 +132,7 @@
 						</div>
 						<div class="row-fluid">
 							<p class="span12">景點選擇
-								<select class="span12" multiple="multiple" id="healthview">
+								<select class="span12" id="healthview" size=5>
 <!-- 								  <option>土城運動中心</option> -->
 <!-- 								  <option>板橋運動中心</option> -->
 <!-- 								  <option>樹林活動中心</option> -->
