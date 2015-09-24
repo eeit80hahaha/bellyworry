@@ -272,6 +272,7 @@
 　<option value="台中">台中</option>
 　<option value="高雄">高雄</option>
 </select>
+<input type="hidden" name="pageNo" value="1" />
 <input type="submit" value="送出" >
 </form>
 

@@ -47,8 +47,8 @@ public class ActivityServlet extends HttpServlet {
 //				String temp8 = request.getParameter("url");
 //				String temp9 = request.getParameter("boss");
 //				String Cookion = request.getParameter("Cookion");
-//				String pageNoTemp = request.getParameter("pageNo");
-//				System.out.print("PageNo"+":"+pageNoTemp);
+				String pageNoTemp = request.getParameter("pageNo");
+				System.out.print("PageNo"+":"+pageNoTemp);
 		
 		//驗證資料
 //				Map<String, String> errors = new HashMap<String, String>();
@@ -61,7 +61,7 @@ public class ActivityServlet extends HttpServlet {
 //						}
 //					}
 //				}
-//		//轉換資料
+		//轉換資料
 //				int no = 0;
 //				if(temp1!=null && temp1.length()!=0) {
 //					no = GlobalService.convertInt(temp1);
@@ -69,13 +69,13 @@ public class ActivityServlet extends HttpServlet {
 //						errors.put("no", "no must be an integer");
 //					}
 //				}
-//				int pageNo = 0;
-//				if(pageNoTemp!=null && pageNoTemp.length()!=0) {
-//					pageNo = GlobalService.convertInt(pageNoTemp);
+				int pageNo = 0;
+				if(pageNoTemp!=null && pageNoTemp.length()!=0) {
+					pageNo = GlobalService.convertInt(pageNoTemp);
 //					if(pageNo==-1000) {
 //						errors.put("pageNo", "pageNo must be an integer");
 //					}
-//				}
+				}
 //				
 //				java.util.Date startTime = null;
 //				if(temp4!=null && temp4.length()!=0) {
@@ -93,7 +93,7 @@ public class ActivityServlet extends HttpServlet {
 //					}
 //				}
 				
-				//呼叫model
+		//呼叫model
 //				ActivityVO vo = new ActivityVO();
 //				vo.setNo(no);
 //				vo.setName(temp2);
@@ -117,11 +117,11 @@ public class ActivityServlet extends HttpServlet {
 //				request.setAttribute("menu", ss);
 
 
-//              selectall
+//selectall
 				List<ActivityVO> selectallvo=service.selcetall();
 				
 		
-				//endtime部分
+//endtime部分
 //					List<java.sql.Timestamp> selectallvo1=service.sawendtime();						
 //					request.setAttribute("sawendtime", selectallvo1);
 //					String endttime = null;														//1
@@ -145,12 +145,12 @@ public class ActivityServlet extends HttpServlet {
 				//System.out.println(listTemp1);
 //				request.setAttribute("threeaddress", listTemp1);
 				
-//				getDateTime部分
+//getDateTime部分
 				String getDateTime=service.getDateTime();
 				
-//				page
-//				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 3);					
-//				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
+//page
+				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 3);					
+				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
 				
 //findBySname
 				List<ActivityVO> findBySname=service.findBySname(temp2);				

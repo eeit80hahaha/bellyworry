@@ -169,55 +169,55 @@ public class ActivityDAOHbm implements ActivityDAO {
 	}
 	
 	//page
-//private static final String GETDATEPAGE = "from ActivityVO";
-//	
-//	@Override
-//	public List<ActivityVO> getDatePage(int pageNo, int pageSize){
-//		
-//		List<ActivityVO> result = null;
-//		
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		try {
-//			session.beginTransaction();
-//			Query query = session.createQuery(GETDATEPAGE);
-//			
-//	        query.setFirstResult((pageNo - 1) * pageSize);  
-//	        query.setMaxResults(pageSize);  
-//			
-//			result = query.list();
-//			session.getTransaction().commit();
-//		} catch (RuntimeException ex) {
-//			session.getTransaction().rollback();
-//			throw ex;
-//		}
-//		return result;
-//	}
-//
-//	private static final String GETDATETOTALCOUNT = "select count(no) from ActivityVO";
-//	
-//	@Override
-//	public int getDateTotalCount() {
-//		int result=-1000;
-//		long sum=0;
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		try {
-//			session.beginTransaction();
-//			Query query = session.createQuery(GETDATETOTALCOUNT);
-//			
-//			
-//			List<Object> tmp = query.list();
-//		    if(tmp.get(0)!=null){
-//		    	sum = (long) tmp.get(0);
-//		    }
-//			result = (int) sum;
-//			
-//			session.getTransaction().commit();
-//		} catch (RuntimeException ex) {
-//			session.getTransaction().rollback();
-//			throw ex;
-//		}
-//		
-//		return result;
-//	}
+private static final String GETDATEPAGE = "from ActivityVO";
+	
+	@Override
+	public List<ActivityVO> getDatePage(int pageNo, int pageSize){
+		
+		List<ActivityVO> result = null;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETDATEPAGE);
+			
+	        query.setFirstResult((pageNo - 1) * pageSize);  
+	        query.setMaxResults(pageSize);  
+			
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String GETDATETOTALCOUNT = "select count(no) from ActivityVO";
+	
+	@Override
+	public int getDateTotalCount() {
+		int result=-1000;
+		long sum=0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETDATETOTALCOUNT);
+			
+			
+			List<Object> tmp = query.list();
+		    if(tmp.get(0)!=null){
+		    	sum = (long) tmp.get(0);
+		    }
+			result = (int) sum;
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return result;
+	}
 	
 }

@@ -182,13 +182,13 @@ public class ActivityService {
 	}
 	
 	//換頁所使用的
-//	public PagesActivityVO getDatePage(int pageNo, int pageSize){
-//		List<ActivityVO> list = activityDao.getDatePage(pageNo, pageSize);
-//					
-//		int rowCount = activityDao.getDateTotalCount();
-//		
-//		PagesActivityVO result = new PagesActivityVO(pageNo, pageSize, rowCount, list);
-//		
-//		return result;
-//	}
+	public PagesActivityVO getDatePage(int pageNo, int pageSize){
+		List<ActivityVO> list = activityDao.getDatePage(pageNo, pageSize);
+					
+		int rowCount = activityDao.getDateTotalCount();
+		
+		PagesActivityVO result = new PagesActivityVO(pageNo, pageSize, rowCount, list);
+		
+		return result;
+	}
 }
