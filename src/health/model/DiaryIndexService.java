@@ -1,5 +1,7 @@
 package health.model;
 
+import init.GlobalService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,23 +24,27 @@ public class DiaryIndexService {
 	}
 
 	public HealthDiaryVO selectByPrimaryKey(HealthDiaryVO vo) {
+		List<EatRecordVO> resultEat = new ArrayList<EatRecordVO>();
+		List<ExerciseRecordVO> resultExer = new ArrayList<ExerciseRecordVO>();
 		HealthDiaryVO result = null;
 		List<ExerciseRecordVO> listexer = null;
 		List<EatRecordVO> listeat = null;
+		
 		listexer = exerDao.selectByMemberNo(vo.getMemberNo());
 		listeat = eatDao.selectByMemberNo(vo.getMemberNo());		
 		result = dao.selectByPrimaryKey(vo.getNo());
 		
 		for (ExerciseRecordVO exerVo : listexer) {
-			if (vo.getMemberNo() == exerVo.getMemberNo()&& vo.getDate().toString().equals(exerVo.getDate().toString())) {
+			if (result.getMemberNo() == exerVo.getMemberNo() && result.getDate().equals(exerVo.getDate())) {
+				System.out.println(exerVo);
 				resultExer.add(exerVo);
-				vo.setExerVo(resultExer);
+				result.setExerVo(resultExer);
 			}
 		}
 		for (EatRecordVO eatVo : listeat) {
-			if (vo.getMemberNo() == eatVo.getMemberNo()&& vo.getDate().toString().equals(eatVo.getDate().toString())) {
+			if (result.getMemberNo() == eatVo.getMemberNo() && result.getDate().equals(eatVo.getDate())) {
 				resultEat.add(eatVo);
-				vo.setEatVo(resultEat);
+				result.setEatVo(resultEat);
 			}
 		}
 
@@ -56,22 +62,37 @@ public class DiaryIndexService {
 		listexer = exerDao.selectByMemberNo(memberNo);
 		listeat = eatDao.selectByMemberNo(memberNo);
 		
+//		list = dao.dateSelect(memberNo, GlobalService.convertDate("2015-09-20"));
+		
+//		for (HealthDiaryVO healthdiaryvo : list) {
+//			
+//			healthdiaryvo.setEatVo(eatDao.eatday(memberNo, GlobalService.convertDate("2015-09-20")));
+//			healthdiaryvo.setExerVo(exerDao.exerday(memberNo, GlobalService.convertDate("2015-09-20")));
+//
+//		}
+		
+		
+		
 		for (HealthDiaryVO vo : list) {
 			for (ExerciseRecordVO exerVo : listexer) {
-				if (vo.getMemberNo() == exerVo.getMemberNo()&& vo.getDate().toString().equals(exerVo.getDate().toString())) {
+				if (vo.getMemberNo() == exerVo.getMemberNo() && vo.getDate().equals(exerVo.getDate())) {
 					resultExer.add(exerVo);
-					vo.setExerVo(resultExer);
 				}
 			}
-			for (EatRecordVO eatVo : listeat) {
-				if (vo.getMemberNo() == eatVo.getMemberNo()&& vo.getDate().toString().equals(eatVo.getDate().toString())) {
-					resultEat.add(eatVo);
-					vo.setEatVo(resultEat);
-				}
-			}
+			vo.setExerVo(resultExer);
+			resultExer.clear();
+//			for (EatRecordVO eatVo : listeat) {
+//				if (vo.getMemberNo() == eatVo.getMemberNo()&& vo.getDate().equals(eatVo.getDate())) {
+//					
+//					vo.setEatVo(resultEat);
+//				}
+//			}	
 		}
-		listeat.clear();
-		listexer.clear();
+//		System.out.println(resultExer);
+//		System.out.println(resultEat);
+//		listeat.clear();
+//		listexer.clear();
+		System.out.println(list);
 		return list;
 	}
 	

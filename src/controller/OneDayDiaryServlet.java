@@ -47,21 +47,20 @@ public class OneDayDiaryServlet extends HttpServlet{
 			try {
 				noSelect = Integer.parseInt(no);
 			} catch (NumberFormatException e) {
-				response.sendRedirect("");
+//				response.sendRedirect("");    error-page
 			}
 		}
 		vo.setNo(noSelect);
 		vo.setMemberNo(memberNo);
 		System.out.println(vo);
 		HealthDiaryVO list = service.selectByPrimaryKey(vo);
+		
 		System.out.println(list);
 		request.setAttribute("list",list);
 		//response.sendRedirect(request.getContextPath()+"/onedayDiary.jsp");
 		RequestDispatcher rd = request.getRequestDispatcher("/onedayDiary.jsp");
 		rd.forward(request, response);
 		return;
-		
-		
 		
 
 	}

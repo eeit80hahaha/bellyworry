@@ -191,7 +191,7 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		return vo;
 	}
 
-	private static final String GETMEMBERNO = "from HealthDiaryVO where memberNo=?";
+	private static final String GETMEMBERNO = "from HealthDiaryVO where memberNo=? order by date desc";
 
 	@Override
 	public List<HealthDiaryVO> selectMemberNo(int memberNo) {
