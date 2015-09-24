@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import news.model.ActivityService;
 import news.model.ActivityVO;
+import news.model.PagesActivityVO;
 
 /**
  * Servlet implementation class ActivityServlet
@@ -43,10 +44,11 @@ public class ActivityServlet extends HttpServlet {
 //				String temp5 = request.getParameter("endTime");
 //				String temp6 = request.getParameter("address");
 //				String temp7 = request.getParameter("picture");
-				String temp8 = request.getParameter("url");
-				String temp9 = request.getParameter("boss");
+//				String temp8 = request.getParameter("url");
+//				String temp9 = request.getParameter("boss");
 //				String Cookion = request.getParameter("Cookion");
-				String pageNoTemp = request.getParameter("pageNo");
+//				String pageNoTemp = request.getParameter("pageNo");
+//				System.out.print("PageNo"+":"+pageNoTemp);
 		
 		//驗證資料
 //				Map<String, String> errors = new HashMap<String, String>();
@@ -67,13 +69,13 @@ public class ActivityServlet extends HttpServlet {
 //						errors.put("no", "no must be an integer");
 //					}
 //				}
-				int pageNo = 0;
-				if(pageNoTemp!=null && pageNoTemp.length()!=0) {
-					pageNo = GlobalService.convertInt(pageNoTemp);
+//				int pageNo = 0;
+//				if(pageNoTemp!=null && pageNoTemp.length()!=0) {
+//					pageNo = GlobalService.convertInt(pageNoTemp);
 //					if(pageNo==-1000) {
 //						errors.put("pageNo", "pageNo must be an integer");
 //					}
-				}
+//				}
 //				
 //				java.util.Date startTime = null;
 //				if(temp4!=null && temp4.length()!=0) {
@@ -146,8 +148,11 @@ public class ActivityServlet extends HttpServlet {
 //				getDateTime部分
 				String getDateTime=service.getDateTime();
 				
+//				page
+//				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 3);					
+//				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
 				
-				//findBySname
+//findBySname
 				List<ActivityVO> findBySname=service.findBySname(temp2);				
 				List<ActivityVO> temp = new ArrayList<ActivityVO>();
 				for(ActivityVO vo:findBySname){
@@ -173,6 +178,9 @@ public class ActivityServlet extends HttpServlet {
 				request.setAttribute("getDateTime", getDateTime);
 				//selectall部分   轉圖&40 content
 				request.setAttribute("selectallvo",selectallvo);
+				//page
+				
+				
 				RequestDispatcher rd = request.getRequestDispatcher("/activity1.jsp");
 				rd.forward(request, response);								
 	}

@@ -21,6 +21,11 @@ public interface ActivityDAO {
 
 	public abstract String getDateTime();
 	
+	//換頁所需要的getDatePage
+//	public abstract List<ActivityVO> getDatePage(int pageNo, int pageSize);
+//	
+//	public abstract int getDateTotalCount();
+	
 	
 	
 	

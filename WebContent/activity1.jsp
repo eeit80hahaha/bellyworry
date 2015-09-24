@@ -280,14 +280,14 @@
 <table class="gridview" cellspacing="0" cellpadding="4" align="Center" id="GridView1" style="color: Black; background-color: White; font-size: 12px; border-collapse: collapse;">
 	<tbody>
 		<tr style="color: White; background-color: Black; font-weight: bold;">
-			<th scope="col">Race Event</th>
+			<th scope="col">活動名稱</th>
 			<th scope="col">&nbsp;</th>
-			<th scope="col">Date</th>
-			<th scope="col">Location</th>
+			<th scope="col">活動日期</th>
+			<th scope="col">活動地點</th>
 			<th scope="col">&nbsp;</th>
 			<th scope="col">&nbsp;</th>
-			<th scope="col">Organizer</th>
-			<th scope="col">Deadline</th>
+			<th scope="col">主辦廠商</th>
+			<th scope="col">活動狀態</th>
 		</tr>
 <c:forEach var="activity" items="${findBySname}">
 	<tr class="splitline" align="left">
