@@ -2,6 +2,7 @@ package controller;
 
 import food.recipes.model.FoodItemVO;
 import init.GlobalService;
+import init.ListPage;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -42,19 +43,26 @@ public class MenuServelt extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String page=request.getParameter("pages");
+		int pageNo=GlobalService.convertInt(page);
+		
 		List<MenuVO> result1= service.selectMenu(null);
 		request.setAttribute("option", result1);
 		
 		String menuname = request.getParameter("menuNo");
 		
 		List<FoodCalVO> result=null;
-		if(menuname!=null && !"0".equals(menuname) ){
+		if(menuname!=null && !"0".equals(menuname) && !"".equals(menuname)){
 			result= service.selectbyMenuNo(GlobalService.convertInt(menuname));
 		}else{
 			result= service.select(null);
 		}
 		System.out.println("sss:"+result);
 		List<FoodCalVO> ss=(List<FoodCalVO>)service.base(result);
+		
+		ListPage<FoodCalVO> listPage = new ListPage<FoodCalVO>(ss,6);//每頁6筆
+		
+		ss = listPage.getPageList(pageNo);
 		
 		StringBuffer cooksDiv = new StringBuffer();
 		String tempType = "";
@@ -102,6 +110,8 @@ public class MenuServelt extends HttpServlet {
 		
 		request.setAttribute("menu", ss);
 		request.setAttribute("cooksDiv", cooksDiv);
+		request.setAttribute("pagecount", listPage.getPageNo());
+		request.setAttribute("listPage", listPage.getLastPage());
 		RequestDispatcher rd = request.getRequestDispatcher("/menuview.jsp");
 		rd.forward(request, response);		
 	}

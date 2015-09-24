@@ -13,6 +13,35 @@
 		<property name="breakfast" column="breakfast" />
 		<property name="lunch" column="lunch" />
 		<property name="dinner" column="dinner" />
+		
+		<many-to-one name="breakfastMealName" 
+                     column="breakfast" 
+                     class="food.combo.model.MealNameVO"
+                     cascade="all"
+                     outer-join="true"
+                     unique="true"
+                     lazy="false"
+                     insert="false"
+                     update="false"/>
+       <many-to-one name="lunchMealName" 
+                     column="lunch" 
+                     class="food.combo.model.MealNameVO"
+                     cascade="all"
+                     outer-join="true"
+                     unique="true"
+                     lazy="false"
+                     insert="false"
+                     update="false"/>
+                     
+        <many-to-one name="dinnerMealName" 
+                     column="dinner" 
+                     class="food.combo.model.MealNameVO"
+                     cascade="all"
+                     outer-join="true"
+                     unique="true"
+                     lazy="false"
+                     insert="false"
+                     update="false"/>
 
 		<!-- <set name="emps" table="emp2" lazy="false" cascade="all" inverse="true" 
 			order-by="empno asc"> -->

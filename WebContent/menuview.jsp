@@ -30,9 +30,8 @@
 			}
 		});
 	});
-	
-	
 </script>
+<jsp:include page="/page/header.jsp"/>
 </head>
 <body>
     <div style="position: relative; left:0; right:0; margin: 0 auto; width: 960px;">
@@ -83,7 +82,15 @@
 				</TABLE>
 			</div>
 		</c:forEach>
+		<input type="button" name="" value="第一頁" onclick="pagecount('1')" />
+		<input type="button" name="" value="上一頁" onclick="pagecount('${pagecount-1}')" />
+		<input type="button" name="" value="下一頁" onclick="pagecount('${pagecount+1}')" />
+		<input type="button" name="" value="最末頁" onclick="pagecount('${listPage}')" />
+		
+		<input type="hidden" id="pages" name="pages" value="1" />
 	</form>
+	<div>
+	</div>
 	</div>
 	${cooksDiv}<!-- 食譜 -->
 
@@ -108,5 +115,10 @@ function openCook(cookNo){
 	//alert($("#dialog").html());
 	$("#dialog").html($('#cook_'+cookNo).html());
 	$("#dialog").dialog("open");
+}
+
+function pagecount(pages){
+	$("#pages").val(pages);
+	$("#menuForm").submit();
 }
 </script>

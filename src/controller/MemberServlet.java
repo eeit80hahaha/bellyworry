@@ -124,6 +124,11 @@ public class MemberServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("user", bean);
+			Map<String, String> success = new HashMap<String, String>();
+			session.setAttribute("suc", success);
+
+			success.put("update", "<a href='" + request.getContextPath()+"/updatemember.jsp'>修改會員資料</a>");
+			success.put("out", "'<a href='"+request.getContextPath()+"/logout.controller'>登出</a>");
 			errors.put("open1","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("success", "新增會員成功");
 			request.getRequestDispatcher(

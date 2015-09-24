@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import calories.model.FoodCalVO;
 import calories.model.MenuService;
+import food.combo.model.DayMealVO;
 import food.combo.model.MealNameVO;
 
 
@@ -41,6 +42,7 @@ public class MealServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<MealNameVO> result= service.selectMealName(null);
+		List<DayMealVO> result1= service.selectDayMeal(null);
 		//System.out.println(result);
 //		List<FoodCalVO> ss=service.base(result);
 		for(MealNameVO vo:result){
@@ -50,11 +52,9 @@ public class MealServelt extends HttpServlet {
 			vo.setFoodcals((Set<FoodCalVO>)service.base(vo.getFoodcals()));
 			System.out.println(vo.getName());
 		}
-		
-		
-
 		request.setAttribute("menu", result);
-		
+		System.out.println(result1);
+		request.setAttribute("menu1", result1);
 		RequestDispatcher rd = request.getRequestDispatcher("/meal.jsp");
 		rd.forward(request, response);		
 	}

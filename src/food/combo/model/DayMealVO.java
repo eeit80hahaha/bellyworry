@@ -8,7 +8,34 @@ public class DayMealVO implements Serializable{
 	private int breakfast;
 	private int lunch;
 	private int dinner;
+	private MealNameVO breakfastMealName;
+	private MealNameVO lunchMealName;
+	private MealNameVO dinnerMealName;
 	
+	public MealNameVO getBreakfastMealName() {
+		return breakfastMealName;
+	}
+
+	public void setBreakfastMealName(MealNameVO breakfastMealName) {
+		this.breakfastMealName = breakfastMealName;
+	}
+
+	public MealNameVO getLunchMealName() {
+		return lunchMealName;
+	}
+
+	public void setLunchMealName(MealNameVO lunchMealName) {
+		this.lunchMealName = lunchMealName;
+	}
+
+	public MealNameVO getDinnerMealName() {
+		return dinnerMealName;
+	}
+
+	public void setDinnerMealName(MealNameVO dinnerMealName) {
+		this.dinnerMealName = dinnerMealName;
+	}
+
 	@Override
 	public String toString() {
 		return "{"+no+":"+name+":"+breakfast+":"+lunch+":"+dinner+"}";
