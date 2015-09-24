@@ -38,8 +38,14 @@ public class YouBikeService {
 		return result.toString();
 	}
 	public String getJsonDataFromFile() throws Exception{
-		File file = new File("C:/Java/apiAccess.json");
-		FileInputStream inputStream = new FileInputStream(file);
+		
+//		File file = new File("C:/Java/apiAccess.json");
+//		FileInputStream inputStream = new FileInputStream(file);
+		
+		URL url = new URL("http://localhost:8080/bellyworry/map/apiAccess.json");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		InputStream inputStream = conn.getInputStream();
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 		StringBuffer result = new StringBuffer(); 
 		String line = br.readLine();
@@ -55,9 +61,10 @@ public class YouBikeService {
 
 	public static void main(String[] args) throws Exception {
 		YouBikeService service = new YouBikeService();
-		service.setUrlString("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=ddb80380-f1b3-4f8e-8016-7ed9cba571d5");
-		
-		System.out.println(service.getJsonData());
+//		service.setUrlString("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=ddb80380-f1b3-4f8e-8016-7ed9cba571d5");
+//		
+//		System.out.println(service.getJsonData());
+		System.out.println(service.getJsonDataFromFile());
 		
 	}
 }
