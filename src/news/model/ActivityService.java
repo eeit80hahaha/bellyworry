@@ -116,15 +116,12 @@ public class ActivityService {
 		return result;
 	}
 	
-	public List<ActivityVO> selcetall() {
-		List<ActivityVO> result = null;
-		
-			List<ActivityVO> vo = activityDao.getAll();
-			if(vo!=null) {
-				result = new ArrayList<ActivityVO>();
-				result.addAll(vo);
-			}
-			return result;
+	public List<ActivityVO> selcetall() {	
+
+			List<ActivityVO> list = activityDao.getAll();
+			List<ActivityVO> list2 = new ArrayList<ActivityVO>();
+			list2 =this.base(list);
+			return list2;
 	}
 	
 	

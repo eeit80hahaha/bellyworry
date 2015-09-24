@@ -2,6 +2,7 @@ package ranking.model;
 
 import health.model.EatRecordDAO;
 import health.model.ExerciseRecordDAO;
+import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryVO;
 import health.model.HeroHealthDiaryVO;
 import health.model.dao.EatRecordDAOHbm;
@@ -21,7 +22,7 @@ public class HeroService {
 
 	private HeroDAO heroDao = new HeroDAOHbm();
 	private MemberDAO memberDao = new MemberDAOHbm();
-	private HealthDiaryDaoHbm healthdiarydao = new HealthDiaryDaoHbm();
+	private HealthDiaryDAO healthdiarydao = new HealthDiaryDaoHbm();
 	private EatRecordDAO eatDao = new EatRecordDAOHbm();
 	private ExerciseRecordDAO exerDao = new ExerciseRecordDAOHbm();
 	SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -87,7 +88,7 @@ public class HeroService {
 		return result;
 	}
 	
-	public List<HealthDiaryVO> Selectday(int memberNo, java.util.Date date) {
+	public List<HealthDiaryVO> selectday(int memberNo, java.util.Date date) {
 		List<HealthDiaryVO> result = null;
 
 		result = healthdiarydao.dateSelect(memberNo, date);
@@ -96,6 +97,21 @@ public class HeroService {
 			
 			healthdiaryvo.setEatVo(eatDao.eatday(memberNo, date));
 			healthdiaryvo.setExerVo(exerDao.exerday(memberNo, date));
+
+		}
+		
+		return result;
+	}
+	
+	public List<HealthDiaryVO> selectMemberNo(int memberNo) {
+		List<HealthDiaryVO> result = null;
+
+		result = healthdiarydao.selectMemberNo(memberNo);
+		
+		for (HealthDiaryVO healthdiaryvo : result) {
+			
+			healthdiaryvo.setEatVo(eatDao.eatday(memberNo ,healthdiaryvo.getDate()));
+			healthdiaryvo.setExerVo(exerDao.exerday(memberNo ,healthdiaryvo.getDate()));
 
 		}
 		

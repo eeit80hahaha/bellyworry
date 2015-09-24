@@ -64,7 +64,7 @@ public class ActivityServlet2 extends HttpServlet {
 //					}
 				}
 //				
-				System.out.println("test1:"+no);
+//				System.out.println("test1:"+no);
 //				java.util.Date startTime = null;
 //				if(temp4!=null && temp4.length()!=0) {
 //					startTime = GlobalService.convertDate(temp4);

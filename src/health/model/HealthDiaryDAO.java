@@ -19,6 +19,8 @@ public interface HealthDiaryDAO {
 	
 	public abstract  List<HealthDiaryVO> dateSelect(int memberNo,java.util.Date date);
 	
+	public abstract  List<HealthDiaryVO> selectMemberNo(int memberNo);
+	
 	public abstract List<HealthDiaryVO> getDatePage(int pageNo, int pageSize, 
 			int memberNo ,int year ,int month);
 	

@@ -191,6 +191,25 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		return vo;
 	}
 
+	private static final String GETMEMBERNO = "from HealthDiaryVO where memberNo=?";
+
+	@Override
+	public List<HealthDiaryVO> selectMemberNo(int memberNo) {
+		List<HealthDiaryVO> result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETMEMBERNO);
+			query.setParameter(0, memberNo);
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+	
 	private static final String GETDATEPAGE = "from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? and share='1' order by date";
 
 	@Override
