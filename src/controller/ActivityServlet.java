@@ -115,9 +115,9 @@ public class ActivityServlet extends HttpServlet {
 //				request.setAttribute("menu", ss);
 
 
-//              name測試			
+//              selectall
 				List<ActivityVO> selectallvo=service.selcetall();
-				request.setAttribute("selectallvo",selectallvo);
+				
 		
 				//endtime部分
 //					List<java.sql.Timestamp> selectallvo1=service.sawendtime();						
@@ -145,7 +145,7 @@ public class ActivityServlet extends HttpServlet {
 				
 //				getDateTime部分
 				String getDateTime=service.getDateTime();
-				request.setAttribute("getDateTime", getDateTime);
+				
 				
 				//findBySname
 				List<ActivityVO> findBySname=service.findBySname(temp2);				
@@ -154,6 +154,7 @@ public class ActivityServlet extends HttpServlet {
 					ActivityVO tempVo = new ActivityVO();
 					SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
 					tempVo.setNo(vo.getNo());
+					tempVo.setContent(vo.getContent());;
 					tempVo.setAddress(vo.getAddress().substring(0,3));
 					tempVo.setEndTime1(dd.format(vo.getEndTime()));
 					tempVo.setName(vo.getName());
@@ -165,10 +166,13 @@ public class ActivityServlet extends HttpServlet {
 					temp.add(tempVo);
 //					System.out.println(vo.getAddress());
 				}
-				request.setAttribute("temp", temp);//模糊收索截字 address  
+				request.setAttribute("temp", temp);
+				//模糊收索截字 address  轉圖&3 address
 				request.setAttribute("findBySname", temp);
-				
-				
+				//getdatetime部分 
+				request.setAttribute("getDateTime", getDateTime);
+				//selectall部分   轉圖&40 content
+				request.setAttribute("selectallvo",selectallvo);
 				RequestDispatcher rd = request.getRequestDispatcher("/activity1.jsp");
 				rd.forward(request, response);								
 	}

@@ -265,7 +265,6 @@
                 <div class="span8" id="divMain">
 
                     <h1>About Us</h1>
-${selectallvo[0]}
 <form action="${pageContext.request.contextPath}/activity.controller" method="get" >
 <select name="name">
 　<option value="台北">台北</option>
@@ -290,22 +289,18 @@ ${selectallvo[0]}
 			<th scope="col">Organizer</th>
 			<th scope="col">Deadline</th>
 		</tr>
-<tr class="splitline" align="left">
-			<td style="width: 340px;"><a href="${pageContext.request.contextPath}/activity.controller2?no=${findBySname[0].no}" >${findBySname[0].name}</a></td>
+<c:forEach var="activity" items="${findBySname}">
+	<tr class="splitline" align="left">
+			<td style="width: 340px;"><a href="${pageContext.request.contextPath}/activity.controller2?no=${activity.no}" >${activity.name}</a></td>
 			<td align="right" style="width: 5px;"></td>
-			<td class="datecell" style="width: 104px;">${findBySname[0].endTime}</td>
-			<td class="datecell" style="width: 104px;">${findBySname[0].address}</td>
-<%-- 			<td>${findBySname[0].endTime}</td> --%>
-<%--  			<c:forEach var="time" items="${findBySname}">  --%>
-			
-<%-- 			</c:forEach> --%>
-<%-- 			<td class="datecell" style="width: 104px;">${sawendtime[0]}</td> --%>
+			<td class="datecell" style="width: 104px;">${activity.endTime}</td>
+			<td class="datecell" style="width: 104px;">${activity.address}</td>
 			<td></td>
 			<td></td>
-			<td style="width: 200px;">${findBySname[0].boss}</td>
+			<td style="width: 200px;">${activity.boss}</td>
 			<td align="center" style="width: 130px;">
 				<c:choose>
-					<c:when test="${getDateTime < findBySname[0].endTime1}">
+					<c:when test="${getDateTime < activity.endTime1}">
 						<p>未結束</p>
 					</c:when>
 					<c:otherwise>
@@ -314,6 +309,7 @@ ${selectallvo[0]}
 				</c:choose>
 			</td>
 		</tr>
+</c:forEach>
 	</tbody>
 </table>
 </div>
@@ -328,10 +324,13 @@ ${selectallvo[0]}
 						<p>Lorem Ipsum is simply dummy text of the printing and &lt;a href='#'&gt;type setting industry&lt;/a&gt;.  Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
 						<hr>
         <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
+		        <div class="span4">   
+		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}" class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>                        
+                </div>          
                 <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
+                    <p>${selectallvo[8].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${findBySname[8].no}" >...詳細閱讀</a> 
+                    </p>
                 </div>		 
         </div>
 
