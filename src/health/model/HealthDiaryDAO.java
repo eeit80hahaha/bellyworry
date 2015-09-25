@@ -29,5 +29,7 @@ public interface HealthDiaryDAO {
 	public abstract List<HealthDiaryVO> gethighChart(int memberNo ,int year ,int month);
 
 	public abstract int repeatDiary(int memberNo, java.util.Date date);
+	
+	public abstract HealthDiaryVO getCalendar(int memberNo, java.util.Date date);
 
 }
