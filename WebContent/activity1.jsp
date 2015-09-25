@@ -258,7 +258,7 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>About Us</span>
+                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>活動情報</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
@@ -271,6 +271,7 @@
 						<option value="宜蘭">宜蘭</option>
 						<option value="台中">台中</option>
 						<option value="高雄">高雄</option>
+						<option value="">all</option>
 					</select>
 					<input type="hidden" name="pageNo" value="1" />
 					<input type="submit" value="送出" >
