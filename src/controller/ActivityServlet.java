@@ -149,37 +149,45 @@ public class ActivityServlet extends HttpServlet {
 				String getDateTime=service.getDateTime();
 				
 //page
-				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 3);					
+				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 5);					
 				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
 				
 //findBySname
-				List<ActivityVO> findBySname=service.findBySname(temp2);				
-				List<ActivityVO> temp = new ArrayList<ActivityVO>();
-				for(ActivityVO vo:findBySname){
-					ActivityVO tempVo = new ActivityVO();
-					SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
-					tempVo.setNo(vo.getNo());
-					tempVo.setContent(vo.getContent());;
-					tempVo.setAddress(vo.getAddress().substring(0,3));
-					tempVo.setEndTime1(dd.format(vo.getEndTime()));
-					tempVo.setName(vo.getName());
-					tempVo.setEndTime(vo.getEndTime());
-					tempVo.setStartTime(vo.getEndTime());
-					tempVo.setPicture1(vo.getPicture1());
-					tempVo.setUrl(vo.getUrl());
-					tempVo.setBoss(vo.getBoss());
-					temp.add(tempVo);
-//					System.out.println(vo.getAddress());
+				if(temp2 == null){
+					List<ActivityVO> temp = new ArrayList<ActivityVO>();
+					temp=null;
+					request.setAttribute("temp", temp);
+				}else{
+					List<ActivityVO> findBySname=service.findBySname(temp2);				
+					List<ActivityVO> temp = new ArrayList<ActivityVO>();
+					for(ActivityVO vo:findBySname){
+						ActivityVO tempVo = new ActivityVO();
+						SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
+						tempVo.setNo(vo.getNo());
+						tempVo.setContent(vo.getContent());;
+						tempVo.setAddress(vo.getAddress().substring(0,3));
+						tempVo.setEndTime1(dd.format(vo.getEndTime()));
+						tempVo.setName(vo.getName());
+						tempVo.setEndTime(vo.getEndTime());
+						tempVo.setStartTime(vo.getEndTime());
+						tempVo.setPicture1(vo.getPicture1());
+						tempVo.setUrl(vo.getUrl());
+						tempVo.setBoss(vo.getBoss());
+						temp.add(tempVo);
+//						System.out.println(vo.getAddress());
+						//模糊收索截字 address  轉圖&3 address
+						request.setAttribute("findBySname", temp);
+					}
 				}
-				request.setAttribute("temp", temp);
-				//模糊收索截字 address  轉圖&3 address
-				request.setAttribute("findBySname", temp);
+				
+				
+
 				//getdatetime部分 
 				request.setAttribute("getDateTime", getDateTime);
 				//selectall部分   轉圖&40 content
 				request.setAttribute("selectallvo",selectallvo);
 				//page
-				
+				request.setAttribute("PagesActivityVO", PagesActivityVO);
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/activity1.jsp");
 				rd.forward(request, response);								
