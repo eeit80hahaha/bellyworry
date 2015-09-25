@@ -71,14 +71,10 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 <!-- 因為edit受侷限,且css一動則動全身,所以暫時關閉 -->
-
-
 <link rel="stylesheet" type="text/css" href="jeasyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="jeasyui/icon.css">
 <link rel="stylesheet" type="text/css" href="jeasyui/demo.css">
-<script type="text/javascript" src="jeasyui/jquery.min.js"></script>
-<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="jeasyui/easyui-lang-zh_TW.js"></script>
+
 <!-- 以上月曆用 -->
 
 
@@ -96,16 +92,17 @@
 
 	<div class="container">
 		<div class="divPanel page-content">
+		<br><br>
 			<div class="breadcrumbs">
-				<a href="index.html">Home</a> &nbsp;/&nbsp; <span>健康管理日誌</span>
+				<a href="index.jsp">Home</a> &nbsp;/&nbsp; <span>健康管理日誌</span>
 			</div>
-			<div class="t" style="border: none;">
-				<h2>Tabs</h2>
-				<ul class="nav nav-tabs" style="background-color: white;">
-					<li class="active"><a href="#t-1">日誌首頁</a></li>
-					<li><a href="#t-2">今日紀錄</a></li>
-					<li><a href="#t-3">歷史紀錄</a></li>
-				</ul>
+			<div class="headerr" style="border: none;">
+<!-- 				<ul class="nav nav-tabs" style="background-color: white;"> -->
+<!-- 					<li class="active"><a href="#t-1">日誌首頁</a></li> -->
+<!-- 					<li><a href="#t-2">今日紀錄</a></li> -->
+<!-- 					<li><a href="#t-3">歷史紀錄</a></li> -->
+<!-- 				</ul> -->
+
 				<div id="t-1" style="height: 100%;">
 					<div style="border: 2px solid blue; width: 100%; height: 100%;">
 					</div>
@@ -116,8 +113,7 @@
 							<c:param name="no" value="${vo.no}"></c:param>
 
 						</c:url>
-						<div
-							style="width: 70%; float: left; border: 2px solid red; height: 100%;">
+						<div id="${vo.date}" style="width: 70%; float: left; border: 2px solid red; height: 100%;">
 							<div>
 								<div style="border: 2px solid;">
 									<span style="font-size: 0.5cm">${vo.date}</span> <span
@@ -135,9 +131,10 @@
 											
 											${eat.foodCalVO.name}
 											${eat.foodCalVO.cal} 卡
+											${eat.count}
 											${eat.foodCalVO.count}
-											${eat.foodCalVO.weight}
-											${eat.count}<br>
+											${eat.foodCalVO.weight}g<br>
+											
 											</c:if>
 										</c:forEach>
 									</div>
@@ -149,9 +146,9 @@
 											<c:if test="${eat.time =='中午'}">
  							${eat.foodCalVO.name}
  							${eat.foodCalVO.cal} 卡
+ 							${eat.count}
  							${eat.foodCalVO.count}
- 							${eat.foodCalVO.weight}
- 							${eat.count}<br>
+ 							${eat.foodCalVO.weight}g<br>
 											</c:if>
 										</c:forEach>
 									</div>
@@ -162,9 +159,10 @@
 											<c:if test="${eat.time=='晚上'}">
  							${eat.foodCalVO.name}
  							${eat.foodCalVO.cal} 卡
+ 							${eat.count}
  							${eat.foodCalVO.count}
- 							${eat.foodCalVO.weight}
- 							${eat.count}<br>
+ 							${eat.foodCalVO.weight}g<br>
+ 							
 											</c:if>
 										</c:forEach>
 									</div>
@@ -173,12 +171,12 @@
 										活動<br>
 										<c:forEach var="exer" items="${vo.exerVo}">
 							${exer.exerciseCalVO.name}
-							${exer.exerciseCalVO.calHour}
-							${exer.count}<br>
+							${exer.exerciseCalVO.calHour}大卡
+							${exer.count}min<br>
 										</c:forEach>
 									</div>
 								</div>
-								<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div>
+								<div>飲食總熱量</div>
 								<div>運動總熱量</div>
 								<div>
 									<a href="${path}">詳讀內文</a>
@@ -191,8 +189,17 @@
 						style="width: 29%; float: right; border: 2px solid yellow; height: 100%;">
 
 						<div style="width: 100%;"></div>
-						<div class="easyui-calendar"
+						<div id="cc" class="easyui-calendar"
 							style="width: 335px; height: 360px; position: absolute; top: 272px"></div>
+
+						
+
+
+
+
+
+
+
 					</div>
 
 					<div class="tab-content" style="height: 100%; width: 100%;">
@@ -277,8 +284,7 @@
 
 
 									<td>${vo.eatVo[0].date}</td>
-									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br>
-										</c:forEach></td>
+									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br></c:forEach></td>
 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br>
 										</c:forEach></td>
 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br>
@@ -309,29 +315,44 @@
 
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
-									value="${bean.date }"></input>
-								<div
-									style="height: 500px; cursor: pointer; display: block; font-size: 100%;">
-									<div class="accordion" style="border: 1px solid #DDDDDD;">
-										<h3
-											style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3>
+									value="${bean.date}"></input>
+
+
+<!--  <div class="easyui-accordion" style="width:500px;height:300px;"> -->
+<!--         <div title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;"> -->
+<!--             <h3 style="color:#0099FF;">Accordion for jQuery</h3> -->
+<!--             <p>Accordion is a part of easyui framework for jQuery. It lets you define your accordion component on web page more easily.</p> -->
+<!--         </div> -->
+
+
+
+
+								<div style="height: 500px; cursor: pointer; display: block; font-size: 100%;">
+									<div class="easyui-accordion" style="border: 1px solid #DDDDDD;">
+									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
+<!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
 											身高<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}<br>
 											體重<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}<br>
 											腰圍<input type="text" name="waistline"
 												value="${bean.waistline}">${errorMessage.waistlineError}<br>
-
+										</div>
 										</div>
 									</div>
-									<div class="accordion" style="border: 1px solid #DDDDDD;">
-										<h3 style="background-color: #FFDD55"
-											style="border: 1px solid #DDDDDD;">熱量計算</h3>
+									<div class="easyui-accordion" style="border: 1px solid #DDDDDD;">
+										<div title="熱量計算" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
+<!-- 										<h3 style="background-color: #FFDD55" style="border: 1px solid #DDDDDD;">熱量計算</h3> -->
 										<div>
 											<div>
-												早餐<br> 午餐<br> 晚餐<br> 飲食總熱量<br> 運動總熱量<br>
+												早餐<br> 
+												午餐<br> 
+												晚餐<br> 
+												飲食總熱量<br> 
+												運動總熱量<br>
 												差值<br>
 											</div>
 											<br>
+										</div>
 										</div>
 									</div>
 								</div>
@@ -341,15 +362,15 @@
 							<div
 								style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
 								<div style="height: 500px;">
-									<div class="accordion"
-										style="overflow: auto; height: 500px; border: 1px solid #DDDDDD;">
-										<h3
-											style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身日誌</h3>
+									<div class="easyui-accordion" style="height: 500px; border: 1px solid #DDDDDD;">
+									<div title="瘦身日誌" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
+										
 										<div>
 											日誌標題<input type="text" name="title" value="${bean.title}"><br>
 											日誌內容
 											<textarea class="ckeditor" name="content">${bean.content}</textarea>
 										</div>
+									</div>
 									</div>
 								</div>
 							</div>
@@ -366,7 +387,7 @@
 				<div id="t-3">
 					<div id="container"
 						style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<br>
+					<br>
 					<table border='2' style="float: left;">
 						<tr>
 							<th width='130'>日期</th>
@@ -387,12 +408,17 @@
 										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
 										<!-- 未切字串,一坨拉庫 -->
 										<c:choose>
-										<c:when test="${(list[i.index].weight - list[i.index-1].weight) > 0}">
-										<td style="color: red">+<fmt:formatNumber type="number" maxIntegerDigits="2" value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
-										</c:when>
-										<c:otherwise>
-										<td style="color: green;"><fmt:formatNumber type="number" maxIntegerDigits="2" value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
-										</c:otherwise>
+											<c:when
+												test="${(list[i.index].weight - list[i.index-1].weight) > 0}">
+												<td style="color: red">+<fmt:formatNumber type="number"
+														maxIntegerDigits="2"
+														value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
+											</c:when>
+											<c:otherwise>
+												<td style="color: green;"><fmt:formatNumber
+														type="number" maxIntegerDigits="2"
+														value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
+											</c:otherwise>
 										</c:choose>
 									</c:when>
 								</c:choose>
@@ -414,15 +440,18 @@
 									</c:when>
 									<c:when test="${a.index > 0}">
 										<c:choose>
-										<c:when test="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100))) >0}">
-										<td style="color: red">+<fmt:formatNumber type="number" maxIntegerDigits="2"
-												value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
-										</c:when>
-										<c:otherwise>
-										<td style="color: green"><fmt:formatNumber type="number" maxIntegerDigits="2"
-												value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
-										
-										</c:otherwise>
+											<c:when
+												test="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100))) >0}">
+												<td style="color: red">+<fmt:formatNumber type="number"
+														maxIntegerDigits="2"
+														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
+											</c:when>
+											<c:otherwise>
+												<td style="color: green"><fmt:formatNumber
+														type="number" maxIntegerDigits="2"
+														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
+
+											</c:otherwise>
 										</c:choose>
 										<!-- 										取小數第二位，切字串 -->
 									</c:when>
@@ -448,16 +477,19 @@
 										<td>--</td>
 									</c:when>
 									<c:when test="${i.index > 0}">
-									<c:choose>
-									<c:when test="${(list[i.index].waistline - list[i.index-1].waistline) >0}">
-									<td style="color: red">+<fmt:formatNumber type="number" maxIntegerDigits="2"
-												value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
-									</c:when>
-									<c:otherwise>
-									<td style="color: green"><fmt:formatNumber type="number" maxIntegerDigits="2"
-												value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
-									</c:otherwise>
-									</c:choose>
+										<c:choose>
+											<c:when
+												test="${(list[i.index].waistline - list[i.index-1].waistline) >0}">
+												<td style="color: red">+<fmt:formatNumber type="number"
+														maxIntegerDigits="2"
+														value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
+											</c:when>
+											<c:otherwise>
+												<td style="color: green"><fmt:formatNumber
+														type="number" maxIntegerDigits="2"
+														value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
+											</c:otherwise>
+										</c:choose>
 										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
 										<!-- 未切字串,一坨拉庫 -->
 										<!-- 取小數第二位，切字串 -->
@@ -582,40 +614,79 @@
 
 
 
+	
+	<script type="text/javascript" src="jeasyui/jquery.min.js"></script>
+<!-- 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>   有地雷!!不要開!!!-->
+	
+	<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
+	
+	
+	
+<!-- 	<script src="jeasyui/jquery.calendar.js"></script> -->
 
-
-
+<!-- 	<script type="text/javascript" src="jeasyui/jquery.calendar.js"></script> -->
+	
+	<script type="text/javascript" src="jeasyui/easyui-lang-zh_TW.js"></script>
+	
 	<script src="ckeditor/ckeditor.js"></script>
+	
+	
+	
+	
+	<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
+		
+		<script src="js/highcharts.js"></script>
+		<script src="js/modules/exporting.js"></script>
+
+		<script src="scripts/bootstrap/js/bootstrap.min.js"
+			type="text/javascript"></script>
+		<script src="scripts/default.js" type="text/javascript"></script>
+		<script src="scripts/carousel/jquery.carouFredSel-6.2.0-packed.js"
+			type="text/javascript"></script>
+		<script src="scripts/camera/scripts/camera.min.js"
+			type="text/javascript"></script>
+		<script src="scripts/easing/jquery.easing.1.3.js"
+			type="text/javascript"></script>
+			
+
+	
 
 
-	<script src="scripts/jquery.min.js" type="text/javascript"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="js/highcharts.js"></script>
-	<script src="js/modules/exporting.js"></script>
-
-	<script src="scripts/bootstrap/js/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script src="scripts/default.js" type="text/javascript"></script>
-	<script src="scripts/carousel/jquery.carouFredSel-6.2.0-packed.js"
-		type="text/javascript"></script>
-	<script src="scripts/camera/scripts/camera.min.js"
-		type="text/javascript"></script>
-	<script src="scripts/easing/jquery.easing.1.3.js"
-		type="text/javascript"></script>
 
 	<script>
 		(function($) {
+// 			$.get("diaryIndex.controller");
+			$("#cc").calendar(
+					{
+						onSelect : function(date) {
+							console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate())
+							var month,day;
+							if((date.getMonth()+1)<10){
+								month = '0'+(date.getMonth()+1);
+							}else{
+								month = (date.getMonth()+1);
+							}
+							if(date.getDate() < 10){
+								day = '0'+date.getDate();
+							}else{
+								day = date.getDate();
+							}
+							console.log(date.getFullYear()+"-"+month+"-"+day);
+							 $('html,body').animate({scrollTop:$('#'+date.getFullYear()+"-"+month+"-"+day).offset().top -150}, 1000);							
+						}
+					})
+
 			$(".accordion").accordion({
-				collapsible : true
+				animate:false
 			});
 			$(function() {
-				$(".t").tabs();
+				$(".headerr").tabs();
 			});
 
 			//日期
-			$(function() {
-				$("#date").datepicker();
-			});
+// 			$(function() {
+// 				$("#date").datepicker();
+// 			});
 
 			//圖表
 			$('#container').highcharts(

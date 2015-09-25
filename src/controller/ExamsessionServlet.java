@@ -74,7 +74,7 @@ public class ExamsessionServlet extends HttpServlet {
 		
 		Integer combol = (Integer)session.getAttribute("combol");
 		if(combol==null){
-			combol = 1;
+			combol = 0;
 		}
 		if(sess==10 || sess==0){
 			combol=combol+1;
@@ -84,32 +84,32 @@ public class ExamsessionServlet extends HttpServlet {
 		session.removeAttribute("gread");
 		session.setAttribute("gread", gread);
 		if(combol==1){
-			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=1");
+			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=2");
 			return;
 		}else if(combol==2){
-			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=2");
+			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=3");
 			return;
 		}
 		else if(combol==3){
-			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=3");
-			return;
-		}else if(combol==4){
 			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=4");
 			return;
-		}else if(combol==5){
+		}else if(combol==4){
 			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=5");
 			return;
-		}else if(combol==6){
+		}else if(combol==5){
 			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=6");
 			return;
-		}else if(combol==7){
+		}else if(combol==6){
 			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=7");
 			return;
-		}else if(combol==8){
+		}else if(combol==7){
 			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=8");
 			return;
-		}else if(combol==9){
+		}else if(combol==8){
 			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=9");
+			return;
+		}else if(combol==9){
+			response.sendRedirect(request.getContextPath()+"/exam.controller?pageNo=10");
 			return;
 		}else if(combol==10){
 			session.removeAttribute("combol");

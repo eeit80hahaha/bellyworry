@@ -8,7 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	分數：${a}
+<c:if test="${a>60}">
+	<h1>分數：${a}</h1>
+	<h4>厲害喔~身體吃不壞了 </h4>
+</c:if>
+<c:if test="${a<60}">	
+	<h1>分數：${a}</h1>
+	<h4>快去多看書吧~身體吃的遍體麟傷了</h4>
+</c:if>
 	<!-- 移除放在session物件內的屬性物件 -->
 <%-- 	<c:remove var="gread" scope="session" /> --%>
 </body>
