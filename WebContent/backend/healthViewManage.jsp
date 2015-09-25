@@ -29,18 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script type="text/javascript">
-function clearForm() {
-	var inputs = document.getElementsByTagName("input");
-	for(var i=0; i<inputs.length; i++) {
-		if(inputs[i].type=="text") {
-			inputs[i].value="";
-		}
-	}
-	$("#viewClassNo option").prop("selected",false);
-	
-}
-</script>
+
 </head>
 
 <body>
@@ -74,45 +63,80 @@ function clearForm() {
 
                 <div class="row">
                 	<form action="<c:url value="/healthView.controller" />" method="get" role="form">
-                    <div class="col-lg-6">
-
-                        
-
-                            <div class="form-group">
-                                <label>健康景點名稱：</label>
-                                <input type="text" name="name" value="${param.name}" class="form-control" required="required">
-                                <span class="alert-danger">${error.name}</span>
-<!--                                 <p class="help-block">(為必填欄位)</p> -->
-                            </div>
-                            <div class="form-group">
+                    <div class="col-lg-10">
+							<div class="form-group">
                                 <label>景點類別：</label>
                                 <select name="viewClassNo" lang="10" id="viewClassNo" class="form-control">
+									<option value="">全部</option>
 									<jsp:useBean id="viewClass" class="fun.model.ViewClassService">
 									<c:forEach var="row" items="${viewClass.all}">
-										<c:choose>
-											<c:when test="${param.viewClassNo == row.viewClassNo}">
-												<option value="${row.viewClassNo}" selected>${row.name}</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${row.viewClassNo}">${row.name}</option>
-											</c:otherwise>
-										</c:choose>>
+										<option value="${row.viewClassNo}">${row.name}</option>
 									</c:forEach>
 									</jsp:useBean>
 								</select>
                             </div>
-                            <div class="form-group">
-                                <label>所在地緯度：</label>
-                                <input type="text" name="lat" value="${param.lat}" class="form-control" required="required">
-                                <span class="alert-danger">${error.lat}</span>
-<!--                                 <p class="help-block">(為必填欄位)</p> -->
-                            </div>
-                            <div class="form-group">
-                                <label>所在地經度：</label>
-                                <input type="text" name="lng" value="${param.lng}" class="form-control" required="required">
-                                <span class="alert-danger">${error.lng}</span>
-<!--                                 <p class="help-block">(為必填欄位)</p> -->
-                            </div>
+                            
+                            <!--<h3>健康景點管理</h3> -->
+	                        <div class="table-responsive">
+	                            <table class="table table-bordered table-hover table-striped">
+	                            	<thead>
+                                    <tr>
+                                        <th>編號</th><th>健康景點名稱</th><th>景點類別</th><th>所在地緯度</th><th>所在地經度</th>
+                                    </tr>
+                                	</thead>
+	                            	<tbody id="healthViewlist">
+	                                	<c:forEach var="healthViewVO" items="${healthViewPageVO.healthViewPage}">
+		                                    <tr><td>${healthViewVO.no}</td>
+		                                    	<td>${healthViewVO.name}</td>
+		                                    	<td>${healthViewVO.viewClassVO.name}</td>
+		                                    	<td>${healthViewVO.lat}</td>
+		                                    	<td>${healthViewVO.lng}</td>
+		                                    </tr>
+										</c:forEach>
+									</tbody>
+								</table>
+	                        </div>
+               				<div id="controllerbtn">
+               					<table border="0">
+									<tr>
+									  <td width='76'>
+									      <c:if test="${healthViewPageVO.pageNo > 1}">
+									<div id="pfirst">
+									   <a href="<c:url value='/healthViewlist.controller?pageNo=1' />">第一頁</a>&nbsp;&nbsp;&nbsp;
+									</div>
+									</c:if>
+									</td>
+									<td width='76'>
+									   <c:if test="${healthViewPageVO.pageNo > 1}">
+									<div id="pprev">
+									   <a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
+									</div>
+									</c:if>  
+									</td>
+									<td width='76'>
+									       <c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}">
+									<div id="pnext">
+									   <a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
+									</div>
+									</c:if>
+									</td>  
+									<td width='76'>
+									       <c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}">
+									<div id="plast">
+									    <a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
+									</div>
+									</c:if>
+									</td>
+									<td width='176' align="center">
+									      第${healthViewPageVO.pageNo}頁 / 共${healthViewPageVO.totalPages}頁
+									     </td>  
+									</tr>
+									</table>
+               					
+               				</div>             
+
+                            
+                            
                             
                             <br/>
                             <br/>
@@ -127,24 +151,6 @@ function clearForm() {
 							
                         
 
-                    </div>
-                    <div class="col-lg-6">
-                    <c:if test="${not empty insert}">
-                        <h4>新增資料成功</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                            
-                                <tbody>
-                                    <tr><td>編號</td><td>${insert.no}</td></tr>
-                                    <tr><td>健康景點名稱</td><td>${insert.name}</td></tr>
-                                    <tr><td>景點類別</td><td>${insert.viewClassVO.name}</td></tr>
-									<tr><td>所在地緯度</td><td>${insert.lat}</td></tr>
-									<tr><td>所在地經度</td><td>${insert.lng}</td></tr>
-								</tbody>
-							</table>
-                        </div>
-                        <script type="text/javascript">clearForm();</script>
-                    </c:if>
                     </div>
                     </form>
                 </div>
@@ -164,6 +170,54 @@ function clearForm() {
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/backend/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+// function clearForm() {
+// 	var inputs = document.getElementsByTagName("input");
+// 	for(var i=0; i<inputs.length; i++) {
+// 		if(inputs[i].type=="text") {
+// 			inputs[i].value="";
+// 		}
+// 	}
+// 	$("#viewClassNo option").prop("selected",false);	
+// }
+(function($) {
+	$("#viewClassNo").on('change', function() {
+// 		getViews($(this).val());
+		
+		$("#controllerbtn a").each(function(){
+			$(this).attr("href");
+		});
+		$(this).attr("href" , $(this).attr("href")+$("#viewClass").val());
+	});
+	
+// 	function getViews(value) {
+// 		$.ajax({
+// 			"type" : "get",
+// 			"url" : "/healthViewlist.controller?pageNo=1&viewClassNo="+value,
+// 			"dataType" : "json",
+// 			"success" : function(data) {
+// 				console.log(data);
+// 				$.each(data, function() {
+// 					$("#healthViewlist").empty();
+// 					var val = this.no;
+// 					var name = this.name;
+// 					$("#healthview").append(
+// //								"<option value='{lat:"+this.lat+", lng:"+this.lng+"}'>"
+// 							"<option value='"+this.lat+","+this.lng+"'>"
+// 									+ name + "</option>");
+
+// 				});
+// 			}
+// 		})
+// 	}
+	
+})(jQuery);
+
+
+// &viewClassNo=
+</script>
 
 </body>
 

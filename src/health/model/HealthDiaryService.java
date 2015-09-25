@@ -7,6 +7,8 @@ import health.model.dao.HealthDiaryDaoHbm;
 public class HealthDiaryService {
 	HealthDiaryVO diaryVo = null;
 	HealthDiaryDAO dao = null;
+	EatRecordDAO eatDao = null;
+	ExerciseRecordDAO exerDao = null;
 	
 	public HealthDiaryVO selectByPrimaryKey(int no) {
 		diaryVo = new HealthDiaryVO();
@@ -56,5 +58,15 @@ public class HealthDiaryService {
 			list = dao.gethighChart(memberNo, year, month);
 		}
 		return list;
+	}
+	
+	public HealthDiaryVO getCalendar(int memberNo, java.util.Date date){
+		HealthDiaryVO result = null;
+		result = dao.getCalendar(memberNo, date);
+		result.setEatVo(eatDao.eatday(memberNo, date));
+		result.setExerVo(exerDao.exerday(memberNo, date));
+		
+		return result;
+		
 	}
 };

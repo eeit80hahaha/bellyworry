@@ -96,7 +96,7 @@ function clearForm() {
 											<c:otherwise>
 												<option value="${row.viewClassNo}">${row.name}</option>
 											</c:otherwise>
-										</c:choose>>
+										</c:choose>
 									</c:forEach>
 									</jsp:useBean>
 								</select>

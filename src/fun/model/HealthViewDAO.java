@@ -5,9 +5,11 @@ import java.util.List;
 public interface HealthViewDAO {
 	public abstract HealthViewVO selectByPrimaryKey(int no);
 
-	public abstract List<HealthViewVO> selectByViewClassVO(ViewClassVO vo);
+	public abstract List<HealthViewVO> selectByViewClassVO(ViewClassVO vo,int pageNo ,int pageSize);
 	
-	public abstract List<HealthViewVO> getAll();
+	public abstract List<HealthViewVO> getAll(int pageNo, int pageSize);
+	
+	public abstract int getDateTotalCount(ViewClassVO vo);
 
 	public abstract int insert(HealthViewVO vo);
 
