@@ -71,7 +71,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i> <a href="foodCalManage.jsp">查詢菜色項目</a>
+                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/foodCalManage.jsp">查詢菜色項目</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增菜色項目

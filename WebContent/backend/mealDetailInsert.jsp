@@ -50,7 +50,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i> <a href="foodCalManage.jsp">查詢套餐組合</a>
+                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/foodCalManage.jsp">查詢套餐組合</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增套餐組合
