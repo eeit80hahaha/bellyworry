@@ -50,13 +50,18 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 	}
 	
 	private static final String SELECT_BY_CLASS = "from HealthViewVO where viewClassVO=? order by no";
-	public List<HealthViewVO> selectByViewClassVO(ViewClassVO vo) {
+	@Override
+	public List<HealthViewVO> selectByViewClassVO(ViewClassVO vo,int pageNo ,int pageSize) {
 		List<HealthViewVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(SELECT_BY_CLASS);
 			query.setParameter(0, vo);
+			if(pageNo!=0 && pageSize!=0){
+				query.setFirstResult((pageNo - 1) * pageSize);
+				query.setMaxResults(pageSize);
+			}
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -68,12 +73,16 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 	
 	private static final String GET_ALL_STMT = "from HealthViewVO order by no";
 	@Override
-	public List<HealthViewVO> getAll() {
+	public List<HealthViewVO> getAll(int pageNo ,int pageSize) {	//pageNo = 0 不分頁
 		List<HealthViewVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
+			if(pageNo!=0){
+				query.setFirstResult((pageNo - 1) * pageSize);
+				query.setMaxResults(pageSize);
+			}
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -82,7 +91,37 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 		}
 		return list;
 	}
+	
+	private static final String GET_DATE_TOTAL_COUNT_BY_VIEWCLESS = "select count(*) as count from HealthViewVO where viewClassVO=?";
+	private static final String GET_DATE_TOTAL_COUNT = "select count(*) as count from HealthViewVO";
+	@Override
+	public int getDateTotalCount(ViewClassVO vo) {
+		int result = -1000;
+		long sum = 0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query;
+			if(vo!=null){
+				query = session.createQuery(GET_DATE_TOTAL_COUNT_BY_VIEWCLESS);
+				query.setParameter(0, vo);
+			}else{
+				query = session.createQuery(GET_DATE_TOTAL_COUNT);
+			}
+			List<Object> tmp = query.list();
+			if (tmp.get(0) != null) {
+				sum = (long) tmp.get(0);
+			}
+			result = (int) sum;
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
 
+		return result;
+	}
+	
 	@Override
 	public int insert(HealthViewVO vo) {
 		int result = 0;
