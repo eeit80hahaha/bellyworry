@@ -1,6 +1,7 @@
 package calories.model.dao;
 
 import init.GlobalService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -163,6 +164,11 @@ public class MenuDaoJdbc implements MenuDAO{
 		return false;
 
 		
+	}
+	@Override
+	public MenuVO selectByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 		
 }

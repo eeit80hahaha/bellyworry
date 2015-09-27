@@ -89,7 +89,7 @@
     </style>
 </head>
 <body id="pageBody">
-<c:set var="funcName" value="RANK" scope="session"/>
+
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -108,33 +108,6 @@
 			<div class="span8" id="divMain">
 
 				<h1>${herovo.membervo.nickname}(${herovo.membervo.id}) ${year}年${month}月  健康事蹟</h1>
-				
-				<c:forEach var="healthdiary" items="${herohealthdiaryvo.herohealdiarypage}">
-				
-				<fmt:formatNumber type="number" 
-				value="${healthdiary.weight / ((healthdiary.height / 100 )* (healthdiary.height / 100 ))}" 
-				maxFractionDigits="2" var="bmi" />
-				
-				<table>
-						<tr>
-							<td>標題：${healthdiary.title}</td>
-							<td></td>
-							<td>時間：${healthdiary.date}</td>
-						</tr>
-						<tr>
-							<td>體重：${healthdiary.weight}</td>
-							<td>BMI：${bmi}</td>
-							<td>腰圍：${healthdiary.waistline}</td>
-						</tr>
-						<tr>
-							<td>飲食攝取總熱量：${healthdiary.eatcalcount}</td>
-							<td>運動攝取總熱量：${healthdiary.exercalcount}</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/herodiary.controller?memberno=${healthdiary.memberNo}&date=${healthdiary.date}&pageNo=${herohealthdiaryvo.pageNo}">詳情</a>
-							</td>
-						</tr>
-				</table>					
-				</c:forEach>
 				
 				<div id="paging">
 				<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
@@ -173,7 +146,37 @@
 				     </td>  
 				</tr>
 				</table>
-				</div>				
+				</div>
+				
+				<br/>
+				
+				<c:forEach var="healthdiary" items="${herohealthdiaryvo.herohealdiarypage}">
+				
+				<fmt:formatNumber type="number" 
+				value="${healthdiary.weight / ((healthdiary.height / 100 )* (healthdiary.height / 100 ))}" 
+				maxFractionDigits="2" var="bmi" />
+				
+				<table>
+						<tr>
+							<td>標題：${healthdiary.title}</td>
+							<td></td>
+							<td>時間：${healthdiary.date}</td>
+						</tr>
+						<tr>
+							<td>體重：${healthdiary.weight}</td>
+							<td>BMI：${bmi}</td>
+							<td>腰圍：${healthdiary.waistline}</td>
+						</tr>
+						<tr>
+							<td>飲食攝取總熱量：${healthdiary.eatcalcount}</td>
+							<td>運動攝取總熱量：${healthdiary.exercalcount}</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/herodiary.controller?memberno=${healthdiary.memberNo}&date=${healthdiary.date}&pageNo=${herohealthdiaryvo.pageNo}">詳情</a>
+							</td>
+						</tr>
+				</table>
+				<br/>				
+				</c:forEach>				
 
 				
 

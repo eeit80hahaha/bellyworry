@@ -127,8 +127,16 @@
                             <div id="divHeaderText" class="page-content">
                                 <div id="divHeaderLine1">Your Header Text Here!</div><br />
                                 <div id="divHeaderLine2">2nd line header text for calling extra attention..</div><br />
-                                <div id="divHeaderLine3">                                
-                                <a class="btn btn-danger" id="opener">註冊新會員</a>
+                                <div id="divHeaderLine3">
+                                <c:choose>
+              						<c:when test="${empty user.id}">
+              							<a class="btn btn-danger" id="opener">註冊新會員</a>
+              						</c:when>
+              						<c:otherwise>	
+              							
+              						</c:otherwise>
+              					</c:choose>                                
+                                
 										<div id="dialog" title="註冊會員" style="display: none;">
 											<form
 												action="${pageContext.request.contextPath}/MemberServlet.controller"
@@ -141,13 +149,13 @@
 														<label><span style="color: red">*</span> 姓:</label><input
 															type="text" name="firstname" size="20" autofocus
 															placeholder="請輸入" autocomplete="off" required="" value="${param.firstname} "/>
-															<div>${error.firstName}</div>
+															<div style="color:red">${error.firstName}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span> 名:</label><input
 															type="text" name="lastname" size="20" autofocus
 															placeholder="請輸入" autocomplete="off" required="" value="${param.lastname}"/>
-															<div>${error.lastName}</div>
+															<div style="color:red">${error.lastName}</div>
 													</div>
 													<div>
 														<label>暱稱:</label><input type="text" name="nickname"
@@ -157,35 +165,35 @@
 													<div>
 														<label><span style="color: red">*</span>帳號:</label><input
 															type="text" name="account" size="20" required="" value="${param.account}"/>
-															<div>${error.username}</div>
+															<div style="color:red">${error.username}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>密碼:</label><input
 															type="password" name="pwd" size="20" required=""
-															maxlength="20" /><div>${error.password}</div>
+															maxlength="20" /><div style="color:red">${error.password}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>密碼確認:</label><input
 															type="password" name="pwd1" size="20" required=""
-															maxlength="20" /><div>${error.password2}</div>
-															<div>${error.password1}</div>
+															maxlength="20" /><div style="color:red">${error.password2}${error.password1}</div>
+															
 													</div>
 													<div>
 														<label><span style="color: red">*</span>Mail:</label> <input
 															type="email" name="mail" size="20" autofocus
 															placeholder="請輸入E-mail" autocomplete="off" value="${param.mail}"/>
-															<div>${error.email}</div>
+															<div style="color:red">${error.email}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>生日:</label> <input
 															type="text" name="date" id="datepicker" value="${param.date}">
-															<div>${error.birth}</div>
+															<div style="color:red">${error.birth}</div>
 													</div>
 													<div>
 														<label><span style="color: red">*</span>性別:</label><input
 															type="radio" name="gender" size="20" value="males" />男 <input
 															type="radio" name="gender" size="20" value="female" />女
-															<div>${error.gender}</div>
+															<div style="color:red">${error.gender}</div>
 													</div>
 												</fieldset>
 												<div>
@@ -195,15 +203,15 @@
 											</form>
 									<!-- ==============註冊錯誤訊息=================================================================== -->
 									<div id="dialog0">	
-										<p>${error.add}</p><!-- 註冊失敗，請重新輸入 -->
-										<p>${error.er}</p><!-- 帳號重複，請重新輸入 -->
-										<p>${error.success}</p><!-- 新增會員成功 -->
+										<p style="color:red">${error.add}</p><!-- 註冊失敗，請重新輸入 -->
+										<p style="color:red">${error.er}</p><!-- 帳號重複，請重新輸入 -->
+										<p style="color:red">${error.success}</p><!-- 新增會員成功 -->
 					<!-- ==============忘記密碼寄信成功訊息=================================================================== -->
-										<p>${error.success2}</p>
+										<p style="color:red">${error.success2}</p>
 					<!-- ==============修改會員資料成功=================================================================== -->					
-										<p>${up.update}</p>
+										<p style="color:red">${up.update}</p>
 					<!-- ==============修改密碼成功=================================================================== -->					
-										<p>${change.success1}</p>
+										<p style="color:red">${change.success1}</p>
 									
 									</div>
 					<!-- ======================================================================================== -->

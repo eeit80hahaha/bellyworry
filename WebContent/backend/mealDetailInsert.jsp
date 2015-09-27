@@ -50,8 +50,14 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/foodCalManage.jsp">查詢套餐組合</a>
+							<!-- hui Git add -->
+                                <i class="fa fa-table"></i> <a href="../backend/SelectMealServlet.controller">查詢套餐組合</a>
                             </li>
+                            <!-- hui Git add -->                                      
+							<!-- hui Git Mark -->
+<%--                                 <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/foodCalManage.jsp">查詢套餐組合</a> --%>
+<!--                             </li> -->
+							<!-- hui Git Mark -->
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增套餐組合
                             </li>
