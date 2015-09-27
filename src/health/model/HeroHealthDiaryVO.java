@@ -18,9 +18,20 @@ public class HeroHealthDiaryVO implements Serializable  {
 	public HeroHealthDiaryVO(int pageNo, int pageSize, int rowCount,
 			List<HealthDiaryVO> herohealdiarypage) {
 		this.pageNo = pageNo;
-		this.pageSize = pageSize;
+		
+		if(pageSize <= 0){
+			this.pageSize = 1;
+		}else{
+			this.pageSize = pageSize;
+		}
+		
 		this.rowCount = rowCount;
-		this.totalPages = (int) Math.ceil( (double) rowCount / pageSize );
+		
+		if(rowCount <= 0){
+			this.totalPages = 1;
+		}else{
+			this.totalPages = (int) Math.ceil( (double) rowCount / pageSize );
+		}
 		this.herohealdiarypage = herohealdiarypage;
 	}
 	
