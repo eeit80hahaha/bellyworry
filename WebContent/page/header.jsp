@@ -64,7 +64,7 @@
                                     </ul>
                                 </li>
 	                            
-                                <li class="dropdown"><a href="${pageContext.request.contextPath}/activity.controller">活動情報</a></li>
+                                <li class="dropdown"><a href="${pageContext.request.contextPath}/activity.controller?pageNo=1">活動情報</a></li>
                                 <c:if test="${ funcName != 'RANK' }"> 
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/hero.controller">英雄事蹟</a></li>
                                 </c:if>

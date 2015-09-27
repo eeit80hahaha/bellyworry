@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import news.model.ActivityService;
 import news.model.ActivityVO;
+import news.model.PagesActivityVO;
 
 /**
  * Servlet implementation class ActivityServlet
@@ -43,10 +44,11 @@ public class ActivityServlet extends HttpServlet {
 //				String temp5 = request.getParameter("endTime");
 //				String temp6 = request.getParameter("address");
 //				String temp7 = request.getParameter("picture");
-				String temp8 = request.getParameter("url");
-				String temp9 = request.getParameter("boss");
+//				String temp8 = request.getParameter("url");
+//				String temp9 = request.getParameter("boss");
 //				String Cookion = request.getParameter("Cookion");
 				String pageNoTemp = request.getParameter("pageNo");
+				System.out.print("PageNo"+":"+pageNoTemp);
 		
 		//驗證資料
 //				Map<String, String> errors = new HashMap<String, String>();
@@ -59,7 +61,7 @@ public class ActivityServlet extends HttpServlet {
 //						}
 //					}
 //				}
-//		//轉換資料
+		//轉換資料
 //				int no = 0;
 //				if(temp1!=null && temp1.length()!=0) {
 //					no = GlobalService.convertInt(temp1);
@@ -91,7 +93,7 @@ public class ActivityServlet extends HttpServlet {
 //					}
 //				}
 				
-				//呼叫model
+		//呼叫model
 //				ActivityVO vo = new ActivityVO();
 //				vo.setNo(no);
 //				vo.setName(temp2);
@@ -115,11 +117,11 @@ public class ActivityServlet extends HttpServlet {
 //				request.setAttribute("menu", ss);
 
 
-//              name測試			
+//selectall
 				List<ActivityVO> selectallvo=service.selcetall();
-				request.setAttribute("selectallvo",selectallvo);
+				
 		
-				//endtime部分
+//endtime部分
 //					List<java.sql.Timestamp> selectallvo1=service.sawendtime();						
 //					request.setAttribute("sawendtime", selectallvo1);
 //					String endttime = null;														//1
@@ -143,31 +145,49 @@ public class ActivityServlet extends HttpServlet {
 				//System.out.println(listTemp1);
 //				request.setAttribute("threeaddress", listTemp1);
 				
-//				getDateTime部分
+//getDateTime部分
 				String getDateTime=service.getDateTime();
-				request.setAttribute("getDateTime", getDateTime);
 				
-				//findBySname
-				List<ActivityVO> findBySname=service.findBySname(temp2);				
-				List<ActivityVO> temp = new ArrayList<ActivityVO>();
-				for(ActivityVO vo:findBySname){
-					ActivityVO tempVo = new ActivityVO();
-					SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
-					tempVo.setNo(vo.getNo());
-					tempVo.setAddress(vo.getAddress().substring(0,3));
-					tempVo.setEndTime1(dd.format(vo.getEndTime()));
-					tempVo.setName(vo.getName());
-					tempVo.setEndTime(vo.getEndTime());
-					tempVo.setStartTime(vo.getEndTime());
-					tempVo.setPicture1(vo.getPicture1());
-					tempVo.setUrl(vo.getUrl());
-					tempVo.setBoss(vo.getBoss());
-					temp.add(tempVo);
-//					System.out.println(vo.getAddress());
+//page
+				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 5);					
+				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
+				
+//findBySname
+				if(temp2 == null){
+					List<ActivityVO> temp = new ArrayList<ActivityVO>();
+					temp=null;
+					request.setAttribute("temp", temp);
+				}else{
+					List<ActivityVO> findBySname=service.findBySname(temp2);				
+					List<ActivityVO> temp = new ArrayList<ActivityVO>();
+					for(ActivityVO vo:findBySname){
+						ActivityVO tempVo = new ActivityVO();
+						SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
+						tempVo.setNo(vo.getNo());
+						tempVo.setContent(vo.getContent());;
+						tempVo.setAddress(vo.getAddress().substring(0,3));
+						tempVo.setEndTime1(dd.format(vo.getEndTime()));
+						tempVo.setName(vo.getName());
+						tempVo.setEndTime(vo.getEndTime());
+						tempVo.setStartTime(vo.getEndTime());
+						tempVo.setPicture1(vo.getPicture1());
+						tempVo.setUrl(vo.getUrl());
+						tempVo.setBoss(vo.getBoss());
+						temp.add(tempVo);
+//						System.out.println(vo.getAddress());
+						//模糊收索截字 address  轉圖&3 address
+						request.setAttribute("findBySname", temp);
+					}
 				}
-				request.setAttribute("temp", temp);//模糊收索截字 address  
-				request.setAttribute("findBySname", temp);
 				
+				
+
+				//getdatetime部分 
+				request.setAttribute("getDateTime", getDateTime);
+				//selectall部分   轉圖&40 content
+				request.setAttribute("selectallvo",selectallvo);
+				//page
+				request.setAttribute("PagesActivityVO", PagesActivityVO);
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/activity1.jsp");
 				rd.forward(request, response);								

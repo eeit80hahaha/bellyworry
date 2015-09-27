@@ -1,49 +1,55 @@
-package health.model;
+package fun.model;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class HeroHealthDiaryVO implements Serializable  {
+import health.model.HealthDiaryVO;
 
+public class HealthViewPageVO implements Serializable{
 	int pageNo;
 	int pageSize;
 	int rowCount;
 	int totalPages;
-	List<HealthDiaryVO> herohealdiarypage;
+	List<HealthViewVO> healthViewPage;
 	
-	public HeroHealthDiaryVO(){
+	public HealthViewPageVO(){
 		
 	}
 	
-	public HeroHealthDiaryVO(int pageNo, int pageSize, int rowCount,
-			List<HealthDiaryVO> herohealdiarypage) {
+	public HealthViewPageVO(int pageNo, int pageSize, int rowCount,
+			List<HealthViewVO> healthViewPage) {
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
-		this.totalPages = (int) Math.ceil( (double) rowCount / pageSize );
-		this.herohealdiarypage = herohealdiarypage;
+		this.totalPages = (int) Math.ceil((double)rowCount/pageSize);
+		this.healthViewPage = healthViewPage;
 	}
 	
 	@Override
 	public String toString() {
-		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + herohealdiarypage + "}";
+		return "{"+pageNo+":"+pageSize+":"+rowCount+":"+totalPages+":"+healthViewPage+"}";
 	}
 
 	public int getPageNo() {
 		return pageNo;
 	}
+
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
 	}
+
 	public int getPageSize() {
 		return pageSize;
 	}
+
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
+
 	public int getRowCount() {
 		return rowCount;
 	}
+
 	public void setRowCount(int rowCount) {
 		this.rowCount = rowCount;
 	}
@@ -52,11 +58,16 @@ public class HeroHealthDiaryVO implements Serializable  {
 		return totalPages;
 	}
 
-	public List<HealthDiaryVO> getHerohealdiarypage() {
-		return herohealdiarypage;
+	public List<HealthViewVO> getHealthViewPage() {
+		return healthViewPage;
 	}
-	public void setHerohealdiarypage(List<HealthDiaryVO> herohealdiarypage) {
-		this.herohealdiarypage = herohealdiarypage;
+
+	public void setHealthViewPage(List<HealthViewVO> healthViewPage) {
+		this.healthViewPage = healthViewPage;
 	}
+	
+	
+	
+	
 	
 }

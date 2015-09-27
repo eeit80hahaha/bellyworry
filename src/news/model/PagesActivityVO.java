@@ -1,34 +1,41 @@
-package school.model;
+package news.model;
 
 import java.io.Serializable;
 import java.util.List;
 
-
-
 //為了換頁所新增的PagesFoodCalVO 
-public class PageExamVO implements Serializable  {
+public class PagesActivityVO implements Serializable  {
 
 	int pageNo;
 	int pageSize;
 	int rowCount;
 	int totalPages;
-	List<ExamVO> exampage;
-	public  PageExamVO() {
-		
-	}
+	List<ActivityVO> activitypage;
 	
-	public PageExamVO(int pageNo, int pageSize, int rowCount,
-			List<ExamVO> exampage) {
+	public PagesActivityVO(int pageNo, int pageSize, int rowCount,
+			List<ActivityVO> activitypage) {
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
-		this.totalPages = (int)Math.ceil(( rowCount / pageSize ));
-		this.exampage = exampage;
+		this.totalPages = ( rowCount / pageSize );
+		this.activitypage = activitypage;
 	}
 	
+	public List<ActivityVO> getActivitypage() {
+		return activitypage;
+	}
+
+	public void setActivitypage(List<ActivityVO> activitypage) {
+		this.activitypage = activitypage;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
 	@Override
 	public String toString() {
-		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + exampage + "}";
+		return "{" + pageNo + ":" + pageSize + ":" + rowCount + ":" + totalPages + ":" + activitypage + "}";
 	}
 
 	public int getPageNo() {
@@ -52,18 +59,6 @@ public class PageExamVO implements Serializable  {
 
 	public int getTotalPages() {
 		return totalPages;
-	}
-
-	public List<ExamVO> getExampage() {
-		return exampage;
-	}
-
-	public void setExampage(List<ExamVO> exampage) {
-		this.exampage = exampage;
-	}
-
-	public void setTotalPages(int totalPages) {
-		this.totalPages = totalPages;
 	}
 
 

@@ -31,6 +31,32 @@ public class ActivityService {
 		 }
 		return bean;
 	}
+	
+	public List<ActivityVO> fortyContent(List<ActivityVO> vo){
+		List<ActivityVO> bean = new ArrayList<ActivityVO>();		
+		 for(ActivityVO element : vo) {
+			 ActivityVO element1=new ActivityVO();
+			 element1.setNo(element.getNo());
+			 element1.setName(element.getName());
+			 if(element.getContent().length()>40){
+				 element1.setContent(element.getContent().substring(0,40));
+			 	}else{
+			 		element1.setContent(element.getContent().substring(0,element.getContent().length()));
+			 }
+			 element1.setStartTime(element.getStartTime());
+			 element1.setEndTime(element.getEndTime());
+			 element1.setAddress(element.getAddress());
+			 element1.setPicture1(Base64.encodeBase64String(element.getPicture()));
+			 element1.setUrl(element.getUrl());
+			 element1.setBoss(element.getBoss());
+		     bean.add(element1);
+		 }
+		return bean;
+	}
+	
+	
+	
+
 	public List<ActivityVO> select(ActivityVO vo) {
 		List<ActivityVO> result = null;
 		if(vo!=null && vo.getNo() !=0) {
@@ -120,7 +146,7 @@ public class ActivityService {
 
 			List<ActivityVO> list = activityDao.getAll();
 			List<ActivityVO> list2 = new ArrayList<ActivityVO>();
-			list2 =this.base(list);
+			list2 =this.fortyContent(list);
 			return list2;
 	}
 	
@@ -153,5 +179,16 @@ public class ActivityService {
 		ActivityService service = new ActivityService();
 		List<ActivityVO> list = service.select(null);
 		System.out.println("beans="+list);
+	}
+	
+	//換頁所使用的
+	public PagesActivityVO getDatePage(int pageNo, int pageSize){
+		List<ActivityVO> list = activityDao.getDatePage(pageNo, pageSize);
+					
+		int rowCount = activityDao.getDateTotalCount();
+		
+		PagesActivityVO result = new PagesActivityVO(pageNo, pageSize, rowCount, list);
+		
+		return result;
 	}
 }

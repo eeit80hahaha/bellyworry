@@ -258,65 +258,143 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>About Us</span>
+                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>活動情報</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
-                <div class="span8" id="divMain">
+			<div class="span8" id="divMain">
 
-                    <h1>About Us</h1>
-${selectallvo[0]}
-<form action="${pageContext.request.contextPath}/activity.controller" method="get" >
-<select name="name">
-　<option value="台北">台北</option>
-　<option value="宜蘭">宜蘭</option>
-　<option value="台中">台中</option>
-　<option value="高雄">高雄</option>
-</select>
-<input type="submit" value="送出" >
-</form>
-
-
-<div>
-<table class="gridview" cellspacing="0" cellpadding="4" align="Center" id="GridView1" style="color: Black; background-color: White; font-size: 12px; border-collapse: collapse;">
-	<tbody>
-		<tr style="color: White; background-color: Black; font-weight: bold;">
-			<th scope="col">Race Event</th>
-			<th scope="col">&nbsp;</th>
-			<th scope="col">Date</th>
-			<th scope="col">Location</th>
-			<th scope="col">&nbsp;</th>
-			<th scope="col">&nbsp;</th>
-			<th scope="col">Organizer</th>
-			<th scope="col">Deadline</th>
-		</tr>
-<tr class="splitline" align="left">
-			<td style="width: 340px;"><a href="${pageContext.request.contextPath}/activity.controller2?no=${findBySname[0].no}" >${findBySname[0].name}</a></td>
-			<td align="right" style="width: 5px;"></td>
-			<td class="datecell" style="width: 104px;">${findBySname[0].endTime}</td>
-			<td class="datecell" style="width: 104px;">${findBySname[0].address}</td>
-<%-- 			<td>${findBySname[0].endTime}</td> --%>
-<%--  			<c:forEach var="time" items="${findBySname}">  --%>
-			
-<%-- 			</c:forEach> --%>
-<%-- 			<td class="datecell" style="width: 104px;">${sawendtime[0]}</td> --%>
-			<td></td>
-			<td></td>
-			<td style="width: 200px;">${findBySname[0].boss}</td>
-			<td align="center" style="width: 130px;">
+	            <h1>About Us</h1>
+				<form action="${pageContext.request.contextPath}/activity.controller" method="get" >
+					<select name="name">
+						<option value="台北">台北</option>
+						<option value="宜蘭">宜蘭</option>
+						<option value="台中">台中</option>
+						<option value="高雄">高雄</option>
+						<option value="">all</option>
+					</select>
+					<input type="hidden" name="pageNo" value="1" />
+					<input type="submit" value="送出" >
+				</form>
 				<c:choose>
-					<c:when test="${getDateTime < findBySname[0].endTime1}">
-						<p>未結束</p>
-					</c:when>
-					<c:otherwise>
-						<p>已結束</p>
-					</c:otherwise>
+				<c:when test="${findBySname == null}">
+					<div id="paging">
+					<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
+						<table border="0">
+						 	<tr>
+						    	<td width='76'>
+								<c:if test="${PagesActivityVO.pageNo > 1}">
+						           <div id="pfirst">
+						              <a href="<c:url value='/activity.controller?pageNo=1' />">第一頁</a>&nbsp;&nbsp;&nbsp;
+						           </div>
+								</c:if>
+						     	</td>
+						     	<td width='76'>
+								<c:if test="${PagesActivityVO.pageNo > 1}">
+						           <div id="pprev">
+						              <a href="<c:url value='/activity.controller?pageNo=${PagesActivityVO.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
+						           </div>
+								</c:if>  
+						     	</td>
+						     	<td width='76'>
+								<c:if test="${PagesActivityVO.pageNo != PagesActivityVO.totalPages}">
+									<div id="pnext">
+										<a href="<c:url value='/activity.controller?pageNo=${PagesActivityVO.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
+									</div>
+								</c:if>
+						    	</td>  
+						    	<td width='76'>
+								<c:if test="${PagesActivityVO.pageNo != PagesActivityVO.totalPages}">
+									<div id="plast">
+									    <a href="<c:url value='/activity.controller?pageNo=${PagesActivityVO.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
+									</div>
+								</c:if>
+						    	</td>
+						    	<td width='176' align="center">
+						        	  第${PagesActivityVO.pageNo}頁 / 共${PagesActivityVO.totalPages}頁
+						    	</td>  
+							</tr>
+						</table>
+					</div>
+				
+					<div>
+						<table class="gridview" cellspacing="0" cellpadding="4" align="Center" id="GridView1" style="color: Black; background-color: White; font-size: 12px; border-collapse: collapse;">
+							<tbody>
+								<tr style="color: White; background-color: Black; font-weight: bold;">
+									<th scope="col">活動名稱</th>
+									<th scope="col">&nbsp;</th>
+									<th scope="col">活動日期</th>
+									<th scope="col">活動地點</th>
+									<th scope="col">&nbsp;</th>
+									<th scope="col">&nbsp;</th>
+									<th scope="col">主辦廠商</th>
+									<th scope="col">活動狀態</th>
+								</tr>
+								<c:forEach var="activity" items="${PagesActivityVO.activitypage}">
+									<tr class="splitline" align="left">
+											<td style="width: 340px;"><a href="${pageContext.request.contextPath}/activity.controller2?no=${activity.no}" >${activity.name}</a></td>
+											<td align="right" style="width: 5px;"></td>
+											<td class="datecell" style="width: 104px;">${activity.endTime}</td>
+											<td class="datecell" style="width: 104px;">${activity.address}</td>
+											<td></td>
+											<td></td>
+											<td style="width: 200px;">${activity.boss}</td>
+											<td align="center" style="width: 130px;">
+												<c:choose>
+													<c:when test="${getDateTime < activity.endTime1}">
+																		<p>未結束</p>
+													</c:when>
+													<c:otherwise>
+																		<p>已結束</p>
+													</c:otherwise>
+												</c:choose>
+											</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</c:when>
+				<c:when test="${findBySname != null}">
+				<div>
+				<table class="gridview" cellspacing="0" cellpadding="4" align="Center" id="GridView1" style="color: Black; background-color: White; font-size: 12px; border-collapse: collapse;">
+					<tbody>
+						<tr style="color: White; background-color: Black; font-weight: bold;">
+							<th scope="col">活動名稱</th>
+							<th scope="col">&nbsp;</th>
+							<th scope="col">活動日期</th>
+							<th scope="col">活動地點</th>
+							<th scope="col">&nbsp;</th>
+							<th scope="col">&nbsp;</th>
+							<th scope="col">主辦廠商</th>
+							<th scope="col">活動狀態</th>
+						</tr>
+				<c:forEach var="activity" items="${findBySname}">
+					<tr class="splitline" align="left">
+							<td style="width: 340px;"><a href="${pageContext.request.contextPath}/activity.controller2?no=${activity.no}" >${activity.name}</a></td>
+							<td align="right" style="width: 5px;"></td>
+							<td class="datecell" style="width: 104px;">${activity.endTime}</td>
+							<td class="datecell" style="width: 104px;">${activity.address}</td>
+							<td></td>
+							<td></td>
+							<td style="width: 200px;">${activity.boss}</td>
+							<td align="center" style="width: 130px;">
+								<c:choose>
+									<c:when test="${getDateTime < activity.endTime1}">
+										<p>未結束</p>
+									</c:when>
+									<c:otherwise>
+										<p>已結束</p>
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+				</c:forEach>
+					</tbody>
+				</table>
+				</div>
+				</c:when>
 				</c:choose>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</div>
 
 
                 </div>
@@ -328,10 +406,13 @@ ${selectallvo[0]}
 						<p>Lorem Ipsum is simply dummy text of the printing and &lt;a href='#'&gt;type setting industry&lt;/a&gt;.  Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
 						<hr>
         <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
+		        <div class="span4">   
+		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}" class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>                        
+                </div>          
                 <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
+                    <p>${selectallvo[8].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${findBySname[8].no}" >...詳細閱讀</a> 
+                    </p>
                 </div>		 
         </div>
 

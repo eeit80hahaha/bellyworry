@@ -15,13 +15,13 @@
     <title>【BellyWorry後台】一日套餐組合</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/backend/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/backend/css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/backend/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +50,11 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
+
                                 <i class="fa fa-table"></i> <a href="../backend/SelectDayMealServlet.controller">查詢一日套餐</a>
+						<!-- hui git Mark -->
+<%--                                 <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/foodCalManage.jsp">查詢一日套餐</a> --%>
+						<!-- hui git Mark -->
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增一日套餐
@@ -132,10 +136,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/backend/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/backend/js/bootstrap.min.js"></script>
 
 </body>
 

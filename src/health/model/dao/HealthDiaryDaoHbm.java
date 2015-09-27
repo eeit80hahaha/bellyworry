@@ -191,7 +191,7 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		return vo;
 	}
 
-	private static final String GETMEMBERNO = "from HealthDiaryVO where memberNo=?";
+	private static final String GETMEMBERNO = "from HealthDiaryVO where memberNo=? order by date desc";
 
 	@Override
 	public List<HealthDiaryVO> selectMemberNo(int memberNo) {
@@ -314,6 +314,29 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 			} else {
 				// ok
 				result = 1000;
+			}
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	
+	private static final String GETCALENDAR = "from HealthDiaryVO where memberNo=? and date=?";
+	@Override
+	public HealthDiaryVO getCalendar(int memberNo, java.util.Date date) {
+		HealthDiaryVO result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETCALENDAR);
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			List<HealthDiaryVO> list = query.list();
+			if(!list.isEmpty()){
+				result = list.get(0);
 			}
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {

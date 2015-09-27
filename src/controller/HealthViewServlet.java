@@ -50,11 +50,11 @@ public class HealthViewServlet extends HttpServlet {
 		request.setAttribute("error", errors);
 		
 		if(prodaction!=null) {
-			if(prodaction.equals("Insert")){
-				if(temp1.length()!=0) {
-					errors.put("no", "新增景點不需填寫編號 ");
-				}
-			}
+//			if(prodaction.equals("Insert")){
+//				if(temp1.length()!=0) {
+//					errors.put("no", "新增景點不需填寫編號 ");
+//				}
+//			}
 			if(prodaction.equals("Update") || prodaction.equals("Delete")) {
 				if(temp1==null || temp1.length()==0) {
 					errors.put("no", "修改與刪除操作，請輸入景點編號！");
@@ -107,11 +107,16 @@ public class HealthViewServlet extends HttpServlet {
 				errors.put("lng", "經度必須為數值型態");
 			}
 		}
-		
 		if(errors!=null && !errors.isEmpty()) {
-			request.getRequestDispatcher(
-					"/healthViewCRUD.jsp").forward(request, response);
-			return;
+			if(prodaction!=null && prodaction.equals("Insert")){
+				request.getRequestDispatcher(
+						"/backend/healthViewInsert.jsp").forward(request, response);
+			return;	
+			}else{
+				request.getRequestDispatcher(
+						"/healthViewCRUD.jsp").forward(request, response);
+				return;
+			}
 		}
 
 		// 呼叫model
@@ -139,18 +144,16 @@ public class HealthViewServlet extends HttpServlet {
 				errors.put("action", "新增失敗");
 			}
 			request.getRequestDispatcher(
-					"/healthViewCRUD.jsp").forward(request, response);
+					"/backend/healthViewInsert.jsp").forward(request, response);
 //		"/healthViewCRUD.jsp").include(request, response);
 		} else if(prodaction!=null && prodaction.equals("Update")) {
 			HealthViewVO result = null;
 			int temp = service.update(vo);
-			System.out.println(temp);
 			if(temp>0){
 				result = service.selectByPrimaryKey(vo.getNo());
 				request.setAttribute("update", result);
 			}else{
 				errors.put("action", "修改失敗");
-				System.out.println(errors.get("action"));
 			}
 //			response.sendRedirect("/bellyworry/viewClass.controller");
 			

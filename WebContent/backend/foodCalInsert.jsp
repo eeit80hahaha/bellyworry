@@ -15,9 +15,10 @@
     <title>【BellyWorry後台】菜色項目管理</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/backend/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+
     <link href="css/sb-admin.css" rel="stylesheet">
 <!-- 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
 <!-- 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
@@ -26,9 +27,19 @@
   	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!--   	<link rel="stylesheet" href="/resources/demos/style.css"> -->
 	
+
+			<!-- hui Git Mark -->
+<%--     <link href="${pageContext.request.contextPath}/backend/css/sb-admin.css" rel="stylesheet"> --%>
+			<!-- hui Git Mark -->
+
     <!-- Custom Fonts -->
+
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<script src="../ckeditor/ckeditor.js"></script>
+			<!-- hui Git Mark -->
+<%--     <link href="${pageContext.request.contextPath}/backend/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> --%>
+			<!-- hui Git Mark -->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -100,6 +111,10 @@ $(function() {
                             <li>
                                 <i class="fa fa-table"></i> <a href="../backend/SelectAllMenuServlet.controller">查詢菜色項目</a>
                             </li>                                      
+							<!-- hui Git Mark -->
+<%--                                 <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/foodCalManage.jsp">查詢菜色項目</a> --%>
+<!--                             </li> -->
+							<!-- hui Git Mark -->
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增菜色項目
                             </li>
@@ -204,9 +219,14 @@ $(function() {
     <!-- /#wrapper -->
 
     <!-- jQuery -->
+<<<<<<< HEAD
 <!--     <script src="js/jquery.js"></script> -->
+			<!-- hui Git Mark -->
+<%--     <script src="${pageContext.request.contextPath}/backend/js/jquery.js"></script> --%>
+			<!-- hui Git Mark -->
 
     <!-- Bootstrap Core JavaScript -->
+
     <script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">CKEDITOR.replace('way');</script>
 	
@@ -216,6 +236,10 @@ $(function() {
 	
 	</div>
 	
+				<!-- hui Git Mark -->
+<%--     <script src="${pageContext.request.contextPath}/backend/js/bootstrap.min.js"></script> --%>
+
+				<!-- hui Git Mark -->
 </body>
 
 </html>
