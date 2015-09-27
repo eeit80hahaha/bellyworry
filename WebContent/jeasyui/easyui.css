@@ -124,6 +124,7 @@
   background-color: #ffffff;
   color: #000000;
   font-size: 12px;
+  overflow-x: hidden;
 }
 .panel-title {
   font-size: 12px;
