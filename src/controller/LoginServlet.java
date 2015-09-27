@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 				success.put("out", "'<a href='" + request.getContextPath()
 						+ "/logout.controller'>登出</a>");
 				String path = request.getContextPath();
-				response.sendRedirect("http://tw.yahoo.com");//待改為URL============
+				response.sendRedirect(path+"/backend/index.jsp");//待改為URL============
 			} else {
 				errors.put("open", "$(\"#dialog0\").dialog(\"open\");");
 				errors.put("success1", "登入成功");
@@ -86,6 +86,11 @@ public class LoginServlet extends HttpServlet {
 				success.put("out", "'<a href='" + request.getContextPath()
 						+ "/logout.controller'>登出</a>");
 				String dest = (String) session.getAttribute("dest");
+				
+				request.getSession().removeAttribute("eatBreakfast");
+				request.getSession().removeAttribute("eatLunch");
+				request.getSession().removeAttribute("eatDinner");
+				
 				if (dest != null && dest.length() != 0) {
 					session.removeAttribute("dest");
 					response.sendRedirect(dest);

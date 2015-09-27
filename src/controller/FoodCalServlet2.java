@@ -18,7 +18,7 @@ import calories.model.FoodCalVO;
 
 
 @WebServlet(
-		urlPatterns={"/ranking/foodCal.product"}
+		urlPatterns={"/ranking/foodCal.product1"}
 )
 public class FoodCalServlet2 extends HttpServlet{
 		private FoodCalService service;

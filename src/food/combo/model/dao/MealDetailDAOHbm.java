@@ -116,4 +116,21 @@ public class MealDetailDAOHbm implements MealDetailDAO {
 		return result;
 	}
 
+	
+	@Override
+	public List<MealDetailVO> selectByFNo(int foodno) {
+		List<MealDetailVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+
+			session.beginTransaction();
+			Query query = session.createQuery("from MealDetailVO where foodNo=?");
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			session.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

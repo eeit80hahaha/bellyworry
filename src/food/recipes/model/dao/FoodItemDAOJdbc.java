@@ -15,7 +15,7 @@ import food.recipes.model.FoodItemVO;
 
 
 
-public  class FoodItemDAOJdbc implements FoodItemDAO{
+public abstract  class FoodItemDAOJdbc implements FoodItemDAO{
 	private static final String URL ="jdbc:sqlserver://localhost:1433;database=BellyWorry";
 	private static final String USERNAME ="sa";
 	private static final String PASSWORD ="sa123456";

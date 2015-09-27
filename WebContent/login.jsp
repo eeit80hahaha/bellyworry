@@ -117,7 +117,7 @@ $(function() {
 		</form>
 	</div>
 	<div id="dialog3" title="忘記密碼" style="display: none;">
-		<form　action="${pageContext.request.contextPath}/ForgetpwsServlet.controller"
+		<form action="${pageContext.request.contextPath}/ForgetpwsServlet.controller"
 			method="post">
 			<div>
 				<label><span style="color: red">*</span>帳號:</label><input
