@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import register.model.MemberVO;
 
 @WebFilter(
-		urlPatterns = {"/ranking/foodCal.controller"}
+		urlPatterns = {"/foodCal.controller"}
 )
 public class FoodCalFilter implements Filter {
 
@@ -32,6 +32,8 @@ public class FoodCalFilter implements Filter {
 		HttpSession session = request.getSession(); //產生session
 		MemberVO bean = (MemberVO) session.getAttribute("user"); 
 		if(bean!=null){
+			
+			session.setAttribute("healthDate", new java.util.Date());
 			
 			session.setAttribute("login", "600");
 			chain.doFilter(request, response);
