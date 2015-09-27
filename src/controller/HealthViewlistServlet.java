@@ -86,7 +86,7 @@ public class HealthViewlistServlet extends HttpServlet {
 		//呼叫Model
 		ViewClassVO vo = viewService.getViewClass(viewClassNo);
 		
-		HealthViewPageVO healthViewPageVO = service.getPageDate(pageNo, 8, vo);
+		HealthViewPageVO healthViewPageVO = service.getPageDate(pageNo, 3, vo);
 		//根據Model執行結果導向View
 		System.out.println(healthViewPageVO);
 		
