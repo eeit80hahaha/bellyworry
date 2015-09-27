@@ -67,10 +67,15 @@
 							<div class="form-group">
                                 <label>景點類別：</label>
                                 <select name="viewClassNo" lang="10" id="viewClassNo" class="form-control">
-									<option value="">全部</option>
+									<option value="100000">全部</option>
 									<jsp:useBean id="viewClass" class="fun.model.ViewClassService">
 									<c:forEach var="row" items="${viewClass.all}">
-										<option value="${row.viewClassNo}">${row.name}</option>
+										<c:if test="${nowViewClassVO.viewClassNo == row.viewClassNo}">
+											<option value="${row.viewClassNo}" selected>${row.name}</option>
+										</c:if>
+										<c:if test="${nowViewClassVO.viewClassNo != row.viewClassNo}">
+											<option value="${row.viewClassNo}">${row.name}</option>
+										</c:if>
 									</c:forEach>
 									</jsp:useBean>
 								</select>
@@ -99,36 +104,36 @@
                				<div id="controllerbtn">
                					<table border="0">
 									<tr>
-									  <td width='76'>
-									      <c:if test="${healthViewPageVO.pageNo > 1}">
-									<div id="pfirst">
-									   <a href="<c:url value='/healthViewlist.controller?pageNo=1' />">第一頁</a>&nbsp;&nbsp;&nbsp;
-									</div>
-									</c:if>
-									</td>
-									<td width='76'>
-									   <c:if test="${healthViewPageVO.pageNo > 1}">
-									<div id="pprev">
-									   <a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo-1}' />">上一頁</a>&nbsp;&nbsp;&nbsp;
-									</div>
-									</c:if>  
-									</td>
-									<td width='76'>
-									       <c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}">
-									<div id="pnext">
-									   <a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
-									</div>
-									</c:if>
-									</td>  
-									<td width='76'>
-									       <c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}">
-									<div id="plast">
-									    <a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.totalPages}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
-									</div>
-									</c:if>
-									</td>
-									<td width='176' align="center">
-									      第${healthViewPageVO.pageNo}頁 / 共${healthViewPageVO.totalPages}頁
+										<td width='76'>
+											<div id="pfirst">
+											<c:if test="${healthViewPageVO.pageNo > 1}">
+												<a href="<c:url value='/healthViewlist.controller?pageNo=1&viewClassNo=${nowViewClassVO.viewClassNo}' />">第一頁</a>
+											</c:if>
+											</div>
+										</td>
+										<td width='76'>
+											<div id="pprev">
+											<c:if test="${healthViewPageVO.pageNo > 1}">
+												<a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo-1}&viewClassNo=${nowViewClassVO.viewClassNo}' />">上一頁</a>
+											</c:if>
+											</div>
+										</td>
+										<td width='76'>
+											<div id="pnext">
+											<c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}">
+												<a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo+1}&viewClassNo=${nowViewClassVO.viewClassNo}' />">下一頁</a>
+											</c:if>
+											</div>
+										</td>  
+										<td width='76'>
+											<div id="plast">
+											<c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}">
+												<a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.totalPages}&viewClassNo=${nowViewClassVO.viewClassNo}' />">最末頁</a>&nbsp;&nbsp;&nbsp;
+											</c:if>
+											</div>
+										</td>
+										<td width='176' align="center" id="pinfo">
+											      第${healthViewPageVO.pageNo}頁 / 共${healthViewPageVO.totalPages}頁
 									     </td>  
 									</tr>
 									</table>
@@ -171,52 +176,71 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/backend/js/bootstrap.min.js"></script>
 
-
 <script type="text/javascript">
-// function clearForm() {
-// 	var inputs = document.getElementsByTagName("input");
-// 	for(var i=0; i<inputs.length; i++) {
-// 		if(inputs[i].type=="text") {
-// 			inputs[i].value="";
-// 		}
-// 	}
-// 	$("#viewClassNo option").prop("selected",false);	
-// }
+	var viewNo = "${nowViewClassVO.viewClassNo}";
+	var viewName = "${nowViewClassVO.name}";
+
 (function($) {
 	$("#viewClassNo").on('change', function() {
+		location.replace('${pageContext.request.contextPath}/healthViewlist.controller?pageNo=1&viewClassNo='+$("#viewClassNo").val());
 // 		getViews($(this).val());
-		
-		$("#controllerbtn a").each(function(){
-			$(this).attr("href");
-		});
-		$(this).attr("href" , $(this).attr("href")+$("#viewClass").val());
+// 		$("#controllerbtn a").each(function(){
+// 			$(this).attr("href" , $(this).attr("href")+"&viewClassNo"+$("#viewClassNo").val());
+// 		});
 	});
 	
 // 	function getViews(value) {
+// // 		console.log(value);
 // 		$.ajax({
 // 			"type" : "get",
-// 			"url" : "/healthViewlist.controller?pageNo=1&viewClassNo="+value,
+// 			"url" : "${pageContext.request.contextPath}/healthViewlist.controller?pageNo=1&viewClassNo="+value,
+
 // 			"dataType" : "json",
 // 			"success" : function(data) {
+// 				$("#healthViewlist").empty();
 // 				console.log(data);
-// 				$.each(data, function() {
-// 					$("#healthViewlist").empty();
-// 					var val = this.no;
-// 					var name = this.name;
-// 					$("#healthview").append(
-// //								"<option value='{lat:"+this.lat+", lng:"+this.lng+"}'>"
-// 							"<option value='"+this.lat+","+this.lng+"'>"
-// 									+ name + "</option>");
+//  				//console.log(typeof(test));
 
+// 				var a = [];
+// 				var i = 0;
+// 				$.each(data.healthViews, function(key,value) {	//排序
+// 					a[a.length]=key;
 // 				});
+				
+// 				a.sort();
+// 				$.each(a, function(index,value) {	//改表格
+// 					//console.log(value);	//healthView0,healthView1,healthView2....
+// 					console.log(data.healthViews[value]); //所有物件
+// 					$("#healthViewlist").append("<tr><td>"+data.healthViews[value].no
+// 							+"</td><td>"+data.healthViews[value].name
+// 							+"</td><td>"+data.healthViews[value].viewClass
+// 							+"</td><td>"+data.healthViews[value].lat
+// 							+"</td><td>"+data.healthViews[value].lng+"</td></tr>");
+// 					console.log("print");
+// 				});
+// 				$("#pfirst").empty();
+// 				$("#pprev").empty();
+// 				console.log(data.pageNo);
+// 				console.log(data.totalPage);
+// 				var viewOpt = "&viewClassNo="+$("#viewClassNo").val();
+// 				$("#pnext").empty();
+// 				$("#plast").empty();
+// 				if(data.pageNo!=data.totalPage){
+// 					console.log("123");
+// 					$("#pnext").empty();
+// 					$("#pnext").append("<a>下一頁</a>");
+// 					$("#pnext>a").attr("href","${pageContext.request.contextPath}/healthViewlist.controller?pageNo="+(data.pageNo+1)+"&viewClassNo="+$("#viewClassNo").val());
+// 					$("#plast").empty();
+// 					$("#plast").append("<a>最後頁</a>");
+// 					$("#plast>a").attr("href","${pageContext.request.contextPath}/healthViewlist.controller?pageNo="+(data.totalPage)+"&viewClassNo="+$("#viewClassNo").val());
+// 				}
+// 				$("#pinfo").text("第"+data.pageNo+"頁 / 共"+data.totalPage+"頁");
 // 			}
 // 		})
 // 	}
-	
 })(jQuery);
 
 
-// &viewClassNo=
 </script>
 
 </body>

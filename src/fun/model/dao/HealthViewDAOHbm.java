@@ -187,5 +187,12 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 		}
 		return result;
 	}
+	
+//	public static void main(String[] args){
+//		HealthViewDAO dao = new HealthViewDAOHbm();
+//		ViewClassVO vo = new ViewClassDAOHbm().selectByPrimaryKey(100001);
+//		System.out.println(dao.selectByViewClassVO(vo,1,3));
+//		
+//	}
 
 }

@@ -348,9 +348,9 @@
 		function temp(point,sel){
 			//station data
 			<jsp:useBean id="YouBike" class="fun.model.YouBikeService">
-				var temp = ${YouBike.jsonDataFromFile}
+				var temp1 = ${YouBike.jsonDataFromFile}
 			</jsp:useBean>
-			var temp2 = temp.result.results;
+			var temp2 = temp1.result.results;
 			var stations = new Array;
 			for(var i=0;i<temp2.length;i++)
 			{

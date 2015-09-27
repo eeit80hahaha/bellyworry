@@ -4,9 +4,12 @@ import health.model.HeroHealthDiaryVO;
 import init.GlobalService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +18,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import fun.model.HealthViewPageVO;
 import fun.model.HealthViewService;
 import fun.model.HealthViewVO;
 import fun.model.ViewClassService;
+import fun.model.ViewClassVO;
 import ranking.model.HeroService;
 import ranking.model.HeroVO;
 
@@ -29,10 +38,12 @@ import ranking.model.HeroVO;
 public class HealthViewlistServlet extends HttpServlet {
 	
 	private HealthViewService service;
+	private ViewClassService viewService;
 
 	@Override
 	public void init() throws ServletException {
 		service = new HealthViewService();
+		viewService = new ViewClassService();
 	}
 	
 	@Override
@@ -73,19 +84,28 @@ public class HealthViewlistServlet extends HttpServlet {
 		}
 				
 		//呼叫Model
-		HealthViewVO vo = new HealthViewVO();
-		vo.setViewClassVO(new ViewClassService().getViewClass(viewClassNo));
+		ViewClassVO vo = viewService.getViewClass(viewClassNo);
 		
+		HealthViewPageVO healthViewPageVO = service.getPageDate(pageNo, 8, vo);
 		//根據Model執行結果導向View
-	    HealthViewPageVO healthViewPageVO = service.getPageDate(pageNo, 8, vo);
-	    
-		request.setAttribute("HealthViewVO", vo);
+		System.out.println(healthViewPageVO);
+		
+ 
 		if(healthViewPageVO !=null){
 			request.setAttribute("healthViewPageVO", healthViewPageVO);
+//			if(viewClassNo!=0){	//回傳JSON
+//				response.setContentType("application/Json;charset=UTF-8");
+//				PrintWriter out = response.getWriter();
+//				out.write(parseJSONObj(healthViewPageVO).toJSONString());
+////				System.out.println(parseJSONObj(healthViewPageVO).toJSONString());
+//				out.close();
+//				return;
+//			}
+			//回傳HTML
+			request.setAttribute("nowViewClassVO", vo);
 			request.getRequestDispatcher(
 					"/backend/healthViewManage.jsp").forward(request, response);
-			System.out.println("111");
-			System.out.println(healthViewPageVO);
+//			System.out.println(healthViewPageVO);
 		}else {
 			errorMessage.put("action", "查無紀錄");
 			request.getRequestDispatcher(
@@ -100,6 +120,48 @@ public class HealthViewlistServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		super.doGet(request, response);
+	}
+	
+	private JSONObject parseJSONObj(HealthViewPageVO vo){
+		JSONObject finalresults = new JSONObject();
+		Map map = new TreeMap();
+		Map listvos = new LinkedHashMap();
+		
+		int i = 0;
+
+		List<HealthViewVO> test = vo.getHealthViewPage();
+		for(HealthViewVO ele : test){
+
+			Map listvo = new TreeMap();
+			
+			int r1 = ele.getNo();
+			String r2 = ele.getName();
+			String r3 = ele.getViewClassVO().getName();
+			float r4 = ele.getLat();
+			float r5 = ele.getLng();
+			
+			listvo.put("no", r1);
+			listvo.put("name", r2);
+			listvo.put("viewClass", r3);
+			listvo.put("lat", r4);
+			listvo.put("lng", r5);
+			
+			listvos.put("healthView"+i, listvo);
+			i++;
+			
+			System.out.println(r1+r2+r3+r4);
+		}
+		JSONObject listjsonobj = new JSONObject(listvos);
+		
+		map.put("pageNo",vo.getPageNo());
+		map.put("pageSize",vo.getPageSize());
+		map.put("rowCount", vo.getRowCount());
+		map.put("totalPage", vo.getTotalPages());
+		map.put("healthViews", listjsonobj);
+		
+		finalresults = new JSONObject(map);
+		
+		return  finalresults;
 	}
 
 }
