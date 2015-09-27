@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import register.model.MemberVO;
 import food.recipes.model.FoodItemDAO;
 import food.recipes.model.FoodItemVO;
 
@@ -98,4 +99,5 @@ public class FoodItemDAOHbm implements FoodItemDAO {
 		}	
 		return flag1;
 	}
+	
 }

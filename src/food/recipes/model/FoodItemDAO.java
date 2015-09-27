@@ -12,4 +12,6 @@ public interface FoodItemDAO {
 	public abstract FoodItemVO update(FoodItemVO vo);
 
 	public abstract boolean delete(int useFoodNo);
+
+	
 }

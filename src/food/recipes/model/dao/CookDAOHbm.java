@@ -9,6 +9,7 @@ import org.hibernate.Session;
 
 import food.recipes.model.CookDAO;
 import food.recipes.model.CookVO;
+import food.recipes.model.FoodItemVO;
 
 public class CookDAOHbm implements CookDAO {
 	@Override
@@ -29,7 +30,7 @@ public class CookDAOHbm implements CookDAO {
 		
 		return cookVO;
 	}
-
+		
 	private static final String GET_ALL_STMT = "from CookVO order by cookNo";
 	@Override
 	public List<CookVO> getAll() {

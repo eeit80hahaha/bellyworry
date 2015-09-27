@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import calories.model.FoodCalVO;
 import calories.model.MenuService;
 import calories.model.MenuVO;
@@ -57,25 +59,35 @@ public class MenuServelt extends HttpServlet {
 		}else{
 			result= service.select(null);
 		}
+		/*Neil add*/
+		StringBuffer cooksDiv = new StringBuffer();
+		List<FoodCalVO> ss=null;
+		ListPage<FoodCalVO> listPage=null;
+		if(result.size()>0){
+			/*Neil add*/
 		System.out.println("sss:"+result);
-		List<FoodCalVO> ss=(List<FoodCalVO>)service.base(result);
+		ss=(List<FoodCalVO>)service.base(result);
 		
-		ListPage<FoodCalVO> listPage = new ListPage<FoodCalVO>(ss,6);//每頁6筆
+		listPage = new ListPage<FoodCalVO>(ss,8);//每頁6筆
 		
 		ss = listPage.getPageList(pageNo);
 		
-		StringBuffer cooksDiv = new StringBuffer();
-		String tempType = "";
 		
+		String tempType = "";
 		for(int i=0; i<ss.size(); i++) {
 			cooksDiv.append("<div id='cook_");
 			cooksDiv.append(ss.get(i).getFoodNo());
 			cooksDiv.append("' style='display:none;'>");
 			cooksDiv.append("<table width='400'>");
 			cooksDiv.append("<tr>");
-			cooksDiv.append("<td colspan='3' width='50'><img src='data:image/jpg;base64,");
-			cooksDiv.append(ss.get(i).getPicture1());
-			cooksDiv.append("' width='400' height='auto' /></td>");
+			if(ss.get(i).getCooks().getPicture()!=null){
+				cooksDiv.append("<td colspan='3' width='50'><img src='data:image/jpg;base64,");
+				cooksDiv.append(Base64.encodeBase64String(ss.get(i).getCooks().getPicture()));
+				cooksDiv.append("' style='width:400px; height:auto;' /></td>");
+			}else{
+				cooksDiv.append("<td colspan='3' width='50'><img src='images/empty.jpg");
+				cooksDiv.append("' style='width:400px; height:auto;' /></td>");	
+			}
 			cooksDiv.append("</tr>");
 			
 			Iterator<FoodItemVO> fooditems = ss.get(i).getCooks().getFooditems().iterator();
@@ -107,15 +119,21 @@ public class MenuServelt extends HttpServlet {
 			cooksDiv.append(ss.get(i).getCooks().getWayNo());
 			cooksDiv.append("</td></tr></table></div>");
 	    }
+		}
+		/*Neil add*/
+		request.setAttribute("selected", menuname);
 		
+		if(ss!=null && listPage!=null){
 		request.setAttribute("menu", ss);
 		request.setAttribute("cooksDiv", cooksDiv);
 		request.setAttribute("pagecount", listPage.getPageNo());
 		request.setAttribute("listPage", listPage.getLastPage());
+		}
+		/*Neil add*/
 		RequestDispatcher rd = request.getRequestDispatcher("/menuview.jsp");
-		rd.forward(request, response);		
-	}
+		rd.forward(request, response);
 	
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		this.doGet(request, response);

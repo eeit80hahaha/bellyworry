@@ -12,9 +12,11 @@ import calories.model.dao.FoodCalDAOHbm;
 import calories.model.dao.MenuDaoHbm;
 import food.combo.model.DayMealDAO;
 import food.combo.model.DayMealVO;
+import food.combo.model.MealDetailVO;
 import food.combo.model.MealNameDAO;
 import food.combo.model.MealNameVO;
 import food.combo.model.dao.DayMealDAOHbm;
+import food.combo.model.dao.MealDetailDAOHbm;
 import food.combo.model.dao.MealNameDAOHbm;
 
 public class MenuService {
@@ -22,7 +24,13 @@ public class MenuService {
 	private MealNameDAO mealNameDao = new MealNameDAOHbm();
 	private MenuDAO menuDao = new MenuDaoHbm();
 	private DayMealDAO dayMealDao = new DayMealDAOHbm();
-
+	private MealDetailDAOHbm mealDetailDao = new MealDetailDAOHbm();
+	
+	public List<MealDetailVO> getAll(){
+		List<MealDetailVO> result=mealDetailDao.getAll();
+		return result;
+	}
+	
 	public List<DayMealVO> selectDayMeal(DayMealVO vo) {
 		List<DayMealVO> result = null;
 		if (vo != null && vo.getNo() != 0) {
@@ -115,6 +123,7 @@ public class MenuService {
 		if (vo != 0) {
 			result = foodCalDao.selectByMenuNo(vo);
 		}
+		System.out.println("============Neil========"+result);
 		return result;
 	}
 

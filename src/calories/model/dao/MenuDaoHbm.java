@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
+import register.model.MemberVO;
 import calories.model.MenuDAO;
 import calories.model.MenuVO;
 
@@ -26,6 +27,29 @@ public class MenuDaoHbm implements MenuDAO{
 		}
 		return menuVO;
 	}
+	
+	private static final String SELECT_BY_NAME =
+			"from MenuVO where name=?";
+
+	public MenuVO selectByName(String name){
+		MenuVO menuVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(SELECT_BY_NAME);
+			query.setParameter(0, name);
+			List<MenuVO> list = query.list();
+			if(list.size()!=0){
+				menuVO = list.get(0);
+			}
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return menuVO;
+	}
+	
 	@Override
 	public List<MenuVO> getAll() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();

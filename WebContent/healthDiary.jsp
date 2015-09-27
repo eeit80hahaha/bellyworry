@@ -96,14 +96,14 @@
 			<div class="breadcrumbs">
 				<a href="index.jsp">Home</a> &nbsp;/&nbsp; <span>健康管理日誌</span>
 			</div>
-			<div class="headerr" style="border: none;">
+			<div id="tabs" class="headerr" style="border: none;">
 <!-- 				<ul class="nav nav-tabs" style="background-color: white;"> -->
 <!-- 					<li class="active"><a href="#t-1">日誌首頁</a></li> -->
 <!-- 					<li><a href="#t-2">今日紀錄</a></li> -->
 <!-- 					<li><a href="#t-3">歷史紀錄</a></li> -->
 <!-- 				</ul> -->
 
-				<div id="t-1" style="height: 100%;">
+				<div id="t-1" style="height: 100%;" title="日誌首頁">
 					<div style="border: 2px solid blue; width: 100%; height: 100%;">
 					</div>
 
@@ -190,7 +190,7 @@
 
 						<div style="width: 100%;"></div>
 						<div id="cc" class="easyui-calendar"
-							style="width: 335px; height: 360px; position: absolute; top: 272px"></div>
+							style="width: 335px; height: 360px; position: absolute; top: 235px"></div>
 
 						
 
@@ -302,7 +302,7 @@
 						</table>
 					</div>
 				</div>
-				<div id="t-2">
+				<div id="t-2" title="填寫日誌">
 
 					<div style="border: 2px solid blue; width: 95%; height: 100%;">
 						<form action="health.collection" method="post">
@@ -384,9 +384,9 @@
 						</form>
 					</div>
 				</div>
-				<div id="t-3">
+				<div id="t-3" title="歷史紀錄">
 					<div id="container"
-						style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+						style="width: 1000px; height: 400px; margin: 0 auto"></div>
 					<br>
 					<table border='2' style="float: left;">
 						<tr>
@@ -654,8 +654,7 @@
 
 
 	<script>
-		(function($) {
-// 			$.get("diaryIndex.controller");
+		(function($) {	
 			$("#cc").calendar(
 					{
 						onSelect : function(date) {
@@ -679,9 +678,11 @@
 			$(".accordion").accordion({
 				animate:false
 			});
-			$(function() {
-				$(".headerr").tabs();
+			
+			$("#tabs").tabs({
+					
 			});
+			
 
 			//日期
 // 			$(function() {
