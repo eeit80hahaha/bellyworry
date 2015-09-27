@@ -4,7 +4,7 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li>
-            <a href="foodCalInsert.jsp"><i class="fa fa-fw fa-desktop"></i>　菜色項目管理</a>
+            <a href="${pageContext.request.contextPath}/ClassOptionServlet.controller"><i class="fa fa-fw fa-desktop"></i>　菜色項目管理</a>
         </li>
         <li>
             <a href="mealDetailInsert.jsp"><i class="fa fa-fw fa-desktop"></i>　套餐組合管理</a>

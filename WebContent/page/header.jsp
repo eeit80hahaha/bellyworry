@@ -35,19 +35,18 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="about.html">關於我</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Menuservelt.controller">菜色&食譜</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/logout.controller">登出</a></li>
+                                       <li><a href="${pageContext.request.contextPath}/Menuservelt.controller">菜色&食譜</a></li>
+<%--                                         <li><a href="${pageContext.request.contextPath}/logout.controller">登出</a></li> --%>
                                         <li><a href="${pageContext.request.contextPath}/Mealservelt.controller">套餐</a></li>
-                                        <li><a href="../documentation/index.html">說明文件</a></li>
-                                        <li class="dropdown">
-                                        <a href="full.html" class="dropdown-toggle">分欄參考</a>
-                                        <ul class="dropdown-menu sub-menu">
-                                        <li><a href="full.html">單欄版型</a></li>
-                                        <li><a href="2-column.html">兩欄版型</a></li>
-                                        <li><a href="3-column.html">三欄版型</a></li>
-                                        </ul>
-                                        </li>
+<!--                                         <li><a href="../documentation/index.html">說明文件</a></li> -->
+<!--                                         <li class="dropdown"> -->
+<!--                                         <a href="full.html" class="dropdown-toggle">分欄參考</a> -->
+<!--                                         <ul class="dropdown-menu sub-menu"> -->
+<!--                                         <li><a href="full.html">單欄版型</a></li> -->
+<!--                                         <li><a href="2-column.html">兩欄版型</a></li> -->
+<!--                                         <li><a href="3-column.html">三欄版型</a></li> -->
+<!--                                         </ul> -->
+<!--                                         </li> -->
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="about.html">熱量計算</a></li>

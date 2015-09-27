@@ -50,7 +50,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i> <a href="foodCalManage.jsp">查詢一日套餐</a>
+                                <i class="fa fa-table"></i> <a href="../backend/SelectDayMealServlet.controller">查詢一日套餐</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增一日套餐

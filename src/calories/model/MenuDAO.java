@@ -12,4 +12,6 @@ public interface MenuDAO {
 	public abstract int update(MenuVO vo);
 
 	public abstract boolean delete(int menuNo);
+
+	public abstract MenuVO selectByName(String name);
 }

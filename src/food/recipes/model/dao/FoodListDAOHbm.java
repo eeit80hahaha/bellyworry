@@ -105,4 +105,22 @@ public class FoodListDAOHbm implements FoodListDAO {
 		}	
 		return flag1;
 	}
+	
+	public List<FoodListVO> selectByCookNo(int cookNo) {
+		List<FoodListVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("from FoodListVO where cookNo=?");
+			query.setParameter(0, cookNo);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
 }

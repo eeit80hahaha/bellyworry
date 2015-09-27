@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
 
 <head>
 
@@ -19,10 +19,16 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-
+<!-- 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+<!-- 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!--   	<link rel="stylesheet" href="/resources/demos/style.css"> -->
+	
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	<script src="../ckeditor/ckeditor.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,7 +39,11 @@
   function add1(){
 	  //$("#add").append("<input type=\"text\">");
 // 	  int i=2;
-	  $("#add1").append("<div class='row'>          	<div class='col-lg-4'>					<label>名稱：</label>			<input type='text' name='itemname' size='15' autocomplete='off' required='required' class='form-control'>		</div>		<div class='col-lg-4'>			<label>類型：</label>			<input type='text' name='itemclass' size='15' autocomplete='off' required='required' class='form-control'>		</div>		<div class='col-lg-4'>			<label>份量：</label>			<input type='text' name='itemweight' size='15' autocomplete='off' required='required' class='form-control'>		</div>	</div>");
+      var counts = parseInt($("#itemCounts").val()) + 1;
+
+	  $("#add1").append("<div class='row'>          	<div class='col-lg-4'>					<label>名稱：</label>			<input type='text' name='itemname"+ counts +"' size='15' autocomplete='off' required='required' class='form-control'>		</div>		<div class='col-lg-4'>			<label>類型：</label>			<input type='text' name='itemclass"+ counts +"' size='15' autocomplete='off' required='required' class='form-control'>		</div>		<div class='col-lg-4'>			<label>份量：</label>			<input type='text' name='itemweight"+ counts +"' size='15' autocomplete='off' required='required' class='form-control'>		</div>	</div>");
+	  
+	  $("#itemCounts").val(counts);
 //  	i=i+1;	 
   }
   function add2(){
@@ -48,7 +58,24 @@
 // 	  $("#add").remove("<label class=\"title\">作法"+":</label><input type=\"text\" name=\"weight\" size=\"20\" autocomplete=\"off\" required=\"\" />");
 // //  	i=i+1;	 
 //   }
-  
+//===============訊息顯示======================
+$(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+	${error.open}
+});
+
+
+//===============訊息顯示======================
   </script>
 </head>
 
@@ -71,8 +98,8 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i> <a href="foodCalManage.jsp">查詢菜色項目</a>
-                            </li>
+                                <i class="fa fa-table"></i> <a href="../backend/SelectAllMenuServlet.controller">查詢菜色項目</a>
+                            </li>                                      
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增菜色項目
                             </li>
@@ -82,46 +109,50 @@
                 <!-- /.row -->
 
                 <div class="row">
-                	<form role="form">
+                	<form role="form" enctype="multipart/form-data" method="post" action="../backend/CreateMenuServlet.controller">
                     <div class="col-lg-6">
 
                         
 
                             <div class="form-group">
                                 <label>菜色名稱：</label>
-                                <input type="text" name="foodname" size="20" autocomplete="off" required="required" class="form-control">
+                                <input type="text" name="foodname" value="${param.foodname}" size="20" autocomplete="off" required="required" class="form-control">
 <!--                                 <p class="help-block">(為必填欄位)</p> -->
+								<br><span style="color:red">${error.foodname}</span>
                             </div>
                             <div class="form-group">
                                 <label>菜色分類：</label>
                                 <select class="form-control" name="collection">
-                                    <option value="1">即食食品/零食類</option>
-                                    <option value="2">即食食品</option>
-                                    <option value="3">零食類</option>
+                                    <c:forEach var="v1" items="${option}">
+										<option value="${v1.menuNo}" name="collection">${v1.name}</option>
+									</c:forEach>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>熱量(cal)：</label>
-                                <input type="text" name="cal" size="20" autocomplete="off" required="required" class="form-control">
+                                <input type="text" name="cal" value="${param.cal}" size="20" autocomplete="off" required="required" class="form-control">
 <!--                                 <p class="help-block">(為必填欄位)</p> -->
+									<br><span style="color:red">${error.calvlaue}${error.cal}</span>
                             </div>
                             <div class="form-group">
                                 <label>份量單位：</label>
-                                <input type="text" name="count" size="20" autocomplete="off" required="required" class="form-control">
+                                <input type="text" name="count" value="${param.count}" size="20" autocomplete="off" required="required" class="form-control">
 <!--                                 <p class="help-block">(為必填欄位)</p> -->
+								<br><span style="color:red">${error.countvlaue}${error.count}</span>
                             </div>
                             <div class="form-group">
                                 <label>每份公克數：</label>
-                                <input type="text" name="weight" size="20" autocomplete="off" required="required" class="form-control">
+                                <input type="text" name="weight" value="${param.weight}" size="20" autocomplete="off" required="required" class="form-control">
 <!--                                 <p class="help-block">(為必填欄位)</p> -->
+                            	<br><span style="color:red">${error.weightvlaue}${error.weight}</span>
                             </div>
                             <div class="form-group">
                                 <label>大圖片：</label>
-                                <input type="file">
+                                <input type="file" name="PictureBig" multipart="multipart">
                             </div>
                             <div class="form-group">
                                 <label>小圖片：</label>
-                                <input type="file">
+                                <input type="file" name="PictureSmall" multipart="multipart">
                             </div>
                             <br/>
 
@@ -132,27 +163,31 @@
 
                     </div>
                     <div class="col-lg-6">
-						
+						<input type="hidden" id="itemCounts" name="itemCounts" value="1" />
 						<label>食材清單：</label>&nbsp;<input type="button" value="+" onclick="add1();"><br/><br/>
                         <div id="add1" class="form-group">
 							<div class='row'>
 	                        	<div class='col-lg-4'>			
 									<label>名稱：</label>
-									<input type='text' name='itemname' size='15' autocomplete='off' required='required' class='form-control'> 
+									<input type='text' name='itemname1' value="${param.itemname}" size='15' autocomplete='off' required='required' class='form-control'> 
+									<br><span style="color:red">${error.itemname}</span>
 								</div>
 								<div class='col-lg-4'>
 									<label>類型：</label>
-									<input type="text" name='itemclass' size='15' autocomplete='off' required='required' class='form-control'>
+									<input type="text" name='itemclass1' value="${param.itemclass}" size='15' autocomplete='off' required='required' class='form-control'>
+									<br><span style="color:red">${error.itemclass}</span>
 								</div>
 								<div class='col-lg-4'>
 									<label>份量：</label>
-									<input type='text' name='itemweight' size='15' autocomplete='off' required='required' class='form-control'>
+									<input type='text' name='itemweight1' value="${param.itemweight}" size='15' autocomplete='off' required='required' class='form-control'>
+									<br><span style="color:red">${error.itemweight}</span>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
                             <label>做法</label>
-                            <textarea class="form-control" rows="3" name="way" autocomplete="off" required="required"></textarea>
+                            <textarea class="form-control" rows="3" id="way" name="way" value="${param.way}" autocomplete="off" required="required"></textarea>
+                        	<br><span style="color:red">${error.way}</span>
                         </div>
                     </div>
                     </form>
@@ -169,11 +204,18 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+<!--     <script src="js/jquery.js"></script> -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+	<script type="text/javascript">CKEDITOR.replace('way');</script>
+	
+	
+	<div id="dialog" title="新增菜色">
+	${error.success}
+	
+	</div>
+	
 </body>
 
 </html>
