@@ -139,8 +139,7 @@
                                 
 										<div id="dialog" title="註冊會員" style="display: none;">
 											<form
-												action="${pageContext.request.contextPath}/MemberServlet.controller"
-												method="post">
+												action="${pageContext.request.contextPath}/MemberServlet.controller"										method="post">
 												<fieldset>
 													<legend>
 														個人資料(<span style="color: red">*</span>為必填)
