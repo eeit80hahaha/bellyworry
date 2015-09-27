@@ -264,5 +264,10 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 
 		return null;
 	}
+	@Override
+	public HealthDiaryVO getCalendar(int memberNo, Date date) {
+		
+		return null;
+	}
 	
 }
