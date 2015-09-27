@@ -4,10 +4,10 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li>
-			<!--hui git Mark-->
-<%--             <a href="${pageContext.request.contextPath}/ClassOptionServlet.controller"><i class="fa fa-fw fa-desktop"></i>　菜色項目管理</a> --%>
-			<!--hui git Mark-->
-            <a href="${pageContext.request.contextPath}/backend/foodCalInsert.jsp"><i class="fa fa-fw fa-desktop"></i>　菜色項目管理</a>
+			
+            <a href="${pageContext.request.contextPath}/ClassOptionServlet.controller"><i class="fa fa-fw fa-desktop"></i>　菜色項目管理</a>
+			
+<%--             <a href="${pageContext.request.contextPath}/backend/foodCalInsert.jsp"><i class="fa fa-fw fa-desktop"></i>　菜色項目管理</a> --%>
 
         </li>
         <li>
