@@ -59,7 +59,7 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 			Query query = session.createQuery(SELECT_BY_CLASS);
 			query.setParameter(0, vo);
 			if(pageNo!=0 && pageSize!=0){
-				query.setFirstResult((pageNo - 1) * pageSize);
+				query.setFirstResult((pageNo-1)*pageSize);
 				query.setMaxResults(pageSize);
 			}
 			list = query.list();
@@ -188,11 +188,11 @@ public class HealthViewDAOHbm implements HealthViewDAO {
 		return result;
 	}
 	
-//	public static void main(String[] args){
-//		HealthViewDAO dao = new HealthViewDAOHbm();
-//		ViewClassVO vo = new ViewClassDAOHbm().selectByPrimaryKey(100001);
-//		System.out.println(dao.selectByViewClassVO(vo,1,3));
-//		
-//	}
+	public static void main(String[] args){
+		HealthViewDAO dao = new HealthViewDAOHbm();
+		ViewClassVO vo = new ViewClassDAOHbm().selectByPrimaryKey(100001);
+		System.out.println(dao.selectByViewClassVO(vo,1,5));
+		
+	}
 
 }

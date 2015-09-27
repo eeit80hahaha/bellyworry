@@ -16,7 +16,9 @@
         <li>
             <a href="${pageContext.request.contextPath}/backend/dayMealInsert.jsp"><i class="fa fa-fw fa-desktop"></i>　一日套餐組合</a>
         </li>
-        
+        <li>
+            <a href="${pageContext.request.contextPath}/healthViewlist.controller?pageNo=1&viewClassNo=100000"><i class="fa fa-fw fa-desktop"></i>　健康景點管理</a>
+        </li>
         
         <li class="active">
             <a href="${pageContext.request.contextPath}/backend/index.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
