@@ -54,7 +54,6 @@ public class HealthViewlistServlet extends HttpServlet {
 		//接收資料
 		String temp1 = request.getParameter("viewClassNo");
 		String temp2 = request.getParameter("pageNo");
-		System.out.println(temp1+" "+temp2);
 		
 		//驗證資料
 		Map<String, String> errorMessage = new HashMap<String, String>();
@@ -86,9 +85,8 @@ public class HealthViewlistServlet extends HttpServlet {
 		//呼叫Model
 		ViewClassVO vo = viewService.getViewClass(viewClassNo);
 		
-		HealthViewPageVO healthViewPageVO = service.getPageDate(pageNo, 3, vo);
+		HealthViewPageVO healthViewPageVO = service.getPageDate(pageNo, 8, vo);
 		//根據Model執行結果導向View
-		System.out.println(healthViewPageVO);
 		
  
 		if(healthViewPageVO !=null){
@@ -105,12 +103,10 @@ public class HealthViewlistServlet extends HttpServlet {
 			request.setAttribute("nowViewClassVO", vo);
 			request.getRequestDispatcher(
 					"/backend/healthViewManage.jsp").forward(request, response);
-//			System.out.println(healthViewPageVO);
 		}else {
 			errorMessage.put("action", "查無紀錄");
 			request.getRequestDispatcher(
 					"/backend/healthViewManage.jsp").forward(request, response);
-			System.out.println("222");
 		}
 
 	}

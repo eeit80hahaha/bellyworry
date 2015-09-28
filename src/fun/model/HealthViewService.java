@@ -65,8 +65,8 @@ public class HealthViewService {
 //		vo.setNo(3);
 //		System.out.println(service.update(vo));
 		
-		ViewClassVO vo = new ViewClassService().getViewClass(100001);
-		System.out.println(service.getPageDate(1, 3, vo));
+		ViewClassVO vo = new ViewClassService().getViewClass(100002);
+		System.out.println(service.getPageDate(0, 8, vo));
 	}
 	
 	public HealthViewPageVO getPageDate(int pageNo, int pageSize, ViewClassVO vo){	//只要pageNo=0 不分頁
@@ -80,7 +80,7 @@ public class HealthViewService {
 			list = healthViewDAO.getAll(pageNo,pageSizePatch);
 			rowCount = healthViewDAO.getDateTotalCount(null);
 		}else{
-			list = healthViewDAO.selectByViewClassVO(vo,pageSizePatch,pageSize);
+			list = healthViewDAO.selectByViewClassVO(vo,pageNo,pageSizePatch);
 			rowCount = healthViewDAO.getDateTotalCount(vo);
 		}
 		HealthViewPageVO result = new HealthViewPageVO(pageNo, pageSizePatch, rowCount, list);

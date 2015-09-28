@@ -63,7 +63,7 @@
 
                 <div class="row">
                 	<form action="<c:url value="/healthView.controller" />" method="get" role="form">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
 							<div class="form-group">
                                 <label>景點類別：</label>
                                 <select name="viewClassNo" lang="10" id="viewClassNo" class="form-control">
@@ -86,7 +86,7 @@
 	                            <table class="table table-bordered table-hover table-striped">
 	                            	<thead>
                                     <tr>
-                                        <th>編號</th><th>健康景點名稱</th><th>景點類別</th><th>所在地緯度</th><th>所在地經度</th>
+                                        <th>編號</th><th>健康景點名稱</th><th>景點類別</th><th>所在地緯度</th><th>所在地經度</th><th>編輯</th>
                                     </tr>
                                 	</thead>
 	                            	<tbody id="healthViewlist">
@@ -96,6 +96,7 @@
 		                                    	<td>${healthViewVO.viewClassVO.name}</td>
 		                                    	<td>${healthViewVO.lat}</td>
 		                                    	<td>${healthViewVO.lng}</td>
+		                                    	<td align="center"><button type="button" class="btn btn-default" name="prodaction" value="Update">修改</button>　<button type="button" class="btn btn-default" name="prodaction" value="Delect">刪除</button></td>
 		                                    </tr>
 										</c:forEach>
 									</tbody>
@@ -143,14 +144,7 @@
                             
                             
                             
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-
-                            <button type="submit" class="btn btn-default" name="prodaction" value="Insert">新增資料</button>
-                            <button type="reset" class="btn btn-default" onclick="clearForm()">清空表單</button>
-                            <br/><br/>
+                            
                             <h3><span class="error">${error.action}</span></h3>
                             
 							
