@@ -99,13 +99,15 @@ public class healthServlet extends HttpServlet {
 		if (share != null) {
 			shareCheange = "1";
 		}
-		Date date1 = globalService.convertDate(date);
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request
-					.getRequestDispatcher("/healthDiary.jsp");
+					.getRequestDispatcher("/diaryIndex.controller");
 			rd.forward(request, response);
 			return;
 		}
+		Date date1 = globalService.convertDate(date);
+		
+		
 
 		// ****************************************************************************//
 		vo.setMemberNo(memberNo);

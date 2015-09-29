@@ -367,9 +367,9 @@
 												${eat.count}<br>
 											</c:if>
 												</c:forEach>	
-												
+										
 												晚餐：<br>
-												<c:forEach var="eat" items="${bean.eatVo}">
+											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '晚上' }">
 												
 												${eat.foodCalVO.name}
