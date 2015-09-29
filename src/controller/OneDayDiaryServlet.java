@@ -1,11 +1,9 @@
 package controller;
 
 import health.model.DiaryIndexService;
-import health.model.HealthDiaryService;
 import health.model.HealthDiaryVO;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import oracle.net.aso.h;
 import register.model.MemberVO;
 @WebServlet(
 		urlPatterns={"/oneday.controller"}
@@ -23,6 +20,7 @@ import register.model.MemberVO;
 
 public class OneDayDiaryServlet extends HttpServlet{
 	DiaryIndexService service = new DiaryIndexService();
+//	HeroService service = new HeroService();
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

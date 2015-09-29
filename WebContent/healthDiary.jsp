@@ -112,8 +112,15 @@
 					<c:forEach var="vo" items="${list}">
 						<c:url value="oneday.controller" var="path">
 							<c:param name="no" value="${vo.no}"></c:param>
-
 						</c:url>
+						<c:url value="foodCal.controller?pageNo=1" var="foodCal">
+							<c:param name="no" value="${vo.no}"></c:param>
+						</c:url>
+					<%-- 	<c:url value="oneday.controller" var="exerCal">
+							<c:param name="no" value="${vo.no}"></c:param>
+						</c:url> --%>
+						
+						
 						<div id="${vo.date}" style="width: 70%; float: left; border: 1px solid white; height: 100%;font-family:Microsoft JhengHei;"> <!-- red首頁日誌 -->
 							<div>
 								<div style="border: 2px solid white;"> <!-- 標題日期標頭 -->
@@ -302,14 +309,12 @@
 				</div>
 				<div id="t-2" title="填寫日誌">
 
-					<div style="border: 2px solid blue; width: 95%; height: 100%;">
+					<div style="width: 95%; height: 100%;"> <!-- 大外框blue -->
 						<form action="health.collection" method="post">
 							<!-- left -->
 							<div
-								style="width: 40%; float: left; border: 2px solid red; height: 100%;">
+								style="width: 40%; float: left;height: 100%;"> <!-- 左邊框 border: 2px solid red;  -->
 
-
-								<!--     								<input class="easyui-datebox" ></input> -->
 
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
@@ -325,8 +330,8 @@
 
 
 
-								<div style="height: 500px; cursor: pointer; display: block; font-size: 100%;">
-									<div class="easyui-accordion" style="border: 1px solid #DDDDDD;">
+								<div style="height: 100%; cursor: pointer; display: block; font-size: 100%;">
+									<div class="easyui-accordion" style="border: 1px solid white;">
 									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
@@ -337,20 +342,85 @@
 										</div>
 										</div>
 									</div>
-									<div class="easyui-accordion" style="border: 1px solid #DDDDDD;">
+									<div class="easyui-accordion" style="border: 1px solid white;">
 										<div title="熱量計算" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3 style="background-color: #FFDD55" style="border: 1px solid #DDDDDD;">熱量計算</h3> -->
 										<div>
 											<div>
-												早餐<br> 
-												午餐<br> 
-												晚餐<br> 
+											早餐：<br>
+											<c:forEach var="eat" items="${bean.eatVo}">
+											<c:if test="${eat.time == '早上' }">
+												${eat.foodCalVO.name}
+												${eat.foodCalVO.cal}
+												${eat.foodCalVO.count}
+												${eat.foodCalVO.weight}
+												${eat.count}<br>
+											</c:if>
+											</c:forEach>
+											午餐：<br>
+											<c:forEach var="eat" items="${bean.eatVo}">
+											<c:if test="${eat.time == '中午' }">										
+												${eat.foodCalVO.name} 
+												${eat.foodCalVO.cal}
+												${eat.foodCalVO.count}
+												${eat.foodCalVO.weight}
+												${eat.count}<br>
+											</c:if>
+												</c:forEach>	
+												
+												晚餐：<br>
+												<c:forEach var="eat" items="${bean.eatVo}">
+											<c:if test="${eat.time == '晚上' }">
+												
+												${eat.foodCalVO.name}
+												${eat.foodCalVO.cal}
+												${eat.foodCalVO.count}
+												${eat.foodCalVO.weight}
+												${eat.count}<br>
+											</c:if>
+												</c:forEach>
+												運動：<br>
+												<c:forEach var="exer" items="${bean.exerVo}">
+												${exer.exerciseCalVO.name}
+												${exer.exerciseCalVO.calHour}
+												${exer.count}<br>
+												</c:forEach>
+												
 												飲食總熱量<br> 
 												運動總熱量<br>
 												差值<br>
 											</div>
 											<br>
 										</div>
+										<div>
+										<a href="${foodCal}">計算飲食熱量卡路里</a><br>
+										<a href="${path}">計算運動熱量卡路里</a>
+										</div>
+										
+<!-- 			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!--                     <div class="modal-header"> -->
+<!--                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!--                         <h3 id="myModalLabel">Modal Heading</h3> -->
+<!--                     </div> -->
+<!--                     <div class="modal-body"> -->
+<%--                     	<jsp:include page="/foodCal.controller" flush="false"> --%>
+<%--                     		 <jsp:param name="pageNo" value="1" /> --%>
+<%--                     		  <jsp:param name="date" value="1" /> --%>
+<%--                     	</jsp:include> --%>
+<%--                     	<jsp:include page='<c:url value="/health.collection"/>' /> --%>
+<!--                     </div> -->
+<!--                     <div class="modal-footer"> -->
+<!--                         <button class="btn" data-dismiss="modal">Close</button> -->
+<!--                         <button class="btn btn-primary">Save changes</button> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a> -->
+                
+                
+                
+                
+                
+										
 										</div>
 									</div>
 								</div>
@@ -358,9 +428,9 @@
 
 							<!-- right -->
 							<div
-								style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
+								style="width: 59%; float: right;height: 100%;"> <!--right hand border: 2px solid yellow;   -->
 								<div style="height: 500px;">
-									<div class="easyui-accordion" style="height: 500px; border: 1px solid #DDDDDD;">
+									<div class="easyui-accordion" style="height: 500px; border: 1px solid white;">
 									<div title="瘦身日誌" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 										
 										<div>
@@ -672,7 +742,7 @@
 							 $('html,body').animate({scrollTop:$('#'+date.getFullYear()+"-"+month+"-"+day).offset().top -150}, 1000);							
 						}
 					})
-
+		
 			$(".accordion").accordion({
 				animate:false
 			});
@@ -686,6 +756,7 @@
 // 			$(function() {
 // 				$("#date").datepicker();
 // 			});
+
 
 			//圖表
 			$('#container').highcharts(

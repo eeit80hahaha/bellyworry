@@ -62,6 +62,7 @@ public class DiaryIndexServlet extends HttpServlet {
 		if(no != null){
 			HealthDiaryVO vo2 = new HealthDiaryVO();
 			vo2.setNo(Integer.parseInt(no));
+			vo2.setMemberNo(memberNo);
 			vo2 = serviceDiary.selectByPrimaryKey(vo2);
 			request.setAttribute("bean", vo2);
 		}
