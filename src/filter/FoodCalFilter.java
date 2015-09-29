@@ -40,7 +40,7 @@ public class FoodCalFilter implements Filter {
 				session.setAttribute("healthDate", new java.util.Date());
 				
 			}
-			String[] eattime = {"早餐","午餐","晚餐"};
+			String[] eattime = {"早上","中午","晚上"};
 			String[] eatsession = {"eatBreakfast","eatLunch","eatDinner"};
 			java.util.Date healthDate = (java.util.Date) session.getAttribute("healthDate");
 			

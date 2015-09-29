@@ -116,9 +116,9 @@ public class FoodCalSessionServlect extends HttpServlet {
 		
 		List<EatRecordVO> eatrsession = new ArrayList<EatRecordVO>();
 		String eattime = "eatBreakfast";
-		if(temp2.equals("午餐")){
+		if(temp2.equals("中午")){
 			eattime = "eatLunch";
-		}else if(temp2.equals("晚餐")){
+		}else if(temp2.equals("晚上")){
 			eattime = "eatDinner";
 		}
 		if(prodaction.equals("加入")){

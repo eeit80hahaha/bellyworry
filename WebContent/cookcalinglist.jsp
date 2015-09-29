@@ -173,9 +173,9 @@
 		<%-- 			<form action="<c:url value='FoodCalSessionServlect' />" method="GET"> --%>
 					<form action="${pageContext.request.contextPath}/foodCalSessionServlect" method="GET">
 						<select name="time">													<!--time-->
-							<option value="早上">早餐 </option>
-							<option value="午餐">中餐 </option>
-							<option value="晚餐">晚餐 </option>	
+							<option value="早上">早上 </option>
+							<option value="午餐">中午</option>
+							<option value="晚餐">晚上 </option>	
 						</select>
 <%-- 						<input type="text" name="count" value="" />${errors.count}<P/>										<!--count--> --%>
 						<input type="text" name="count" value="" /><P/>										<!--count-->
@@ -244,15 +244,15 @@
 </div>
 <div id="b" style="display: inline;">
 <div id="Body">
-		早餐紀錄<br/>
+		早上紀錄<br/>
 		<c:forEach var="eatb" items="${eatBreakfast}">
 			${eatb}<br/>
 		</c:forEach>
-		午餐紀錄<br/>
+		中午紀錄<br/>
 		<c:forEach var="eatl" items="${eatLunch}">
 			${eatl}<br/>
 		</c:forEach>
-		晚餐紀錄<br/>
+		晚上紀錄<br/>
 		<c:forEach var="eatd" items="${eatDinner}">
 			${eatd}<br/>
 		</c:forEach>		
