@@ -176,8 +176,8 @@
 					<form action="${pageContext.request.contextPath}/foodCalSessionServlect" method="GET">
 						<select name="time">													<!--time-->
 							<option value="早上">早上 </option>
-							<option value="午餐">中午</option>
-							<option value="晚餐">晚上 </option>	
+							<option value="中午">中午</option>
+							<option value="晚上">晚上 </option>	
 						</select>
 <%-- 						<input type="text" name="count" value="" />${errors.count}<P/>										<!--count--> --%>
 						<input type="text" name="count" value="" /><P/>										<!--count-->

@@ -6,6 +6,7 @@ import health.model.HealthDiaryVO;
 import init.GlobalService;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -65,8 +66,12 @@ public class FoodCalFilter implements Filter {
 			EatRecordService ers = new EatRecordService();
 			
 			for(int i=0;i<=2;i++){
+				if(session.getAttribute(eatsession[i]) == null ){
+					
 				session.setAttribute(eatsession[i] ,
 						ers.getEatrmdt(bean.getMemberNo(),healthDate,eattime[i]));
+				
+				}
 			}
 			
 			session.setAttribute("login", "600");
