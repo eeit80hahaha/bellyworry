@@ -3,10 +3,7 @@ package controller;
 import init.GlobalService;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -22,10 +19,10 @@ import news.model.ActivityVO;
 /**
  * Servlet implementation class ActivityServlet
  */
-@WebServlet(
-		urlPatterns={"/activity.controller2"}
+@WebServlet(		  
+		urlPatterns={"/backend/activityupdate.controller"}
 		)
-public class ActivityServlet2 extends HttpServlet {
+public class ActivityUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private ActivityService service;
@@ -57,7 +54,7 @@ public class ActivityServlet2 extends HttpServlet {
 //						}
 //					}
 //				}
-		//轉換資料
+//		//轉換資料
 				int no = 0;
 				if(temp1!=null && temp1.length()!=0) {
 					no = GlobalService.convertInt(temp1);
@@ -113,10 +110,17 @@ public class ActivityServlet2 extends HttpServlet {
 				
 				//about帶過來的PK no
 				ActivityVO selectByPrimaryKey=service.selectByPrimaryKey(no);
-				request.setAttribute("selectByPrimaryKey",selectByPrimaryKey);				
-//System.out.println(selectByPrimaryKey.getAddress());												
-				RequestDispatcher rd = request.getRequestDispatcher("/activity2.jsp");
-				rd.forward(request, response);							
+				request.setAttribute("selectByPrimaryKey",selectByPrimaryKey);
+				
+//System.out.println(selectByPrimaryKey.getAddress());				
+				
+
+				
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/backend/activityupdate.jsp");
+				rd.forward(request, response);		
+//				
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

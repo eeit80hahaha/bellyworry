@@ -49,6 +49,12 @@ public class ExamService {
 		return result;
 	}
 	
+	public ExamVO selectByPrimaryKey(int no){
+		ExamVO temp = examDao.selectByPrimaryKey(no);
+
+		return temp;
+	}
+	
 	public int insert(ExamVO vo) {
 		int result = 0;
 		if(vo!=null) {
@@ -87,6 +93,7 @@ public class ExamService {
 		int rowCount = examDao.getDateTotalCount();
 		
 		PageExamVO result = new PageExamVO(pageNo, pageSize, rowCount, list);
+		System.out.println(result);
 		
 		return result;
 	}

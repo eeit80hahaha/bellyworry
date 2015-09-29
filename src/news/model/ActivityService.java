@@ -13,9 +13,10 @@ import org.apache.tomcat.util.codec.binary.Base64;
 
 public class ActivityService {
 	private ActivityDAO activityDao = new ActivityDAOHbm();
-	
+	//base乾淨只轉換了圖
 	public List<ActivityVO> base(List<ActivityVO> vo){
-		List<ActivityVO> bean = new ArrayList<ActivityVO>();		
+		List<ActivityVO> bean = new ArrayList<ActivityVO>();
+		if (vo != null){
 		 for(ActivityVO element : vo) {
 			 ActivityVO element1=new ActivityVO();
 			 element1.setNo(element.getNo());
@@ -29,6 +30,7 @@ public class ActivityService {
 			 element1.setBoss(element.getBoss());
 		     bean.add(element1);
 		 }
+		}
 		return bean;
 	}
 	
@@ -97,7 +99,6 @@ public class ActivityService {
 		
 		ActivityVO bean = (ActivityVO)list2.get(0);
 		result=bean;
-		System.out.println("service:"+result.getPicture1());
 
 		return result;
 	}
