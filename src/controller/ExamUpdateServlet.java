@@ -3,10 +3,7 @@ package controller;
 import init.GlobalService;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -16,22 +13,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import school.model.ExamService;
+import school.model.ExamVO;
 import news.model.ActivityService;
 import news.model.ActivityVO;
 
 /**
  * Servlet implementation class ActivityServlet
  */
-@WebServlet(
-		urlPatterns={"/activity.controller2"}
+@WebServlet(		  
+		urlPatterns={"/backend/examupdate.controller"}
 		)
-public class ActivityServlet2 extends HttpServlet {
+public class ExamUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private ActivityService service;
+	private ExamService service;
 	@Override
 	public void init() throws ServletException {
-		service = new ActivityService();
+		service = new ExamService();
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,7 +56,7 @@ public class ActivityServlet2 extends HttpServlet {
 //						}
 //					}
 //				}
-		//轉換資料
+//		//轉換資料
 				int no = 0;
 				if(temp1!=null && temp1.length()!=0) {
 					no = GlobalService.convertInt(temp1);
@@ -112,11 +111,18 @@ public class ActivityServlet2 extends HttpServlet {
 //				request.setAttribute("aa",ss);
 				
 				//about帶過來的PK no
-				ActivityVO selectByPrimaryKey=service.selectByPrimaryKey(no);
-				request.setAttribute("selectByPrimaryKey",selectByPrimaryKey);				
-//System.out.println(selectByPrimaryKey.getAddress());												
-				RequestDispatcher rd = request.getRequestDispatcher("/activity2.jsp");
-				rd.forward(request, response);							
+				ExamVO selectByPrimaryKey=service.selectByPrimaryKey(no);
+				request.setAttribute("selectByPrimaryKey",selectByPrimaryKey);
+				
+//System.out.println(selectByPrimaryKey.getAddress());				
+				
+
+				
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/backend/examupdate.jsp");
+				rd.forward(request, response);		
+//				
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

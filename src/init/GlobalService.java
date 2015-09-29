@@ -46,6 +46,19 @@ public class GlobalService {
 		}
 		return result;
 	}
+	
+	private static SimpleDateFormat sFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	public static java.util.Date convertTime(String data) {
+		java.util.Date result = null;
+		try {
+			result = sFormat1.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			result = new java.util.Date(0);
+		}
+		return result;
+	}
+	
 	public static String convertString(java.util.Date date){
 		String result=null;
 		result = sFormat.format(date);

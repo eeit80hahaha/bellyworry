@@ -410,7 +410,7 @@
 		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}" class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>                        
                 </div>          
                 <div class="span8">            
-                    <p>${selectallvo[8].content}
+                    <p>${selectallvo[2].content}
                     <a href="${pageContext.request.contextPath}/activity.controller2?no=${findBySname[8].no}" >...詳細閱讀</a> 
                     </p>
                 </div>		 
