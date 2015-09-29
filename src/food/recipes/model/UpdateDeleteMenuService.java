@@ -29,7 +29,7 @@ public class UpdateDeleteMenuService {
 	public List<MealDetailVO> selectByFoodNo(int foodNo){
 		List<MealDetailVO> result=null;
 		if (foodNo!=0){
-			result=mealDetail.selectByFNo(foodNo);
+			result=mealDetail.selectByFoodNo(foodNo);
 		}		
 		return result;
 	}

@@ -12,12 +12,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <style type="text/css">
-#table1{width: 800px;border: 3px solid #01814a;border-collapse: collapse;margin: 0 auto}
+#table{width: 800px;border: 3px solid #01814a;border-collapse: collapse;margin: 0 auto}
 td,th{border: 1px solid gray }
 thead{text-transform: uppercase;border-bottom: 3px double #aa7700;background-color: #d7ffee }
 tbody{text-align: center;background-color: #7affc6}
-tbody tr:nth-child(2n){background-color: #ffcc22}
-tbody tr:nth-child(2n+1){background-color: #ffaa33}
+tbody tr:nth-child(2n){background-color: #FFEE99}
+tbody tr:nth-child(2n+1){background-color: #FFFFBB}
 tbody tr:hover{background-color: #ffffff}
 input[type="button"]:disabled{
 	color: #888888;
@@ -104,8 +104,8 @@ input[type="button"]:disabled{
 <!-- 				</select> -->
 			</div>
             
-			<table>
-			<thead>
+			<table id="table">
+			<thead style="text-align:center;">
 			<tr><th>一日套餐編號</th><th>一日套餐名稱</th><th>早餐</th><th>中餐</th><th>晚餐</th><th>修改</th><th>刪除</th></tr>
 			</thead>
 			<tbody>
@@ -122,12 +122,14 @@ input[type="button"]:disabled{
 			</c:forEach>
 			</tbody>
 			</table>
+			<div style="text-align:center;">
 			<input type="button" name="" value="第一頁" onclick="pagecount('1')" />
 			<input type="button" name="" value="上一頁"
 				onclick="pagecount('${pagecount-1}')" ${pagecount==1?'disabled="true"':""}/> 
 			<input type="button" name="" value="下一頁" onclick="pagecount('${pagecount+1}')" ${pagecount==listPage?'disabled="true"':""}/>
 			<input type="button" name="" value="最末頁" onclick="pagecount('${listPage}')" />
 			<input type="hidden" id="pages" name="pages" value="1" />
+			</div>
 		</form>	
         </div>
         <!-- /#page-wrapper -->

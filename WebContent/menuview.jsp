@@ -110,6 +110,9 @@
 <body>
 	<div
 		style="position: relative; left: 0; right: 0; margin: 0 auto; width: 960px;">
+		<div>
+			<a href="index.jsp">Home</a>&nbsp;/&nbsp;<span>菜色&食譜</span>
+		</div>
 		<form method="post"
 			action="${pageContext.request.contextPath}/Menuservelt.controller"
 			id="menuForm">
@@ -121,7 +124,8 @@
 						<!--original
 						<option value="${vo.menuNo}" >${vo.name}</option>
 						-->
-						<option value="${vo.menuNo}" ${vo.menuNo == selected ? 'selected="selected"' : ''}>${vo.name}</option>
+						<option value="${vo.menuNo}"
+							${vo.menuNo == selected ? 'selected="selected"' : ''}>${vo.name}</option>
 						<!-- Neil modified -->
 					</c:forEach>
 					<option value="0">所有類型</option>
@@ -130,12 +134,11 @@
 			<c:forEach var="vo" items="${menu}">
 				<div style="display: inline-block; margin: 20px 0 0 20px;">
 					<TABLE border='1' width="450" height="150">
-						<tr>
-							<td rowspan="4" width="150" height="150">
-								<c:choose>
+						<tr style="text-align: center;">
+							<td rowspan="4" width="150" height="150"><c:choose>
 									<c:when test="${empty vo.picture1}">
-										<img src="${pageContext.request.contextPath}/images/empty.jpg" width="150"
-											height="150" />
+										<img src="${pageContext.request.contextPath}/images/empty.jpg"
+											width="150" height="150" />
 									</c:when>
 									<c:otherwise>
 										<img src="data:image/jpg;base64,${vo.picture1}" width="150"
@@ -145,17 +148,17 @@
 							<td colspan="4">菜色分類</td>
 							<td colspan="4">${vo.menus.name}</td>
 						</tr>
-						<tr>
+						<tr style="text-align: center;">
 							<td colspan="4">菜色名稱</td>
 							<td colspan="4">${vo.name}</td>
 						</tr>
-						<tr>
+						<tr style="text-align: center;">
 							<td colspan="2">份量</td>
 							<td colspan="2">${vo.weight}公克/每${vo.count}</td>
 							<td colspan="2">熱量</td>
 							<td colspan="2">${vo.cal}卡/100g</td>
 						</tr>
-						<tr>
+						<tr style="text-align: right;">
 							<td colspan="8"><c:choose>
 									<c:when test="${empty vo.cookNo}">
               					無食譜
@@ -169,13 +172,19 @@
 					</TABLE>
 				</div>
 			</c:forEach>
-			<input type="button" name="" value="第一頁" onclick="pagecount('1')" />
-			<input type="button" name="" value="上一頁"
-				onclick="pagecount('${pagecount-1}')" ${pagecount==1?'disabled="true"':""} /> <input type="button"
-				name="" value="下一頁" onclick="pagecount('${pagecount+1}')" ${pagecount==listPage?'disabled="true"':""}/> <input
-				type="button" name="" value="最末頁" onclick="pagecount('${listPage}')" />
+			<dir style="text-align: center;">
+				<input type="button" name="" value="第一頁" onclick="pagecount('1')" />
+				<input type="button" name="" value="上一頁"
+					onclick="pagecount('${pagecount-1}')"
+					${pagecount==1?'disabled="true"':""} />
+				<input type="button" name="" value="下一頁"
+					onclick="pagecount('${pagecount+1}')"
+					${pagecount==listPage?'disabled="true"':""} />
+				<input type="button" name="" value="最末頁"
+					onclick="pagecount('${listPage}')" />
 
-			<input type="hidden" id="pages" name="pages" value="1" />
+				<input type="hidden" id="pages" name="pages" value="1" />
+			</dir>
 			<!--Neil add-->
 			<!-- <input type="hidden" id="menutype" name="menutype" /> -->
 			<!--Neil add-->

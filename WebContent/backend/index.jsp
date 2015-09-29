@@ -34,7 +34,7 @@
 </head>
 
 <body>
-
+<h1>${meal.mealerror}${meal.mealSuccess}${meal.mealfail}</h1>
     <div id="wrapper">
 
         <!-- Navigation -->

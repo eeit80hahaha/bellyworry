@@ -199,7 +199,7 @@
 												</c:otherwise>
 											</c:choose></td>
 										<td colspan="4">菜色分類</td>
-										<td colspan="4">${v1.menuNo}</td>
+										<td colspan="4">${v1.menus.name}</td>
 									</tr>
 									<tr>
 										<td colspan="4">菜色名稱</td>

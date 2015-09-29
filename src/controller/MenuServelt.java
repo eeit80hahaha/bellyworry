@@ -113,7 +113,8 @@ public class MenuServelt extends HttpServlet {
 				
 				tempType = fiVO.getType();
 			}
-			cooksDiv.append("<tr>");
+			
+			cooksDiv.append("<tr style='border-top: 1px solid gray'>");
 			cooksDiv.append("<td>作法</td>");
 			cooksDiv.append("<td colspan='2'>");
 			cooksDiv.append(ss.get(i).getCooks().getWayNo());

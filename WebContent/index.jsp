@@ -64,6 +64,8 @@
 	$(function() {
 		$("#dialog").dialog({   //dialog==>新增會員方塊
 			autoOpen : false,
+			width : 300,
+			height : 400,
 			show : {
 				effect : "blind",
 				duration : 1000

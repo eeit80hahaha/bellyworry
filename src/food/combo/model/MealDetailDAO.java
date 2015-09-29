@@ -13,5 +13,5 @@ public interface MealDetailDAO {
 
 	public abstract boolean delete(int mealNo, int foodNo);
 
-	public abstract List<MealDetailVO> selectByFNo(int foodno);
+	public abstract List<MealDetailVO> selectByFoodNo(int foodno);
 }

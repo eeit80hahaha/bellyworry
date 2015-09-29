@@ -137,7 +137,7 @@ $(function() {
 
 	<!--==================================== -->
 	<!-- =========登入錯誤========== -->
-	<div id="dialog0">
+	<div id="dialog0" title="會員登入" style="background-color:#CCEEFF;text-align:center;" >
 	<p>${error.username1}</p>
 	<p>${error.password1}</p>
 	<p>${error.er1}</p>

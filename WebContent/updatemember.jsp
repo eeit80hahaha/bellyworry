@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -93,59 +94,69 @@ $(function() {
 </head>
 <jsp:include page="/page/header.jsp"/>
 <body>
-	<form
+<div style="margin:auto 320px">
+	<form style="background-color:#C9FFFF;margin:auto;padding:auto;width:310px ;height:520px;border:1px solid #0000BD;border-radius:10px"
 		action="${pageContext.request.contextPath}/UpdateServlet.controller"
 		method="post">
-		<fieldset>
-			<legend>
+		<fieldset >
+			<legend style="text-align:center ;" >
 				個人資料(<span style="color: red">*</span>為必填)
 			</legend>
 			<div>
-				<label><span style="color: red">*</span> 姓:</label><input
-					type="text" name="firstname" size="20" autofocus placeholder="請輸入"
+				<label style="height:15px;"><span style="color: red">*</span> 姓:</label><input style="width:290px;"
+					type="text" name="firstname" size="30" autofocus placeholder="請輸入"
 					autocomplete="off" required="" value="${user.getFirstName()}"/>
 					<div>${up.firstName}</div>
 			</div>
 			<div>
-				<label><span style="color: red">*</span> 名:</label><input
-					type="text" name="lastname" size="20" autofocus placeholder="請輸入"
+				<label style="height:15px;"><span style="color: red">*</span> 名:</label><input style="width:290px;"
+					type="text" name="lastname" size="30" autofocus placeholder="請輸入"
 					autocomplete="off" required="" value="${user.getLastName()}"/>
 					<div>${up.lastName}</div>
 			</div>
 			<div>
-				<label>暱稱:</label><input type="text" name="nickname" size="20"
+				<label style="height:15px;">暱稱:</label><input type="text" name="nickname" size="30" style="width:290px;"
 					autofocus placeholder="請輸入" autocomplete="off" required="" value="${user.getNickname()}"/>
 					
 			</div>
 			<div>
-				<label><span style="color: red">*</span>帳號:</label><input
-					type="text" name="account" size="20" required="" value="${user.getId()}"/>
+				<label style="height:15px;"><span style="color: red">*</span>帳號:</label><input style="width:290px;"
+					type="text" name="account" size="30" required="" value="${user.getId()}"/>
 					<div>${up.username}</div>
 			</div>
 			<div>
-				<label><span style="color: red">*</span>Mail:</label> <input
-					type="email" name="mail" size="20" autofocus
+				<label style="height:15px;"><span style="color: red">*</span>Mail:</label> <input style="width:290px;"
+					type="email" name="mail" size="30" autofocus
 					placeholder="請輸入E-mail" autocomplete="off" value="${user.getEmail()}"/>
 					<div>${up.email}</div>
 			</div>
 			<div>
-				<label><span style="color: red">*</span>生日:</label> <input
+				<label style="height:15px;"><span style="color: red">*</span>生日:</label> <input style="width:290px;"
 					type="text" name="date" id="datepicker" value="${user.getBirthday()}">
 					<div>${up.birth}</div>		
 			</div>
 			<div>
-				<label><span style="color: red">*</span>性別:</label><input
-					type="radio" name="gender" size="20" value="males" />男 <input
-					type="radio" name="gender" size="20" value="female" />女
-					<div>${up.gender}</div>
+				<label style="height:15px;"><span style="color: red">*</span>性別:</label>
+				<c:choose>
+              	 <c:when test="${ user.gender == '女' }">
+              		<input type="radio" name="gender" size="20" value="males" />男 
+					<input type="radio" name="gender" size="20" value="female" checked="checked"/>女
+              	</c:when>
+              	<c:otherwise>	
+              		<input type="radio" name="gender" size="20" value="males" checked="checked"/>男 
+					<input type="radio" name="gender" size="20" value="female" />女					
+              	</c:otherwise>
+            </c:choose> 
+				
 			</div>
 		</fieldset>
 		<div>
+		<br>
 			<input type="submit" value="送出" /> <input type="reset" value="清除" />
-			<input type="button" id="updatepwd" value="變更密碼"/>
+			<input type="button" id="updatepwd" value="變更密碼"/> <a href="${pageContext.request.contextPath}/index.jsp">回首頁</a>
 		</div>
 	</form>
-
+</div >
 	<div id="dialog" title="變更密碼" style="display: none;">
 		<form
 			action="${pageContext.request.contextPath}/UpdatePwd.controller"

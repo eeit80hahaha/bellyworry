@@ -118,7 +118,7 @@ public class MealDetailDAOHbm implements MealDetailDAO {
 
 	
 	@Override
-	public List<MealDetailVO> selectByFNo(int foodno) {
+	public List<MealDetailVO> selectByFoodNo(int foodno) {
 		List<MealDetailVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
