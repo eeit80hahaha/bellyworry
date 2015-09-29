@@ -264,7 +264,7 @@
         <div class="row-fluid">
 			<div class="span8" id="divMain">
 
-	            <h1>About Us</h1>
+	            <h1>活動情報</h1>
 				<form action="${pageContext.request.contextPath}/activity.controller" method="get" >
 					<select name="name">
 						<option value="台北">台北</option>
@@ -402,45 +402,43 @@
                 <div class="span4 sidebar">
 <%-- ${findBySname[0].getPicture1 } --%>
                     <div class="sidebox">
-                        <h3 class="sidebox-title">Sample Sidebar Content</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and &lt;a href='#'&gt;type setting industry&lt;/a&gt;.  Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+                        <h3 class="sidebox-title">運動的好處</h3>
+						<p>運動的好處 消耗身體過多的熱量，幫助減肥或維持適當體重 增強心肺功能，促進血液循環 減低患上心臟病、高血壓及糖尿病等慢性疾病的機會 增強身體抵抗力</p>
 						<hr>
         <div class="row-fluid">		
 		        <div class="span4">   
-		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}" class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>                        
+		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>                        
                 </div>          
                 <div class="span8">            
                     <p>${selectallvo[8].content}
-                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${findBySname[8].no}" >...詳細閱讀</a> 
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[8].no}" >...詳細閱讀</a> 
                     </p>
                 </div>		 
         </div>
 
         <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
+		        <div class="span4"> 		                                
+                    <img src="data:image/jpg;base64,${selectallvo[15].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                </div>                                                     
+        		<div class="span8">            
+                    <p>${selectallvo[15].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[15].no}" >...詳細閱讀</a> 
+                    </p>
+                </div>	
         </div>
-
-        <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
-        </div>
-
-        <div class="row-fluid">		
-		        <div class="span4">                           
-                    <img src="images/placeholder.gif" class="img-polaroid" style="margin:5px 0px 15px;" alt="">   </div>          
-                <div class="span8">            
-                    <p>Lorem ipsum dolor sit amet, consectetuera dipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat. <a href="#">Read More</a> </p>
-                </div>		 
-        </div>	
-	
-                    </div>
+        
+                <div class="row-fluid">		
+		        <div class="span4"> 		                                
+                    <img src="data:image/jpg;base64,${selectallvo[16].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                </div>                                                     
+        		<div class="span8">            
+                    <p>${selectallvo[16].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[16].no}" >...詳細閱讀</a> 
+                    </p>
+                </div>	
+        </div>		 
+        			</div>    	
+                 </div>
                     
                 </div>
 				<!--End Sidebar Area here-->

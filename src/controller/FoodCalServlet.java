@@ -20,7 +20,7 @@ import calories.model.PagesFoodCalVO;
 
 
 @WebServlet(
-		urlPatterns={"/ranking/foodCal.controller"}
+		urlPatterns={"/foodCal.controller"}
 )
 public class FoodCalServlet extends HttpServlet{
 		private FoodCalService service;
@@ -74,7 +74,7 @@ public class FoodCalServlet extends HttpServlet{
 			
 //			request.setAttribute("login", login);
 			request.getRequestDispatcher(
-					"/ranking/cookCaling.jsp").forward(request, response);		
+					"/cookcalinglist.jsp").forward(request, response);		
 		}
 			
 		@Override

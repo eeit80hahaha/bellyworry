@@ -324,5 +324,12 @@ public class EatRecordDAOJdbc implements EatRecordDAO {
 	public List<EatRecordVO> eatday(int memberNo, Date date) {
 		return null;
 	}
+
+	@Override
+	public List<EatRecordVO> getEatrmdt(int memberNo, Date healthDate,
+			String eattime) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

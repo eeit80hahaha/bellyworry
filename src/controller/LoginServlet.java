@@ -86,6 +86,11 @@ public class LoginServlet extends HttpServlet {
 				success.put("out", "'<a href='" + request.getContextPath()
 						+ "/logout.controller'>登出</a>");
 				String dest = (String) session.getAttribute("dest");
+				
+				request.getSession().removeAttribute("eatBreakfast");
+				request.getSession().removeAttribute("eatLunch");
+				request.getSession().removeAttribute("eatDinner");
+				
 				if (dest != null && dest.length() != 0) {
 					session.removeAttribute("dest");
 					response.sendRedirect(dest);

@@ -62,8 +62,8 @@ function clearForm() {
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/healthViewManage.jsp">查詢健康景點</a>
-                            </li>
+                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/healthViewlist.controller?pageNo=1&viewClassNo=100000">查詢健康景點</a>
+                            </li>			
                             <li class="active">
                                 <i class="fa fa-edit"></i> 新增健康景點
                             </li>

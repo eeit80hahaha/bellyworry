@@ -36,7 +36,6 @@ public class DiaryIndexService {
 		
 		for (ExerciseRecordVO exerVo : listexer) {
 			if (result.getMemberNo() == exerVo.getMemberNo() && result.getDate().equals(exerVo.getDate())) {
-				System.out.println(exerVo);
 				resultExer.add(exerVo);
 				result.setExerVo(resultExer);
 			}
@@ -47,7 +46,7 @@ public class DiaryIndexService {
 				result.setEatVo(resultEat);
 			}
 		}
-
+		System.out.println("----------"+ result);
 		return result;
 	}
 

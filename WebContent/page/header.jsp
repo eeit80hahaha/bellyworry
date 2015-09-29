@@ -49,8 +49,14 @@
 <!--                                         </li> -->
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="about.html">熱量計算</a></li>
-                                <li class="dropdown"><a href="diaryIndex.controller">健康管理</a></li>
+                                <li class="dropdown"><a href="${pageContext.request.contextPath}/foodCal.controller?pageNo=1">熱量計算</a></li>
+                                
+                                <c:if test="${ funcName != 'DIARY' }"> 
+                               <li class="dropdown"><a href="diaryIndex.controller">健康管理</a></li>
+                                </c:if>
+                                <c:if test="${ funcName == 'DIARY' }"> 
+                                <li class="dropdown active"><a href="">健康管理</a></li>
+                                </c:if>
                                 <c:if test="${ funcName != 'FUN' }">
                                 <li class="dropdown" >
                                 </c:if>

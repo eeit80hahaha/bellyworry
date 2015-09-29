@@ -77,8 +77,9 @@
 
 <!-- 以上月曆用 -->
 
-
+<c:set var="funcName" value="DIARY" scope="session"/>
 <jsp:include page="/page/header.jsp" />
+
 
 </head>
 <body id="pageBody">
@@ -104,30 +105,38 @@
 <!-- 				</ul> -->
 
 				<div id="t-1" style="height: 100%;" title="日誌首頁">
-					<div style="border: 2px solid blue; width: 100%; height: 100%;">
+					<div style="border: 2px solid white; width: 100%; height: 100%;"> <!-- blue至頂上條線 -->
 					</div>
-
+<br>
 
 					<c:forEach var="vo" items="${list}">
 						<c:url value="oneday.controller" var="path">
 							<c:param name="no" value="${vo.no}"></c:param>
-
 						</c:url>
-						<div id="${vo.date}" style="width: 70%; float: left; border: 2px solid red; height: 100%;">
+						<c:url value="foodCal.controller?pageNo=1" var="foodCal">
+							<c:param name="no" value="${vo.no}"></c:param>
+						</c:url>
+					<%-- 	<c:url value="oneday.controller" var="exerCal">
+							<c:param name="no" value="${vo.no}"></c:param>
+						</c:url> --%>
+						
+						
+						<div id="${vo.date}" style="width: 70%; float: left; border: 1px solid white; height: 100%;font-family:Microsoft JhengHei;"> <!-- red首頁日誌 -->
 							<div>
-								<div style="border: 2px solid;">
-									<span style="font-size: 0.5cm">${vo.date}</span> <span
-										style="padding-left: 20px; font-size: 0.8cm">${vo.title}</span>
+								<div style="border: 2px solid white;"> <!-- 標題日期標頭 -->
+									<span style="font-size: 0.5cm;color: #AAAAAA;line-height: 40px">${vo.date}</span> <br>
+									<span style="padding-left: 20px;font-size: 0.8cm;font-family:Microsoft JhengHei;font-weight: bold;">${vo.title}</span>
 								</div>
 
-								<div style="height: 200px; border: 2px solid green;">
+								<div style="height: 200px; border: 2px solid white;">  <!-- green首頁三餐活動 -->
 
 									<div
-										style="border: 2px solid orange; width: 199.7px; height: 100%; float: left;">
-										早上<br>
+										style="border: 4px solid #FFEE99; width: 190.7px; height: 100%; float: left;border-radius:25px;margin: 2px;font-weight: 300;box-shadow:5px 5px 5px 2px #DDDDDD;">
+										<h5 style="font-family:Microsoft JhengHei;font-weight: 600;color: #ee845e">&nbsp;<img src="images/bread.jpg" style="width: 40px;height: 30px">早上</h5>
+										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="eat" items="${vo.eatVo}">
 											<!-- eat_record因為很多筆相同時段.菜色,所以用foreach -->
-											<c:if test="${eat.time == '早上' }">
+											<c:if test="${eat.time == '早上' }">&nbsp;
 											
 											${eat.foodCalVO.name}
 											${eat.foodCalVO.cal} 卡
@@ -136,182 +145,176 @@
 											${eat.foodCalVO.weight}g<br>
 											
 											</c:if>
-										</c:forEach>
+										</c:forEach></div>
 									</div>
 
 									<div
-										style="border: 2px solid orange; width: 199.7px; height: 100%; float: left;">
-										中午<br>
+										style="border: 4px solid #FFEE99; width: 190.7px; height: 100%; float: left;border-radius:25px;margin: 2px;font-weight: 300;box-shadow:5px 5px 5px 2px #DDDDDD; ">
+										<h5 style="font-family:Microsoft JhengHei;font-weight: 600;color: #ee845e">&nbsp;<img src="images/lunch.jpg" style="width: 40px;height: 30px">中午</h5>
+										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="eat" items="${vo.eatVo}">
-											<c:if test="${eat.time =='中午'}">
- 							${eat.foodCalVO.name}
+											<c:if test="${eat.time =='中午'}">&nbsp;
+ 							${eat.foodCalVO.name} 
  							${eat.foodCalVO.cal} 卡
  							${eat.count}
- 							${eat.foodCalVO.count}
+ 							${eat.foodCalVO.count} 
  							${eat.foodCalVO.weight}g<br>
 											</c:if>
-										</c:forEach>
+										</c:forEach></div>
 									</div>
 									<div
-										style="border: 2px solid orange; width: 199.7px; height: 100%; float: left;">
-										晚上<br>
+										style="border: 4px solid #FFEE99; width: 190.7px; height: 100%; float: left;border-radius:25px;margin: 2px;font-weight: 300;box-shadow:5px 5px 5px 2px #DDDDDD;">
+										<h5 style="font-family:Microsoft JhengHei;font-weight: 600;color: #ee845e";>&nbsp;<img src="images/dinner.jpg" style="width: 40px;height: 30px">晚上</h5>
+										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="eat" items="${vo.eatVo}">
-											<c:if test="${eat.time=='晚上'}">
- 							${eat.foodCalVO.name}
- 							${eat.foodCalVO.cal} 卡
+											<c:if test="${eat.time=='晚上'}">&nbsp;
+ 							${eat.foodCalVO.name} 
+ 							${eat.foodCalVO.cal} 卡  
  							${eat.count}
- 							${eat.foodCalVO.count}
+ 							${eat.foodCalVO.count} 
  							${eat.foodCalVO.weight}g<br>
  							
 											</c:if>
-										</c:forEach>
+										</c:forEach></div>
 									</div>
 									<div
-										style="border: 2px solid orange; width: 199.7px; height: 100%; float: left;">
-										活動<br>
-										<c:forEach var="exer" items="${vo.exerVo}">
+										style="border: 4px solid #FFCCCC; width: 190.7px; height: 100%; float: left;border-radius:25px;margin: 2px;font-weight: 300;box-shadow:5px 5px 5px 2px #DDDDDD;">
+										<h5 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;<img src="images/exer.jpg" style="width: 25px;height: 25px">活動</h5>
+										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
+										<c:forEach var="exer" items="${vo.exerVo}">&nbsp;
 							${exer.exerciseCalVO.name}
-							${exer.exerciseCalVO.calHour}大卡
+							${exer.exerciseCalVO.calHour}大卡  
 							${exer.count}min<br>
-										</c:forEach>
+										</c:forEach></div>
 									</div>
-								</div>
+								</div><br>
 								<div>飲食總熱量</div>
 								<div>運動總熱量</div>
 								<div>
 									<a href="${path}">詳讀內文</a>
 								</div>
+							
 								<hr>
 							</div>
 						</div>
 					</c:forEach>
 					<div
-						style="width: 29%; float: right; border: 2px solid yellow; height: 100%;">
+						style="width: 29%; float: right; height: 100%;"> <!-- calendar right-hand -->
 
 						<div style="width: 100%;"></div>
 						<div id="cc" class="easyui-calendar"
 							style="width: 335px; height: 360px; position: absolute; top: 235px"></div>
-
-						
-
-
-
-
-
-
-
 					</div>
 
-					<div class="tab-content" style="height: 100%; width: 100%;">
-						<table border='1'>
-							<tr>
-								<th width='70'>會員編號</th>
-								<th width='70'>健康管理id</th>
-								<th width='70'>日期</th>
-								<th width='70'>身高</th>
-								<th width='70'>體重</th>
-								<th width='70'>腰圍</th>
-								<th width='70'>BMI</th>
-								<th width='70'>建議</th>
-								<th width='70'>日誌標題</th>
-								<th width='70'>日誌內容</th>
-								<th width='70'>同意分享日誌</th>
+<!-- 					<div class="tab-content" style="height: 100%; width: 100%;"> -->
+<!-- 						<table border='1'> -->
+<!-- 							<tr> -->
+<!-- 								<th width='70'>會員編號</th> -->
+<!-- 								<th width='70'>健康管理id</th> -->
+<!-- 								<th width='70'>日期</th> -->
+<!-- 								<th width='70'>身高</th> -->
+<!-- 								<th width='70'>體重</th> -->
+<!-- 								<th width='70'>腰圍</th> -->
+<!-- 								<th width='70'>BMI</th> -->
+<!-- 								<th width='70'>建議</th> -->
+<!-- 								<th width='70'>日誌標題</th> -->
+<!-- 								<th width='70'>日誌內容</th> -->
+<!-- 								<th width='70'>同意分享日誌</th> -->
 
 
-								<th width='70'>日期</th>
-								<th width='70'>運動</th>
-								<th width='70'>每一小時消耗熱量</th>
-								<th width='70'>分量</th>
+<!-- 								<th width='70'>日期</th> -->
+<!-- 								<th width='70'>運動</th> -->
+<!-- 								<th width='70'>每一小時消耗熱量</th> -->
+<!-- 								<th width='70'>分量</th> -->
 
 
-								<th width='70'>日期</th>
-								<th width='70'>時段</th>
-								<th width='70'>菜色名稱</th>
-								<th width='70'>熱量</th>
-								<th width='70'>一搬份量</th>
-								<th width='70'>每份公克數</th>
-								<th width='70'>份量</th>
-								<th width='70'>總熱量</th>
-							</tr>
-							<c:forEach var="vo" items="${list}">
-								<tr>
-									<td>${vo.memberNo}</td>
-									<td>${vo.no}</td>
-									<td>${vo.date}</td>
-									<td>${vo.height}</td>
-									<td>${vo.weight}</td>
-									<td>${vo.waistline}</td>
-									<td>${vo.weight/((vo.height/100)*(vo.height/100))}</td>
-									<!-- BMI -->
-									<c:choose>
-										<c:when
-											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 18.5 ) }">
-											<td>體重過輕</td>
-										</c:when>
-										<c:when
-											test="${ ( vo.weight/((vo.height/100)*(vo.height/100)) < 24 ) }">
-											<td>標準體重</td>
-										</c:when>
-										<c:when
-											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 27 ) }">
-											<td>過重</td>
-										</c:when>
-										<c:when
-											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 30 ) }">
-											<td>輕度肥胖</td>
-										</c:when>
-										<c:when
-											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 35 ) }">
-											<td>中度肥胖</td>
-										</c:when>
-										<c:when
-											test="${(vo.weight/((vo.height/100)*(vo.height/100)) >= 35 ) }">
-											<td>重度肥胖</td>
-										</c:when>
-									</c:choose>
+<!-- 								<th width='70'>日期</th> -->
+<!-- 								<th width='70'>時段</th> -->
+<!-- 								<th width='70'>菜色名稱</th> -->
+<!-- 								<th width='70'>熱量</th> -->
+<!-- 								<th width='70'>一搬份量</th> -->
+<!-- 								<th width='70'>每份公克數</th> -->
+<!-- 								<th width='70'>份量</th> -->
+<!-- 								<th width='70'>總熱量</th> -->
+<!-- 							</tr> -->
+<%-- 							<c:forEach var="vo" items="${list}"> --%>
+<!-- 								<tr> -->
+<%-- 									<td>${vo.memberNo}</td> --%>
+<%-- 									<td>${vo.no}</td> --%>
+<%-- 									<td>${vo.date}</td> --%>
+<%-- 									<td>${vo.height}</td> --%>
+<%-- 									<td>${vo.weight}</td> --%>
+<%-- 									<td>${vo.waistline}</td> --%>
+<%-- 									<td>${vo.weight/((vo.height/100)*(vo.height/100))}</td> --%>
+<!-- 									BMI -->
+<%-- 									<c:choose> --%>
+<%-- 										<c:when --%>
+<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 18.5 ) }"> --%>
+<!-- 											<td>體重過輕</td> -->
+<%-- 										</c:when> --%>
+<%-- 										<c:when --%>
+<%-- 											test="${ ( vo.weight/((vo.height/100)*(vo.height/100)) < 24 ) }"> --%>
+<!-- 											<td>標準體重</td> -->
+<%-- 										</c:when> --%>
+<%-- 										<c:when --%>
+<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 27 ) }"> --%>
+<!-- 											<td>過重</td> -->
+<%-- 										</c:when> --%>
+<%-- 										<c:when --%>
+<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 30 ) }"> --%>
+<!-- 											<td>輕度肥胖</td> -->
+<%-- 										</c:when> --%>
+<%-- 										<c:when --%>
+<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 35 ) }"> --%>
+<!-- 											<td>中度肥胖</td> -->
+<%-- 										</c:when> --%>
+<%-- 										<c:when --%>
+<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) >= 35 ) }"> --%>
+<!-- 											<td>重度肥胖</td> -->
+<%-- 										</c:when> --%>
+<%-- 									</c:choose> --%>
 
-									<td>${vo.title}</td>
-									<td>${vo.content}</td>
-									<td>${vo.share}</td>
+<%-- 									<td>${vo.title}</td> --%>
+<%-- 									<td>${vo.content}</td> --%>
+<%-- 									<td>${vo.share}</td> --%>
 
-									<td>${vo.exerVo[0].date}</td>
-									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.name}</c:forEach></td>
-									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.calHour}</c:forEach></td>
-									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.count}</c:forEach></td>
-
-
+<%-- 									<td>${vo.exerVo[0].date}</td> --%>
+<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.name}</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.calHour}</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.count}</c:forEach></td> --%>
 
 
 
-									<td>${vo.eatVo[0].date}</td>
-									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br></c:forEach></td>
-									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br>
-										</c:forEach></td>
-									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br>
-										</c:forEach></td>
-									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.count}<br>
-										</c:forEach></td>
-									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.weight}<br>
-										</c:forEach></td>
-									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count}<br>
-										</c:forEach></td>
-									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count*eat.foodCalVO.cal}<br>
-										</c:forEach></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
+
+
+<%-- 									<td>${vo.eatVo[0].date}</td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br></c:forEach></td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br> --%>
+<%-- 										</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br> --%>
+<%-- 										</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.count}<br> --%>
+<%-- 										</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.weight}<br> --%>
+<%-- 										</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count}<br> --%>
+<%-- 										</c:forEach></td> --%>
+<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count*eat.foodCalVO.cal}<br> --%>
+<%-- 										</c:forEach></td> --%>
+<!-- 								</tr> -->
+<%-- 							</c:forEach> --%>
+<!-- 						</table> -->
+
+<!-- 					</div> -->
 				</div>
 				<div id="t-2" title="填寫日誌">
 
-					<div style="border: 2px solid blue; width: 95%; height: 100%;">
+					<div style="width: 95%; height: 100%;"> <!-- 大外框blue -->
 						<form action="health.collection" method="post">
 							<!-- left -->
 							<div
-								style="width: 40%; float: left; border: 2px solid red; height: 100%;">
+								style="width: 40%; float: left;height: 100%;"> <!-- 左邊框 border: 2px solid red;  -->
 
-
-								<!--     								<input class="easyui-datebox" ></input> -->
 
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
@@ -327,8 +330,8 @@
 
 
 
-								<div style="height: 500px; cursor: pointer; display: block; font-size: 100%;">
-									<div class="easyui-accordion" style="border: 1px solid #DDDDDD;">
+								<div style="height: 100%; cursor: pointer; display: block; font-size: 100%;">
+									<div class="easyui-accordion" style="border: 1px solid white;">
 									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
@@ -339,20 +342,85 @@
 										</div>
 										</div>
 									</div>
-									<div class="easyui-accordion" style="border: 1px solid #DDDDDD;">
+									<div class="easyui-accordion" style="border: 1px solid white;">
 										<div title="熱量計算" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3 style="background-color: #FFDD55" style="border: 1px solid #DDDDDD;">熱量計算</h3> -->
 										<div>
 											<div>
-												早餐<br> 
-												午餐<br> 
-												晚餐<br> 
+											早餐：<br>
+											<c:forEach var="eat" items="${bean.eatVo}">
+											<c:if test="${eat.time == '早上' }">
+												${eat.foodCalVO.name}
+												${eat.foodCalVO.cal}
+												${eat.foodCalVO.count}
+												${eat.foodCalVO.weight}
+												${eat.count}<br>
+											</c:if>
+											</c:forEach>
+											午餐：<br>
+											<c:forEach var="eat" items="${bean.eatVo}">
+											<c:if test="${eat.time == '中午' }">										
+												${eat.foodCalVO.name} 
+												${eat.foodCalVO.cal}
+												${eat.foodCalVO.count}
+												${eat.foodCalVO.weight}
+												${eat.count}<br>
+											</c:if>
+												</c:forEach>	
+												
+												晚餐：<br>
+												<c:forEach var="eat" items="${bean.eatVo}">
+											<c:if test="${eat.time == '晚上' }">
+												
+												${eat.foodCalVO.name}
+												${eat.foodCalVO.cal}
+												${eat.foodCalVO.count}
+												${eat.foodCalVO.weight}
+												${eat.count}<br>
+											</c:if>
+												</c:forEach>
+												運動：<br>
+												<c:forEach var="exer" items="${bean.exerVo}">
+												${exer.exerciseCalVO.name}
+												${exer.exerciseCalVO.calHour}
+												${exer.count}<br>
+												</c:forEach>
+												
 												飲食總熱量<br> 
 												運動總熱量<br>
 												差值<br>
 											</div>
 											<br>
 										</div>
+										<div>
+										<a href="${foodCal}">計算飲食熱量卡路里</a><br>
+										<a href="${path}">計算運動熱量卡路里</a>
+										</div>
+										
+<!-- 			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!--                     <div class="modal-header"> -->
+<!--                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!--                         <h3 id="myModalLabel">Modal Heading</h3> -->
+<!--                     </div> -->
+<!--                     <div class="modal-body"> -->
+<%--                     	<jsp:include page="/foodCal.controller" flush="false"> --%>
+<%--                     		 <jsp:param name="pageNo" value="1" /> --%>
+<%--                     		  <jsp:param name="date" value="1" /> --%>
+<%--                     	</jsp:include> --%>
+<%--                     	<jsp:include page='<c:url value="/health.collection"/>' /> --%>
+<!--                     </div> -->
+<!--                     <div class="modal-footer"> -->
+<!--                         <button class="btn" data-dismiss="modal">Close</button> -->
+<!--                         <button class="btn btn-primary">Save changes</button> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a> -->
+                
+                
+                
+                
+                
+										
 										</div>
 									</div>
 								</div>
@@ -360,9 +428,9 @@
 
 							<!-- right -->
 							<div
-								style="width: 59%; float: right; border: 2px solid yellow; height: 100%;">
+								style="width: 59%; float: right;height: 100%;"> <!--right hand border: 2px solid yellow;   -->
 								<div style="height: 500px;">
-									<div class="easyui-accordion" style="height: 500px; border: 1px solid #DDDDDD;">
+									<div class="easyui-accordion" style="height: 500px; border: 1px solid white;">
 									<div title="瘦身日誌" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 										
 										<div>
@@ -674,7 +742,7 @@
 							 $('html,body').animate({scrollTop:$('#'+date.getFullYear()+"-"+month+"-"+day).offset().top -150}, 1000);							
 						}
 					})
-
+		
 			$(".accordion").accordion({
 				animate:false
 			});
@@ -688,6 +756,7 @@
 // 			$(function() {
 // 				$("#date").datepicker();
 // 			});
+
 
 			//圖表
 			$('#container').highcharts(

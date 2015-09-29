@@ -17,7 +17,7 @@ public class PagesActivityVO implements Serializable  {
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
-		this.totalPages = ( rowCount / pageSize );
+		this.totalPages = (int)Math.ceil((double)( rowCount / pageSize ));
 		this.activitypage = activitypage;
 	}
 	

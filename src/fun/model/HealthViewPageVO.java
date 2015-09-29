@@ -22,6 +22,9 @@ public class HealthViewPageVO implements Serializable{
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
 		this.totalPages = (int) Math.ceil((double)rowCount/pageSize);
+		if(this.totalPages<1){
+			this.totalPages=1;
+		}
 		this.healthViewPage = healthViewPage;
 	}
 	

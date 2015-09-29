@@ -5,7 +5,9 @@ import init.GlobalService;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,8 +47,8 @@ public class ActivityServlet2 extends HttpServlet {
 //				String temp7 = request.getParameter("picture");
 //				String Cookion = request.getParameter("Cookion");
 		//驗證資料
-//				Map<String, String> errors = new HashMap<String, String>();
-//				request.setAttribute("error", errors);
+				Map<String, String> errors = new HashMap<String, String>();
+				request.setAttribute("error", errors);
 //				
 //				if(Cookion!=null) {
 //					if(Cookion.equals("Insert") || Cookion.equals("Update") || Cookion.equals("Delete")) {
@@ -55,13 +57,13 @@ public class ActivityServlet2 extends HttpServlet {
 //						}
 //					}
 //				}
-//		//轉換資料
+		//轉換資料
 				int no = 0;
 				if(temp1!=null && temp1.length()!=0) {
 					no = GlobalService.convertInt(temp1);
-//					if(no==-1000) {
-//						errors.put("no", "no must be an integer");
-//					}
+					if(no==-1000) {
+						errors.put("no", "no must be an integer");
+					}
 				}
 //				
 //				System.out.println("test1:"+no);
@@ -111,17 +113,10 @@ public class ActivityServlet2 extends HttpServlet {
 				
 				//about帶過來的PK no
 				ActivityVO selectByPrimaryKey=service.selectByPrimaryKey(no);
-				request.setAttribute("selectByPrimaryKey",selectByPrimaryKey);
-				
-System.out.println(selectByPrimaryKey.getAddress());				
-				
-
-				
-				
+				request.setAttribute("selectByPrimaryKey",selectByPrimaryKey);				
+//System.out.println(selectByPrimaryKey.getAddress());												
 				RequestDispatcher rd = request.getRequestDispatcher("/activity2.jsp");
-				rd.forward(request, response);		
-//				
-		
+				rd.forward(request, response);							
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import register.model.MemberVO;
 import calories.model.FoodCalVO;
 
-@WebServlet("/ranking/FoodCalSessionServlect")
+@WebServlet("/foodCalSessionServlect")
 public class FoodCalSessionServlect extends HttpServlet {
  
        
@@ -88,7 +88,7 @@ public class FoodCalSessionServlect extends HttpServlet {
 		}
 		
 		if(errors!=null && !errors.isEmpty() ){
-			request.getRequestDispatcher("/ranking/foodCal.controller?pageNo="+page).forward(request, response);
+			request.getRequestDispatcher("/foodCal.controller?pageNo="+page).forward(request, response);
 			return;
 		}
 		
@@ -102,7 +102,9 @@ public class FoodCalSessionServlect extends HttpServlet {
 		if(session.getAttribute("login").equals("600")){
 			MemberVO bean =(MemberVO) session.getAttribute("user");
 			vo1.setMemberNo(bean.getMemberNo());
-			java.util.Date fooddate = (java.util.Date) session.getAttribute("fooddate");
+			java.util.Date healthDate = (java.util.Date) session.getAttribute("healthDate");
+			
+			vo1.setDate(new java.sql.Date(healthDate.getTime()));
 		}
 		
 //		vo1.setMemberNo(100004);
@@ -114,9 +116,9 @@ public class FoodCalSessionServlect extends HttpServlet {
 		
 		List<EatRecordVO> eatrsession = new ArrayList<EatRecordVO>();
 		String eattime = "eatBreakfast";
-		if(temp2.equals("午餐")){
+		if(temp2.equals("中午")){
 			eattime = "eatLunch";
-		}else if(temp2.equals("晚餐")){
+		}else if(temp2.equals("晚上")){
 			eattime = "eatDinner";
 		}
 		if(prodaction.equals("加入")){
@@ -163,7 +165,7 @@ public class FoodCalSessionServlect extends HttpServlet {
 	}
 	//根據Model執行結果導向View
 	request.getRequestDispatcher(
-			"/ranking/foodCal.controller?pageNo=1").forward(request, response);
+			"/foodCal.controller?pageNo=1").forward(request, response);
 		
 }
 

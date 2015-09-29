@@ -61,23 +61,29 @@ public class HealthViewService {
 	public static void main(String[] args){
 		HealthViewService service = new HealthViewService();
 //		System.out.println(service.selectByPrimaryKey(100001));
-		HealthViewVO vo = new HealthViewVO();
-		vo.setNo(3);
-		System.out.println(service.update(vo));
+//		HealthViewVO vo = new HealthViewVO();
+//		vo.setNo(3);
+//		System.out.println(service.update(vo));
+		
+		ViewClassVO vo = new ViewClassService().getViewClass(100002);
+		System.out.println(service.getPageDate(0, 8, vo));
 	}
 	
-	public HealthViewPageVO getPageDate(int pageNo, int pageSize, HealthViewVO vo){	//只要pageNo=0 不分頁
+	public HealthViewPageVO getPageDate(int pageNo, int pageSize, ViewClassVO vo){	//只要pageNo=0 不分頁
 		List<HealthViewVO> list = null;
 		int rowCount = 0;
-		if(vo!=null && vo.getViewClassVO()!=null) {
-			list = healthViewDAO.selectByViewClassVO(vo.getViewClassVO(),pageNo,pageSize);
-			rowCount = healthViewDAO.getDateTotalCount(vo.getViewClassVO());
-		} else {
-			list = healthViewDAO.getAll(pageNo,pageSize);
-			rowCount = healthViewDAO.getDateTotalCount(null);
+		int pageSizePatch = 1;
+		if(pageSize>0){	//避免每頁低於1筆 
+			pageSizePatch = pageSize;
 		}
-		HealthViewPageVO result = new HealthViewPageVO(pageNo, pageSize, rowCount, list);
-		
+		if(vo==null){
+			list = healthViewDAO.getAll(pageNo,pageSizePatch);
+			rowCount = healthViewDAO.getDateTotalCount(null);
+		}else{
+			list = healthViewDAO.selectByViewClassVO(vo,pageNo,pageSizePatch);
+			rowCount = healthViewDAO.getDateTotalCount(vo);
+		}
+		HealthViewPageVO result = new HealthViewPageVO(pageNo, pageSizePatch, rowCount, list);
 		return result;
 	}
 	

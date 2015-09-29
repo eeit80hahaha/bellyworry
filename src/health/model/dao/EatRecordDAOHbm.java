@@ -169,4 +169,26 @@ public class EatRecordDAOHbm implements EatRecordDAO {
 		return result;
 	}
 	
+	private static final String SELECT_BY_MEMBER_DATE_TIME = 
+			"from EatRecordVO where memberNo=? and  date=? and time=?";
+
+	@Override
+	public List<EatRecordVO> getEatrmdt(int memberNo,java.util.Date healthDate,String eattime){
+		List<EatRecordVO> result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(SELECT_BY_MEMBER_DATE_TIME);
+			query.setParameter(0, memberNo);
+			query.setParameter(1, healthDate);
+			query.setParameter(2, eattime);	
+			result = query.list();
+			session.getTransaction().commit();
+		}catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+	
 }

@@ -20,4 +20,5 @@ public interface EatRecordDAO {
 	
 	public abstract List<EatRecordVO> eatday(int memberNo, java.util.Date date);
 
+	public abstract List<EatRecordVO> getEatrmdt (int memberNo,java.util.Date healthDate,String eattime);
 }

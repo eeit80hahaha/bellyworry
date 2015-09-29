@@ -3,7 +3,9 @@ package controller;
 import init.GlobalService;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,8 +46,8 @@ public class ExamServlet extends HttpServlet {
 		String pageNoTemp = request.getParameter("pageNo");
 		
 		//驗證資料
-//		Map<String, String> errors = new HashMap<String, String>();
-//		request.setAttribute("error", errors);
+		Map<String, String> errors = new HashMap<String, String>();
+		request.setAttribute("error", errors);
 //		
 //		if(Cookion!=null) {
 //			if(Cookion.equals("Insert") || Cookion.equals("Update") || Cookion.equals("Delete")) {
@@ -58,9 +60,9 @@ public class ExamServlet extends HttpServlet {
 		int pageNo = 0;
 		if(pageNoTemp!=null && pageNoTemp.length()!=0) {
 			pageNo = GlobalService.convertInt(pageNoTemp);
-//			if(pageNo==-1000) {
-//				errors.put("pageNo", "pageNo must be an integer");
-//			}
+			if(pageNo==-1000) {
+				errors.put("pageNo", "pageNo must be an integer");
+			}
 		}
 //		int sess = 0;
 //		if(temp7!=null && temp7.length()!=0) {
