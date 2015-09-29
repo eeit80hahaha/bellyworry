@@ -1,6 +1,9 @@
 package filter;
 
 import health.model.EatRecordService;
+import health.model.HealthDiaryService;
+import health.model.HealthDiaryVO;
+import init.GlobalService;
 
 import java.io.IOException;
 
@@ -32,6 +35,20 @@ public class FoodCalFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
 		HttpSession session = request.getSession(); //產生session
+		
+		String dayno = request.getParameter("no");
+//		System.out.println(dayno);
+		
+		int no = GlobalService.convertInt(dayno);
+		
+		HealthDiaryService hdS= new HealthDiaryService();
+		HealthDiaryVO hdVO =  hdS.selectByPrimaryKey(no);
+//		System.out.println(hdVO.getDate());
+		if(hdVO!=null){
+			session.setAttribute("healthDate", hdVO.getDate());
+		}
+		
+
 		MemberVO bean = (MemberVO) session.getAttribute("user"); 
 		if(bean!=null){
 			

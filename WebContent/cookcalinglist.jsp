@@ -164,7 +164,9 @@
 		<table border=1 width=23% id="table1">
 		
 
-		
+		<h2><fmt:formatDate value="${healthDate}" type="date" /></h2>
+	
+	
 		<c:forEach var="vo" items="${PagesFoodCalVO1.foodCalpage}" varStatus="varStatus">
 			<tr>
 				<td>
