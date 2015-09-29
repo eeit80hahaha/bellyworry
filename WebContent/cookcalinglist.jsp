@@ -262,7 +262,8 @@
 		${errors.eatr}
 		<hr/>			
 <c:if test="${login == 600 }">
-	<input type="button" value="text">
+<!-- 	<input type="button" value="text"> -->
+		<a href="${pageContext.request.contextPath}/FoodCalServletSave">保存測試</a>
 </c:if>		
 </div>
 </div>

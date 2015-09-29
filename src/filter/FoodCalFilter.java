@@ -1,5 +1,7 @@
 package filter;
 
+import health.model.EatRecordService;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -33,7 +35,21 @@ public class FoodCalFilter implements Filter {
 		MemberVO bean = (MemberVO) session.getAttribute("user"); 
 		if(bean!=null){
 			
-			session.setAttribute("healthDate", new java.util.Date());
+			if(((java.util.Date) session.getAttribute("healthDate"))==null){
+				
+				session.setAttribute("healthDate", new java.util.Date());
+				
+			}
+			String[] eattime = {"早餐","午餐","晚餐"};
+			String[] eatsession = {"eatBreakfast","eatLunch","eatDinner"};
+			java.util.Date healthDate = (java.util.Date) session.getAttribute("healthDate");
+			
+			EatRecordService ers = new EatRecordService();
+			
+			for(int i=0;i<=2;i++){
+				session.setAttribute(eatsession[i] ,
+						ers.getEatrmdt(bean.getMemberNo(),healthDate,eattime[i]));
+			}
 			
 			session.setAttribute("login", "600");
 			chain.doFilter(request, response);
