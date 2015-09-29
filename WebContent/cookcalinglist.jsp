@@ -248,15 +248,15 @@
 <div id="Body">
 		早上紀錄<br/>
 		<c:forEach var="eatb" items="${eatBreakfast}">
-			${eatb}<br/>
+			${eatb.foodCalVO.name}   份量${eatb.count}公克 <br/>
 		</c:forEach>
 		中午紀錄<br/>
 		<c:forEach var="eatl" items="${eatLunch}">
-			${eatl}<br/>
+			${eatl.foodCalVO.name}   份量${eatl.count}公克<br/>
 		</c:forEach>
 		晚上紀錄<br/>
 		<c:forEach var="eatd" items="${eatDinner}">
-			${eatd}<br/>
+			${eatd.foodCalVO.name}   份量${eatd.count}公克<br/>
 		</c:forEach>		
 		<hr/>
 		錯誤訊息:
