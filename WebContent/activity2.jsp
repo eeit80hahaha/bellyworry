@@ -259,7 +259,19 @@
 
         <div class="breadcrumbs">
                 <a href="index.html">Home</a> &nbsp;/&nbsp; <span>活動情報</span>
-            </div> 
+        </div> 
+        
+			<table>
+			<thead>
+			<tr><th></th><th>活動內容</th></tr>
+			</thead>
+			<tbody>			
+			<tr>
+				<td><img src="data:image/jpg;base64,${selectByPrimaryKey.picture1}"/></td>
+				<td>${selectByPrimaryKey.content}</td>				
+			</tr>
+			</tbody>
+			</table>
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
 
