@@ -25,11 +25,12 @@ input[type="button"]:disabled{
 </style>
 <script type="text/javascript">
 function init(){
-	
 	var contents = document.getElementsByName("activityContent");
-	for(var i =0; i<contents.length;i++){
-		contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20);
-	}
+// 	if(contents.length>20){
+		for(var i =0; i<contents.length;i++){
+			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20);
+		}
+// 	}
 	var NewStr="${activity.content}";
 }
 </script>

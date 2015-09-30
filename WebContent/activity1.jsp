@@ -209,7 +209,7 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>活動情報</span>
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>活動情報</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
@@ -369,22 +369,22 @@
 
         <div class="row-fluid">		
 		        <div class="span4"> 		                                
-                    <img src="data:image/jpg;base64,${selectallvo[15].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                    <img src="data:image/jpg;base64,${selectallvo[4].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
                 </div>                                                     
         		<div class="span8">            
-                    <p>${selectallvo[15].content}
-                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[15].no}" >...詳細閱讀</a> 
+                    <p>${selectallvo[4].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[4].no}" >...詳細閱讀</a> 
                     </p>
                 </div>	
         </div>
         
                 <div class="row-fluid">		
 		        <div class="span4"> 		                                
-                    <img src="data:image/jpg;base64,${selectallvo[16].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                    <img src="data:image/jpg;base64,${selectallvo[7].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
                 </div>                                                     
         		<div class="span8">            
-                    <p>${selectallvo[16].content}
-                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[16].no}" >...詳細閱讀</a> 
+                    <p>${selectallvo[7].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[7].no}" >...詳細閱讀</a> 
                     </p>
                 </div>	
         </div>		 

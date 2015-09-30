@@ -209,16 +209,16 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>活動情報</span>
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span><a href="${pageContext.request.contextPath}/activity.controller?pageNo=1">活動情報</a></span>
         </div> 
         
 			<table>
-			<thead>
-			<tr><th></th><th>活動內容</th></tr>
-			</thead>
-			<tbody>			
+			<tbody>
 			<tr>
 				<td><img src="data:image/jpg;base64,${selectByPrimaryKey.picture1}"/></td>
+			</tr>	
+			<tr><th>活動內容</th></tr>		
+			<tr>				
 				<td>${selectByPrimaryKey.content}</td>				
 			</tr>
 			</tbody>
