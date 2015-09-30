@@ -37,21 +37,21 @@ public class FoodCalFilter implements Filter {
 		
 		HttpSession session = request.getSession(); //產生session
 		
-		String dayno = request.getParameter("no");
+//		String dayno = request.getParameter("no");
 //		System.out.println(dayno);
 		
-		int no = GlobalService.convertInt(dayno);
+//		int no = GlobalService.convertInt(dayno);
 		
 
 		MemberVO bean = (MemberVO) session.getAttribute("user"); 
 		if(bean!=null){
 			
-			HealthDiaryService hdS= new HealthDiaryService();
-			HealthDiaryVO hdVO =  hdS.selectByPrimaryKey(no);
+//			HealthDiaryService hdS= new HealthDiaryService();
+//			HealthDiaryVO hdVO =  hdS.selectByPrimaryKey(no);
 //			System.out.println(hdVO.getDate());
-			if(hdVO!=null){
-				session.setAttribute("healthDate", hdVO.getDate());
-			}
+//			if(hdVO!=null){
+//				session.setAttribute("healthDate", hdVO.getDate());
+//			}
 			
 			
 			if(((java.util.Date) session.getAttribute("healthDate"))==null){
