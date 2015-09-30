@@ -490,23 +490,23 @@
 								<td>${vo.weight}</td>
 
 								<c:choose>
-									<c:when test="${i.index == 0}">
+									<c:when test="${i.last}">
 										<td>--</td>
 									</c:when>
-									<c:when test="${i.index > 0}">
+									<c:when test="${i.index >= 0}">
 										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
 										<!-- 未切字串,一坨拉庫 -->
 										<c:choose>
 											<c:when
-												test="${(list[i.index].weight - list[i.index-1].weight) > 0}">
+												test="${(list[i.index].weight - list[i.index+1].weight) > 0}">
 												<td style="color: red">+<fmt:formatNumber type="number"
 														maxIntegerDigits="2"
-														value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
+														value="${(list[i.index].weight - list[i.index+1].weight)}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td style="color: green;"><fmt:formatNumber
 														type="number" maxIntegerDigits="2"
-														value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
+														value="${(list[i.index].weight - list[i.index+1].weight)}" /></td>
 											</c:otherwise>
 										</c:choose>
 									</c:when>
@@ -524,21 +524,21 @@
 								<td><fmt:formatNumber type="number" maxIntegerDigits="2"
 										value="${vo.weight/((vo.height/100)*(vo.height/100))}" /></td>
 								<c:choose>
-									<c:when test="${a.index == 0}">
+									<c:when test="${a.last}">
 										<td>--</td>
 									</c:when>
-									<c:when test="${a.index > 0}">
+									<c:when test="${a.index >= 0}">
 										<c:choose>
 											<c:when
-												test="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100))) >0}">
+												test="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index+1].weight/((list[a.index+1].height/100)*(list[a.index+1].height/100))) >0}">
 												<td style="color: red">+<fmt:formatNumber type="number"
 														maxIntegerDigits="2"
-														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
+														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index+1].weight/((list[a.index+1].height/100)*(list[a.index+1].height/100)))}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td style="color: green"><fmt:formatNumber
 														type="number" maxIntegerDigits="2"
-														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
+														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index+1].weight/((list[a.index+1].height/100)*(list[a.index+1].height/100)))}" /></td>
 
 											</c:otherwise>
 										</c:choose>
@@ -562,21 +562,21 @@
 								<td>${vo.waistline}</td>
 
 								<c:choose>
-									<c:when test="${i.index == 0}">
+									<c:when test="${i.last}">
 										<td>--</td>
 									</c:when>
-									<c:when test="${i.index > 0}">
+									<c:when test="${i.index >= 0}">
 										<c:choose>
 											<c:when
-												test="${(list[i.index].waistline - list[i.index-1].waistline) >0}">
+												test="${(list[i.index].waistline - list[i.index+1].waistline) >0}">
 												<td style="color: red">+<fmt:formatNumber type="number"
 														maxIntegerDigits="2"
-														value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
+														value="${(list[i.index].waistline - list[i.index+1].waistline)}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td style="color: green"><fmt:formatNumber
 														type="number" maxIntegerDigits="2"
-														value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
+														value="${(list[i.index].waistline - list[i.index+1].waistline)}" /></td>
 											</c:otherwise>
 										</c:choose>
 										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
@@ -764,6 +764,27 @@
 						}
 					})
 		
+					
+			var time;
+			$(".easyui-datebox").datebox({				
+				onSelect:function(date){
+					var year,month,day;
+					year = date.getFullYear();
+					if((date.getMonth()+1)<10){
+						month = '0'+(date.getMonth()+1);
+					}else{
+						month = (date.getMonth()+1);
+					}
+					if(date.getDate() < 10){
+						day = '0'+date.getDate();
+					}else{
+						day = date.getDate();
+					}
+					time = year+'-'+month+'-'+day;
+					console.log(time);
+					$.get("healthDaySessionServlet.collection",{"time":time});
+				}
+			});
 			$(".accordion").accordion({
 				animate:false
 			});
