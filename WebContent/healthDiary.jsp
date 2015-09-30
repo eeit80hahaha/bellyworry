@@ -128,7 +128,7 @@
 									<span style="padding-left: 20px;font-size: 0.8cm;font-family:Microsoft JhengHei;font-weight: bold;">${vo.title}</span>
 								</div>
 
-								<div style="height: 200px; border: 2px solid white;">  <!-- green首頁三餐活動 -->
+								<div style="height: 200px; border: 2px solid white;padding-top: 15px">  <!-- green首頁三餐活動 -->
 
 									<div
 										style="border: 4px solid #FFEE99; width: 190.7px; height: 100%; float: left;border-radius:25px;margin: 2px;font-weight: 300;box-shadow:5px 5px 5px 2px #DDDDDD;">
