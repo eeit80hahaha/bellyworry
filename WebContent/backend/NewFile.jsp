@@ -90,7 +90,7 @@ input[type="button"]:disabled{
 <%--             <form method="post" action="${pageContext.request.contextPath}/backend/SelectAllMenuServlet.controller" id="menuForm"> --%>
 					<div id="paging">
 					<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
-						<table border="0">
+						<table>
 						 	<tr>
 						    	<td width='76'>
 								<c:if test="${PagesActivityVO.pageNo > 1}">
@@ -128,14 +128,13 @@ input[type="button"]:disabled{
 					</div>
 			<table>
 			<thead>
-			<tr><th>no</th><th>活動名稱</th><th>活動內容</th><th>開始時間</th><th>結束時間</th><th>活動地點</th><th>活動圖片</th><th>活動網址</th><th>主辦廠商</th><th></th></tr>
+			<tr><th>no</th><th>活動名稱</th><th>開始時間</th><th>結束時間</th><th>活動地點</th><th>活動圖片</th><th>活動網址</th><th>主辦廠商</th><th></th></tr>
 			</thead>
 			<tbody>
 			<c:forEach var="activity" items="${PagesActivityVO.activitypage}" varStatus="list">
 			<tr>
 				<td>${activity.no}</td>
 				<td>${activity.name}</td>
-				<td name="activityContent">${activity.content}</td>
 				<td>${activity.startTime}</td>
 				<td>${activity.endTime}</td>
 				<td>${activity.address}</td>

@@ -38,13 +38,11 @@ public class ExamUpdateServlet extends HttpServlet {
 
 		//接收資料
 				String temp1 = request.getParameter("no");
-//				String temp2 = request.getParameter("name");
-//				String temp3 = request.getParameter("content");
-//				String temp4 = request.getParameter("startTime");
-//				String temp5 = request.getParameter("endTime");
-//				String temp6 = request.getParameter("address");
-//				String temp7 = request.getParameter("picture");
-//				String Cookion = request.getParameter("Cookion");
+				String temp2 = request.getParameter("content");
+				String temp3 = request.getParameter("correct");
+				String temp4 = request.getParameter("optA");
+				String temp5 = request.getParameter("optB");
+				String temp6 = request.getParameter("optC");
 		//驗證資料
 				Map<String, String> errors = new HashMap<String, String>();
 				request.setAttribute("error", errors);
