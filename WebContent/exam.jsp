@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>英雄事蹟</title>
+    <title>小學堂</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -88,7 +88,7 @@
     </style>
 </head>
 <body id="pageBody">
-<c:set var="funcName" value="RANK" scope="session"/>
+<c:set var="funcName" value="EXAM" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
