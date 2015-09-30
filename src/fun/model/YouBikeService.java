@@ -42,7 +42,8 @@ public class YouBikeService {
 //		File file = new File("C:/Java/apiAccess.json");
 //		FileInputStream inputStream = new FileInputStream(file);
 		
-		URL url = new URL("http://localhost:8080/bellyworry/map/apiAccess.json");
+//		URL url = new URL("http://localhost:8080/bellyworry/map/apiAccess.json");
+		URL url = new URL("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=ddb80380-f1b3-4f8e-8016-7ed9cba571d5");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		InputStream inputStream = conn.getInputStream();
 		

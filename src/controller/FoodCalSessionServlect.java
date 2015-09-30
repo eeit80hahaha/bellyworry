@@ -165,7 +165,7 @@ public class FoodCalSessionServlect extends HttpServlet {
 	}
 	//根據Model執行結果導向View
 	request.getRequestDispatcher(
-			"/foodCal.controller?pageNo=1").forward(request, response);
+			"/foodCal.controller?pageNo="+page).forward(request, response);
 		
 }
 
