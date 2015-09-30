@@ -126,8 +126,8 @@
 <title>cookCal</title>
 <style>
  .test {
-        width:90%; 
-		border:#000 solid 1px;
+        width:100%; 
+/* 		border:#000 solid 1px; */
      } 
  .tt {  
  		text-align:left
@@ -248,15 +248,15 @@
 <div id="Body">
 		早上紀錄<br/>
 		<c:forEach var="eatb" items="${eatBreakfast}">
-			${eatb.foodCalVO.name}   份量${eatb.count}公克 <br/>
+			${eatb.foodCalVO.name}   份量${eatb.count} <br/>
 		</c:forEach>
 		中午紀錄<br/>
 		<c:forEach var="eatl" items="${eatLunch}">
-			${eatl.foodCalVO.name}   份量${eatl.count}公克<br/>
+			${eatl.foodCalVO.name}   份量${eatl.count}<br/>
 		</c:forEach>
 		晚上紀錄<br/>
 		<c:forEach var="eatd" items="${eatDinner}">
-			${eatd.foodCalVO.name}   份量${eatd.count}公克<br/>
+			${eatd.foodCalVO.name}   份量${eatd.count}<br/>
 		</c:forEach>		
 		<hr/>
 		錯誤訊息:

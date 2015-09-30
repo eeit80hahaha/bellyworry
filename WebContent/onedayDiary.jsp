@@ -12,6 +12,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<link rel="stylesheet" type="text/css" href="jeasyui/materialize.css">
+
 <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="scripts/bootstrap/css/bootstrap-responsive.min.css"
 	rel="stylesheet">
@@ -53,6 +55,7 @@
 	rel="stylesheet" type="text/css">
 
 <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+
 <style>
 #map {
 	height: 700px;
@@ -108,12 +111,12 @@
 		<div class="divPanel page-content">
 
 
-			<div style="border: 2px solid blue; width: 100%; height: 100%;">
-				<!-- blue至頂上條線 -->
+			<div style="width: 100%; height: 100%;">
+				<!-- blue至頂上條線 border: 2px solid blue;  -->
 			</div>
 
 			<div id="${vo.date}"
-				style="width: 33%; float: left; height: 100%; font-family: Microsoft JhengHei; border: 2px solid red;">
+				style="width: 33%; float: left; height: 100%; font-family: Microsoft JhengHei;">
 				<!-- red首頁日誌 -->
 
 
@@ -129,17 +132,16 @@
 				<div style="height: 100%;">
 					<!-- green首頁三餐活動 -->
 
-					<fieldset>
-						<legend>健康指標</legend>
-						身高：
-						<td>${list.height}</td> <br> 體重：
-						<td>${list.weight}</td> <br> 腰圍：
-						<td>${list.waistline}</td> <br> BMI：
-						<td><fmt:formatNumber type="number" maxIntegerDigits="2"
-								value="${list.weight/((list.height/100)*(list.height/100))}" /></td>
+					<div class="hoverable" style="border: 2px solid #FFB3FF;line-height: 30px;height: 100%;width: 100%;border-radius:23px;margin: 2px;">
+						<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32;">&nbsp;健康指標</h3><br>
+						&nbsp;身高：	<td>${list.height}</td> <br> 
+						&nbsp;體重：	<td>${list.weight}</td> <br> 
+						&nbsp;腰圍：	<td>${list.waistline}</td><br> 
+						&nbsp;BMI：<td><fmt:formatNumber type="number" maxIntegerDigits="2"
+								value="${list.weight/((list.height/100)*(list.height/100))}" /></td><br>
 
 
-						<br> 建議：
+						&nbsp; 建議：
 						<!-- BMI -->
 
 						<c:choose>
@@ -168,25 +170,19 @@
 								<td>重度肥胖</td>
 							</c:when>
 						</c:choose>
-
-
-
-
-					</fieldset>
-
+						</div>
 				</div>
-
 				<br>
-				<br>
-				<div style="border: 2px solid blue;">
+	
+				<div class="hoverable" style="border: 2px solid #D1BBFF;float: left;line-height: 30px;height: 100%;width: 100%;border-radius:23px">
 <!-- 					<fieldset style="padding: 100%; border: 2px solid blue; width: 33%"> -->
 <!-- 						<legend style="border: none;">飲食運動指南</legend> -->
-飲食運動指南<br>
-						<div style="width: 199.7px; height: 100%;">
-							早上<br>
+<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;飲食運動指南</h3><br>
+						<div style="width: 100%; height: 100%;">
+							&nbsp;早上<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<!-- 							eat_record因為很多筆相同時段.菜色,所以用foreach -->
-								<c:if test="${eat.time == '早上' }">
+								<c:if test="${eat.time == '早上' }">&nbsp;
 
 									${eat.foodCalVO.name}
 									${eat.foodCalVO.cal}
@@ -198,10 +194,10 @@
 							<hr>
 						</div>
 
-						<div style="width: 199.7px; height: 100%;">
-							中午<br>
+						<div style="width: 100%; height: 100%;">
+							&nbsp;中午<br>
 							<c:forEach var="eat" items="${list.eatVo}">
-								<c:if test="${eat.time =='中午'}">
+								<c:if test="${eat.time =='中午'}">&nbsp;
 			 							${eat.foodCalVO.name}
 			 							${eat.foodCalVO.cal}
 			 							${eat.foodCalVO.count}
@@ -213,10 +209,10 @@
 						</div>
 
 
-						<div style="width: 199.7px; height: 100%;">
-							晚上<br>
+						<div style="width: 100%; height: 100%;">
+							&nbsp;晚上<br>
 							<c:forEach var="eat" items="${list.eatVo}">
-								<c:if test="${eat.time=='晚上'}">
+								<c:if test="${eat.time=='晚上'}">&nbsp;
 			 							${eat.foodCalVO.name}
 			 							${eat.foodCalVO.cal}
 			 							${eat.foodCalVO.count}
@@ -227,17 +223,17 @@
 							<hr>
 						</div>
 
-						<div style="width: 199.7px; height: 100%; float: right">
-							運動<br>
-							<c:forEach var="exer" items="${list.exerVo}">
+						<div style="width: 100%; height: 100%; ">
+							&nbsp;運動<br>
+							<c:forEach var="exer" items="${list.exerVo}">&nbsp;
 									${exer.exerciseCalVO.name}
 									${exer.exerciseCalVO.calHour}
 									${exer.count}<br>
 							</c:forEach>
 							<hr>
 						</div>
-						<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div>
-						<div>運動總熱量</div>
+<%-- 						<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div> --%>
+<!-- 						<div>運動總熱量</div> -->
 						<hr>
 <!-- 					</fieldset> -->
 				</div>
@@ -250,201 +246,45 @@
 
 
 		</div>
-
+<br><br><br><br><br><br>
 
 		<div
-			style="width: 65%; float: right; height: 100%; border: 3px solid yellow;">
-			<!-- calendar right-hand -->
-
-			<fieldset>
-				<legend>我的日誌</legend>
-				<br> 標題：
-				<td>${list.title}</td> <br> 內容：
-				<td>${list.content}</td> <br>
-
-			</fieldset>
-		</div>
-
-
-<c:url value="diaryIndex.controller" var="path"> 
+			style="width: 65%; float: right; height: 100%;">
+			<!-- calendar right-hand  border: 3px solid yellow; -->
+			<div class="hoverable" style="border: 2px solid #CCEEFF;line-height: 30px;height: 630px;width: 100%;border-radius:23px">
+				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;我的日誌</h3>
+				<br> &nbsp;標題：<td>${list.title}</td> 
+				<br> &nbsp;內容：<td>${list.content}</td> 
+				<br>
+				</div>
+				<c:url value="diaryIndex.controller" var="path"> 
 					<c:param name="no" value="${list.no}"></c:param>
 				</c:url>
+				<div style="margin: 10px;">
 				<div>
-					<button name="back" style="float: left">
+				
+					<button name="back" style="font-family:Microsoft JhengHei;float: left;margin: 10px;width: 80px;height: 60px;font-weight: 600;">
 						<a href="diaryIndex.controller">BACK</a>
 					</button>
 				</div>
 				<div>
-					<button name="edit">
+					<button name="edit" style="font-family:Microsoft JhengHei;margin: 10px;width: 80px;height: 60px;font-weight: 600;">
 						<a href="${path}">編輯</a>
 					</button>
 				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- 			<tr> -->
-		<!-- 				日期： -->
-		<%-- 				<td>${list.date}</td> --%>
-		<!-- 				<br> 身高： -->
-		<%-- 				<td>${list.height}</td> --%>
-		<!-- 				<br> 體重： -->
-		<%-- 				<td>${list.weight}</td> --%>
-		<!-- 				<br> 腰圍： -->
-		<%-- 				<td>${list.waistline}</td> --%>
-		<!-- 				<br> BMI： -->
-		<%-- 				<td><fmt:formatNumber type="number" maxIntegerDigits="2" --%>
-		<%-- 						value="${list.weight/((list.height/100)*(list.height/100))}" /></td> --%>
-		<!-- 				<br> 建議： -->
-		<!-- 				BMI -->
-
-		<%-- 				<c:choose> --%>
-		<%-- 					<c:when --%>
-		<%-- 						test="${(list.weight/((list.height/100)*(list.height/100)) < 18.5 ) }"> --%>
-		<!-- 						<td>體重過輕</td> -->
-		<%-- 					</c:when> --%>
-		<%-- 					<c:when --%>
-		<%-- 						test="${ ( list.weight/((list.height/100)*(list.height/100)) < 24 ) }"> --%>
-		<!-- 						<td>標準體重</td> -->
-		<%-- 					</c:when> --%>
-		<%-- 					<c:when --%>
-		<%-- 						test="${(list.weight/((list.height/100)*(list.height/100)) < 27 ) }"> --%>
-		<!-- 						<td>過重</td> -->
-		<%-- 					</c:when> --%>
-		<%-- 					<c:when --%>
-		<%-- 						test="${(list.weight/((list.height/100)*(list.height/100)) < 30 ) }"> --%>
-		<!-- 						<td>輕度肥胖</td> -->
-		<%-- 					</c:when> --%>
-		<%-- 					<c:when --%>
-		<%-- 						test="${(list.weight/((list.height/100)*(list.height/100)) < 35 ) }"> --%>
-		<!-- 						<td>中度肥胖</td> -->
-		<%-- 					</c:when> --%>
-		<%-- 					<c:when --%>
-		<%-- 						test="${(list.weight/((list.height/100)*(list.height/100)) >= 35 ) }"> --%>
-		<!-- 						<td>重度肥胖</td> -->
-		<%-- 					</c:when> --%>
-		<%-- 				</c:choose> --%>
-		<!-- 				<br> 標題： -->
-		<%-- 				<td>${list.title}</td> --%>
-		<!-- 				<br> 內容： -->
-		<%-- 				<td>${list.content}</td> --%>
-		<!-- 				<br> -->
-
-		<!-- 				<div style="width: 199.7px; height: 100%;"> -->
-		<!-- 					運動<br> -->
-		<%-- 					<c:forEach var="exer" items="${list.exerVo}"> --%>
-		<%-- 							${exer.exerciseCalVO.name} --%>
-		<%-- 							${exer.exerciseCalVO.calHour} --%>
-		<%-- 							${exer.count}<br> --%>
-		<%-- 					</c:forEach> --%>
-		<!-- 					<hr> -->
-		<!-- 				</div> -->
-		<!-- 		</div> -->
-		<%-- 		<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div> --%>
-		<!-- 		<div>運動總熱量</div> -->
-		<!-- 		<hr> -->
-		<!-- 		</tr> -->
-
-		<!-- 		<div style="width: 199.7px; height: 100%;"> -->
-		<!-- 			早上<br> -->
-		<%-- 			<c:forEach var="eat" items="${list.eatVo}"> --%>
-		<!-- 				eat_record因為很多筆相同時段.菜色,所以用foreach -->
-		<%-- 				<c:if test="${eat.time == '早上' }"> --%>
-
-		<%-- 											${eat.foodCalVO.name} --%>
-		<%-- 											${eat.foodCalVO.cal} --%>
-		<%-- 											${eat.foodCalVO.count} --%>
-		<%-- 											${eat.foodCalVO.weight} --%>
-		<%-- 											${eat.count}<br> --%>
-		<%-- 				</c:if> --%>
-		<%-- 			</c:forEach> --%>
-		<!-- 			<hr> -->
-		<!-- 		</div> -->
-
-
-
-		<!-- 		<div style="width: 199.7px; height: 100%;"> -->
-		<!-- 			中午<br> -->
-		<%-- 			<c:forEach var="eat" items="${list.eatVo}"> --%>
-		<%-- 				<c:if test="${eat.time =='中午'}"> --%>
-		<%--  							${eat.foodCalVO.name} --%>
-		<%--  							${eat.foodCalVO.cal} --%>
-		<%--  							${eat.foodCalVO.count} --%>
-		<%--  							${eat.foodCalVO.weight} --%>
-		<%--  							${eat.count}<br> --%>
-		<%-- 				</c:if> --%>
-		<%-- 			</c:forEach> --%>
-		<!-- 			<hr> -->
-		<!-- 		</div> -->
-
-
-		<!-- 		<div style="width: 199.7px; height: 100%;"> -->
-		<!-- 			晚上<br> -->
-		<%-- 			<c:forEach var="eat" items="${list.eatVo}"> --%>
-		<%-- 				<c:if test="${eat.time=='晚上'}"> --%>
-		<%--  							${eat.foodCalVO.name} --%>
-		<%--  							${eat.foodCalVO.cal} --%>
-		<%--  							${eat.foodCalVO.count} --%>
-		<%--  							${eat.foodCalVO.weight} --%>
-		<%--  							${eat.count}<br> --%>
-		<%-- 				</c:if> --%>
-		<%-- 			</c:forEach> --%>
-		<!-- 			<hr> -->
-		<!-- 		</div> -->
-
-
-
-
-		<%-- 		<c:url value="diaryIndex.controller" var="path"> --%>
-		<%-- 			<c:param name="no" value="${list.no}"></c:param> --%>
-		<%-- 		</c:url> --%>
-		<!-- 		<div> -->
-		<!-- 			<button name="back" style="float: left"> -->
-		<!-- 				<a href="diaryIndex.controller">BACK</a> -->
-		<!-- 			</button> -->
-		<!-- 		</div> -->
-		<!-- 		<div> -->
-		<!-- 			<button name="edit"> -->
-		<%-- 				<a href="${path}">編輯</a> --%>
-		<!-- 			</button> -->
-		<!-- 		</div> -->
-
-
-
-
+				</div>
+			</div>
 
 	</div>
-
-	</div>
-
-
-
-
-
+<!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
 
 	<div id="footerOuterSeparator"></div>
 	<jsp:include page="/page/footer.jsp" />
 
-	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
 	<script src="scripts/bootstrap/js/bootstrap.min.js"
 		type="text/javascript"></script>
 	<script src="scripts/default.js" type="text/javascript"></script>
+	
 </body>
 </html>

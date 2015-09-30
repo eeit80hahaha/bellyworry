@@ -209,7 +209,7 @@
     <div class="divPanel page-content">
 
         <div class="breadcrumbs">
-                <a href="index.html">Home</a> &nbsp;/&nbsp; <span>活動情報</span>
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>活動情報</span>
             </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
@@ -369,22 +369,22 @@
 
         <div class="row-fluid">		
 		        <div class="span4"> 		                                
-                    <img src="data:image/jpg;base64,${selectallvo[15].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                    <img src="data:image/jpg;base64,${selectallvo[4].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
                 </div>                                                     
         		<div class="span8">            
-                    <p>${selectallvo[15].content}
-                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[15].no}" >...詳細閱讀</a> 
+                    <p>${selectallvo[4].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[4].no}" >...詳細閱讀</a> 
                     </p>
                 </div>	
         </div>
         
                 <div class="row-fluid">		
 		        <div class="span4"> 		                                
-                    <img src="data:image/jpg;base64,${selectallvo[16].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                    <img src="data:image/jpg;base64,${selectallvo[7].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
                 </div>                                                     
         		<div class="span8">            
-                    <p>${selectallvo[16].content}
-                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[16].no}" >...詳細閱讀</a> 
+                    <p>${selectallvo[7].content}
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[7].no}" >...詳細閱讀</a> 
                     </p>
                 </div>	
         </div>		 
@@ -403,107 +403,7 @@
 
 <div id="footerOuterSeparator"></div>
 
-<div id="divFooter" class="footerArea">
-
-    <div class="container">
-
-        <div class="divPanel">
-
-            <div class="row-fluid">
-                <div class="span3" id="footerArea1">
-                
-                    <h3>About Company</h3>
-
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
-                    
-                    <p> 
-                        <a href="#" title="Terms of Use">Terms of Use</a><br>
-                        <a href="#" title="Privacy Policy">Privacy Policy</a><br>
-                        <a href="#" title="FAQ">FAQ</a><br>
-                        <a href="#" title="Sitemap">Sitemap</a>
-                    </p>
-
-                </div>
-                <div class="span3" id="footerArea2">
-
-                    <h3>Recent Blog Posts</h3> 
-                    <p>
-                        <a href="#" title="">Lorem Ipsum is simply dummy text</a><br>
-                        <span style="text-transform:none;">2 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="#" title="">Duis mollis, est non commodo luctus</a><br>
-                        <span style="text-transform:none;">5 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="#" title="">Maecenas sed diam eget risus varius</a><br>
-                        <span style="text-transform:none;">19 hours ago</span>
-                    </p>
-                    <p>
-                        <a href="#" title="">VIEW ALL POSTS</a>
-                    </p>
-
-                </div>
-                <div class="span3" id="footerArea3">
-
-                    <h3>Sample Content</h3> 
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s. 
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.
-                    </p>
-
-                </div>
-                <div class="span3" id="footerArea4">
-
-                    <h3>Get in Touch</h3>  
-                                                               
-                    <ul id="contact-info">
-                    <li>                                    
-                        <i class="general foundicon-phone icon"></i>
-                        <span class="field">Phone:</span>
-                        <br>
-                        (123) 456 7890 / 456 7891                                                                      
-                    </li>
-                    <li>
-                        <i class="general foundicon-mail icon"></i>
-                        <span class="field">Email:</span>
-                        <br>
-                        <a href="mailto:info@yourdomain.com" title="Email">info@yourdomain.com</a>
-                    </li>
-                    <li>
-                        <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
-                        <span class="field">Address:</span>
-                        <br>
-                        123 Street<br>
-                        12345 City, State<br>
-                        Country
-                    </li>
-                    </ul>
-
-                </div>
-            </div>
-
-            <br><br>
-            <div class="row-fluid">
-                <div class="span12">
-                    <p class="copyright">
-                        Copyright © 2013 Your Company. All Rights Reserved.
-                    </p>
-
-                    <p class="social_bookmarks">
-                        <a href="#"><i class="social foundicon-facebook"></i>&nbsp;Facebook</a>
-			<a href=""><i class="social foundicon-twitter"></i>&nbsp;Twitter</a>
-			<a href="#"><i class="social foundicon-pinterest"></i>&nbsp;Pinterest</a>
-			<a href="#"><i class="social foundicon-rss"></i>&nbsp;Rss</a>
-                    </p>
-                </div>
-            </div>
-            <br>
-
-        </div>
-
-    </div>
-    
-</div>
+<jsp:include page="/page/footer.jsp"/>
 
 <script src="scripts/jquery.min.js" type="text/javascript"></script> 
 <script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
