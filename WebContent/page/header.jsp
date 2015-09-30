@@ -69,15 +69,24 @@
                                         <li><a href="${pageContext.request.contextPath}/healthView.jsp">健康景點查詢</a></li>
                                     </ul>
                                 </li>
-	                            
+	                            <c:if test="${ funcName != 'ACT' }">
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/activity.controller?pageNo=1">活動情報</a></li>
+                                </c:if>
+                                <c:if test="${ funcName == 'ACT' }">
+                                <li class="dropdown active"><a href="">活動情報</a></li>
+                                </c:if>
                                 <c:if test="${ funcName != 'RANK' }"> 
                                 <li class="dropdown"><a href="${pageContext.request.contextPath}/hero.controller">英雄事蹟</a></li>
                                 </c:if>
                                 <c:if test="${ funcName == 'RANK' }"> 
                                 <li class="dropdown active"><a href="">英雄事蹟</a></li>
                                 </c:if>
-                                <li class="dropdown"><a href="${pageContext.request.contextPath}/exam.controller?pageNo=1" >小學堂</a></li>                                
+                                <c:if test="${ funcName != 'EXAM' }"> 
+                                <li class="dropdown"><a href="${pageContext.request.contextPath}/exam.controller?pageNo=1" >小學堂</a></li>
+                                </c:if>
+                                <c:if test="${ funcName == 'EXAM' }"> 
+                                <li class="dropdown active"><a href="" >小學堂</a></li>
+                                </c:if>                                 
                             </ul>
                         </div>
                     </div>

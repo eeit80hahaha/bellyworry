@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html><head>
     <meta charset="utf-8">
-    <title>Your Name Here - Simple</title>
+    <title>活動情報</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -200,57 +200,8 @@
 </script>
 </head>
 <body id="pageBody" style="zoom: 1;">
-<div id="decorative2">
-    <div class="container">
-
-        <div class="divPanel topArea notop nobottom">
-            <div class="row-fluid">
-                <div class="span12">
-
-                    <div id="divLogo" class="pull-left">
-                        <a href="index.html" id="divSiteTitle">Your Name Here</a><br>
-                        <a href="index.html" id="divTagLine">Your Tag Line Here</a>
-                    </div>
-
-                    <div id="divMenuRight" class="pull-right">
-                    <div class="navbar">
-                        <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse" data-original-title="">
-                            NAVIGATION <span class="icon-chevron-down icon-white"></span>
-                        </button>
-                        <div class="nav-collapse collapse">
-                            <ul class="nav nav-pills ddmenu">
-                                <li class="dropdown"><a href="index.html">Home</a></li>
-								<li class="dropdown active"><a href="about.html">About</a></li>
-                                <li class="dropdown">
-                                    <a href="page.html" class="dropdown-toggle">Page <b class="caret"></b></a>
-                                    <ul class="dropdown-menu" style="display: none;">
-                            <li><a href="full.html">Full Page</a></li>
-                            <li><a href="2-column.html">Two Column</a></li>
-                            <li><a href="3-column.html">Three Column</a></li>
-							<li><a href="../documentation/index.html">Documentation</a></li>
-							<li class="dropdown">
-                            <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;»</a>
-                            <ul class="dropdown-menu sub-menu" style="display: none;">
-                            <li><a href="#">Dropdown Item</a></li>
-                            <li><a href="#">Dropdown Item</a></li>
-                            <li><a href="#">Dropdown Item</a></li>
-                            </ul>
-                            </li>
-                            </ul>
-                                </li>
-                                <li class="dropdown"><a href="gallery.html">Gallery</a></li>
-                                <li class="dropdown"><a href="contact.php">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+<c:set var="funcName" value="ACT" scope="session"/>
+<jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
 <div class="container">
