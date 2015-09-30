@@ -194,7 +194,7 @@
 	${cooksDiv}
 	<!-- 食譜 -->
 
-	<div id="dialog"></div>
+	<div id="dialog" title="食譜"></div>
 	<jsp:include page="/page/footer.jsp" />
 </body>
 </html>
