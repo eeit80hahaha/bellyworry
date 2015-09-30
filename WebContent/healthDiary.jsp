@@ -184,7 +184,7 @@
 										<c:forEach var="exer" items="${vo.exerVo}">&nbsp;
 							${exer.exerciseCalVO.name}
 							${exer.exerciseCalVO.calHour}大卡  
-							${exer.count}min<br>
+							${exer.count}hour<br>
 										</c:forEach></div>
 									</div>
 								</div><br>

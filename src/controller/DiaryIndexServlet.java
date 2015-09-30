@@ -76,8 +76,8 @@ public class DiaryIndexServlet extends HttpServlet {
 		// ****************************************************************************//
 //		List<HealthDiaryVO> list = service.selecthealth(vo.getMemberNo());
 		List<HealthDiaryVO> list = service.selectMemberNo(vo.getMemberNo());
-		System.out.println(1);
 		request.setAttribute("list", list);
+		System.out.println(list);
 		RequestDispatcher rd = request.getRequestDispatcher("/healthDiary.jsp");
 		rd.forward(request, response);
 		return;
