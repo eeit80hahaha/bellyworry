@@ -36,13 +36,14 @@ public class ActivityUpdateServlet extends HttpServlet {
 
 		//接收資料
 				String temp1 = request.getParameter("no");
-//				String temp2 = request.getParameter("name");
-//				String temp3 = request.getParameter("content");
-//				String temp4 = request.getParameter("startTime");
-//				String temp5 = request.getParameter("endTime");
-//				String temp6 = request.getParameter("address");
+				String temp2 = request.getParameter("name");
+				String temp3 = request.getParameter("content");
+				String temp4 = request.getParameter("startTime");
+				String temp5 = request.getParameter("endTime");
+				String temp6 = request.getParameter("address");
 //				String temp7 = request.getParameter("picture");
-//				String Cookion = request.getParameter("Cookion");
+				String temp8 = request.getParameter("url");
+				String temp9 = request.getParameter("boss");
 		//驗證資料
 				Map<String, String> errors = new HashMap<String, String>();
 				request.setAttribute("error", errors);
