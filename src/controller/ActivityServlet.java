@@ -171,7 +171,7 @@ public class ActivityServlet extends HttpServlet {
 						tempVo.setEndTime1(dd.format(vo.getEndTime()));
 						tempVo.setName(vo.getName());
 						tempVo.setEndTime(vo.getEndTime());
-						tempVo.setStartTime(vo.getEndTime());
+						tempVo.setStartTime(vo.getStartTime());
 						tempVo.setPicture1(vo.getPicture1());
 						tempVo.setUrl(vo.getUrl());
 						tempVo.setBoss(vo.getBoss());

@@ -55,7 +55,7 @@ public class ActivityBaseServlet1 extends HttpServlet {
 		//呼叫model													
 				//page
 				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo,5);					
-				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
+				PagesActivityVO.setActivitypage(service.base1(PagesActivityVO.getActivitypage()));
 				
 				
 				

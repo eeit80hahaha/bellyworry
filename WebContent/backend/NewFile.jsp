@@ -23,17 +23,15 @@ input[type="button"]:disabled{
 	color: #888888;
 }
 </style>
-<script type="text/javascript">
-function init(){
-	var contents = document.getElementsByName("activityContent");
-// 	if(contents.length>20){
-		for(var i =0; i<contents.length;i++){
-			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20);
-		}
-// 	}
-	var NewStr="${activity.content}";
-}
-</script>
+<!-- <script type="text/javascript"> -->
+<!--  function init(){ -->
+<!--  	var contents = document.getElementsByName("activityContent"); -->
+<%--  		for(var i =0; i<contents.length;i++){ --%>
+<%--  			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20); --%>
+<%--  		} --%>
+<%--  	var NewStr="${activity.content}"; --%>
+<%--  } --%>
+<!-- </script> -->
     <title>【BellyWorry後台】活動項目管理</title>
 
     <!-- Bootstrap Core CSS -->
