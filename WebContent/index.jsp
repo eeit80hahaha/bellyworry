@@ -127,8 +127,8 @@
                         <div class="span6">
 
                             <div id="divHeaderText" class="page-content">
-                                <div id="divHeaderLine1">Your Header Text Here!</div><br />
-                                <div id="divHeaderLine2">2nd line header text for calling extra attention..</div><br />
+                                <div id="divHeaderLine1">享受健康生活</div><br />
+                                <div id="divHeaderLine2">健康生活～自己作主</div><br />
                                 <div id="divHeaderLine3">
                                 <c:choose>
               						<c:when test="${empty user.id}">
@@ -243,92 +243,7 @@
 
 <div id="contentOuterSeparator"></div>
 
-<div class="container">
 
-    <div class="divPanel page-content">
-        <!--Edit Main Content Area here-->
-        <div class="row-fluid">
-
-                <div class="span12" id="divMain">
-
-                    <h1>Welcome</h1>
-
-                    <p><strong>Lorem ipsum dolor sit amet,</strong> consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-					
-					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </p>
-
-                    <hr style="margin:45px 0 35px" />
-					
-				<div class="row-fluid">
-				
-                    <div class="span4">
-                    <h4>About Us</h4>
-                    <img src="images/home-1.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">                
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  <br /></p>
-					<p><a class="btn btn-primary" style="margin:5px 0px 15px;">Learn more</a></p>
-                    </div>
-					
-                    <div class="span4">                
-                    <h4>Our Passion</h4>
-                    <img src="images/home-2.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">  
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.   <br /></p>
-					<p><a class="btn btn-primary" style="margin:5px 0px 15px;">Learn more</a></p>
-                    </div>
-					
-                    <div class="span4">                
-                    <h4>Special Events</h4>
-                    <img src="images/home-3.jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">  
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.   <br /></p>
-					<p><a class="btn btn-primary" style="margin:5px 0px 15px;">Learn more</a></p>
-                    </div>
-					
-			    </div>
-				
-				    <hr style="margin:45px 0 35px" />
-
-                    <div class="lead">
-                        <h1>Lorem ipsum dolor sit amet.</h1> 
-                        <h3>Vivamus leo ante, consectetur sit amet vulputate vel, dapibus sit amet lectus.</h3>
-                    </div>
-                    <br />
-
-                    <div class="list_carousel responsive">
-                        <ul id="list_photos">
-                            <li><img src="carousal/muffin.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/strawberries.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/cheesecake.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/peppers.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/pomengranates.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/refreshment.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/kitchen.jpg" class="img-polaroid">  </li>
-                            <li><img src="carousal/soup.jpg" class="img-polaroid">  </li>                            
-                        </ul>
-                    </div> 
-					
-					</br>
-					
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu metus risus. Mauris a facilisis justo, sit amet ornare lorem. In volutpat laoreet nisi, ac tempus dui convallis eget. Ut id lorem at leo suscipit dignissim. Donec eleifend porta sagittis. Aliquam at ullamcorper sem, et commodo quam.</p></br>
-					<!--Edit Blockquote here-->
-					<blockquote>
-					
-                    <h3 class="text-success">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</h3>
-                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-					
-                    </blockquote>
-					<!--/End Blockquote-->	
-					<p>Aenean vulputate magna ipsum, vitae elementum tortor aliquam eu. Nullam rutrum erat eu purus cursus, a volutpat orci lacinia. Sed sed sem mollis, egestas tellus vel, posuere sapien. Sed at ipsum ullamcorper, ultrices elit at, accumsan nulla. Suspendisse lobortis neque ac diam vehicula, gravida commodo sem adipiscing. Quisque nec libero nibh.</p>
-                    				
-                   
-
-                </div>
-
-            </div>
-			<!--End Main Content Area here-->
-
-        <div id="footerInnerSeparator"></div>
-    </div>
-
-</div>
 
 <div id="footerOuterSeparator"></div>
 
