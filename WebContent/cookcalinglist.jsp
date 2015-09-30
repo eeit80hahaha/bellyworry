@@ -126,8 +126,8 @@
 <title>cookCal</title>
 <style>
  .test {
-        width:90%; 
-		border:#000 solid 1px;
+        width:100%; 
+/* 		border:#000 solid 1px; */
      } 
  .tt {  
  		text-align:left
