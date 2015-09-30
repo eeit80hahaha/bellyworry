@@ -131,7 +131,7 @@ $(function() {
 
                             <div class="form-group">
                                 <label>活動名稱：</label>
-                                <input type="text" name="activityname" value="${param.activityname}" size="20" autocomplete="off" required="required" class="form-control">
+                                <input type="text" name="activityname" value="${param.name}" size="20" autocomplete="off" required="required" class="form-control">
 								<br><span style="color:red">${error.activityname}</span>
                             </div>
                             <div class="form-group">
@@ -174,7 +174,7 @@ $(function() {
                     <div class="col-lg-6">
 						<div class="form-group">
                             <label>活動內容</label>
-                            <textarea class="form-control" rows="3" id="way" name="content" value="${param.content}" autocomplete="off" required="required"></textarea>
+                            <textarea class="form-control" rows="3" id="way" name="content"  autocomplete="off" required="required">${selectByPrimaryKey.content}</textarea>
                         	<br><span style="color:red">${error.content}</span>
                         </div>
                     </div>

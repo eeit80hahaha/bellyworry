@@ -23,15 +23,7 @@ input[type="button"]:disabled{
 	color: #888888;
 }
 </style>
-<!-- <script type="text/javascript"> -->
-<!--  function init(){ -->
-<!--  	var contents = document.getElementsByName("activityContent"); -->
-<%--  		for(var i =0; i<contents.length;i++){ --%>
-<%--  			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20); --%>
-<%--  		} --%>
-<%--  	var NewStr="${activity.content}"; --%>
-<%--  } --%>
-<!-- </script> -->
+
     <title>【BellyWorry後台】活動項目管理</title>
 
     <!-- Bootstrap Core CSS -->
@@ -151,8 +143,36 @@ input[type="button"]:disabled{
 				<td>${activity.url}</td>
 				<td>${activity.boss}</td>
 <%-- 				<input type="hidden" name="activityno" value="${activity.no}" />			 --%>
-				<td><a href="${pageContext.request.contextPath}/backend/activityupdate.controller?no=${activity.no}" >修改</a></td>
+				
+				<td>
+					<FORM  action="<c:url value='activityupdate.controller?no=${activity.no}' />" method="get">
+			               <!-- 這些隱藏欄位都會送到後端 -->
+			               <Input type='hidden' name='no' value='${activity.no}'><P/>
+			               <Input type='hidden' name='name' value='${activity.name}'><P/>
+			               <Input type='hidden' name='content' value='${activity.content}'><P/>
+			               <Input type='hidden' name='startTime' value='${activity.startTime}'><P/>
+			               <Input type='hidden' name='endTime' value='${activity.endTime}'><P/>
+			               <Input type='hidden' name='address' value='${activity.address}'><P/>
+			               <Input type='hidden' name='url' value='${activity.url}'><P/>
+			               <Input type='hidden' name='boss' value='${activity.boss}'><P/>
+<%-- 			               <Input type='hidden' name='PictureBig' value='${activity.picture1}'><P/> --%>
+			               <Input type='submit' value='修改'>
+			       </FORM>
+				</td>
+<%-- 				<td><a href="${pageContext.request.contextPath}/backend/activityupdate.controller?no=${activity.no}" >修改</a></td> --%>
 			</tr>
+			
+<%-- 		<FORM  action="<c:url value='BuyBook.do' />" method="POST"> --%>
+<!--                這些隱藏欄位都會送到後端 -->
+<%--                <Input type='hidden' name='bookID' value='${aBookBean.bookID}'><P/> --%>
+<%--                <Input type='hidden' name='title' value='${aBookBean.title}'><P/> --%>
+<%--                <Input type='hidden' name='author' value='${aBookBean.author}'><P/> --%>
+<%--                <Input type='hidden' name='companyName' value='${aBookBean.companyName}'><P/> --%>
+<%--                <Input type='hidden' name='price' value='${aBookBean.price}'><P/> --%>
+<%--                <Input type='hidden' name='discount' value='${aBookBean.discount}'><P/> --%>
+<%--                <Input type='hidden' name='pageNo' value='${param.pageNo}'><P/> --%>
+<!--                <Input type='submit' value='加入購物車'> -->
+<!--        </FORM> -->
 			</c:forEach>
 			</tbody>
 			</table>			
@@ -167,6 +187,16 @@ input[type="button"]:disabled{
     <script src="js/jquery.js">
     
     </script>
+<!--     <script type="text/javascript"> -->
+<!--  function init(){ -->
+<!--  	var contents = document.getElementsByName("activityContent"); -->
+<%--  		for(var i =0; i<contents.length;i++){ --%>
+<%--  			console.log(contents[i].firstChild.nodeValue); --%>
+<%--  			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20); --%>
+<%--  		} --%>
+<%--  	var NewStr="${activity.content}"; --%>
+<%--  } --%>
+<!-- </script> -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
