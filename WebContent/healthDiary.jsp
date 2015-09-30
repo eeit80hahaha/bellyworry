@@ -473,8 +473,9 @@
 					</div>
 				</div>
 				<div id="t-3" title="歷史紀錄">
-					<div id="container"
-						style="width: 1000px; height: 400px; margin: 0 auto"></div>
+<!-- 					<div id="container" -->
+<!-- 						style="width: 1000px; height: 400px; margin: 0 auto"></div> -->
+						
 					<br>
 					<table border='2' style="float: left;">
 						<tr>
@@ -723,7 +724,7 @@
 	
 	<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
 		
-		<script src="js/highcharts.js"></script>
+<!-- 		<script src="js/highcharts.js"></script> -->
 		<script src="js/modules/exporting.js"></script>
 
 		<script src="scripts/bootstrap/js/bootstrap.min.js"
