@@ -132,17 +132,16 @@
 				<div style="height: 100%;">
 					<!-- green首頁三餐活動 -->
 
-					<div class="hoverable" style="border: 2px solid green;line-height: 30px;height: 100%;width: 100%;">
-						<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32;">健康指標</h3><br>
-						身高：
-						<td>${list.height}</td> <br> 體重：
-						<td>${list.weight}</td> <br> 腰圍：
-						<td>${list.waistline}</td> <br> BMI：
-						<td><fmt:formatNumber type="number" maxIntegerDigits="2"
-								value="${list.weight/((list.height/100)*(list.height/100))}" /></td>
+					<div class="hoverable" style="border: 2px solid #FFB3FF;line-height: 30px;height: 100%;width: 100%;border-radius:23px;margin: 2px;">
+						<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32;">&nbsp;健康指標</h3><br>
+						&nbsp;身高：	<td>${list.height}</td> <br> 
+						&nbsp;體重：	<td>${list.weight}</td> <br> 
+						&nbsp;腰圍：	<td>${list.waistline}</td><br> 
+						&nbsp;BMI：<td><fmt:formatNumber type="number" maxIntegerDigits="2"
+								value="${list.weight/((list.height/100)*(list.height/100))}" /></td><br>
 
 
-						<br> 建議：
+						&nbsp; 建議：
 						<!-- BMI -->
 
 						<c:choose>
@@ -175,15 +174,15 @@
 				</div>
 				<br>
 	
-				<div class="hoverable" style="border: 2px solid blue;float: left;line-height: 30px;height: 100%;width: 100%;">
+				<div class="hoverable" style="border: 2px solid #D1BBFF;float: left;line-height: 30px;height: 100%;width: 100%;border-radius:23px">
 <!-- 					<fieldset style="padding: 100%; border: 2px solid blue; width: 33%"> -->
 <!-- 						<legend style="border: none;">飲食運動指南</legend> -->
-<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">飲食運動指南</h3><br>
-						<div style="width: 199.7px; height: 100%;">
-							早上<br>
+<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;飲食運動指南</h3><br>
+						<div style="width: 100%; height: 100%;">
+							&nbsp;早上<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<!-- 							eat_record因為很多筆相同時段.菜色,所以用foreach -->
-								<c:if test="${eat.time == '早上' }">
+								<c:if test="${eat.time == '早上' }">&nbsp;
 
 									${eat.foodCalVO.name}
 									${eat.foodCalVO.cal}
@@ -195,10 +194,10 @@
 							<hr>
 						</div>
 
-						<div style="width: 199.7px; height: 100%;">
-							中午<br>
+						<div style="width: 100%; height: 100%;">
+							&nbsp;中午<br>
 							<c:forEach var="eat" items="${list.eatVo}">
-								<c:if test="${eat.time =='中午'}">
+								<c:if test="${eat.time =='中午'}">&nbsp;
 			 							${eat.foodCalVO.name}
 			 							${eat.foodCalVO.cal}
 			 							${eat.foodCalVO.count}
@@ -210,10 +209,10 @@
 						</div>
 
 
-						<div style="width: 199.7px; height: 100%;">
-							晚上<br>
+						<div style="width: 100%; height: 100%;">
+							&nbsp;晚上<br>
 							<c:forEach var="eat" items="${list.eatVo}">
-								<c:if test="${eat.time=='晚上'}">
+								<c:if test="${eat.time=='晚上'}">&nbsp;
 			 							${eat.foodCalVO.name}
 			 							${eat.foodCalVO.cal}
 			 							${eat.foodCalVO.count}
@@ -224,17 +223,17 @@
 							<hr>
 						</div>
 
-						<div style="width: 199.7px; height: 100%; float: right">
-							運動<br>
-							<c:forEach var="exer" items="${list.exerVo}">
+						<div style="width: 100%; height: 100%; ">
+							&nbsp;運動<br>
+							<c:forEach var="exer" items="${list.exerVo}">&nbsp;
 									${exer.exerciseCalVO.name}
 									${exer.exerciseCalVO.calHour}
 									${exer.count}<br>
 							</c:forEach>
 							<hr>
 						</div>
-						<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div>
-						<div>運動總熱量</div>
+<%-- 						<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div> --%>
+<!-- 						<div>運動總熱量</div> -->
 						<hr>
 <!-- 					</fieldset> -->
 				</div>
@@ -252,24 +251,24 @@
 		<div
 			style="width: 65%; float: right; height: 100%;">
 			<!-- calendar right-hand  border: 3px solid yellow; -->
-			<div class="hoverable" style="border: 2px solid yellow;line-height: 30px;height: 630px;width: 100%;">
-				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">我的日誌</h3>
-				<br> 標題：
-				<td>${list.title}</td> <br> 內容：
-				<td>${list.content}</td> <br>
-		</div>
+			<div class="hoverable" style="border: 2px solid #CCEEFF;line-height: 30px;height: 630px;width: 100%;border-radius:23px">
+				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;我的日誌</h3>
+				<br> &nbsp;標題：<td>${list.title}</td> 
+				<br> &nbsp;內容：<td>${list.content}</td> 
+				<br>
+				</div>
 				<c:url value="diaryIndex.controller" var="path"> 
 					<c:param name="no" value="${list.no}"></c:param>
 				</c:url>
 				<div style="margin: 10px;">
 				<div>
 				
-					<button name="back" style="font-family:Microsoft JhengHei;float: left;margin: 10px;width: 80px;height: 60px">
+					<button name="back" style="font-family:Microsoft JhengHei;float: left;margin: 10px;width: 80px;height: 60px;font-weight: 600;">
 						<a href="diaryIndex.controller">BACK</a>
 					</button>
 				</div>
 				<div>
-					<button name="edit" style="font-family:Microsoft JhengHei;margin: 10px;width: 80px;height: 60px">
+					<button name="edit" style="font-family:Microsoft JhengHei;margin: 10px;width: 80px;height: 60px;font-weight: 600;">
 						<a href="${path}">編輯</a>
 					</button>
 				</div>
