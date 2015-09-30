@@ -167,7 +167,7 @@ public class ActivityServlet extends HttpServlet {
 						SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
 						tempVo.setNo(vo.getNo());
 						tempVo.setContent(vo.getContent());;
-						tempVo.setAddress(vo.getAddress().substring(0,3));
+						tempVo.setAddress(vo.getAddress());
 						tempVo.setEndTime1(dd.format(vo.getEndTime()));
 						tempVo.setName(vo.getName());
 						tempVo.setEndTime(vo.getEndTime());

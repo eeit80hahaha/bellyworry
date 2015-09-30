@@ -41,8 +41,12 @@ public class ActivityService {
 			 ActivityVO element1=new ActivityVO();
 			 element1.setNo(element.getNo());
 			 element1.setName(element.getName());
-			 if(element.getContent().length()>40){
-				 element1.setContent(element.getContent().substring(0,30));
+			 if(element.getContent().length()>30){
+				String re1 =  element.getContent().substring(0,30);
+//				System.out.println(re1);
+				 element1.setContent("<p>"+ re1 +"</p>");
+//			 System.out.println(element.getContent());
+//				 element1.setContent(element.getContent());
 			 	}else{
 			 		element1.setContent(element.getContent().substring(0,element.getContent().length()));
 			 }

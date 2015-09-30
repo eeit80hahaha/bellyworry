@@ -138,7 +138,19 @@ input[type="button"]:disabled{
 				<td>${exam.optA}</td>
 				<td>${exam.optB}</td>
 				<td>${exam.optC}</td>
-				<td><a href="${pageContext.request.contextPath}/backend/examupdate.controller?no=${exam.no}" >修改</a></td>
+<%-- 				<td><a href="${pageContext.request.contextPath}/backend/examupdate.controller?no=${exam.no}" >修改</a></td> --%>
+				<td>
+					<FORM  action="<c:url value='examupdate.controller?no=${exam.no}'/>" method="get">
+			               <!-- 這些隱藏欄位都會送到後端 -->
+			               <Input type='hidden' name='no' value='${exam.no}'><P/>
+			               <Input type='hidden' name='content' value='${exam.content}'><P/>
+			               <Input type='hidden' name='correct' value='${exam.correct}'><P/>
+			               <Input type='hidden' name='optA' value='${exam.optA}'><P/>
+			               <Input type='hidden' name='optB' value='${exam.optB}'><P/>
+			               <Input type='hidden' name='optC' value='${exam.optC}'><P/>
+			               <Input type='submit' value='修改'>
+			       </FORM>
+				</td>
 			</tr>
 			</c:forEach>
 			</tbody>

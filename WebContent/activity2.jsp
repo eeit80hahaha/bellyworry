@@ -212,15 +212,16 @@
                 <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span><a href="${pageContext.request.contextPath}/activity.controller?pageNo=1">活動情報</a></span>
         </div> 
         
-			<table>
+			<table class="">
 			<tbody>
-			<tr>
-				<td><img src="data:image/jpg;base64,${selectByPrimaryKey.picture1}"/></td>
-			</tr>	
-			<tr><th>活動內容</th></tr>		
-			<tr>				
-				<td>${selectByPrimaryKey.content}</td>				
-			</tr>
+			<tr><td colspan="2"><img src="data:image/jpg;base64,${selectByPrimaryKey.picture1}"/></td></tr>			
+			<tr><td>活動名稱</td><td>${selectByPrimaryKey.name}</td></tr>
+			<tr><td>活動內容</td><td>${selectByPrimaryKey.content}</td></tr>
+			<tr><td>開始時間</td><td>${selectByPrimaryKey.startTime}</td></tr>
+			<tr><td>結束時間</td><td>${selectByPrimaryKey.endTime}</td></tr>
+			<tr><td>活動地點</td><td>${selectByPrimaryKey.address}</td></tr>
+			<tr><td>官方資訊</td><td><a href=${selectByPrimaryKey.url}>官方網址</a></td></tr>
+			<tr><td>主辦單位</td><td>${selectByPrimaryKey.boss}</td></tr>							
 			</tbody>
 			</table>
         <!--Edit Main Content Area here-->
