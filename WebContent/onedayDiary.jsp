@@ -98,6 +98,30 @@
 	height: 100%;
 	overflow: auto;
 }
+
+
+
+
+
+
+
+fieldset {
+	padding:10px;
+	margin:10px;
+	width:370px;
+} 
+legend {
+	color:#32CD32;
+	font-weight:800; 
+	padding:3px 6px;
+	margin-left:20px;
+	padding-left:5px;
+	padding-right:10px;
+	font-size: 200%
+} 
+
+
+
 </style>
 </head>
 <body id="pageBody">
@@ -131,17 +155,18 @@
 				<br>
 				<div style="height: 100%;">
 					<!-- green首頁三餐活動 -->
-
-					<div class="hoverable" style="border: 2px solid #FFB3FF;line-height: 30px;height: 100%;width: 100%;border-radius:23px;margin: 2px;">
-						<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32;">&nbsp;健康指標</h3><br>
-						&nbsp;身高：	<td>${list.height}</td> <br> 
-						&nbsp;體重：	<td>${list.weight}</td> <br> 
-						&nbsp;腰圍：	<td>${list.waistline}</td><br> 
-						&nbsp;BMI：<td><fmt:formatNumber type="number" maxIntegerDigits="2"
+			<fieldset class="hoverable" style="border: 3px solid #FFEE99;float: left;line-height: 30px;height: 100%;width: 100%;border-radius:23px;margin: 5px;padding: 5px">
+					
+					<legend style="width: auto;border: none;">健康指標 </legend>
+						<div style="margin-top: -20px;font-size: medium;font-weight: 400">
+						&nbsp;&nbsp;&nbsp;身高：<td>${list.height}</td>&nbsp;&nbsp;cm <br> 
+						&nbsp;&nbsp;&nbsp;體重：<td>${list.weight}</td>&nbsp;&nbsp;kg <br> 
+						&nbsp;&nbsp;&nbsp;腰圍：<td>${list.waistline}</td>&nbsp;&nbsp;cm<br> 
+						&nbsp;&nbsp;&nbsp;BMI：<td><fmt:formatNumber type="number" maxIntegerDigits="2"
 								value="${list.weight/((list.height/100)*(list.height/100))}" /></td><br>
 
 
-						&nbsp; 建議：
+						&nbsp;&nbsp; 建議：
 						<!-- BMI -->
 
 						<c:choose>
@@ -171,24 +196,31 @@
 							</c:when>
 						</c:choose>
 						</div>
+						
+						
+						
+						
+				</fieldset>
 				</div>
 				<br>
-	
-				<div class="hoverable" style="border: 2px solid #D1BBFF;float: left;line-height: 30px;height: 100%;width: 100%;border-radius:23px">
-<!-- 					<fieldset style="padding: 100%; border: 2px solid blue; width: 33%"> -->
-<!-- 						<legend style="border: none;">飲食運動指南</legend> -->
-<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;飲食運動指南</h3><br>
+	<div style="font-family: Microsoft JhengHei;font-weight: 300">
+				<fieldset class="hoverable" style="border: 3px solid #D1BBFF;float: left;line-height: 30px;height: 100%;width: 100%;border-radius:23px;margin: 5px;padding: 5px">
+					
+						<legend style="width: auto;border:none;">飲食運動指南</legend>
+						<div style="margin-top: -20px;font-size: medium;font-weight: 400">
+<!-- <h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;飲食運動指南</h3><br> -->
 						<div style="width: 100%; height: 100%;">
 							&nbsp;早上<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<!-- 							eat_record因為很多筆相同時段.菜色,所以用foreach -->
 								<c:if test="${eat.time == '早上' }">&nbsp;
 
-									${eat.foodCalVO.name}
-									${eat.foodCalVO.cal}
-									${eat.foodCalVO.count}
-									${eat.foodCalVO.weight}
-									${eat.count}<br>
+									${eat.foodCalVO.name}&nbsp;
+									${eat.foodCalVO.cal}cal&nbsp;
+									${eat.count}
+									${eat.foodCalVO.count}&nbsp;
+<%-- 									${eat.foodCalVO.weight} --%>
+									<br>
 								</c:if>
 							</c:forEach>
 							<hr>
@@ -198,11 +230,12 @@
 							&nbsp;中午<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<c:if test="${eat.time =='中午'}">&nbsp;
-			 							${eat.foodCalVO.name}
-			 							${eat.foodCalVO.cal}
-			 							${eat.foodCalVO.count}
-			 							${eat.foodCalVO.weight}
-			 							${eat.count}<br>
+			 							${eat.foodCalVO.name}&nbsp;
+			 							${eat.foodCalVO.cal}cal&nbsp;
+			 							${eat.count}
+			 							${eat.foodCalVO.count}&nbsp;
+<%-- 			 							${eat.foodCalVO.weight} --%>
+			 							<br>
 								</c:if>
 							</c:forEach>
 							<hr>
@@ -213,11 +246,12 @@
 							&nbsp;晚上<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<c:if test="${eat.time=='晚上'}">&nbsp;
-			 							${eat.foodCalVO.name}
-			 							${eat.foodCalVO.cal}
-			 							${eat.foodCalVO.count}
-			 							${eat.foodCalVO.weight}
-			 							${eat.count}<br>
+			 							${eat.foodCalVO.name}&nbsp;
+			 							${eat.foodCalVO.cal}cal&nbsp;
+			 							${eat.count}
+			 							${eat.foodCalVO.count}&nbsp;
+<%-- 			 							${eat.foodCalVO.weight} --%>
+			 							<br>
 								</c:if>
 							</c:forEach>
 							<hr>
@@ -235,28 +269,27 @@
 <%-- 						<div>飲食總熱量 ${eat.count*eat.foodCalVO.cal}</div> --%>
 <!-- 						<div>運動總熱量</div> -->
 						<hr>
-<!-- 					</fieldset> -->
+						</div>
+					</fieldset>
 				</div>
 
 
 			</div>
-
-
-
-
-
 		</div>
 <br><br><br><br><br><br>
 
 		<div
-			style="width: 65%; float: right; height: 100%;">
+			style="width: 65%; float: right; height: 100%;font-family: Microsoft JhengHei;font-weight: 300">
 			<!-- calendar right-hand  border: 3px solid yellow; -->
-			<div class="hoverable" style="border: 2px solid #CCEEFF;line-height: 30px;height: 630px;width: 100%;border-radius:23px">
-				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;我的日誌</h3>
+			<fieldset class="hoverable" style="border: 3px solid #CCEEFF;float: left;line-height: 30px;height: 630px;width: 100%;border-radius:23px;margin: 5px;padding: 5px">
+				<legend style="width: auto;border:none;">我的日誌</legend>
+				<div style="margin-top: -20px;font-size: medium;font-weight: 400">			
+<!-- 				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;我的日誌</h3> -->
 				<br> &nbsp;標題：<td>${list.title}</td> 
 				<br> &nbsp;內容：<td>${list.content}</td> 
 				<br>
 				</div>
+				</fieldset>
 				<c:url value="diaryIndex.controller" var="path"> 
 					<c:param name="no" value="${list.no}"></c:param>
 				</c:url>
@@ -273,7 +306,12 @@
 					</button>
 				</div>
 				</div>
+				
+				
 			</div>
+
+	
+
 
 	</div>
 <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
 <%@page import="health.model.HealthDiaryVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -316,10 +317,10 @@
 								style="width: 40%; float: left;height: 100%;"> <!-- 左邊框 border: 2px solid red;  -->
 
 
+
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
-									value="${bean.date}"></input>
-
+									value="${bean.date} <fmt:formatDate pattern="yyyy-MM-dd" value="${healthDate}" />/>"></input>
 
 <!--  <div class="easyui-accordion" style="width:500px;height:300px;"> -->
 <!--         <div title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;"> -->

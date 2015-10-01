@@ -168,8 +168,8 @@
 							<td>腰圍：${healthdiary.waistline}</td>
 						</tr>
 						<tr>
-							<td>飲食攝取總熱量：${healthdiary.eatcalcount}</td>
-							<td>運動攝取總熱量：${healthdiary.exercalcount}</td>
+							<td>飲食紀錄筆數：${healthdiary.eatcalcount}</td>
+							<td>運動紀錄筆數：${healthdiary.exercalcount}</td>
 							<td>
 								<a href="${pageContext.request.contextPath}/herodiary.controller?memberno=${healthdiary.memberNo}&date=${healthdiary.date}&pageNo=${herohealthdiaryvo.pageNo}">詳情</a>
 							</td>

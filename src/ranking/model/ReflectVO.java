@@ -6,7 +6,9 @@ public class ReflectVO implements Serializable{
 
 	private int no;
 	private int reflectedNo;
+	private String reflectedId;
 	private int authorNo;
+	private String authorId;
 	private java.util.Date reflectedDate;
 	private java.util.Date authorDate;
 	
@@ -22,7 +24,8 @@ public class ReflectVO implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "{"+no+":"+reflectedNo+":"+authorNo+":"+reflectedDate+":"+authorDate+"}";
+		return "{"+no+":"+reflectedNo+":"+reflectedId+":"+
+	authorNo+":"+authorId+":"+reflectedDate+":"+authorDate+"}";
 	}
 	
 	public int getNo() {
@@ -55,4 +58,18 @@ public class ReflectVO implements Serializable{
 	public void setAuthorDate(java.util.Date authorDate) {
 		this.authorDate = authorDate;
 	}
+	public String getReflectedId() {
+		return reflectedId;
+	}
+	public void setReflectedId(String reflectedId) {
+		this.reflectedId = reflectedId;
+	}
+	public String getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(String authorId) {
+		this.authorId = authorId;
+	}
+	
+	
 }
