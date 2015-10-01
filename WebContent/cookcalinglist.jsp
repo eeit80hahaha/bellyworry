@@ -43,7 +43,7 @@
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
-
+<c:set var="funcName" value="CAL" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -142,7 +142,7 @@
 				        	<div class="alert alert-block">                          
 					                <h4>中午紀錄</h4>
 					                <ul class="the-icons" style="list-style-type:none">
-						                <c:forEach var="eatb" items="${eatLunch}">
+						                <c:forEach var="eatl" items="${eatLunch}">
 						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatl.foodCalVO.name}   份量${eatl.count}</li>
 										</c:forEach>
 									</ul>            
@@ -152,7 +152,7 @@
 				        	<div class="alert alert-block">                          
 					                <h4>晚上紀錄</h4>
 					                <ul class="the-icons" style="list-style-type:none">
-						                <c:forEach var="eatb" items="${eatDinner}">
+						                <c:forEach var="eatd" items="${eatDinner}">
 						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatd.foodCalVO.name}   份量${eatd.count}</li>
 										</c:forEach>
 									</ul>           
