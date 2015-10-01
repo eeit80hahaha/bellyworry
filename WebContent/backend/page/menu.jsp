@@ -19,6 +19,9 @@
         <li>
             <a href="${pageContext.request.contextPath}/healthViewlist.controller?pageNo=1&viewClassNo=100000"><i class="fa fa-fw fa-desktop"></i>　健康景點管理</a>
         </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/backend/heromanage.controller?pageNo=1"><i class="fa fa-fw fa-desktop"></i>　日誌檢舉管理</a>
+        </li>
         
         <li class="active">
             <a href="${pageContext.request.contextPath}/backend/index.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>

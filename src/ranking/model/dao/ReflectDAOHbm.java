@@ -1,5 +1,6 @@
 package ranking.model.dao;
 
+import health.model.HealthDiaryVO;
 import hibernate.util.HibernateUtil;
 
 import java.util.List;
@@ -139,6 +140,60 @@ public class ReflectDAOHbm implements ReflectDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
+		return result;
+	}
+	
+	private static final String GETPAGE = "from ReflectVO where reflectedNo=? order by reflectedDate";
+
+	@Override
+	public List<ReflectVO> getPage(int pageNo, int pageSize, int reflectedNo) {
+
+		List<ReflectVO> result = null;
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETPAGE);
+
+			query.setParameter(0, reflectedNo);
+
+			query.setFirstResult((pageNo - 1) * pageSize);
+			query.setMaxResults(pageSize);
+
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return result;
+	}
+
+	private static final String GETTOTALCOUNT = "select count(no) from ReflectVO where reflectedNo=?";
+
+	@Override
+	public int getPageTotalCount(int reflectedNo) {
+		int result = -1000;
+		long sum = 0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GETTOTALCOUNT);
+
+			query.setParameter(0, reflectedNo);
+
+			List<Object> tmp = query.list();
+			if (tmp.get(0) != null) {
+				sum = (long) tmp.get(0);
+			}
+			result = (int) sum;
+
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+
 		return result;
 	}
 	
