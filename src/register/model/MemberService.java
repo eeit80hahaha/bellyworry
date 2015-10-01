@@ -100,7 +100,7 @@ public class MemberService {
 		       memberDAO.update(vo1);
 		       
 	       message.setSubject("密碼確認信");
-		   message.setText("Dear "+vo.getId()+" 您好, \n\n 您新密碼為"+sb+"請登入後立即更新您的密碼 !");
+		   message.setContent("Dear "+vo.getFirstName()+" 您好, \n\n 您新密碼為"+sb+"請登入後立即更新您的密碼 !","text/html;charset=utf-8");
 		   Transport transport = session.getTransport("smtp");
 		   transport.connect(host, port, username, password);
 

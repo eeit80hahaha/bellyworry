@@ -132,22 +132,22 @@ public class FoodCalDAOHbm implements FoodCalDAO {
 
 		return result;
 	}
-	
-private static final String GETDATEPAGE = "from FoodCalVO";
-	
+
+	private static final String GETDATEPAGE = "from FoodCalVO";
+
 	@Override
-	public List<FoodCalVO> getDatePage(int pageNo, int pageSize){
-		
+	public List<FoodCalVO> getDatePage(int pageNo, int pageSize) {
+
 		List<FoodCalVO> result = null;
-		
+
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GETDATEPAGE);
-			
-	        query.setFirstResult((pageNo - 1) * pageSize);  
-	        query.setMaxResults(pageSize);  
-			
+
+			query.setFirstResult((pageNo - 1) * pageSize);
+			query.setMaxResults(pageSize);
+
 			result = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -158,38 +158,38 @@ private static final String GETDATEPAGE = "from FoodCalVO";
 	}
 
 	private static final String GETDATETOTALCOUNT = "select count(foodNo) from FoodCalVO";
-	
+
 	@Override
 	public int getDateTotalCount() {
-		int result=-1000;
-		long sum=0;
+		int result = -1000;
+		long sum = 0;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GETDATETOTALCOUNT);
-			
-			
+
 			List<Object> tmp = query.list();
-		    if(tmp.get(0)!=null){
-		    	sum = (long) tmp.get(0);
-		    }
+			if (tmp.get(0) != null) {
+				sum = (long) tmp.get(0);
+			}
 			result = (int) sum;
-			
+
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		
+
 		return result;
 	}
 
 	private static final String selectByMenuNo = "from FoodCalVO where menuNo=?";
+
 	@Override
-	public List<FoodCalVO> selectByMenuNo (int menuNo) {
+	public List<FoodCalVO> selectByMenuNo(int menuNo) {
 		List<FoodCalVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {			
+		try {
 			session.beginTransaction();
 			Query query = session.createQuery(selectByMenuNo);
 			query.setParameter(0, menuNo);
@@ -199,8 +199,61 @@ private static final String GETDATEPAGE = "from FoodCalVO";
 			session.getTransaction().rollback();
 		}
 		return list;
-
 	}
-	
+
+	public List<FoodCalVO> selectByMenuNo(int pageNo, int pageSize, int menuNo) {
+		List<FoodCalVO> list = null;
+		String selectByMenuName = "from FoodCalVO where 1=1";
+
+		if (menuNo != 0) {
+			selectByMenuName += " and menuNo=?";
+		}
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(selectByMenuName);
+			if (menuNo != 0) {
+				query.setParameter(0, menuNo);
+			}
+			query.setFirstResult((pageNo - 1) * pageSize);
+			query.setMaxResults(pageSize);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		}
+		return list;
+	}
+	public int totalCount(int menuNo) {
+		int result = -1000;
+		String selectCountByMenuNo = "select count(name) from FoodCalVO where 1=1";
+
+		if (menuNo != 0) {
+			selectCountByMenuNo += " and menuNo=?";
+		}
+		long sum = 0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(selectCountByMenuNo);
+			if (menuNo != 0) {
+				query.setParameter(0, menuNo);
+			}
+			List<Object> tmp = query.list();
+			if (tmp.get(0) != null) {
+				sum = (long) tmp.get(0);
+			}
+			result = (int) sum;
+			System.out.println("totalCount======="+result);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+
+		return result;
+	}
+
 
 }

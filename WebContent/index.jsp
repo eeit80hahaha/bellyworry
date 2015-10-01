@@ -100,7 +100,7 @@
 		${error.open1}//會員註冊失敗
 		${up.suc}//修改會員資料成功
 		${change.openpwd}//修改密碼成功
-		
+		${error.opensuccess}//登入成功
 	});
 	
 	//註冊訊息End
@@ -203,10 +203,11 @@
 												</div>
 											</form>
 									<!-- ==============註冊錯誤訊息=================================================================== -->
-									<div id="dialog0">	
+									<div id="dialog0" title="BellyWorry" style="text-align">	
 										<p style="color:red">${error.add}</p><!-- 註冊失敗，請重新輸入 -->
 										<p style="color:red">${error.er}</p><!-- 帳號重複，請重新輸入 -->
 										<p style="color:red">${error.success}</p><!-- 新增會員成功 -->
+										<p style="color:red">${error.success1}</p><!-- 登入成功 -->
 					<!-- ==============忘記密碼寄信成功訊息=================================================================== -->
 										<p style="color:red">${error.success2}</p>
 					<!-- ==============修改會員資料成功=================================================================== -->					

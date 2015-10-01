@@ -2,7 +2,7 @@ package food.combo.model.dao;
 
 import calories.model.FoodCalDAO;
 import calories.model.FoodCalVO;
-import calories.model.dao.FoodCalDAOjdbc;
+//import calories.model.dao.FoodCalDAOjdbc;
 import food.combo.model.DayMealDAO;
 import food.combo.model.DayMealVO;
 import food.combo.model.MealNameDAO;
