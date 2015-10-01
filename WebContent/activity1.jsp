@@ -358,7 +358,7 @@
 						<hr>
         <div class="row-fluid">		
 		        <div class="span4">   
-		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>                        
+		        	<img src="data:image/jpg;base64,${selectallvo[8].picture1}" class="img-polaroid" style="margin:5px 0px 15px;width:100%; height:90px;" alt=""/>                        
                 </div>          
                 <div class="span8">            
                     <p>${selectallvo[8].content}
@@ -369,18 +369,18 @@
 
         <div class="row-fluid">		
 		        <div class="span4"> 		                                
-                    <img src="data:image/jpg;base64,${selectallvo[4].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                    <img src="data:image/jpg;base64,${selectallvo[4].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;width:100%; height:90px;" alt=""/>
                 </div>                                                     
         		<div class="span8">            
                     <p>${selectallvo[4].content}
-                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[4].no}" >...詳細閱讀</a> 
+                    <a href="${pageContext.request.contextPath}/activity.controller2?no=${selectallvo[4].no}"  >...詳細閱讀</a> 
                     </p>
                 </div>	
         </div>
         
                 <div class="row-fluid">		
 		        <div class="span4"> 		                                
-                    <img src="data:image/jpg;base64,${selectallvo[7].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;" alt=""/>
+                    <img src="data:image/jpg;base64,${selectallvo[7].picture1}"  class="img-polaroid" style="margin:5px 0px 15px;width:100%; height:90px;" alt=""/>
                 </div>                                                     
         		<div class="span8">            
                     <p>${selectallvo[7].content}
@@ -399,7 +399,7 @@
         <div id="footerInnerSeparator"></div>
     </div>
 
-</div>
+
 
 <div id="footerOuterSeparator"></div>
 

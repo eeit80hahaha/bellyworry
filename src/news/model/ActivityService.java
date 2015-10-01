@@ -1,5 +1,6 @@
 package news.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,13 @@ public class ActivityService {
 		if (vo != null){
 		 for(ActivityVO element : vo) {
 			 ActivityVO element1=new ActivityVO();
+			 SimpleDateFormat dd = new SimpleDateFormat("yyyyMMddHHmm");
 			 element1.setNo(element.getNo());
 			 element1.setName(element.getName());
 			 element1.setContent(element.getContent());
 			 element1.setStartTime(element.getStartTime());
 			 element1.setEndTime(element.getEndTime());
+			 element1.setEndTime1(dd.format(element.getEndTime()));
 			 element1.setAddress(element.getAddress());
 			 element1.setPicture1(Base64.encodeBase64String(element.getPicture()));
 			 element1.setUrl(element.getUrl());
@@ -65,6 +68,7 @@ public class ActivityService {
 		}
 		return bean;
 	}
+	
 	
 	public List<ActivityVO> fortyContent(List<ActivityVO> vo){
 		List<ActivityVO> bean = new ArrayList<ActivityVO>();		
