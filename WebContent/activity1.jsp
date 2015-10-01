@@ -216,16 +216,16 @@
 			<div class="span8" id="divMain">
 
 	            <h1>活動情報</h1>
-				<form action="${pageContext.request.contextPath}/activity.controller" method="get" >
-					<select name="name">
+				<form id="selename0" action="${pageContext.request.contextPath}/activity.controller" method="get" >
+					<select name="name" id="selename1">
+						<option value="">選擇地區</option>
 						<option value="台北">台北</option>
 						<option value="宜蘭">宜蘭</option>
 						<option value="台中">台中</option>
 						<option value="高雄">高雄</option>
-						<option value="">all</option>
+						<option value="">全部</option>
 					</select>
-					<input type="hidden" name="pageNo" value="1" />
-					<input type="submit" value="送出" >
+					<input type="hidden" name="pageNo" value="1" />					
 				</form>
 				<c:choose>
 				<c:when test="${findBySname == null}">
@@ -419,6 +419,11 @@
             });
 	$("button").tooltip({      track: true    });
     });
+//     下拉選單觸發
+    $('#selename1').change(function(){
+    	$('#selename0').submit();
+    	
+    })
 </script>
 
 

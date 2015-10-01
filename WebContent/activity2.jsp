@@ -212,7 +212,7 @@
                 <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span><a href="${pageContext.request.contextPath}/activity.controller?pageNo=1">活動情報</a></span>
         </div> 
         
-			<table align="center" class="">
+			<table align="center" class="table table-bordered table-hover table-striped">
 			<tbody>
 			<tr><td width="500" colspan="2"><img src="data:image/jpg;base64,${selectByPrimaryKey.picture1}"/></td></tr>			
 			<tr><td width="30px">活動名稱</td><td width="30px">${selectByPrimaryKey.name}</td></tr>
