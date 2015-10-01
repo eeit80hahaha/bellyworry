@@ -19,15 +19,18 @@
         <li>
             <a href="${pageContext.request.contextPath}/healthViewlist.controller?pageNo=1&viewClassNo=100000"><i class="fa fa-fw fa-desktop"></i>　健康景點管理</a>
         </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/backend/heromanage.controller?pageNo=1"><i class="fa fa-fw fa-desktop"></i>　日誌檢舉管理</a>
+        </li>
         
         <li class="active">
             <a href="${pageContext.request.contextPath}/backend/index.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/backend/charts.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+            <a href="${pageContext.request.contextPath}/backend/activitybase1.controller?pageNo=1"><i class="fa fa-fw fa-bar-chart-o"></i>活動後台</a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/backend/tables.jsp"><i class="fa fa-fw fa-table"></i> Tables</a>
+            <a href="${pageContext.request.contextPath}/backend/exambase1.controller?pageNo=1"><i class="fa fa-fw fa-table"></i>小學堂後台</a>
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/backend/forms.jsp"><i class="fa fa-fw fa-edit"></i> Forms</a>

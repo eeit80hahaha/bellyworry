@@ -22,7 +22,7 @@ public class PageExamVO implements Serializable  {
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.rowCount = rowCount;
-		this.totalPages = (int)Math.ceil((double)( rowCount / pageSize ));
+		this.totalPages = (int)Math.ceil(((double)rowCount / pageSize ));
 		System.out.println("========================");
 		System.out.println("test1:"+ (double)rowCount / pageSize);
 		System.out.println("test2:"+(int)Math.ceil((double) rowCount / pageSize ));

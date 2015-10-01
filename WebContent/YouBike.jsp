@@ -347,6 +347,7 @@
 		//取得資料庫的所有站點，並且取出與目標點最近的5個點放進SELECT
 		function temp(point,sel){
 			//station data
+			<% request.setCharacterEncoding("UTF-8"); %>
 			<jsp:useBean id="YouBike" class="fun.model.YouBikeService">
 				var temp1 = ${YouBike.jsonDataFromFile}
 			</jsp:useBean>

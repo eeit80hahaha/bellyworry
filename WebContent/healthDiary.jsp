@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
 <%@page import="health.model.HealthDiaryVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -316,10 +317,10 @@
 								style="width: 40%; float: left;height: 100%;"> <!-- 左邊框 border: 2px solid red;  -->
 
 
+
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
-									value="${bean.date}"></input>
-
+									value="${bean.date} <fmt:formatDate pattern="yyyy-MM-dd" value="${healthDate}" />/>"></input>
 
 <!--  <div class="easyui-accordion" style="width:500px;height:300px;"> -->
 <!--         <div title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;"> -->
@@ -473,8 +474,9 @@
 					</div>
 				</div>
 				<div id="t-3" title="歷史紀錄">
-					<div id="container"
-						style="width: 1000px; height: 400px; margin: 0 auto"></div>
+<!-- 					<div id="container" -->
+<!-- 						style="width: 1000px; height: 400px; margin: 0 auto"></div> -->
+						
 					<br>
 					<table border='2' style="float: left;">
 						<tr>
@@ -489,23 +491,23 @@
 								<td>${vo.weight}</td>
 
 								<c:choose>
-									<c:when test="${i.index == 0}">
+									<c:when test="${i.last}">
 										<td>--</td>
 									</c:when>
-									<c:when test="${i.index > 0}">
+									<c:when test="${i.index >= 0}">
 										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
 										<!-- 未切字串,一坨拉庫 -->
 										<c:choose>
 											<c:when
-												test="${(list[i.index].weight - list[i.index-1].weight) > 0}">
+												test="${(list[i.index].weight - list[i.index+1].weight) > 0}">
 												<td style="color: red">+<fmt:formatNumber type="number"
 														maxIntegerDigits="2"
-														value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
+														value="${(list[i.index].weight - list[i.index+1].weight)}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td style="color: green;"><fmt:formatNumber
 														type="number" maxIntegerDigits="2"
-														value="${(list[i.index].weight - list[i.index-1].weight)}" /></td>
+														value="${(list[i.index].weight - list[i.index+1].weight)}" /></td>
 											</c:otherwise>
 										</c:choose>
 									</c:when>
@@ -523,21 +525,21 @@
 								<td><fmt:formatNumber type="number" maxIntegerDigits="2"
 										value="${vo.weight/((vo.height/100)*(vo.height/100))}" /></td>
 								<c:choose>
-									<c:when test="${a.index == 0}">
+									<c:when test="${a.last}">
 										<td>--</td>
 									</c:when>
-									<c:when test="${a.index > 0}">
+									<c:when test="${a.index >= 0}">
 										<c:choose>
 											<c:when
-												test="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100))) >0}">
+												test="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index+1].weight/((list[a.index+1].height/100)*(list[a.index+1].height/100))) >0}">
 												<td style="color: red">+<fmt:formatNumber type="number"
 														maxIntegerDigits="2"
-														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
+														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index+1].weight/((list[a.index+1].height/100)*(list[a.index+1].height/100)))}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td style="color: green"><fmt:formatNumber
 														type="number" maxIntegerDigits="2"
-														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index-1].weight/((list[a.index-1].height/100)*(list[a.index-1].height/100)))}" /></td>
+														value="${(list[a.index].weight/((list[a.index].height/100)*(list[a.index].height/100)) - list[a.index+1].weight/((list[a.index+1].height/100)*(list[a.index+1].height/100)))}" /></td>
 
 											</c:otherwise>
 										</c:choose>
@@ -561,21 +563,21 @@
 								<td>${vo.waistline}</td>
 
 								<c:choose>
-									<c:when test="${i.index == 0}">
+									<c:when test="${i.last}">
 										<td>--</td>
 									</c:when>
-									<c:when test="${i.index > 0}">
+									<c:when test="${i.index >= 0}">
 										<c:choose>
 											<c:when
-												test="${(list[i.index].waistline - list[i.index-1].waistline) >0}">
+												test="${(list[i.index].waistline - list[i.index+1].waistline) >0}">
 												<td style="color: red">+<fmt:formatNumber type="number"
 														maxIntegerDigits="2"
-														value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
+														value="${(list[i.index].waistline - list[i.index+1].waistline)}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td style="color: green"><fmt:formatNumber
 														type="number" maxIntegerDigits="2"
-														value="${(list[i.index].waistline - list[i.index-1].waistline)}" /></td>
+														value="${(list[i.index].waistline - list[i.index+1].waistline)}" /></td>
 											</c:otherwise>
 										</c:choose>
 										<%--<td>${list[i.index].weight - list[i.index-1].weight}</td> --%>
@@ -723,7 +725,7 @@
 	
 	<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
 		
-		<script src="js/highcharts.js"></script>
+<!-- 		<script src="js/highcharts.js"></script> -->
 		<script src="js/modules/exporting.js"></script>
 
 		<script src="scripts/bootstrap/js/bootstrap.min.js"
@@ -763,6 +765,27 @@
 						}
 					})
 		
+					
+			var time;
+			$(".easyui-datebox").datebox({				
+				onSelect:function(date){
+					var year,month,day;
+					year = date.getFullYear();
+					if((date.getMonth()+1)<10){
+						month = '0'+(date.getMonth()+1);
+					}else{
+						month = (date.getMonth()+1);
+					}
+					if(date.getDate() < 10){
+						day = '0'+date.getDate();
+					}else{
+						day = date.getDate();
+					}
+					time = year+'-'+month+'-'+day;
+					console.log(time);
+					$.get("healthDaySessionServlet.collection",{"time":time});
+				}
+			});
 			$(".accordion").accordion({
 				animate:false
 			});
