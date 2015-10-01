@@ -130,8 +130,8 @@
 /* 		border:#000 solid 1px; */
      } 
  .tt {  
- 		text-align:left
- 		;
+ 		text-align:left;
+ 		
  } 
 /*  .for1 {  */
 /*  		position:relative; top:20px; left:20px; */
