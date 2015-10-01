@@ -1,13 +1,21 @@
 package ranking.model;
 
+import java.text.ParseException;
+import java.util.List;
+
 import health.model.HealthDiaryDAO;
+import health.model.HealthDiaryVO;
+import health.model.HeroHealthDiaryVO;
 import health.model.dao.HealthDiaryDaoHbm;
 import ranking.model.dao.ReflectDAOHbm;
+import register.model.MemberDAO;
+import register.model.dao.MemberDAOHbm;
 
 public class ReflectService {
 	
 	private ReflectDAO reflectdao = new ReflectDAOHbm();
 	private HealthDiaryDAO healthdiarydao = new HealthDiaryDaoHbm();
+	private MemberDAO memberdao = new MemberDAOHbm();
 	
 	public int insert(ReflectVO vo){
 		
@@ -48,5 +56,27 @@ public class ReflectService {
 		
 		return result;
 	}
+	
+	public ReflectPageVO getPage(int pageNo, int pageSize, int reflectedNo){
+		List<ReflectVO> list = reflectdao.getPage(pageNo, pageSize, reflectedNo);
+		
+		for (ReflectVO reflectvo : list) {
+			
+			
+			reflectvo.setReflectedId(
+					memberdao.selectByPrimaryKey(reflectvo.getReflectedNo()).getId());
+			
+			reflectvo.setAuthorId(
+					memberdao.selectByPrimaryKey(reflectvo.getAuthorNo()).getId());
+
+		}
+		
+		int rowCount = reflectdao.getPageTotalCount(reflectedNo);
+		
+		ReflectPageVO result = new ReflectPageVO(pageNo, pageSize, rowCount, list);
+		
+		return result;
+	}
+	
 	
 }

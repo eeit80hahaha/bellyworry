@@ -277,5 +277,17 @@ public class ReflectDAOJdbc implements ReflectDAO {
 	public int repeatReflect(ReflectVO vo) {
 		return 0;
 	}
+	@Override
+	public List<ReflectVO> getPage(int pageNo, int pageSize, int reflectedNo) {
+
+		return null;
+	}
+	@Override
+	public int getPageTotalCount(int reflectedNo) {
+
+		return 0;
+	}
+	
+	
 
 }
