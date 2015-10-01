@@ -50,7 +50,7 @@ public class ActivityServlet extends HttpServlet {
 //				String temp9 = request.getParameter("boss");
 //				String Cookion = request.getParameter("Cookion");
 				String pageNoTemp = request.getParameter("pageNo");
-				System.out.print("PageNo"+":"+pageNoTemp);
+//				System.out.print("PageNo"+":"+pageNoTemp);
 		
 		//驗證資料
 				Map<String, String> errors = new HashMap<String, String>();
@@ -151,8 +151,9 @@ public class ActivityServlet extends HttpServlet {
 				String getDateTime=service.getDateTime();
 				
 //page
-				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 5);					
+				PagesActivityVO PagesActivityVO = service.getDatePage(pageNo, 7);
 				PagesActivityVO.setActivitypage(service.base(PagesActivityVO.getActivitypage()));
+				
 				
 //findBySname
 				if(temp2 == null){
@@ -190,7 +191,6 @@ public class ActivityServlet extends HttpServlet {
 				request.setAttribute("selectallvo",selectallvo);
 				//page
 				request.setAttribute("PagesActivityVO", PagesActivityVO);
-				
 				RequestDispatcher rd = request.getRequestDispatcher("/activity1.jsp");
 				rd.forward(request, response);								
 	}
