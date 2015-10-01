@@ -45,6 +45,7 @@ public class healthServlet extends HttpServlet {
 		HttpSession session = request.getSession();						//登入session
 		request.setCharacterEncoding("UTF-8");
 
+		
 		Map<String, String> errorMessage = new HashMap<String, String>();
 		request.setAttribute("errorMessage", errorMessage);
 		MemberVO memberVo = (MemberVO)session.getAttribute("user");		//登入session
@@ -105,6 +106,12 @@ public class healthServlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
+		
+		session.removeAttribute("healthDate");
+		session.removeAttribute("eatBreakfast");
+		session.removeAttribute("eatLunch");
+		session.removeAttribute("eatDinner");
+
 		Date date1 = globalService.convertDate(date);
 		
 		
