@@ -223,8 +223,8 @@
                         <div class="span6">
                             <!--Edit Camera Slider here-->
                             <div id="camera_wrap">
-<div data-src="images/caprese.jpg" ><div class="camera_caption fadeFromBottom cap1">Lorem Ipsum is simply dummy text of the printing.</div></div><div data-src="images/plate.jpg" ><div class="camera_caption fadeFromBottom cap2">Lorem Ipsum is simply dummy text of the printing.</div></div>
-<div data-src="images/gourmandises.jpg" ><div class="camera_caption fadeFromBottom cap1">Lorem Ipsum is simply dummy text of the printing.</div></div>
+<div data-src="images/aaa.jpg" ><div class="camera_caption fadeFromBottom cap1">維持良好體態是美好生活的第一步！</div></div><div data-src="images/bbb.jpg" ><div class="camera_caption fadeFromBottom cap2">踏上腳踏車，與三五好友一同運動趣</div></div>
+<div data-src="images/ccc.jpg" ><div class="camera_caption fadeFromBottom cap1">透過運動～擺脫惱人的小腹和贅肉</div></div>
                             </div>
 							<!--End Camera Slider here-->
 
