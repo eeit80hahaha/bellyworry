@@ -77,9 +77,8 @@ public class HerolistServlet extends HttpServlet {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 	    cal.setTime(new java.util.Date());
 	    int year = cal.get(java.util.Calendar.YEAR);
-	    
-	    //demo fix month => month+1 
-	    int month = cal.get(java.util.Calendar.MONTH)+1;
+	     
+	    int month = cal.get(java.util.Calendar.MONTH);
 		
 	    HeroHealthDiaryVO herohealthdiaryvo = 
 	    		heroservice.getDatePage(pageNo, 3, memberNo, year, month);

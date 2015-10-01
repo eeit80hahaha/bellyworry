@@ -38,6 +38,7 @@ public class FoodCalSessionServlect extends HttpServlet {
 		String temp4 = request.getParameter("page");
 		String temp5 = request.getParameter("cal");
 		String temp6 = request.getParameter("name");
+		String temp7 = request.getParameter("weight");
 		String prodaction = request.getParameter("prodaction");
 		
 		
@@ -76,6 +77,14 @@ public class FoodCalSessionServlect extends HttpServlet {
 				errors.put("cal", "cal must be an integer");
 			}
 		}
+		
+		int weight = 0;
+		if(temp7!=null && temp7.length()!=0) {
+			weight = GlobalService.convertInt(temp7);
+			if(weight==-1000) {
+				errors.put("weight", "weight must be an integer");
+			}
+		}
 
 		int count=0;
 		if(temp3!=null && temp3.length()!=0) {
@@ -84,7 +93,7 @@ public class FoodCalSessionServlect extends HttpServlet {
 				errors.put("count", "只能為數字");
 			}
 		}else if(temp3.isEmpty()){
-			errors.put("count", "不能為空");
+			errors.put("count", "請輸入數值");
 		}
 		
 		if(errors!=null && !errors.isEmpty() ){
@@ -97,6 +106,7 @@ public class FoodCalSessionServlect extends HttpServlet {
 		vo.setFoodNo(foodNo);
 		vo.setName(temp6);
 		vo.setCal(cal);
+		vo.setWeight(weight);
 		
 		EatRecordVO vo1 = new EatRecordVO();
 		if(session.getAttribute("login").equals("600")){

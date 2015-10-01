@@ -25,7 +25,7 @@ public class YouBikeService {
 		URL url = new URL(urlString);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		InputStream inputStream = conn.getInputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
 		StringBuffer result = new StringBuffer(); 
 		String line = br.readLine();
 		while(line!=null){
@@ -47,7 +47,7 @@ public class YouBikeService {
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		InputStream inputStream = conn.getInputStream();
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
 		StringBuffer result = new StringBuffer(); 
 		String line = br.readLine();
 		while(line!=null){
