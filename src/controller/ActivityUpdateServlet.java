@@ -41,7 +41,7 @@ public class ActivityUpdateServlet extends HttpServlet {
 				String temp4 = request.getParameter("startTime");
 				String temp5 = request.getParameter("endTime");
 				String temp6 = request.getParameter("address");
-//				String temp7 = request.getParameter("picture");
+//				String temp7 = request.getParameter("PictureBig");
 				String temp8 = request.getParameter("url");
 				String temp9 = request.getParameter("boss");
 		//驗證資料

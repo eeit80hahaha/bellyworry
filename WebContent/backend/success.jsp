@@ -79,7 +79,7 @@ function init(){
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-table"></i>查詢活動項目
+                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/activitybase1.controller?pageNo=1" >查詢活動項目</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> <a href="activityInsert.jsp">新增活動項目</a>
@@ -97,7 +97,7 @@ function init(){
             </div>
             <!-- /.container-fluid -->
 <%--             <form method="post" action="${pageContext.request.contextPath}/backend/SelectAllMenuServlet.controller" id="menuForm"> --%>
-<a href="${pageContext.request.contextPath}/backend/activitybase1.controller?pageNo=1" >活動後台</a>
+
 			<h2>修改成功</h2>
 <!-- 		</form>	 -->
         </div>
