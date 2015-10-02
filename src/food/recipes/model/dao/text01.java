@@ -1,5 +1,8 @@
 package food.recipes.model.dao;
 
+import health.model.EatRecordDAO;
+import health.model.dao.EatRecordDAOHbm;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -127,6 +130,7 @@ public class text01 {
 //		System.out.println("test delete() ==================================");
 //		FoodItemDAO exam5 = new FoodItemDAOJdbc();
 //		System.out.println("delete is " + exam5.delete(100080));
+
 		
 //============================================================================================分隔線
 		//test selectByPrimaryKey for FoodList 
