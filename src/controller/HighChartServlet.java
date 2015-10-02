@@ -35,7 +35,7 @@ public class HighChartServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("HTTP Method=" + request.getMethod());
+//		System.out.println("HTTP Method=" + request.getMethod());
 		service = new HealthDiaryService();
 		// 接收資料
 		HttpSession session = request.getSession();
@@ -94,7 +94,6 @@ public class HighChartServlet extends HttpServlet {
 				.build();
 		builder.add(obj);
 		String output = builder.build().toString();
-		System.out.println(output);
 
 		// 根據Model執行結果...
 		response.setContentType("application/json; charset=UTF-8");

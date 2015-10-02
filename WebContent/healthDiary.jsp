@@ -502,7 +502,7 @@
 						style="width: 1000px; height: 400px; margin: 0 auto"></div>
 						
 					<br>
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center;margin-left:120px">
 						<tr>
 							<th width='130'>日期</th>
 							<th width='130'>體重</th>
@@ -539,7 +539,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center">
 						<tr>
 							<th width='130'>BMI</th>
 							<th width='130'>歷史變化量</th>
@@ -573,19 +573,14 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-
-
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center">
 						<tr>
 							<th width='130'>腰圍</th>
 							<th width='130'>歷史變化量</th>
-
 						</tr>
 						<c:forEach var='vo' varStatus="i" items="${list}">
 							<tr>
 								<td>${vo.waistline}</td>
-
 								<c:choose>
 									<c:when test="${i.last}">
 										<td>--</td>
@@ -612,56 +607,10 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-
-
-
-
-
-
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div id="footerOuterSeparator"></div>
 
 	<div id="divFooter" class="footerArea">
@@ -734,8 +683,6 @@
 	
 	<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
 	
-	
-	
 <!-- 	<script src="jeasyui/jquery.calendar.js"></script> -->
 
 <!-- 	<script type="text/javascript" src="jeasyui/jquery.calendar.js"></script> -->
@@ -743,9 +690,6 @@
 	<script type="text/javascript" src="jeasyui/easyui-lang-zh_TW.js"></script>
 	
 	<script src="ckeditor/ckeditor.js"></script>
-	
-	
-	
 	
 	<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
 		
@@ -776,18 +720,17 @@
 				for(var i=1;i<=31;i++){
 					date.push(i);
 				}
-				$.each(data,function(i,data){
-		
+				$.each(data,function(p,data){
 					$('#container').highcharts(
 							{
 								title : {
-									text : 'Monthly Average Temperature',
+									text : '體重、BMI、腰圍變化量',
 									x : -20
 								//center
 								},
 								subtitle : {
-									text : 'Source: WorldClimate.com',
-									x : -20
+									text : 'Weight.BMI.Waistline',
+									x : -10
 								},
 								xAxis : {
 									categories :date
@@ -795,16 +738,13 @@
 								yAxis : {
 
 									title : {
-										text : 'Temperature (°C)'
+										text : 'kg,cm,BMI'
 									},
 									plotLines : [ {
 										value : 0,
 										width : 1,
 										color : '#808080'
 									} ]
-								},
-								tooltip : {
-									valueSuffix : '°C'
 								},
 								legend : {
 									layout : 'vertical',
@@ -814,14 +754,25 @@
 								},
 								series : [
 										{
-											name : 'weight',
-											data : data.weight},
+											name : 'weight (kg)',
+											data : data.weight,
+											tooltip : {
+												headerFormat:'<b>weight</b><br/>',
+												valueSuffix : 'kg'
+											}},
 										{
-											name : 'waistline',
-											data : data.waistline},
+											name : 'waistline (cm)',
+											data : data.waistline,
+											tooltip : {
+												headerFormat:'<b>waistline</b><br/>',
+												valueSuffix : 'cm'
+											}},
 										{
-											name :'bmi',
-											data : data.BMI}
+											name :'BMI',
+											data : data.BMI,
+											tooltip : {
+												headerFormat:'<b>BMI</b><br/>',
+											}}
 										]
 					})
 				})
@@ -901,63 +852,6 @@
 // 				$("#date").datepicker();
 // 			});
 
-
-			//圖表
-			/* var a = $.getJSON("json.view",{"id":1000018,"year":year,"month":month},function(data){
-				var date = [];
-				for(var i=1;i<=31;i++){
-					date.push(i);
-				}
-				$.each(data,function(i,data){
-		
-					$('#container').highcharts(
-							{
-								title : {
-									text : 'Monthly Average Temperature',
-									x : -20
-								//center
-								},
-								subtitle : {
-									text : 'Source: WorldClimate.com',
-									x : -20
-								},
-								xAxis : {
-									categories :date
-								},
-								yAxis : {
-
-									title : {
-										text : 'Temperature (°C)'
-									},
-									plotLines : [ {
-										value : 0,
-										width : 1,
-										color : '#808080'
-									} ]
-								},
-								tooltip : {
-									valueSuffix : '°C'
-								},
-								legend : {
-									layout : 'vertical',
-									align : 'right',
-									verticalAlign : 'middle',
-									borderWidth : 0
-								},
-								series : [
-										{
-											name : 'weight',
-											data : data.weight},
-										{
-											name : 'waistline',
-											data : data.waistline},
-										{
-											name :'bmi',
-											data : data.BMI}
-										]
-					})
-				})
-			}); */
 		})(jQuery);
 	</script>
 
