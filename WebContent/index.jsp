@@ -139,7 +139,7 @@
               						</c:otherwise>
               					</c:choose>                                
                                 
-										<div id="dialog" title="註冊會員" style="display: none;">
+										<div id="dialog" title="註冊會員" style="display: none;background:#BBFFEE;">
 											<form
 												action="${pageContext.request.contextPath}/MemberServlet.controller"										method="post">
 												<fieldset>
@@ -203,7 +203,7 @@
 												</div>
 											</form>
 									<!-- ==============註冊錯誤訊息=================================================================== -->
-									<div id="dialog0" title="BellyWorry" style="text-align">	
+									<div id="dialog0" title="BellyWorry" style="text-align:center">	
 										<p style="color:red">${error.add}</p><!-- 註冊失敗，請重新輸入 -->
 										<p style="color:red">${error.er}</p><!-- 帳號重複，請重新輸入 -->
 										<p style="color:red">${error.success}</p><!-- 新增會員成功 -->
