@@ -154,7 +154,7 @@ input[type="button"]:disabled{
 			               <Input type='hidden' name='address' value='${activity.address}'><P/>
 			               <Input type='hidden' name='url' value='${activity.url}'><P/>
 			               <Input type='hidden' name='boss' value='${activity.boss}'><P/>
-<%-- 			               <Input type='hidden' name='PictureBig' value='${activity.picture1}'><P/> --%>
+<%-- 			               		<Input type='hidden' name='PictureBig' value='${activity.picture1}'><P/> --%>
 			               <Input type='submit' value='修改'>
 			       </FORM>
 				</td>
