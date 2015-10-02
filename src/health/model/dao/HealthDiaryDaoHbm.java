@@ -268,7 +268,7 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		return result;
 	}
 
-	private static final String GethighChart = " from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=?";
+	private static final String GethighChart = " from HealthDiaryVO where memberNo=? and year(date)=? and month(date)=? order by date desc";
 
 	@Override
 	public List<HealthDiaryVO> gethighChart(int memberNo, int year, int month) {
