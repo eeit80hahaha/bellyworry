@@ -2,7 +2,6 @@ package controller;
 
 import food.recipes.model.FoodItemVO;
 import init.GlobalService;
-import init.ListPage;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -38,16 +37,12 @@ public class MenuServelt extends HttpServlet {
 
 	public MenuServelt() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("pages");
+		int pageSize=8;//每頁幾筆
+		int lastpage;
 		System.out.println("pages = " + page);
 		if (page == null || "".equals(page)) {
 			page = "1";
@@ -56,28 +51,30 @@ public class MenuServelt extends HttpServlet {
 
 		List<MenuVO> result1 = service.selectMenu(null);
 		request.setAttribute("option", result1);
-
-		String menuname = request.getParameter("menuNo");
-
+		String menuNOstr = request.getParameter("menuNo");
+		int menuNO;
+		if(menuNOstr!=null && !"0".equals(menuNOstr) && !"".equals(menuNOstr)){
+			menuNO=GlobalService.convertInt(menuNOstr);
+		}else{ 
+			menuNO=0;
+		}		
 		List<FoodCalVO> result = null;
-		if (menuname != null && !"0".equals(menuname) && !"".equals(menuname)) {
-			result = service.selectbyMenuNo(GlobalService.convertInt(menuname));
+		if (menuNO != 0 ) {
+			result = service.page(pageNo,pageSize,menuNO);
 		} else {
-			result = service.select(null);
+			result = service.page(pageNo,pageSize, 0);
 		}
 		/* Neil add */
 		StringBuffer cooksDiv = new StringBuffer();
 		List<FoodCalVO> ss = null;
-		ListPage<FoodCalVO> listPage = null;
+//		ListPage<FoodCalVO> listPage = null;
+		System.out.println("result=========="+result);
 		if (result.size() > 0) {
 			/* Neil add */
 			System.out.println("sss:" + result);
 			ss = (List<FoodCalVO>) service.base(result);
-
-			listPage = new ListPage<FoodCalVO>(ss, 8);// 每頁6筆
-
-			ss = listPage.getPageList(pageNo);
-
+//			listPage = new ListPage<FoodCalVO>(ss, 8);// 每頁6筆
+//			ss = result;
 			String tempType = "";
 			for (int i = 0; i < ss.size(); i++) {
 				cooksDiv.append("<div id='cook_");
@@ -88,6 +85,7 @@ public class MenuServelt extends HttpServlet {
 				if (ss.get(i).getCooks() != null) {
 					if (ss.get(i).getCooks().getPicture() != null) {
 						cooksDiv.append("<td colspan='3' width='50'><img src='data:image/jpg;base64,");
+						System.out.println(ss.get(i).getCooks().getPicture());
 						cooksDiv.append(Base64.encodeBase64String(ss.get(i)
 								.getCooks().getPicture()));
 						cooksDiv.append("' style='width:400px; height:auto;' /></td>");
@@ -130,13 +128,19 @@ public class MenuServelt extends HttpServlet {
 			}
 		}
 		/* Neil add */
-		request.setAttribute("selected", menuname);
+		request.setAttribute("selected", menuNO);
 
-		if (ss != null && listPage != null) {
+		if (ss != null) {
 			request.setAttribute("menu", ss);
 			request.setAttribute("cooksDiv", cooksDiv);
-			request.setAttribute("pagecount", listPage.getPageNo());
-			request.setAttribute("listPage", listPage.getLastPage());
+			request.setAttribute("pagecount",pageNo);
+			if((service.totalCount(menuNO % pageSize) != 0)){
+				lastpage = (service.totalCount(menuNO)/pageSize) + 1;
+			}
+			else{
+				lastpage = (service.totalCount(menuNO)/pageSize);
+			}
+			request.setAttribute("listPage",lastpage);
 		}
 		/* Neil add */
 		RequestDispatcher rd = request.getRequestDispatcher("/menuview.jsp");

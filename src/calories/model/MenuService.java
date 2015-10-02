@@ -142,6 +142,22 @@ public class MenuService {
 		}
 		return result;
 	}
+	
+	public List<FoodCalVO> page(int pageNo,int pageSize,int menuNo) {
+		List<FoodCalVO> result = null;
+		result = foodCalDao.selectByMenuNo(pageNo,pageSize,menuNo);
+		
+		return result;
+	}
+	
+	public int totalCount(int menuNo) {
+		int result = 1;
+		result = foodCalDao.totalCount(menuNo);
+		
+		return result;
+	}
+
+	
 
 	public List<MealNameVO> selectMealName(MealNameVO vo) {
 		List<MealNameVO> result = null;

@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <style type="text/css">
-#table{width: 800px;border: 3px solid #01814a;border-collapse: collapse;margin: 0 auto}
+#table{border: 3px solid #000000;border-spacing: 3px;border-collapse: separate;width: 800px;border: 3px double #000000;margin:auto;}
 td,th{border: 1px solid gray }
 thead{text-transform: uppercase;border-bottom: 3px double #aa7700;background-color: #d7ffee }
 tbody{text-align: center;background-color: #7affc6}
@@ -106,7 +106,7 @@ input[type="button"]:disabled{
             
 			<table id="table">
 			<thead style="text-align:center;">
-			<tr><th>一日套餐編號</th><th>一日套餐名稱</th><th>早餐</th><th>中餐</th><th>晚餐</th><th>修改</th><th>刪除</th></tr>
+			<tr><th style="text-align:center;">一日套餐編號</th><th style="text-align:center;">一日套餐名稱</th><th style="text-align:center;">早餐</th><th style="text-align:center;">中餐</th><th style="text-align:center;">晚餐</th><th style="text-align:center;">修改</th><th style="text-align:center;">刪除</th></tr>
 			</thead>
 			<tbody>
 			<c:forEach var="vo" items="${menu}">
@@ -122,6 +122,7 @@ input[type="button"]:disabled{
 			</c:forEach>
 			</tbody>
 			</table>
+			<br>
 			<div style="text-align:center;">
 			<input type="button" name="" value="第一頁" onclick="pagecount('1')" />
 			<input type="button" name="" value="上一頁"

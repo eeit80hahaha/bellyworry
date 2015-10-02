@@ -69,12 +69,12 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("suc", success);
 				success.put("update", "<a href='" + request.getContextPath()
 						+ "/updatemember.jsp'>修改管理者資料</a>");
-				success.put("out", "'<a href='" + request.getContextPath()
-						+ "/logout.controller'>登出</a>");
+				success.put("out", request.getContextPath()
+						+ "/logout.controller");
 				String path = request.getContextPath();
 				response.sendRedirect(path+"/backend/index.jsp");//待改為URL============
 			} else {
-				errors.put("open", "$(\"#dialog0\").dialog(\"open\");");
+				errors.put("opensuccess", "$(\"#dialog0\").dialog(\"open\");");
 				errors.put("success1", "登入成功");
 				HttpSession session = request.getSession();
 				session.setAttribute("user", bean);
@@ -95,6 +95,7 @@ public class LoginServlet extends HttpServlet {
 					session.removeAttribute("dest");
 					response.sendRedirect(dest);
 				} else {
+					
 					String path = request.getContextPath();
 					response.sendRedirect(path + "/index.jsp");
 				}

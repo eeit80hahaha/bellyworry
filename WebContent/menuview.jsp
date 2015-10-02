@@ -105,6 +105,18 @@
 		});
 	});
 </script>
+<style type="text/css">
+table {
+ border-collapse: separate;
+ border-spacing: 3px;
+ border: 3px solid #000000;
+}
+
+td {
+ 
+ border: 2px solid #000000;
+}
+</style>
 <jsp:include page="/page/header.jsp" />
 </head>
 <body>
@@ -133,7 +145,7 @@
 			</div>
 			<c:forEach var="vo" items="${menu}">
 				<div style="display: inline-block; margin: 20px 0 0 20px;">
-					<TABLE border='1' width="450" height="150">
+					<table width="450" height="150">
 						<tr style="text-align: center;">
 							<td rowspan="4" width="150" height="150"><c:choose>
 									<c:when test="${empty vo.picture1}">
@@ -169,7 +181,7 @@
 									</c:otherwise>
 								</c:choose></td>
 						</tr>
-					</TABLE>
+					</table>
 				</div>
 			</c:forEach>
 			<dir style="text-align: center;">

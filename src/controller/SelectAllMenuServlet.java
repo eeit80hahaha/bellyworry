@@ -44,6 +44,9 @@ private MenuService service;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String page=request.getParameter("pages");
+		if (page == null || "".equals(page)) {
+			page = "1";
+		}
 		int pageNo=GlobalService.convertInt(page);
 		List<MenuVO> result1= service.selectMenu(null);
 		request.setAttribute("option", result1);
@@ -63,7 +66,7 @@ private MenuService service;
 			/*Neil add*/
 		ss=(List<FoodCalVO>)service.base(result);
 		
-		listPage = new ListPage<FoodCalVO>(ss,10);//每頁6筆
+		listPage = new ListPage<FoodCalVO>(ss,8);//每頁6筆
 		
 		ss = listPage.getPageList(pageNo);
 		

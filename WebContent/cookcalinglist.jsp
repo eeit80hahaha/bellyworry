@@ -76,11 +76,12 @@
 									<option value="中午">中午</option>
 									<option value="晚上">晚上 </option>	
 								</select>
-								<input type="text" name="count" value="" />										<!--count-->
+								<input type="text" name="count" value="" placeholder="食用份數" />				<!--count-->
 		
 								<Input type='hidden' name='foodNo' value='${vo.foodNo}'>			<!--foodNo-->
 								<Input type='hidden' name='name' value='${vo.name}'>				<!--name-->
 								<Input type='hidden' name='cal' value='${vo.cal}'>				<!--cal-->
+								<Input type='hidden' name='weight' value='${vo.weight}'>				<!--cal-->
 								
 								<Input type='hidden' name='page' value='${PagesFoodCalVO1.pageNo}'>	<!--page-->
 								
@@ -133,7 +134,8 @@
 					                <h4>早上紀錄</h4>
 					                <ul class="the-icons" style="list-style-type:none">
 						                <c:forEach var="eatb" items="${eatBreakfast}">
-						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatb.foodCalVO.name}   份量${eatb.count}</li>
+						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatb.foodCalVO.name}   份量：${eatb.count}  
+						                			熱量：${eatb.foodCalVO.cal * eatb.count * (eatb.foodCalVO.weight/100)} (大卡)</li>
 										</c:forEach>
 									</ul>           
 					        </div>
@@ -143,7 +145,8 @@
 					                <h4>中午紀錄</h4>
 					                <ul class="the-icons" style="list-style-type:none">
 						                <c:forEach var="eatl" items="${eatLunch}">
-						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatl.foodCalVO.name}   份量${eatl.count}</li>
+						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatl.foodCalVO.name}   份量：${eatl.count}  
+						                			熱量：${eatl.foodCalVO.cal * eatl.count * (eatl.foodCalVO.weight/100)} (大卡)</li>
 										</c:forEach>
 									</ul>            
 					        </div>
@@ -153,19 +156,20 @@
 					                <h4>晚上紀錄</h4>
 					                <ul class="the-icons" style="list-style-type:none">
 						                <c:forEach var="eatd" items="${eatDinner}">
-						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatd.foodCalVO.name}   份量${eatd.count}</li>
+						                <li style="line-height: 25px;"><i class="icon-food"></i> ${eatd.foodCalVO.name}   份量：${eatd.count}  
+						                			熱量：${eatd.foodCalVO.cal * eatd.count * (eatd.foodCalVO.weight/100)} (大卡)</li>
 										</c:forEach>
 									</ul>           
 					        </div>
 					    </div>
 				        <div class="row-fluid">		
 						        錯誤訊息:
-						${errors.count}
-						${errors.eatr}		 
+						<h1 style="color:#FF0000">${errors.count}</h1>
+						<h1 style="color:#FF0000">${errors.eatr}</h1>		 
 				        </div>
 				        <c:if test="${login == 600 }">
 						<!-- 	<input type="button" value="text"> -->
-								<a href="${pageContext.request.contextPath}/FoodCalServletSave">保存測試</a>
+								<a class="btn btn-warning" href="${pageContext.request.contextPath}/FoodCalServletSave">保存資料</a>
 						</c:if>	
 					</div>
                     

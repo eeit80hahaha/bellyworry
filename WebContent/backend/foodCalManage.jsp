@@ -12,8 +12,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <style type="text/css">
-#table{width: 800px;border: 3px double #FF0000;border-collapse: collapse;margin: 0 auto}
-td,th{border: 1px double gray }
+/* table { */
+/*  border-collapse: separate; */
+/*  border-spacing: 3px; */
+/*  border: 3px solid #000000; */
+/* } */
+
+/* tr td { */
+/*  border: 2px solid #000000; */
+/* } */
+#table{border: 3px solid #000000;border-spacing: 3px;border-collapse: separate;width: 800px;border: 3px double #000000;margin:auto;} 
+td,th{border: 2px solid #000000;} 
 thead{text-align: center;text-transform: uppercase;border-bottom: 3px double #aa7700;background-color: #d7ffee }
 tbody{text-align: center;background-color: #7affc6 border: 1px double gray}
 tbody tr:nth-child(2n){background-color: #FFEE99}
@@ -106,7 +115,8 @@ input[type="button"]:disabled{
             
 			<table id="table">
 			<thead style="text-align:center;">
-			<tr><th>編號</th><th>圖片</th><th>菜色分類</th><th>菜色名稱</th><th>修改</th><th>刪除</th></tr>
+			<tr><th style="text-align:center;">編號</th><th style="text-align:center;">圖片</th>
+			<th style="text-align:center;">菜色分類</th><th style="text-align:center;">菜色名稱</th><th style="text-align:center;">修改</th><th style="text-align:center;">刪除</th></tr>
 			</thead>
 			<tbody>
 			<c:forEach var="vo" items="${menu}">
@@ -127,12 +137,13 @@ input[type="button"]:disabled{
 				</td>
 				<td>${vo.menus.name}</td>
 				<td>${vo.name}</td>
-				<td><input type="button" name="" value="修改" onclick="deleteFood('${vo.foodNo}')" /></td>
-				<td><input type="button" name="" value="刪除" onclick="deleteFood('${vo.foodNo}')" /></td>
+				<td><input type="button" name="" value="修改" onclick="#" /></td>
+				<td><input type="button" name="" value="刪除" onclick="#" /></td>
 			</tr>
 			</c:forEach>
 			</tbody>
 			</table>
+			<br>
 			<div style="text-align:center;">
 			<input type="button" name="" value="第一頁" onclick="pagecount('1')" />
 			<input type="button" name="" value="上一頁"
