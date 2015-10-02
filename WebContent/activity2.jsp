@@ -50,11 +50,11 @@
     .ui-button-text-only .ui-button-text { padding: .3em .45em; }
     .limit { background: #F4CAD6; } 
 
-    a:link,a:visited
-    {
-		color:#03c;
-		text-decoration: none
-    }
+/*     a:link,a:visited */
+/*     { */
+/* 		color:#03c; */
+/* 		text-decoration: none */
+/*     } */
 
     a:hover 
     {
