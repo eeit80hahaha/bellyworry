@@ -76,6 +76,7 @@
                 
                 
 <%--                 		${reflectpagevo} --%>
+<!--                 		<hr/> -->
 <%--                 		<h1>${reflectpagevo.reflectpage[0]}</h1> --%>
 <!--                 		<hr/> -->
 			<c:if test="${!empty reflectpagevo.reflectpage}"> 		
@@ -128,7 +129,7 @@
                 
                 
 
-						<table>
+						<table class="table table-bordered table-hover table-striped">
 							<tr>
 								<th>檢舉日誌</th>
 								<th>檢舉會員</th>
@@ -147,6 +148,14 @@
 									<td>
 										<fmt:formatDate 
                 		value="${reflectpage.authorDate}" type="date" />
+									</td>
+									<td>
+										<form action="${pageContext.request.contextPath}/backend/herodaymanage.controller" method="get">
+                            			<input type="hidden" name="reflectedNo" value="${reflectpage.reflectedNo}">
+                            			<input type="hidden" name="reflectedId" value="${reflectpage.reflectedId}">
+                            			<input type="hidden" name="authorDate" value="${reflectpage.reflectedDate}">
+                            			<input type="submit" value="查看日誌">
+                            	</form>
 									</td>
 								</tr>
 								
