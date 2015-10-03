@@ -46,7 +46,7 @@ public class DiaryIndexService {
 				result.setEatVo(resultEat);
 			}
 		}
-		System.out.println("----------"+ result);
+//		System.out.println("----------"+ result);
 		return result;
 	}
 
@@ -91,7 +91,7 @@ public class DiaryIndexService {
 //		System.out.println(resultEat);
 //		listeat.clear();
 //		listexer.clear();
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 	}
 	
