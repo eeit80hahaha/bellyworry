@@ -62,11 +62,11 @@ public class ReflectService {
 	public ReflectPageVO getPage(int pageNo, int pageSize, String reflectedid){
 		List<ReflectVO> list = new ArrayList<ReflectVO>();
 		int rowCount = 0;
-		if(reflectedid==null){
+		MemberVO vo = memberdao.selectById(reflectedid);
+		if(vo==null){
 			list = reflectdao.getPageNo(pageNo, pageSize);
 			rowCount = reflectdao.getPageTotalCount();
 		}else{
-			MemberVO vo = memberdao.selectById(reflectedid);
 			list = reflectdao.getPageNoID(pageNo, pageSize, vo.getMemberNo());
 			rowCount = reflectdao.getPageIDTotalCount(vo.getMemberNo());
 		}
