@@ -34,8 +34,13 @@
               				</div>                            
                             
                             <ul class="nav nav-pills ddmenu">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0)" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
+                                <c:if test="${ funcName != 'FOOD' }">
+                                <li class="dropdown" >
+                                </c:if>
+                                <c:if test="${ funcName == 'FOOD' }"> 
+					            <li class="dropdown active" >
+					            </c:if>
+                                 	<a href="javascript:void(0)" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                        <li><a href="${pageContext.request.contextPath}/Menuservelt.controller">菜色&食譜</a></li>
 <%--                                         <li><a href="${pageContext.request.contextPath}/logout.controller">登出</a></li> --%>

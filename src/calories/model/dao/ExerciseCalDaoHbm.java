@@ -119,7 +119,6 @@ public class ExerciseCalDaoHbm implements ExerciseCalDAO {
 				result = true;
 			}
 			session.getTransaction().commit();
-			System.out.println("刪除的筆數=" + i);
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;			

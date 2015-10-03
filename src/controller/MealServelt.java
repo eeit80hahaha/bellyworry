@@ -50,10 +50,8 @@ public class MealServelt extends HttpServlet {
 			vo.setMealNo(vo.getMealNo());
 			vo.setName(vo.getName());
 			vo.setFoodcals((Set<FoodCalVO>)service.base(vo.getFoodcals()));
-			System.out.println(vo.getName());
 		}
 		request.setAttribute("menu", result);
-		System.out.println(result1);
 		request.setAttribute("menu1", result1);
 		RequestDispatcher rd = request.getRequestDispatcher("/meal.jsp");
 		rd.forward(request, response);		

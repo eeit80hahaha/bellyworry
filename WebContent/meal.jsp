@@ -166,6 +166,7 @@
 
 </head>
 <body>
+<c:set var="funcName" value="FOOD" scope="session"/>
 	<jsp:include page="/page/header.jsp" />
 	<%-- ${menu} --%>
 	<h2>套餐組合</h2>

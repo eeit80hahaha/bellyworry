@@ -45,15 +45,11 @@ public class ListPage<E> {
 		
 		int startIndex = (pageNo - 1) * this.pageSize;
 		
-		System.out.println("startIndex=" + startIndex);
 		
 		int finalSize = this.pageSize;
 		if(pageNo == this.lastPage && (this.rowsCount % this.pageSize) != 0){
 			finalSize = this.rowsCount % this.pageSize;
 		}
-		System.out.println("finalSize = " + finalSize);
-		System.out.println("pageNo = " + pageNo);
-		System.out.println("this.lastPage = " + this.lastPage);
 		
 		for(int i=0; i<finalSize; i++){
 			pageList.add(i, this.list.get(i+startIndex));
