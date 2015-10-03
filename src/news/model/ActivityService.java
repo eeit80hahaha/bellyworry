@@ -215,7 +215,7 @@ public class ActivityService {
 	public static void main(String[] args) {
 		ActivityService service = new ActivityService();
 		List<ActivityVO> list = service.select(null);
-		System.out.println("beans="+list);
+//		System.out.println("beans="+list);
 	}
 	
 	//換頁所使用的

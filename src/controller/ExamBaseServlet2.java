@@ -49,7 +49,7 @@ public class ExamBaseServlet2 extends HttpServlet {
 			errors.put("wrongFileType", "圖片檔案格式錯誤");
 		}
 		catch (FileUploadException e){
-			System.out.println(e);
+//			System.out.println(e);
 		}
 		String content = fileItemMap.get("content").getString("utf-8");
 		String correct = fileItemMap.get("correct").getString("utf-8");
