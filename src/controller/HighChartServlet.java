@@ -1,17 +1,22 @@
 package controller;
 
-import health.model.HealthDiaryDAO;
 import health.model.HealthDiaryService;
 import health.model.HealthDiaryVO;
-import init.GlobalService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,38 +24,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import register.model.MemberVO;
 
+@WebServlet(urlPatterns = { "/json.view" })
 public class HighChartServlet extends HttpServlet {
 	private HealthDiaryService service;
-
-	public void init() throws ServletException {
-		service = new HealthDiaryService();
-	};
 
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(request, response);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		HealthDiaryVO vo = new HealthDiaryVO();
+//		System.out.println("HTTP Method=" + request.getMethod());
+		service = new HealthDiaryService();
+		// 接收資料
 		HttpSession session = request.getSession();
-		Map<String, String> errorMessage = new HashMap<String, String>();
-		request.setAttribute("errorMessage", errorMessage);
+		// MemberVO memberVo = (MemberVO)session.getAttribute("user");
 
-		MemberVO memberVo = (MemberVO) session.getAttribute("user");
-		if (memberVo == null) {
-			response.sendRedirect("login.jsp");
-			return;
-		}
-		int memberNo = memberVo.getMemberNo();
-
+		// 轉換資料
+		// int memberNo = memberVo.getMemberNo();
+		String temp1 = request.getParameter("id");
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 
@@ -64,12 +57,49 @@ public class HighChartServlet extends HttpServlet {
 			monthSelect = Integer.parseInt(month);
 		}
 
-		List<HealthDiaryVO> list = service.gethighChart(memberNo, yearSelect, monthSelect);
-		request.setAttribute("list", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/healthDiary.jsp");
-		rd.forward(request, response);
-		return;
+		// 呼叫Model
+		List<HealthDiaryVO> list = service.gethighChart(Integer.parseInt(temp1), yearSelect, monthSelect);
+		JsonArrayBuilder builder = Json.createArrayBuilder();
+		JsonArrayBuilder weight = Json.createArrayBuilder();
+		JsonArrayBuilder bmi = Json.createArrayBuilder();
+		JsonArrayBuilder waistline = Json.createArrayBuilder();
+		JsonArrayBuilder array = null;
 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd");
+		DecimalFormat df = new DecimalFormat("##.00");
+
+		for (HealthDiaryVO vo : list) {
+			array = Json.createArrayBuilder();
+			array.add(Integer.parseInt(sdf.format(vo.getDate()))-1);
+			array.add(Double.parseDouble(df.format(vo.getWeight())));
+			weight.add(array);
+		}
+		for (HealthDiaryVO vo : list) {
+			array = Json.createArrayBuilder();
+			array.add(Integer.parseInt(sdf.format(vo.getDate()))-1);
+			array.add(Double.parseDouble(df.format(vo.getWaistline())));
+			waistline.add(array);
+		}
+		for (HealthDiaryVO vo : list) {
+			array = Json.createArrayBuilder();
+			array.add(Integer.parseInt(sdf.format(vo.getDate()))-1);
+			array.add(Double.parseDouble(df.format((vo.getHeight()*vo.getHeight()/100)/vo.getWeight())));
+			bmi.add(array);
+		}
+		
+		JsonObject obj = Json.createObjectBuilder()
+				.add("weight", weight)
+				.add("BMI", bmi)
+				.add("waistline", waistline)
+				.build();
+		builder.add(obj);
+		String output = builder.build().toString();
+
+		// 根據Model執行結果...
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(output);
+		out.close();
 	}
 
 }

@@ -96,7 +96,7 @@
 		<div class="divPanel page-content">
 		<br><br>
 			<div class="breadcrumbs">
-				<a href="index.jsp">Home</a> &nbsp;/&nbsp; <span>健康管理日誌</span>
+				<a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>健康管理日誌</span>
 			</div>
 			<div id="tabs" class="headerr" style="border: none;">
 <!-- 				<ul class="nav nav-tabs" style="background-color: white;"> -->
@@ -474,11 +474,35 @@
 					</div>
 				</div>
 				<div id="t-3" title="歷史紀錄">
-<!-- 					<div id="container" -->
-<!-- 						style="width: 1000px; height: 400px; margin: 0 auto"></div> -->
+				
+				<div>
+				    <div style="margin:20px 0"></div>
+				    <select id="year" class="easyui-combobox" name="state" style="width:70px;">
+				        <option value="2014">2014年</option>
+				        <option value="2015" selected="selected">2015年</option>
+				    </select>
+				    
+				    <select id="month" class="easyui-combobox" name="state" style="width:70px;">
+				        <option value="1">1月</option>
+				        <option value="2">2月</option>
+				        <option value="3">3月</option>
+				        <option value="4">4月</option>
+				        <option value="5">5月</option>
+				        <option value="6">6月</option>
+				        <option value="7">7月</option>
+				        <option value="8">8月</option>
+				        <option value="9">9月</option>
+				        <option value="10" selected="selected">10月</option>
+				        <option value="11">11月</option>
+				        <option value="12">12月</option>
+				    </select>
+				</div>
+				
+					<div id="container"
+						style="width: 1000px; height: 400px; margin: 0 auto"></div>
 						
 					<br>
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center;margin-left:120px">
 						<tr>
 							<th width='130'>日期</th>
 							<th width='130'>體重</th>
@@ -515,7 +539,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center">
 						<tr>
 							<th width='130'>BMI</th>
 							<th width='130'>歷史變化量</th>
@@ -549,19 +573,14 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-
-
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center">
 						<tr>
 							<th width='130'>腰圍</th>
 							<th width='130'>歷史變化量</th>
-
 						</tr>
 						<c:forEach var='vo' varStatus="i" items="${list}">
 							<tr>
 								<td>${vo.waistline}</td>
-
 								<c:choose>
 									<c:when test="${i.last}">
 										<td>--</td>
@@ -588,56 +607,10 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-
-
-
-
-
-
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div id="footerOuterSeparator"></div>
 
 	<div id="divFooter" class="footerArea">
@@ -710,8 +683,6 @@
 	
 	<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
 	
-	
-	
 <!-- 	<script src="jeasyui/jquery.calendar.js"></script> -->
 
 <!-- 	<script type="text/javascript" src="jeasyui/jquery.calendar.js"></script> -->
@@ -720,12 +691,9 @@
 	
 	<script src="ckeditor/ckeditor.js"></script>
 	
-	
-	
-	
 	<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
 		
-<!-- 		<script src="js/highcharts.js"></script> -->
+		<script src="js/highcharts.js"></script>
 		<script src="js/modules/exporting.js"></script>
 
 		<script src="scripts/bootstrap/js/bootstrap.min.js"
@@ -737,18 +705,102 @@
 			type="text/javascript"></script>
 		<script src="scripts/easing/jquery.easing.1.3.js"
 			type="text/javascript"></script>
-			
-
 	
-
-
-
 	<script>
 		(function($) {	
+			var year,month,day,memberNo;
+			memberNo = "${user.memberNo}"
+			year = $('#year').val();
+			month = $('#month').val();
+// 			console.log($('#year option:selected').val())
+
+		var a = function(){
+			$.getJSON("json.view",{"id":memberNo,"year":year,"month":month},function(data){
+				var date = [];
+				for(var i=1;i<=31;i++){
+					date.push(i);
+				}
+				$.each(data,function(p,data){
+					$('#container').highcharts(
+							{
+								title : {
+									text : '體重、BMI、腰圍變化量',
+									x : -20
+								//center
+								},
+								subtitle : {
+									text : 'Weight.BMI.Waistline',
+									x : -10
+								},
+								xAxis : {
+									categories :date
+								},
+								yAxis : {
+
+									title : {
+										text : 'kg,cm,BMI'
+									},
+									plotLines : [ {
+										value : 0,
+										width : 1,
+										color : '#808080'
+									} ]
+								},
+								legend : {
+									layout : 'vertical',
+									align : 'right',
+									verticalAlign : 'middle',
+									borderWidth : 0
+								},
+								series : [
+										{
+											name : 'weight (kg)',
+											data : data.weight,
+											tooltip : {
+												headerFormat:'<b>weight</b><br/>',
+												valueSuffix : 'kg'
+											}},
+										{
+											name : 'waistline (cm)',
+											data : data.waistline,
+											tooltip : {
+												headerFormat:'<b>waistline</b><br/>',
+												valueSuffix : 'cm'
+											}},
+										{
+											name :'BMI',
+											data : data.BMI,
+											tooltip : {
+												headerFormat:'<b>BMI</b><br/>',
+											}}
+										]
+					})
+				})
+			});
+			}
+			a();
+
+
+
+
+			$("#year").combobox({
+				onSelect:function(record){
+					year = record.value;
+					a();
+				}
+			});
+			$("#month").combobox({
+				onSelect:function(record){
+					month = record.value;
+					a();
+				}
+			});
+			
+			
 			$("#cc").calendar(
 					{
 						onSelect : function(date) {
-							console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate())
+// 							console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate())
 							var month,day;
 							if((date.getMonth()+1)<10){
 								month = '0'+(date.getMonth()+1);
@@ -760,16 +812,16 @@
 							}else{
 								day = date.getDate();
 							}
-							console.log(date.getFullYear()+"-"+month+"-"+day);
+// 							console.log(date.getFullYear()+"-"+month+"-"+day);
 							 $('html,body').animate({scrollTop:$('#'+date.getFullYear()+"-"+month+"-"+day).offset().top -150}, 1000);							
 						}
 					})
 		
 					
-			var time;
+			
 			$(".easyui-datebox").datebox({				
 				onSelect:function(date){
-					var year,month,day;
+					var time;
 					year = date.getFullYear();
 					if((date.getMonth()+1)<10){
 						month = '0'+(date.getMonth()+1);
@@ -782,7 +834,7 @@
 						day = date.getDate();
 					}
 					time = year+'-'+month+'-'+day;
-					console.log(time);
+// 					console.log(time);
 					$.get("healthDaySessionServlet.collection",{"time":time});
 				}
 			});
@@ -800,65 +852,6 @@
 // 				$("#date").datepicker();
 // 			});
 
-
-			//圖表
-			$('#container').highcharts(
-					{
-						title : {
-							text : 'Monthly Average Temperature',
-							x : -20
-						//center
-						},
-						subtitle : {
-							text : 'Source: WorldClimate.com',
-							x : -20
-						},
-						xAxis : {
-							categories : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May',
-									'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-									'Dec' ]
-						},
-						yAxis : {
-							title : {
-								text : 'Temperature (°C)'
-							},
-							plotLines : [ {
-								value : 0,
-								width : 1,
-								color : '#808080'
-							} ]
-						},
-						tooltip : {
-							valueSuffix : '°C'
-						},
-						legend : {
-							layout : 'vertical',
-							align : 'right',
-							verticalAlign : 'middle',
-							borderWidth : 0
-						},
-						series : [
-								{
-									name : 'Tokyo',
-									data : [ 7.0, 80, 9.5, 14.5, 18.2, 21.5,
-											25.2, 26.5, 23.3, 18.3, 13.9, 9.6 ]
-								},
-								{
-									name : 'New York',
-									data : [ -0.2, 0.8, 5.7, 11.3, 17.0, 22.0,
-											24.8, 24.1, 20.1, 14.1, 8.6, 2.5 ]
-								},
-								{
-									name : 'Berlin',
-									data : [ -0.9, 0.6, 3.5, 8.4, 13.5, 17.0,
-											18.6, 17.9, 14.3, 9.0, 3.9, 1.0 ]
-								},
-								{
-									name : 'London',
-									data : [ 3.9, 4.2, 5.7, 8.5, 11.9, 15.2,
-											17.0, 16.6, 14.2, 10.3, 6.6, 4.8 ]
-								} ]
-					});
 		})(jQuery);
 	</script>
 

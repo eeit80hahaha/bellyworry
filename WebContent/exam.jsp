@@ -36,74 +36,163 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css">
+<!--     <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css"> -->
     <link href="http://fonts.googleapis.com/css?family=Calligraffitti" rel="stylesheet" type="text/css">
-
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
-    <style>
-		#map {
-			height: 700px;
-		}
-
-		#info {
-			display: none;			
-	    }
-
-#panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-}
-
-#panel, .panel {
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
-}
-
-#panel select, #panel input, .panel select, .panel input {
-  font-size: 15px;
-}
-
-#panel select, .panel select {
-  width: 100%;
-}
-
-#panel i, .panel i {
-  font-size: 12px;
-}
-
-      .panel {
-        height: 100%;
-		overflow: auto;
-      }
 
 
-		
-    </style>
+    <style type="text/css" media="screen">
+    /*Tooltip and Pointer CSS*/
+    .ui-tooltip { position:absolute; z-index:9999; font-size:11pt; font-family:Calibri;  text-align:left }
+    body .ui-tooltip { border-width:2px; }
+
+    .ui-button { display: inline-block; position: relative; padding: 0; margin: 0; margin-right: .3em; text-decoration: none !important; cursor: pointer; text-align: center; zoom: 1; overflow: visible; }
+    /*button text element */
+    .ui-button .ui-button-text { display: block; line-height: 0.4;  }
+    .ui-button-text-only .ui-button-text { padding: .3em .45em; }
+    .limit { background: #F4CAD6; } 
+
+/*     a:link,a:visited */
+/*     { */
+/* 		color:#03c; */
+/* 		text-decoration: none */
+/*     } */
+
+    a:hover 
+    {
+		color:#339;
+		text-decoration:underline;
+    }
+
+    .splitline 
+    { 
+       border-top:1px solid green;
+    }
+    tr.rowbackgroundcolor .datecell
+    {
+        #background-color: #cccccc;
+		#background-color: #cccccc;
+		border-left:2px solid #999999;
+		border-right:2px solid #FFFFFF;
+    }
+    tr:not(.rowbackgroundcolor)     .datecell
+    {
+        #background-color: #cccccc;
+		#background-color: #cccccc;
+		border-left:2px solid #FFFFFF;
+		border-right:2px solid #999999;
+    }
+    
+    .rowbackgroundcolor-select
+    {
+        background-color: #FFE178;
+    }
+    .select
+    {
+        background-color: #FFE178;
+    }
+    .gridview
+    {
+        border-color: #999999;
+        border-style: solid;
+        border-width: 1px;
+        border-collapse: collapse;
+        border-left-style: none;
+        border-top-style: none;
+    }
+    #monthtag
+    {
+	position:absolute;
+	background-color:lightgreen;
+	color:MidnightBlue;
+	
+	top:-8px;
+	left:16px;
+	border-top: solid 1px #ccc;
+	border-left: solid 1px #ccc;
+	border-right: solid 1px #666;
+	border-bottom: solid 1px #666;
+	
+	font-size:11px;
+	font-weight:bold;
+	line-height:14px;
+    
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-webkit-text-size-adjust:none;
+	width:32px;
+	text-align:center;
+    }
+    
+    .newcell
+    {
+        vertical-align:top;
+        border-style:none;
+        background-color:White;
+        border-top-style:hidden;
+        width:35px;
+	position:relative;
+    }
+
+    .oldactivity
+    {
+	color:#888;	
+    }
+    .oldactivity A:link { color:#888;}
+    .oldactivity A:visited { color:#888;}
+    .oldactivity A:hover { color:#888;}
+    .oldactivity A:active { color:#888;}
+    
+
+
+    ul#menubar
+    {
+        border:1px solid #5F5F5F;
+        margin:0px;list-style:none;padding:2px;margin-bottom:10px;
+        -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;
+        -webkit-box-shadow: #666 0px 2px 3px;     /*陰影for Google Chrome、Safari*/
+        -moz-box-shadow: #666 0px 2px 3px;     /*陰影for Firefox*/
+        box-shadow: #666 0px 2px 3px;     /*陰影for IE*/
+        background: #dedede;
+        background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#dedede));    /*漸層色for Google Chrome、Safari*/
+        background: -moz-linear-gradient(#FFFFFF, #dedede);     /*漸層色for Firefox*/ 
+        display:block;float:left;
+    }
+    ul#menubar ul
+    {
+        text-align:right;
+    }
+    
+    ul#menubar li.menubar
+    {
+	    height:30px;line-height:30px; width:240px;
+	}
+	ul#menubar li
+	{
+	    display:block;white-space:nowrap;float:left;border-style:none;
+	}
+	
+    
+</style>
 </head>
-<body id="pageBody">
-<c:set var="funcName" value="EXAM" scope="session"/>
+<body id="pageBody" style="zoom: 1;">
+<c:set var="funcName" value="ACT" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
-
 <div class="container">
+
 
 	<div class="divPanel page-content">
 
-		<div class="breadcrumbs">
-			<a href="index.jsp">首頁</a> &nbsp;/&nbsp; 
-			<span>小學堂</span>
-		</div> 
+        <div class="breadcrumbs">
+                <a href="index.jsp">首頁</a> &nbsp;/&nbsp; <span>小學堂</span>                
+        </div> 
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
-			<div class="span8" id="divMain">
+                <div class="span8" id="divMain">
+               <h1>小學堂</h1>
 <%
 	int[] numbers = new int[5];
 	for (int i = 1; i < 5; i++) {
@@ -122,10 +211,13 @@
 		System.out.print(numbers[k] + "\t");
 	}
 %>
+
+<table>
+
 ${PageExamVO.exampage[0].content}
+
 <form action="${pageContext.request.contextPath}/examsession.controller" method="get">
 	<div class="question-body clearfix notranslate ">
-		
 		<c:if test="<%=numbers[1] ==1%>">
 			<div class="answer-option-cell">		
 				<div class="radio-button-container">
@@ -293,13 +385,13 @@ ${PageExamVO.exampage[0].content}
 			<div class="answer-option-cell">
 				<div class="radio-button-container">
 					<input  name="ans" type="radio"
-						class="radio-button-input" value="10"> <label
-						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
-						for="644496188_7455644669"> <span
-						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].correct}<br/>
-					</span>
-					</label>
+						class="radio-button-input" value="10"> 
+						<label
+							class="answer-label radio-button-label no-touch touch-sensitive clearfix"for="644496188_7455644669"> 
+							<span class="radio-button-display"></span> 
+							<span class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].correct}<br/>
+							</span>
+					    </label>
 				</div>
 			</div>
 		</c:if>
@@ -345,9 +437,11 @@ ${PageExamVO.exampage[0].content}
 				</div>
 			</div>
 		</c:if>
-		</div>	
-	<input type="submit" value="確認送出">
+
+		</div>		
+<input type="submit" value="確認送出">
 </form>
+</table>
 
 <div id="paging">
 <!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
@@ -387,17 +481,19 @@ ${PageExamVO.exampage[0].content}
 </tr>
 </table>
 </div>
+
 				
 
 
 	
-			</div>
+			
                     
 		</div>
+		<div class="span2"></div>
 				<!--End Sidebar Area here-->
 	</div>
 			<!--End Main Content Area here-->
-
+</div>
         <div id="footerInnerSeparator"></div>
 </div>
 <div id="footerOuterSeparator"></div>

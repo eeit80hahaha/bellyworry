@@ -128,7 +128,7 @@ input[type="button"]:disabled{
 					</div>
 			<table>
 			<thead>
-			<tr><th>no</th><th>活動名稱</th><th>開始時間</th><th>結束時間</th><th>活動地點</th><th>活動圖片</th><th>活動網址</th><th>主辦廠商</th><th></th></tr>
+			<tr><th>no</th><th>活動名稱</th><th>開始時間</th><th>結束時間</th><th>活動地點</th><th>活動圖片</th><th>主辦廠商</th><th></th></tr>
 			</thead>
 			<tbody>
 			<c:forEach var="activity" items="${PagesActivityVO.activitypage}" varStatus="list">
@@ -139,10 +139,8 @@ input[type="button"]:disabled{
 				<td>${activity.endTime}</td>
 				<td>${activity.address}</td>
 				<td width="60" height="60"><img src="data:image/jpg;base64,${activity.picture1}" width="60"height="60" /></td>
-				<td>${activity.url}</td>
-				<td>${activity.boss}</td>
-<%-- 				<input type="hidden" name="activityno" value="${activity.no}" />			 --%>
-				
+<%-- 				<td>${activity.url}</td> --%>
+				<td>${activity.boss}</td>				
 				<td>
 					<FORM  action="<c:url value='activityupdate.controller?no=${activity.no}' />" method="get">
 			               <!-- 這些隱藏欄位都會送到後端 -->
@@ -154,7 +152,7 @@ input[type="button"]:disabled{
 			               <Input type='hidden' name='address' value='${activity.address}'><P/>
 			               <Input type='hidden' name='url' value='${activity.url}'><P/>
 			               <Input type='hidden' name='boss' value='${activity.boss}'><P/>
-<%-- 			               <Input type='hidden' name='PictureBig' value='${activity.picture1}'><P/> --%>
+<%-- 			               		<Input type='hidden' name='PictureBig' value='${activity.picture1}'><P/> --%>
 			               <Input type='submit' value='修改'>
 			       </FORM>
 				</td>
@@ -186,15 +184,15 @@ input[type="button"]:disabled{
     <script src="js/jquery.js">
     
     </script>
-<!--     <script type="text/javascript"> -->
-<!--  function init(){ -->
-<!--  	var contents = document.getElementsByName("activityContent"); -->
-<%--  		for(var i =0; i<contents.length;i++){ --%>
-<%--  			console.log(contents[i].firstChild.nodeValue); --%>
-<%--  			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20); --%>
-<%--  		} --%>
-<%--  	var NewStr="${activity.content}"; --%>
-<%--  } --%>
+<!-- <script type="text/javascript"> -->
+<!-- //  function init(){ -->
+<!-- //  	var contents = document.getElementsByName("activityContent"); -->
+<%-- //  		for(var i =0; i<contents.length;i++){ --%>
+<%-- //  			console.log(contents[i].firstChild.nodeValue); --%>
+<%-- //  			contents[i].innerHTML = new String(contents[i].firstChild.nodeValue).substr(0,20); --%>
+<%-- //  		} --%>
+<%-- //  	var NewStr="${activity.content}"; --%>
+<%-- //  } --%>
 <!-- </script> -->
 
     <!-- Bootstrap Core JavaScript -->
