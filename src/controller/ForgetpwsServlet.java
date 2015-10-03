@@ -62,16 +62,13 @@ public class ForgetpwsServlet extends HttpServlet {
 //呼叫model
 		
 		boolean bean = service.mailcheck(account.trim(), mail.trim());
-		System.out.println(bean);
-//根據model執行結果，導向view
+		//根據model執行結果，導向view
 		if(bean!=true) {
-			System.out.println(1);
 			errors.put("open","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("mailer", "無此帳號或E-mail錯誤，請重新輸入");			
 			request.getRequestDispatcher(
 					"/login.jsp").forward(request, response);
 		} else {
-			System.out.println(account);
 			service.sendmail(service.selectbyId(account).getId(), mail);
 			
 			errors.put("open","$(\"#dialog0\").dialog(\"open\");");

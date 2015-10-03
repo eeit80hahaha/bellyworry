@@ -77,7 +77,6 @@ public class MenuDaoHbm implements MenuDAO{
 			result=vo.getMenuNo();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
-//			System.out.println("違反UNIQUEKEY條件約束");
 			String[] ss=ex.getCause().getMessage().split("'")[0].split(" ");
 			String ss1=ss[0]+ss[1]+ss[2]+ss[3];
 			if("違反UNIQUEKEY條件約束".equals(ss1)){
@@ -108,7 +107,6 @@ public class MenuDaoHbm implements MenuDAO{
 			
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
-//			System.out.println("違反UNIQUEKEY條件約束");
 			String[] ss=ex.getCause().getMessage().split("'")[0].split(" ");
 			String ss1=ss[0]+ss[1]+ss[2]+ss[3];
 			if("違反UNIQUEKEY條件約束".equals(ss1)){
@@ -135,7 +133,6 @@ public class MenuDaoHbm implements MenuDAO{
 				result = true;
 			}
 			session.getTransaction().commit();
-			System.out.println("刪除的筆數=" + i);
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;			

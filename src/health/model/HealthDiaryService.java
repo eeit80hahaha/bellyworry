@@ -25,7 +25,7 @@ public class HealthDiaryService {
 		dao = new HealthDiaryDaoHbm();
 		if (vo != null) {
 			no = dao.insert(vo);
-			System.out.println(no);
+//			System.out.println(no);
 			return no;
 		}
 		return no;
@@ -37,7 +37,7 @@ public class HealthDiaryService {
 		dao = new HealthDiaryDaoHbm();
 		if(vo!=null){
 			result = dao.update(vo);
-			System.out.println(result);
+//			System.out.println(result);
 			return result;
 		}
 		return 0;

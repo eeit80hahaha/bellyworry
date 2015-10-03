@@ -62,7 +62,6 @@ public class CreateMenuServlet extends HttpServlet {
 			errors.put("wrongFileType", "圖片檔案格式錯誤");
 		}
 		catch (FileUploadException e){
-			System.out.println(e);
 		}
 		
 		ByteArrayOutputStream fileBufferBig = MyServletFileUpload.getFileOutputStream(fileItemMap.get("PictureBig"));
@@ -137,20 +136,13 @@ public class CreateMenuServlet extends HttpServlet {
 			String itemname = "";
 			String itemclass = "";
 			String itemweight = "";
-			System.out.println("itemCounts = " + itemCounts);
 			for(int i=1; i<=itemCounts; i++){
-				System.out.println("i = " + i);
 				bean2=new FoodItemVO();
 				bean3=new FoodListVO();
 				
 				itemname = fileItemMap.get("itemname"+i).getString("utf-8");
 				itemclass = fileItemMap.get("itemclass"+i).getString("utf-8");
 				itemweight = fileItemMap.get("itemweight"+i).getString("utf-8");
-				
-				System.out.println("itemname"+i+" = " + itemname);
-				System.out.println("itemclass"+i+" = " + itemclass);
-				System.out.println("itemweight"+i+" = " + itemweight);
-				
 				bean2.setName(itemname);
 				bean2.setType(itemclass);
 				bean2.setCount(itemweight);
@@ -172,12 +164,10 @@ public class CreateMenuServlet extends HttpServlet {
 			session.getTransaction().commit();
 			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("success", "新增成功");
-			System.out.println("==============success===============");
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			errors.put("open","$(\"#dialog\").dialog(\"open\");");
 			errors.put("file", "新增失敗");
-			System.out.println("=============roolback=================");
 		}
 //		String path = request.getContextPath();
 //		response.sendRedirect(path + "/backend/foodCalInsert.jsp");

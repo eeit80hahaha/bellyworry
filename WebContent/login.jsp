@@ -84,6 +84,7 @@ $(function() {
 </script>
 
 <body>
+<c:set var="funcName" value=" " scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 <div id="contentOuterSeparator"></div>
 <div class="container">

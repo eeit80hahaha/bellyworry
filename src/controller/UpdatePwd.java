@@ -71,7 +71,6 @@ public class UpdatePwd extends HttpServlet {
 				
 		//呼叫model
 				MemberVO bean = service.selectbyId(account);
-				System.out.println(bean);
 		//根據model執行結果，導向view
 				if(bean==null) {
 					errors.put("open","$(\"#dialog1\").dialog(\"open\");");

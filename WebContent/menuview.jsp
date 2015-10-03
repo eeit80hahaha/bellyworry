@@ -127,13 +127,14 @@ td {
   background-size: 800px auto 
 }
 </style>
+<c:set var="funcName" value="FOOD" scope="session"/>
 <jsp:include page="/page/header.jsp" />
 </head>
 <body>
 	<div
 		id= "picture" style="position: relative; left: 0; right: 0; margin: 0 auto; width: 960px;">
 		<div>
-			<a href="index.jsp">Home</a>&nbsp;/&nbsp;<span>菜色&食譜</span>
+			<a href="index.jsp">首頁</a>&nbsp;/&nbsp;<span>菜色&食譜</span>
 		</div>
 		<form method="post"
 			action="${pageContext.request.contextPath}/Menuservelt.controller"

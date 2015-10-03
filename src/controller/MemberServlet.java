@@ -95,10 +95,8 @@ public class MemberServlet extends HttpServlet {
 //呼叫model
 		
 		MemberVO bean = service.selectbyId(id);
-	System.out.println(bean);
-//根據model執行結果，導向view
+	//根據model執行結果，導向view
 		if(bean!=null) {
-			System.out.println(1);
 			errors.put("open1","$(\"#dialog0\").dialog(\"open\");");
 			errors.put("er", "帳號重複，請重新輸入");			
 			request.getRequestDispatcher(

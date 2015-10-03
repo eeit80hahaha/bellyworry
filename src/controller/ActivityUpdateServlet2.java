@@ -52,7 +52,7 @@ public class ActivityUpdateServlet2 extends HttpServlet {
 			errors.put("wrongFileType", "圖片檔案格式錯誤");
 		}
 		catch (FileUploadException e){
-			System.out.println(e);
+//			System.out.println(e);
 		}
 		
 		ByteArrayOutputStream fileBufferBig = MyServletFileUpload.getFileOutputStream(fileItemMap.get("PictureBig"));

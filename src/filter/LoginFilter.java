@@ -22,7 +22,7 @@ import register.model.MemberVO;
  */
 @WebFilter(
 urlPatterns = { "/UpdateServlet.controller",
-		"/diaryIndex.controller","/reflectdiary.controller" }
+		"/diaryIndex.controller","/reflectdiary.controller","/backend/*" }
 		)
 public class LoginFilter implements Filter {
 	@Override
