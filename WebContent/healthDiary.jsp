@@ -207,106 +207,6 @@
 							style="width: 335px; height: 360px; position: absolute; top: 235px"></div>
 					</div>
 
-<!-- 					<div class="tab-content" style="height: 100%; width: 100%;"> -->
-<!-- 						<table border='1'> -->
-<!-- 							<tr> -->
-<!-- 								<th width='70'>會員編號</th> -->
-<!-- 								<th width='70'>健康管理id</th> -->
-<!-- 								<th width='70'>日期</th> -->
-<!-- 								<th width='70'>身高</th> -->
-<!-- 								<th width='70'>體重</th> -->
-<!-- 								<th width='70'>腰圍</th> -->
-<!-- 								<th width='70'>BMI</th> -->
-<!-- 								<th width='70'>建議</th> -->
-<!-- 								<th width='70'>日誌標題</th> -->
-<!-- 								<th width='70'>日誌內容</th> -->
-<!-- 								<th width='70'>同意分享日誌</th> -->
-
-
-<!-- 								<th width='70'>日期</th> -->
-<!-- 								<th width='70'>運動</th> -->
-<!-- 								<th width='70'>每一小時消耗熱量</th> -->
-<!-- 								<th width='70'>分量</th> -->
-
-
-<!-- 								<th width='70'>日期</th> -->
-<!-- 								<th width='70'>時段</th> -->
-<!-- 								<th width='70'>菜色名稱</th> -->
-<!-- 								<th width='70'>熱量</th> -->
-<!-- 								<th width='70'>一搬份量</th> -->
-<!-- 								<th width='70'>每份公克數</th> -->
-<!-- 								<th width='70'>份量</th> -->
-<!-- 								<th width='70'>總熱量</th> -->
-<!-- 							</tr> -->
-<%-- 							<c:forEach var="vo" items="${list}"> --%>
-<!-- 								<tr> -->
-<%-- 									<td>${vo.memberNo}</td> --%>
-<%-- 									<td>${vo.no}</td> --%>
-<%-- 									<td>${vo.date}</td> --%>
-<%-- 									<td>${vo.height}</td> --%>
-<%-- 									<td>${vo.weight}</td> --%>
-<%-- 									<td>${vo.waistline}</td> --%>
-<%-- 									<td>${vo.weight/((vo.height/100)*(vo.height/100))}</td> --%>
-<!-- 									BMI -->
-<%-- 									<c:choose> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 18.5 ) }"> --%>
-<!-- 											<td>體重過輕</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${ ( vo.weight/((vo.height/100)*(vo.height/100)) < 24 ) }"> --%>
-<!-- 											<td>標準體重</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 27 ) }"> --%>
-<!-- 											<td>過重</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 30 ) }"> --%>
-<!-- 											<td>輕度肥胖</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 35 ) }"> --%>
-<!-- 											<td>中度肥胖</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) >= 35 ) }"> --%>
-<!-- 											<td>重度肥胖</td> -->
-<%-- 										</c:when> --%>
-<%-- 									</c:choose> --%>
-
-<%-- 									<td>${vo.title}</td> --%>
-<%-- 									<td>${vo.content}</td> --%>
-<%-- 									<td>${vo.share}</td> --%>
-
-<%-- 									<td>${vo.exerVo[0].date}</td> --%>
-<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.name}</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.calHour}</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.count}</c:forEach></td> --%>
-
-
-
-
-
-<%-- 									<td>${vo.eatVo[0].date}</td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br></c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.count}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.weight}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count*eat.foodCalVO.cal}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<!-- 								</tr> -->
-<%-- 							</c:forEach> --%>
-<!-- 						</table> -->
-
-<!-- 					</div> -->
 				</div>
 				<div id="t-2" title="填寫日誌">
 
@@ -315,9 +215,6 @@
 							<!-- left -->
 							<div
 								style="width: 40%; float: left;height: 100%;"> <!-- 左邊框 border: 2px solid red;  -->
-
-
-
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
 									value="${bean.date} <fmt:formatDate pattern="yyyy-MM-dd" value="${healthDate}" />/>"></input>
@@ -465,7 +362,7 @@
 							</div>
 							<div>
 								<input type="submit" value="SAVE"
-									style="width: 110px; height: 45px; margin: 10px">
+									style="width: 110px; height: 45px; margin: 5px">
 								<button style="width: 110px; height: 45px;">
 									<a href="#">back</a>
 								</button>
@@ -779,9 +676,6 @@
 			});
 			}
 			a();
-
-
-
 
 			$("#year").combobox({
 				onSelect:function(record){

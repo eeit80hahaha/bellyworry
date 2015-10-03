@@ -50,7 +50,7 @@ public class OneDayDiaryServlet extends HttpServlet{
 		}
 		vo.setNo(noSelect);
 		vo.setMemberNo(memberNo);
-		System.out.println(vo);
+//		System.out.println(vo);
 		HealthDiaryVO list = service.selectByPrimaryKey(vo);
 		
 		System.out.println(list);

@@ -136,7 +136,7 @@ public class healthServlet extends HttpServlet {
 		}
 
 		if (list.isEmpty()) { 										// 判斷list是否為空isEmpty()回傳boolean true為空值,false有值
-			System.out.println("Insert");
+//			System.out.println("Insert");
 			service.insert(vo);
 			request.setAttribute("vo", vo);
 		} else {
@@ -149,7 +149,7 @@ public class healthServlet extends HttpServlet {
 				}
 				service.update(vo);
 				request.setAttribute("vo", vo);
-				System.out.println("Update");
+//				System.out.println("Update");
 			}
 		}
 		RequestDispatcher rd = request
