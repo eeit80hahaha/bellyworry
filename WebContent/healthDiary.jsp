@@ -189,8 +189,8 @@
 										</c:forEach></div>
 									</div>
 								</div><br>
-								<div>飲食總熱量</div>
-								<div>運動總熱量</div>
+<!-- 								<div>飲食總熱量</div> -->
+<!-- 								<div>運動總熱量</div> -->
 								<div>
 									<a href="${path}">詳讀內文</a>
 								</div>
