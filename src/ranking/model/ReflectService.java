@@ -1,6 +1,7 @@
 package ranking.model;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import health.model.HealthDiaryDAO;
@@ -9,6 +10,7 @@ import health.model.HeroHealthDiaryVO;
 import health.model.dao.HealthDiaryDaoHbm;
 import ranking.model.dao.ReflectDAOHbm;
 import register.model.MemberDAO;
+import register.model.MemberVO;
 import register.model.dao.MemberDAOHbm;
 
 public class ReflectService {
@@ -57,8 +59,17 @@ public class ReflectService {
 		return result;
 	}
 	
-	public ReflectPageVO getPage(int pageNo, int pageSize, int reflectedNo){
-		List<ReflectVO> list = reflectdao.getPage(pageNo, pageSize, reflectedNo);
+	public ReflectPageVO getPage(int pageNo, int pageSize, String reflectedid){
+		List<ReflectVO> list = new ArrayList<ReflectVO>();
+		int rowCount = 0;
+		if(reflectedid==null){
+			list = reflectdao.getPageNo(pageNo, pageSize);
+			rowCount = reflectdao.getPageTotalCount();
+		}else{
+			MemberVO vo = memberdao.selectById(reflectedid);
+			list = reflectdao.getPageNoID(pageNo, pageSize, vo.getMemberNo());
+			rowCount = reflectdao.getPageIDTotalCount(vo.getMemberNo());
+		}
 		
 		for (ReflectVO reflectvo : list) {
 			
@@ -70,8 +81,6 @@ public class ReflectService {
 					memberdao.selectByPrimaryKey(reflectvo.getAuthorNo()).getId());
 
 		}
-		
-		int rowCount = reflectdao.getPageTotalCount(reflectedNo);
 		
 		ReflectPageVO result = new ReflectPageVO(pageNo, pageSize, rowCount, list);
 		
