@@ -32,6 +32,9 @@
         <li>
             <a href="${pageContext.request.contextPath}/backend/exambase1.controller?pageNo=1"><i class="fa fa-fw fa-table"></i>小學堂後台</a>
         </li>
+                 <li>
+            <a href="${pageContext.request.contextPath}/backend/exercisecalBackstage.jsp"><i class="fa fa-fw fa-desktop"></i> 運動項目管理 </a>
+        </li>
         <li>
             <a href="${pageContext.request.contextPath}/backend/forms.jsp"><i class="fa fa-fw fa-edit"></i> Forms</a>
         </li>
