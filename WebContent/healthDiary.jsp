@@ -677,9 +677,6 @@
 			}
 			a();
 
-
-
-
 			$("#year").combobox({
 				onSelect:function(record){
 					year = record.value;
