@@ -15,9 +15,9 @@
 <!-- 		<property name="hibernate.connection.username">sa</property> -->
 <!-- 		<property name="hibernate.connection.password">sa123456</property> -->
 
-<!--  		<property name="hibernate.connection.url">jdbc:sqlserver://tvo97d9zao.database.windows.net:1433;database=bellyworry</property>  -->
-<!-- 		<property name="hibernate.connection.username">dbuser</property> -->
-<!-- 		<property name="hibernate.connection.password">P@ssw0rd</property> -->
+ 		<property name="hibernate.connection.url">jdbc:sqlserver://tvo97d9zao.database.windows.net:1433;database=bellyworry</property> 
+		<property name="hibernate.connection.username">dbuser</property>
+		<property name="hibernate.connection.password">P@ssw0rd</property>
 
 		       
 		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
