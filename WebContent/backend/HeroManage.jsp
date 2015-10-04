@@ -74,7 +74,7 @@
                 <div class="row">
                 	
                 
-                ${reflectok}<br/>
+                <h3>${reflectok}</h3>
 			<c:if test="${!empty reflectpagevo.reflectpage}"> 		
                 <div id="paging">
 				<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->

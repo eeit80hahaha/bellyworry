@@ -4,6 +4,7 @@ import health.model.HealthDiaryVO;
 import init.GlobalService;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ public class DayReflectManageServlet extends HttpServlet {
 	
 	private HeroService heroservice;
 	private ReflectService reflectservice;
+	private static SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
+	
 	@Override
 	public void init() throws ServletException {
 		
@@ -69,17 +72,14 @@ public class DayReflectManageServlet extends HttpServlet {
 		}
 		
 		//呼叫Model
-//		HeroVO herovo = new HeroVO();
-//		herovo.setMemberNo(memberNo);
+
 		
 		//根據Model執行結果導向View
-//	    List<HeroVO> herovolist = heroservice.select(herovo);
-//		System.out.println(memberNo+":"+date);
 		int result = reflectservice.reflectday(memberNo, date);
 		
 			
 			if(result > 0){
-				request.setAttribute("reflectok","會員"+ reflectedID + "的"+ date + "日誌封鎖成功");
+				request.setAttribute("reflectok","會員"+ reflectedID + "的"+ sFormat.format(date) + "日誌封鎖成功");
 				request.getRequestDispatcher(
 						"/backend/heromanage.controller?pageNo=1").forward(request, response);
 			}else if(result == 0){
