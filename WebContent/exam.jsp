@@ -208,7 +208,7 @@
 	}
 
 	for (int k = 1; k <= 4; k++) {
-		System.out.print(numbers[k] + "\t");
+// 		System.out.print(numbers[k] + "\t");
 	}
 %>
 

@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 
 		// 呼叫model
 		MemberVO bean = service.login(username, password);
-		System.out.println(bean);
 		// 根據model執行結果，導向view
 		if (bean == null) {
 			errors.put("open", "$(\"#dialog0\").dialog(\"open\");");

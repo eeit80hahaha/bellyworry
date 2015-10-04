@@ -65,13 +65,6 @@ private MenuService service;
 		
 		/*Neil add*/
 //		request.setAttribute("selected", menuname);
-		for(DayMealVO vo:ss){
-			System.out.println(vo.getNo());
-			System.out.println(vo.getName());
-			System.out.println(vo.getBreakfastMealName().getName());
-			System.out.println(vo.getLunchMealName().getName());
-			System.out.println(vo.getDinnerMealName().getName());
-		}
 		if(ss!=null && listPage!=null){
 		request.setAttribute("menu", ss);
 		request.setAttribute("pagecount", listPage.getPageNo());

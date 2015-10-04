@@ -53,7 +53,6 @@ public class UpdateandDeleteServlet extends HttpServlet {
 
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("meal", errors);
-		System.out.println(foodNo);
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -61,21 +60,16 @@ public class UpdateandDeleteServlet extends HttpServlet {
 					.createQuery("from MealDetailVO where foodNo="
 							+ GlobalService.convertInt(foodNo));
 			if (query0.list().size() != 0) {
-				System.out.println("=============mealname!=null"+query0.list().size());
 				errors.put("mealerror", "請先將此菜色從套餐中刪除");
 			} else {
 				int no = GlobalService.convertInt(foodNo);
-				System.out.println("1111111111111111111");
 				FoodCalVO v0Copy = new FoodCalVO();
 				FoodCalVO v0 = service.selectbyId(no);
 				v0Copy = v0;
-				System.out.println("3333333333333333333");
 				Query query = session
 						.createQuery("delete from FoodCalVO where foodNo=" + no);
-				System.out.println("222222222222222222");
 				query.executeUpdate();
 				
-				System.out.println("=============foodcal-delete"+query.executeUpdate());
 				if (v0Copy.getCookNo() != 0) {
 					List<FoodListVO> foodlist = service.selectbyCookNo(v0
 							.getCookNo());
@@ -88,7 +82,6 @@ public class UpdateandDeleteServlet extends HttpServlet {
 										+ " and useFoodNo="
 										+ v1.getUseFoodNo());
 						query1.executeUpdate();
-				System.out.println("=============foodList-delete"+query1.executeUpdate());
 					}
 
 					for (FoodListVO v1 : foodlistCopy) {
@@ -96,14 +89,12 @@ public class UpdateandDeleteServlet extends HttpServlet {
 								.createQuery("delete from FoodItemVO where useFoodNo="
 										+ v1.getUseFoodNo());
 						query2.executeUpdate();
-				System.out.println("=============foodItem-delete"+query2.executeUpdate());
 					}
 
 					Query query3 = session
 							.createQuery("delete from CookVO where cookNo="
 									+ v0Copy.getCookNo());
 					query3.executeUpdate();
-					System.out.println("=============cook-delete"+query3.executeUpdate());
 				}
 				
 				// String path = request.getContextPath();

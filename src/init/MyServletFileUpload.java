@@ -145,7 +145,6 @@ public class MyServletFileUpload {
 				}
 				//回衝buffer
 				buffer.flush();
-				System.out.println("Buffer  "+item.getFieldName()+"=="+buffer);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -55,7 +55,16 @@
                                 <i class="fa fa-table"></i> 檢舉清單
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i> <a href="${pageContext.request.contextPath}/backend/#">帳號查詢</a>
+                                <i class="fa fa-table">
+<%--                                 <a href="${pageContext.request.contextPath}/backend/#">帳號查詢</a> --%>
+                            	帳號查詢
+                            	<form action="${pageContext.request.contextPath}/backend/heromanage.controller"
+                            	 method="get" style="display: inline;" >
+                            		<input type="hidden" name="pageNo" value="1">
+                            		<input type="text" name="id" value="">
+                            		<input type="submit" value="查詢">
+                            	</form>
+                            	</i>
                             </li>
                         </ol>
                     </div>
@@ -66,10 +75,12 @@
                 	
                 
                 
-                		${reflectpagevo}
+<%--                 		${reflectpagevo} --%>
+<!--                 		<hr/> -->
 <%--                 		<h1>${reflectpagevo.reflectpage[0]}</h1> --%>
-                		<hr/>
-                		<div id="paging">
+<!--                 		<hr/> -->
+			<c:if test="${!empty reflectpagevo.reflectpage}"> 		
+                <div id="paging">
 				<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
 				<table border="0">
 				  <tr>
@@ -90,7 +101,7 @@
 				     <td width='76'>
 				            <c:if test="${reflectpagevo.pageNo != reflectpagevo.totalPages}">
 				                <div id="pnext">
-				                   <a href="<c:url value='/backend/heromanage.controller?pageNo=${herohealthdiaryvo.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
+				                   <a href="<c:url value='/backend/heromanage.controller?pageNo=${reflectpagevo.pageNo+1}' />">下一頁</a>&nbsp;&nbsp;&nbsp;
 				                </div>
 				            </c:if>
 				     </td>  
@@ -108,104 +119,54 @@
 				</table>
 				</div>
                 		
-                		檢舉日誌：<fmt:formatDate 
-                		value="${reflectpagevo.reflectpage[0].reflectedDate}" type="date" /><br/>
-                		檢舉會員：${reflectpagevo.reflectpage[0].reflectedId}<br/>
-                		投訴會員：${reflectpagevo.reflectpage[0].authorId}<br/>
-                		檢舉時間：<fmt:formatDate 
-                		value="${reflectpagevo.reflectpage[0].authorDate}" type="date" /><br/>
-                		<hr/>
+<%--                 		檢舉日誌：<fmt:formatDate  --%>
+<%--                 		value="${reflectpagevo.reflectpage[0].reflectedDate}" type="date" /><br/> --%>
+<%--                 		檢舉會員：${reflectpagevo.reflectpage[0].reflectedId}<br/> --%>
+<%--                 		投訴會員：${reflectpagevo.reflectpage[0].authorId}<br/> --%>
+<%--                 		檢舉時間：<fmt:formatDate  --%>
+<%--                 		value="${reflectpagevo.reflectpage[0].authorDate}" type="date" /><br/> --%>
+<!--                 		<hr/> -->
                 
-<%--                 	<form action="<c:url value="/healthView.controller" />" method="get" role="form"> --%>
-<!--                     <div class="col-lg-12"> -->
-<!-- 							<div class="form-group"> -->
-<!--                                 <label>景點類別：</label> -->
-<!--                                 <select name="viewClassNo" lang="10" id="viewClassNo" class="form-control"> -->
-<!-- 									<option value="100000">全部</option> -->
-<%-- 									<jsp:useBean id="viewClass" class="fun.model.ViewClassService"> --%>
-<%-- 									<c:forEach var="row" items="${viewClass.all}"> --%>
-<%-- 										<c:if test="${nowViewClassVO.viewClassNo == row.viewClassNo}"> --%>
-<%-- 											<option value="${row.viewClassNo}" selected>${row.name}</option> --%>
-<%-- 										</c:if> --%>
-<%-- 										<c:if test="${nowViewClassVO.viewClassNo != row.viewClassNo}"> --%>
-<%-- 											<option value="${row.viewClassNo}">${row.name}</option> --%>
-<%-- 										</c:if> --%>
-<%-- 									</c:forEach> --%>
-<%-- 									</jsp:useBean> --%>
-<!-- 								</select> -->
-<!--                             </div> -->
-                            
-<!--                             <h3>健康景點管理</h3> -->
-<!-- 	                        <div class="table-responsive"> -->
-<!-- 	                            <table class="table table-bordered table-hover table-striped"> -->
-<!-- 	                            	<thead> -->
-<!--                                     <tr> -->
-<!--                                         <th>編號</th><th>健康景點名稱</th><th>景點類別</th><th>所在地緯度</th><th>所在地經度</th><th>編輯</th> -->
-<!--                                     </tr> -->
-<!--                                 	</thead> -->
-<!-- 	                            	<tbody id="healthViewlist"> -->
-<%-- 	                                	<c:forEach var="healthViewVO" items="${healthViewPageVO.healthViewPage}"> --%>
-<%-- 		                                    <tr><td>${healthViewVO.no}</td> --%>
-<%-- 		                                    	<td>${healthViewVO.name}</td> --%>
-<%-- 		                                    	<td>${healthViewVO.viewClassVO.name}</td> --%>
-<%-- 		                                    	<td>${healthViewVO.lat}</td> --%>
-<%-- 		                                    	<td>${healthViewVO.lng}</td> --%>
-<!-- 		                                    	<td align="center"><button type="button" class="btn btn-default" name="prodaction" value="Update">修改</button>　<button type="button" class="btn btn-default" name="prodaction" value="Delect">刪除</button></td> -->
-<!-- 		                                    </tr> -->
-<%-- 										</c:forEach> --%>
-<!-- 									</tbody> -->
-<!-- 								</table> -->
-<!-- 	                        </div> -->
-<!--                				<div id="controllerbtn"> -->
-<!--                					<table border="0"> -->
-<!-- 									<tr> -->
-<!-- 										<td width='76'> -->
-<!-- 											<div id="pfirst"> -->
-<%-- 											<c:if test="${healthViewPageVO.pageNo > 1}"> --%>
-<%-- 												<a href="<c:url value='/healthViewlist.controller?pageNo=1&viewClassNo=${nowViewClassVO.viewClassNo}' />">第一頁</a> --%>
-<%-- 											</c:if> --%>
-<!-- 											</div> -->
-<!-- 										</td> -->
-<!-- 										<td width='76'> -->
-<!-- 											<div id="pprev"> -->
-<%-- 											<c:if test="${healthViewPageVO.pageNo > 1}"> --%>
-<%-- 												<a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo-1}&viewClassNo=${nowViewClassVO.viewClassNo}' />">上一頁</a> --%>
-<%-- 											</c:if> --%>
-<!-- 											</div> -->
-<!-- 										</td> -->
-<!-- 										<td width='76'> -->
-<!-- 											<div id="pnext"> -->
-<%-- 											<c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}"> --%>
-<%-- 												<a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.pageNo+1}&viewClassNo=${nowViewClassVO.viewClassNo}' />">下一頁</a> --%>
-<%-- 											</c:if> --%>
-<!-- 											</div> -->
-<!-- 										</td>   -->
-<!-- 										<td width='76'> -->
-<!-- 											<div id="plast"> -->
-<%-- 											<c:if test="${healthViewPageVO.pageNo != healthViewPageVO.totalPages}"> --%>
-<%-- 												<a href="<c:url value='/healthViewlist.controller?pageNo=${healthViewPageVO.totalPages}&viewClassNo=${nowViewClassVO.viewClassNo}' />">最末頁</a>&nbsp;&nbsp;&nbsp; --%>
-<%-- 											</c:if> --%>
-<!-- 											</div> -->
-<!-- 										</td> -->
-<!-- 										<td width='176' align="center" id="pinfo"> -->
-<%-- 											      第${healthViewPageVO.pageNo}頁 / 共${healthViewPageVO.totalPages}頁 --%>
-<!-- 									     </td>   -->
-<!-- 									</tr> -->
-<!-- 									</table> -->
-               					
-<!--                				</div>              -->
+                
 
-                            
-                            
-                            
-                            
-<%--                             <h3><span class="error">${error.action}</span></h3> --%>
-                            
-							
-                        
+						<table class="table table-bordered table-hover table-striped">
+							<tr>
+								<th>檢舉日誌</th>
+								<th>檢舉會員</th>
+								<th>投訴會員</th>
+								<th>檢舉時間</th>
+								<th>操作</th>
+							</tr>
+							<c:forEach var="reflectpage" items="${reflectpagevo.reflectpage}">
+								<tr>
+									<td>
+										<fmt:formatDate 
+                		value="${reflectpage.reflectedDate}" type="date" />
+									</td>
+									<td>${reflectpage.reflectedId}</td>
+									<td>${reflectpage.authorId}</td>
+									<td>
+										<fmt:formatDate 
+                		value="${reflectpage.authorDate}" type="date" />
+									</td>
+									<td>
+										<form action="${pageContext.request.contextPath}/backend/herodaymanage.controller" method="get">
+                            			<input type="hidden" name="reflectedNo" value="${reflectpage.reflectedNo}">
+                            			<input type="hidden" name="reflectedId" value="${reflectpage.reflectedId}">
+                            			<input type="hidden" name="authorDate" value="${reflectpage.reflectedDate}">
+                            			<input type="submit" value="查看日誌">
+                            	</form>
+									</td>
+								</tr>
+								
+							</c:forEach>
+							</table>
+			</c:if>
+			<c:if test="${empty reflectpagevo.reflectpage}">
+				<h2>查無資料</h2>
+			</c:if>
 
-<!--                     </div> -->
-<!--                     </form> -->
+
                 </div>
                 <!-- /.row -->
 

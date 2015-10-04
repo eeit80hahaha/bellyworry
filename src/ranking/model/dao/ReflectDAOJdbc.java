@@ -278,15 +278,26 @@ public class ReflectDAOJdbc implements ReflectDAO {
 		return 0;
 	}
 	@Override
-	public List<ReflectVO> getPage(int pageNo, int pageSize, int reflectedNo) {
-
+	public List<ReflectVO> getPageNoID(int pageNo, int pageSize, int reflectedNo) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public int getPageTotalCount(int reflectedNo) {
-
+	public int getPageIDTotalCount(int reflectedNo) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public List<ReflectVO> getPageNo(int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int getPageTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 
