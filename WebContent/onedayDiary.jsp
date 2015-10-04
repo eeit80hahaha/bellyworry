@@ -216,9 +216,11 @@ legend {
 								<c:if test="${eat.time == '早上' }">&nbsp;
 
 									${eat.foodCalVO.name}&nbsp;
-									${eat.foodCalVO.cal}cal&nbsp;
 									${eat.count}
 									${eat.foodCalVO.count}&nbsp;
+									${eat.foodCalVO.cal}cal&nbsp;
+									
+									
 <%-- 									${eat.foodCalVO.weight} --%>
 									<br>
 								</c:if>
@@ -230,10 +232,10 @@ legend {
 							&nbsp;中午<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<c:if test="${eat.time =='中午'}">&nbsp;
-			 							${eat.foodCalVO.name}&nbsp;
-			 							${eat.foodCalVO.cal}cal&nbsp;
-			 							${eat.count}
-			 							${eat.foodCalVO.count}&nbsp;
+			 							${eat.foodCalVO.name}&nbsp;			 							
+			 							${eat.count}		 							
+			 							${eat.foodCalVO.count}&nbsp;	
+			 							${eat.foodCalVO.cal}cal&nbsp;					
 <%-- 			 							${eat.foodCalVO.weight} --%>
 			 							<br>
 								</c:if>
@@ -247,9 +249,9 @@ legend {
 							<c:forEach var="eat" items="${list.eatVo}">
 								<c:if test="${eat.time=='晚上'}">&nbsp;
 			 							${eat.foodCalVO.name}&nbsp;
-			 							${eat.foodCalVO.cal}cal&nbsp;
 			 							${eat.count}
 			 							${eat.foodCalVO.count}&nbsp;
+			 							${eat.foodCalVO.cal}cal&nbsp;
 <%-- 			 							${eat.foodCalVO.weight} --%>
 			 							<br>
 								</c:if>
@@ -260,9 +262,9 @@ legend {
 						<div style="width: 100%; height: 100%; ">
 							&nbsp;運動<br>
 							<c:forEach var="exer" items="${list.exerVo}">&nbsp;
-									${exer.exerciseCalVO.name}
-									${exer.exerciseCalVO.calHour}
-									${exer.count}<br>
+									${exer.exerciseCalVO.name}&nbsp;
+									${exer.exerciseCalVO.calHour}cal&nbsp;
+									${exer.count}hour<br>
 							</c:forEach>
 							<hr>
 						</div>

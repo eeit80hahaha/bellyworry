@@ -349,7 +349,7 @@
 			//station data
 			<% request.setCharacterEncoding("UTF-8"); %>
 			<jsp:useBean id="YouBike" class="fun.model.YouBikeService">
-				var temp1 = ${YouBike.jsonData}
+				var temp1 = ${YouBike.jsonDataFromFile}
 			</jsp:useBean>
 			var temp2 = temp1.result.results;
 			var stations = new Array;

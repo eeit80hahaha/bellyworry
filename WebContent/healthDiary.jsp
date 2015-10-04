@@ -247,60 +247,66 @@
 											<div>
 											早餐：<br>
 											<c:forEach var="eatBK" items="${eatBreakfast}">
-											${eatBK.foodCalVO.name}
-											${eatBK.foodCalVO.cal}
-											${eatBK.foodCalVO.count}
-											${eatBK.foodCalVO.weight}
-											${eatBK.count}<br>
+											${eatBK.foodCalVO.name}&nbsp;
+											${eatBK.foodCalVO.cal}cal&nbsp;
+											${eatBK.count}
+											${eatBK.foodCalVO.count}&nbsp;
+											${eatBK.foodCalVO.weight}g
+											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '早上' }">
-												${eat.foodCalVO.name}
-												${eat.foodCalVO.cal}
-												${eat.foodCalVO.count}
-												${eat.foodCalVO.weight}
-												${eat.count}<br>
+												${eat.foodCalVO.name}&nbsp;
+												${eat.foodCalVO.cal}cal&nbsp;
+												${eat.count}
+												${eat.foodCalVO.count}&nbsp;
+												${eat.foodCalVO.weight}g
+												<br>
 											</c:if>
 											</c:forEach>
 											午餐：<br>
 											<c:forEach var="eatLunch" items="${eatLunch}">
-											${eatLunch.foodCalVO.name}
-											${eatLunch.foodCalVO.cal}
-											${eatLunch.foodCalVO.count}
-											${eatLunch.foodCalVO.weight}
-											${eatLunch.count}<br>
+											${eatLunch.foodCalVO.name}&nbsp;
+											${eatLunch.foodCalVO.cal}cal&nbsp;
+											${eatLunch.count}
+											${eatLunch.foodCalVO.count}&nbsp;
+											${eatLunch.foodCalVO.weight}g
+											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '中午' }">										
-												${eat.foodCalVO.name} 
-												${eat.foodCalVO.cal}
-												${eat.foodCalVO.count}
-												${eat.foodCalVO.weight}
-												${eat.count}<br>
+												${eat.foodCalVO.name} &nbsp;
+												${eat.foodCalVO.cal}cal&nbsp;
+												${eat.count}
+												${eat.foodCalVO.count}&nbsp;
+												${eat.foodCalVO.weight}g
+												<br>
 											</c:if>
 												</c:forEach>	
 												晚餐：<br>
 										<c:forEach var="eatDinner" items="${eatDinner}">
-											${eatDinner.foodCalVO.name}
-											${eatDinner.foodCalVO.cal}
-											${eatDinner.foodCalVO.count}
-											${eatDinner.foodCalVO.weight}
-											${eatDinner.count}<br>
+											${eatDinner.foodCalVO.name}&nbsp;
+											${eatDinner.foodCalVO.cal}cal&nbsp;
+											${eatDinner.count}
+											${eatDinner.foodCalVO.count}&nbsp;
+											${eatDinner.foodCalVO.weight}g
+											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '晚上' }">
 												
-												${eat.foodCalVO.name}
-												${eat.foodCalVO.cal}
-												${eat.foodCalVO.count}
-												${eat.foodCalVO.weight}
-												${eat.count}<br>
+												${eat.foodCalVO.name}&nbsp;
+												${eat.foodCalVO.cal}cal&nbsp;
+												${eat.count}
+												${eat.foodCalVO.count}&nbsp;
+												${eat.foodCalVO.weight}g
+												<br>
 											</c:if>
 												</c:forEach>
 												運動：<br>
 												<c:forEach var="exer" items="${bean.exerVo}">
-												${exer.exerciseCalVO.name}
-												${exer.exerciseCalVO.calHour}
+												${exer.exerciseCalVO.name}&nbsp;
+												${exer.exerciseCalVO.calHour}&nbsp;
 												${exer.count}<br>
 												</c:forEach>
 												

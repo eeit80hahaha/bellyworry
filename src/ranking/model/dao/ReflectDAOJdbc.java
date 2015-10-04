@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ranking.model.HeroVO;
@@ -292,13 +293,17 @@ public class ReflectDAOJdbc implements ReflectDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Override
 	public int getPageTotalCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	
-	
+	@Override
+	public boolean deleteByND(int memberNo, Date date) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

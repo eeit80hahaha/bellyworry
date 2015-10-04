@@ -28,7 +28,7 @@
               							<a href="${pageContext.request.contextPath}/login.jsp" id="dropdown-my">會員登入</a>
               						</c:when>
               						<c:otherwise>	
-              							<span style="color:#FF0000;font-family: impact;">${user.nickname}&nbsp;您好&nbsp;</span><span>${suc.update}</span>&nbsp;<span>${suc.out}</span>
+              							<span style="color:#FF0000;font-family: impact;">${user.nickname}&nbsp;您好&nbsp;</span><span>${suc.update}</span>&nbsp;<a href="${suc.out}">登出</a>
               						</c:otherwise>
               					</c:choose>
               				</div>                            
