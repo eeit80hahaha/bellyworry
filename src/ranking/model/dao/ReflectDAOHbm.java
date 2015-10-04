@@ -3,6 +3,7 @@ package ranking.model.dao;
 import health.model.HealthDiaryVO;
 import hibernate.util.HibernateUtil;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -143,7 +144,7 @@ public class ReflectDAOHbm implements ReflectDAO {
 		return result;
 	}
 
-	private static final String GETPAGEID = "from ReflectVO where reflectedNo=? order by reflectedDate desc";
+	private static final String GETPAGEID = "from ReflectVO where reflectedNo=? order by authorDate desc";
 
 	@Override
 	public List<ReflectVO> getPageNoID(int pageNo, int pageSize, int reflectedNo) {
@@ -198,7 +199,7 @@ public class ReflectDAOHbm implements ReflectDAO {
 	}
 	
 	
-	private static final String GETPAGE = "from ReflectVO order by reflectedDate desc";
+	private static final String GETPAGE = "from ReflectVO order by authorDate desc";
 
 	@Override
 	public List<ReflectVO> getPageNo(int pageNo, int pageSize) {
@@ -246,6 +247,34 @@ public class ReflectDAOHbm implements ReflectDAO {
 			throw ex;
 		}
 
+		return result;
+	}
+
+//	private static final String a = "select count(no) from ReflectVO where reflectedNo=?";
+	
+	@Override
+	public boolean deleteByND(int memberNo, Date date) {
+		boolean result = false; 
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session
+					.createQuery("delete from ReflectVO where reflectedNo=? and reflectedDate=?");
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			
+			int i = query.executeUpdate();
+			if (i > 0) {
+				result = true;
+			}
+			session.getTransaction().commit();
+//			System.out.println("刪除的筆數=" + i);
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+
+		}
 		return result;
 	}
 	

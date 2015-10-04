@@ -31,5 +31,6 @@ public interface HealthDiaryDAO {
 	public abstract int repeatDiary(int memberNo, java.util.Date date);
 	
 	public abstract HealthDiaryVO getCalendar(int memberNo, java.util.Date date);
-
+	
+	public abstract int reflectday(HealthDiaryVO vo);
 }
