@@ -1,6 +1,8 @@
 package ranking.model;
 
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +86,19 @@ public class ReflectService {
 		
 		ReflectPageVO result = new ReflectPageVO(pageNo, pageSize, rowCount, list);
 		
+		return result;
+	}
+	
+	public int reflectday(int memberNo,java.util.Date date){
+		int result = 0;
+		List<HealthDiaryVO> list = healthdiarydao.dateSelect(memberNo, date);
+		if(!list.isEmpty()){
+			int reflectday = healthdiarydao.reflectday(list.get(0));
+			if(reflectday >0){
+
+				return reflectday;
+			}
+		}
 		return result;
 	}
 	
