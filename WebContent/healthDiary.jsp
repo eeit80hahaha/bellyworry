@@ -229,18 +229,18 @@
 
 
 								<div style="height: 100%; cursor: pointer; display: block; font-size: 100%;">
-									<div class="easyui-accordion" style="border: 1px solid white;">
+									<div class="easyui-accordion" style="border:1px solid #DDDDDD;">
 									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
-											身高<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}&nbsp;&nbsp;cm<br>
-											體重<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}&nbsp;&nbsp;kg<br>
-											腰圍<input type="text" name="waistline"
+											<span style="color: red">*</span>&nbsp;身高：&nbsp;<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}&nbsp;&nbsp;cm<br>
+											<span style="color: red">*</span>&nbsp;體重：&nbsp;<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}&nbsp;&nbsp;kg<br>
+											<span style="color: red">*</span>&nbsp;腰圍：&nbsp;<input type="text" name="waistline"
 												value="${bean.waistline}">${errorMessage.waistlineError}&nbsp;&nbsp;cm<br>
 										</div>
 										</div>
 									</div>
-									<div class="easyui-accordion" style="border: 1px solid white;">
+									<div class="easyui-accordion" style="border:1px solid #DDDDDD;">
 										<div title="熱量計算" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3 style="background-color: #FFDD55" style="border: 1px solid #DDDDDD;">熱量計算</h3> -->
 										<div>
@@ -248,10 +248,10 @@
 											早餐：<br>
 											<c:forEach var="eatBK" items="${eatBreakfast}">
 											${eatBK.foodCalVO.name}&nbsp;
-											${eatBK.foodCalVO.cal}cal&nbsp;
+											${eatBK.foodCalVO.cal * eatBK.count * (eatBK.foodCalVO.weight/100)}cal&nbsp;
 											${eatBK.count}
 											${eatBK.foodCalVO.count}&nbsp;
-											${eatBK.foodCalVO.weight}g
+											${eatBK.foodCalVO.weight * eatBK.count}g
 											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
@@ -260,17 +260,17 @@
 												${eat.foodCalVO.cal}cal&nbsp;
 												${eat.count}
 												${eat.foodCalVO.count}&nbsp;
-												${eat.foodCalVO.weight}g
+												${eat.foodCalVO.weight * eat.count}g
 												<br>
 											</c:if>
 											</c:forEach>
 											午餐：<br>
 											<c:forEach var="eatLunch" items="${eatLunch}">
 											${eatLunch.foodCalVO.name}&nbsp;
-											${eatLunch.foodCalVO.cal}cal&nbsp;
+											${eatLunch.foodCalVO.cal * eatLunch.count *(eatLunch.foodCalVO.weight/100)}cal&nbsp;
 											${eatLunch.count}
 											${eatLunch.foodCalVO.count}&nbsp;
-											${eatLunch.foodCalVO.weight}g
+											${eatLunch.foodCalVO.weight * eatLunch.count}g
 											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
@@ -279,17 +279,17 @@
 												${eat.foodCalVO.cal}cal&nbsp;
 												${eat.count}
 												${eat.foodCalVO.count}&nbsp;
-												${eat.foodCalVO.weight}g
+												${eat.foodCalVO.weight * eat.count}g
 												<br>
 											</c:if>
 												</c:forEach>	
 												晚餐：<br>
 										<c:forEach var="eatDinner" items="${eatDinner}">
 											${eatDinner.foodCalVO.name}&nbsp;
-											${eatDinner.foodCalVO.cal}cal&nbsp;
+											${eatDinner.foodCalVO.cal * eatDinner.count *(eatDinner.foodCalVO.weight/100)}cal&nbsp;
 											${eatDinner.count}
 											${eatDinner.foodCalVO.count}&nbsp;
-											${eatDinner.foodCalVO.weight}g
+											${eatDinner.foodCalVO.weight * eatDinner.count}g
 											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
@@ -299,7 +299,7 @@
 												${eat.foodCalVO.cal}cal&nbsp;
 												${eat.count}
 												${eat.foodCalVO.count}&nbsp;
-												${eat.foodCalVO.weight}g
+												${eat.foodCalVO.weight * eat.count}g
 												<br>
 											</c:if>
 												</c:forEach>
@@ -354,7 +354,7 @@
 							<div
 								style="width: 59%; float: right;height: 100%;"> <!--right hand border: 2px solid yellow;   -->
 								<div style="height: 500px;">
-									<div class="easyui-accordion" style="height: 500px; border: 1px solid white;">
+									<div class="easyui-accordion" style="height: 500px;border: none">
 									<div title="瘦身日誌" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 										
 										<div>
@@ -617,7 +617,12 @@
 			month = $('#month').val();
 // 			console.log($('#year option:selected').val())
 
+	Highcharts.setOptions({
+        colors: ['#058DC7', '#50B432', '#ED561B']
+    });
+
 		var a = function(){
+	
 			$.getJSON("json.view",{"id":memberNo,"year":year,"month":month},function(data){
 				var date = [];
 				for(var i=1;i<=31;i++){
@@ -660,21 +665,21 @@
 											name : 'weight (kg)',
 											data : data.weight,
 											tooltip : {
-												headerFormat:'<b>weight</b><br/>',
+												headerFormat:'<b>weight</b><br/><b>{point.key}日</b><br/>',
 												valueSuffix : 'kg'
 											}},
 										{
 											name : 'waistline (cm)',
 											data : data.waistline,
 											tooltip : {
-												headerFormat:'<b>waistline</b><br/>',
+												headerFormat:'<b>waistline</b><br/><b>{point.key}日</b><br/>',
 												valueSuffix : 'cm'
 											}},
 										{
 											name :'BMI',
 											data : data.BMI,
 											tooltip : {
-												headerFormat:'<b>BMI</b><br/>',
+												headerFormat:'<b>BMI</b><br/><b>{point.key}日</b><br/>',
 											}}
 										]
 					})
