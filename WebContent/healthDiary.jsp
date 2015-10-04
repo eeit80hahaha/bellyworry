@@ -233,10 +233,10 @@
 									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
-											身高<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}<br>
-											體重<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}<br>
+											身高<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}&nbsp;&nbsp;cm<br>
+											體重<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}&nbsp;&nbsp;kg<br>
 											腰圍<input type="text" name="waistline"
-												value="${bean.waistline}">${errorMessage.waistlineError}<br>
+												value="${bean.waistline}">${errorMessage.waistlineError}&nbsp;&nbsp;cm<br>
 										</div>
 										</div>
 									</div>
