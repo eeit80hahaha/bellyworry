@@ -62,13 +62,7 @@ private MenuService service;
 		listPage = new ListPage<MealNameVO>(ss,10);//每頁6筆
 		
 		ss = listPage.getPageList(pageNo);
-		for(MealNameVO v0:ss){
-			System.out.println(v0.getMealNo());
-			System.out.println(v0.getName());
-			for(FoodCalVO v1:v0.getFoodcals()){
-				System.out.println(v1.getName());
-			}
-		}
+		
 		/*Neil add*/
 //		request.setAttribute("selected", menuname);
 		

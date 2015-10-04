@@ -39,7 +39,7 @@ public class ActivityBaseServlet2 extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		// 接收資料
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("error", errors);

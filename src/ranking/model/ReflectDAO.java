@@ -15,8 +15,12 @@ public interface ReflectDAO {
 	
 	public abstract int repeatReflect(ReflectVO vo);
 	
-	public abstract List<ReflectVO> getPage(int pageNo, int pageSize, int reflectedNo);
+	public abstract List<ReflectVO> getPageNoID(int pageNo, int pageSize, int reflectedNo);
 	
-	public abstract int getPageTotalCount(int reflectedNo);
+	public abstract int getPageIDTotalCount(int reflectedNo);
+	
+	public abstract List<ReflectVO> getPageNo(int pageNo, int pageSize);
+
+	public abstract int getPageTotalCount();
 	
 }

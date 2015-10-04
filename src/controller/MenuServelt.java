@@ -43,7 +43,6 @@ public class MenuServelt extends HttpServlet {
 		String page = request.getParameter("pages");
 		int pageSize=8;//每頁幾筆
 		int lastpage;
-		System.out.println("pages = " + page);
 		if (page == null || "".equals(page)) {
 			page = "1";
 		}
@@ -68,10 +67,8 @@ public class MenuServelt extends HttpServlet {
 		StringBuffer cooksDiv = new StringBuffer();
 		List<FoodCalVO> ss = null;
 //		ListPage<FoodCalVO> listPage = null;
-		System.out.println("result=========="+result);
 		if (result.size() > 0) {
 			/* Neil add */
-			System.out.println("sss:" + result);
 			ss = (List<FoodCalVO>) service.base(result);
 //			listPage = new ListPage<FoodCalVO>(ss, 8);// 每頁6筆
 //			ss = result;
@@ -85,7 +82,6 @@ public class MenuServelt extends HttpServlet {
 				if (ss.get(i).getCooks() != null) {
 					if (ss.get(i).getCooks().getPicture() != null) {
 						cooksDiv.append("<td colspan='3' width='50'><img src='data:image/jpg;base64,");
-						System.out.println(ss.get(i).getCooks().getPicture());
 						cooksDiv.append(Base64.encodeBase64String(ss.get(i)
 								.getCooks().getPicture()));
 						cooksDiv.append("' style='width:400px; height:auto;' /></td>");

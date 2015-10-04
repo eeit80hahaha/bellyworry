@@ -83,7 +83,7 @@ public class ExamService {
 	public static void main(String[] args) {
 		ExamService service = new ExamService();
 		List<ExamVO> list = service.select(null);
-		System.out.println("beans="+list);
+//		System.out.println("beans="+list);
 	}
 	
 	//換頁所使用的
@@ -93,7 +93,7 @@ public class ExamService {
 		int rowCount = examDao.getDateTotalCount();
 		
 		PageExamVO result = new PageExamVO(pageNo, pageSize, rowCount, list);
-		System.out.println(result);
+//		System.out.println(result);
 		
 		return result;
 	}

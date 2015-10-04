@@ -177,7 +177,7 @@
 </style>
 </head>
 <body id="pageBody" style="zoom: 1;">
-<c:set var="funcName" value="ACT" scope="session"/>
+<c:set var="funcName" value="EXAM" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>
@@ -208,7 +208,7 @@
 	}
 
 	for (int k = 1; k <= 4; k++) {
-		System.out.print(numbers[k] + "\t");
+// 		System.out.print(numbers[k] + "\t");
 	}
 %>
 

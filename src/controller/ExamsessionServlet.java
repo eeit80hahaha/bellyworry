@@ -39,7 +39,7 @@ public class ExamsessionServlet extends HttpServlet {
 //		String temp6 = request.getParameter("optC");
 //		String Cookion = request.getParameter("Cookion");
 		String temp7 = request.getParameter("ans");
-		System.out.println("temp7"+":"+temp7);
+//		System.out.println("temp7"+":"+temp7);
 		
 		//驗證資料
 //		Map<String, String> errors = new HashMap<String, String>();
@@ -69,7 +69,7 @@ public class ExamsessionServlet extends HttpServlet {
 		}else{
 			gread=gread+0;
 		}
-		System.out.println(gread);
+//		System.out.println(gread);
 
 		
 		Integer combol = (Integer)session.getAttribute("combol");
@@ -80,7 +80,7 @@ public class ExamsessionServlet extends HttpServlet {
 			combol=combol+1;
 		}
 		session.setAttribute("combol", combol);
-		System.out.println(combol);
+//		System.out.println(combol);
 		session.removeAttribute("gread");
 		session.setAttribute("gread", gread);
 		if(combol==1){

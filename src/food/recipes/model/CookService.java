@@ -45,9 +45,4 @@ public class CookService {
 		return result;
 	}
 	
-	public static void main(String[] args) {
-		CookService service = new CookService();
-		List<CookVO> list = service.select(null);
-		System.out.println("beans="+list);
-	}
 }

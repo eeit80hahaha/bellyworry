@@ -283,7 +283,7 @@ legend {
 			<!-- calendar right-hand  border: 3px solid yellow; -->
 			<fieldset class="hoverable" style="border: 3px solid #CCEEFF;float: left;line-height: 30px;height: 630px;width: 100%;border-radius:23px;margin: 5px;padding: 5px">
 				<legend style="width: auto;border:none;">我的日誌</legend>
-				<div style="margin-top: -20px;font-size: medium;font-weight: 400">			
+				<div style="margin-top: -20px;font-size: medium;font-weight: 400;">			
 <!-- 				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;我的日誌</h3> -->
 				<br> &nbsp;標題：<td>${list.title}</td> 
 				<br> &nbsp;內容：<td>${list.content}</td> 
