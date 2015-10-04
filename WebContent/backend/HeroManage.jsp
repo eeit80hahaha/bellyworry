@@ -117,23 +117,23 @@
                 		
 						<table class="table table-bordered table-hover table-striped">
 							<tr>
-								<th>檢舉日誌</th>
-								<th>檢舉會員</th>
-								<th>投訴會員</th>
 								<th>檢舉時間</th>
+								<th>被檢舉會員</th>
+								<th>檢舉會員</th>
+								<th>檢舉日誌</th>
 								<th>操作</th>
 							</tr>
 							<c:forEach var="reflectpage" items="${reflectpagevo.reflectpage}">
 								<tr>
 									<td>
 										<fmt:formatDate 
-                		value="${reflectpage.reflectedDate}" type="date" />
+                		value="${reflectpage.authorDate}" type="date" />
 									</td>
 									<td>${reflectpage.reflectedId}</td>
 									<td>${reflectpage.authorId}</td>
 									<td>
 										<fmt:formatDate 
-                		value="${reflectpage.authorDate}" type="date" />
+                		value="${reflectpage.reflectedDate}" type="date" />
 									</td>
 									<td>
 										<form action="${pageContext.request.contextPath}/backend/herodaymanage.controller" method="get">
