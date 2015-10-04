@@ -95,7 +95,7 @@ public class ReflectService {
 		if(!list.isEmpty()){
 			int reflectday = healthdiarydao.reflectday(list.get(0));
 			if(reflectday >0){
-
+				reflectdao.deleteByND(memberNo, date);
 				return reflectday;
 			}
 		}

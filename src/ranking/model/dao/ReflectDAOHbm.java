@@ -250,7 +250,7 @@ public class ReflectDAOHbm implements ReflectDAO {
 		return result;
 	}
 
-	private static final String a = "select count(no) from ReflectVO where reflectedNo=?";
+//	private static final String a = "select count(no) from ReflectVO where reflectedNo=?";
 	
 	@Override
 	public boolean deleteByND(int memberNo, Date date) {
@@ -259,23 +259,23 @@ public class ReflectDAOHbm implements ReflectDAO {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(a);
-
-
-			List<Object> tmp = query.list();
-			if (tmp.get(0) != null) {
-//				sum = (long) tmp.get(0);
+			Query query = session
+					.createQuery("delete from ReflectVO where reflectedNo=? and reflectedDate=?");
+			query.setParameter(0, memberNo);
+			query.setParameter(1, date);
+			
+			int i = query.executeUpdate();
+			if (i > 0) {
+				result = true;
 			}
-//			result = (int) sum;
-
 			session.getTransaction().commit();
+//			System.out.println("刪除的筆數=" + i);
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
-		}
-		
 
-		return false;
+		}
+		return result;
 	}
 	
 }
