@@ -23,4 +23,6 @@ public interface ReflectDAO {
 
 	public abstract int getPageTotalCount();
 	
+	public abstract boolean deleteByND(int memberNo,java.util.Date date);
+	
 }

@@ -74,10 +74,11 @@
                 <div class="row">
                 	
 <%-- 				<p><a href="${pageContext.request.contextPath}/reflectdiary.controller?memberno=${healthdiary.memberNo}&date=${healthdiary.date}&pageNo=${pageNo}">日誌檢舉</a></p> --%>
-			<form action="${pageContext.request.contextPath}/backend/#" method="get">
-				<input type="hidden" name="reflectedId" value="${healthdiary.memberNo}">
+			<form action="${pageContext.request.contextPath}/backend/dayreflectmanage.controller" method="get">
+				<input type="hidden" name="reflectedNo" value="${healthdiary.memberNo}">
+				<input type="hidden" name="reflectedID" value="${herovo.membervo.id}">
 				<input type="hidden" name="date" value="${healthdiary.date}">
-				<input type="submit" value="封鎖">
+				<input type="submit" value="日誌封鎖">
 			</form>
 
 			<h1>${herovo.membervo.nickname} (${herovo.membervo.id}) ${healthdiary.date} 健康紀錄</h1>

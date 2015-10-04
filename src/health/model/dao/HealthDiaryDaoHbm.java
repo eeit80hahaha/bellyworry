@@ -345,4 +345,31 @@ public class HealthDiaryDaoHbm implements HealthDiaryDAO {
 		}
 		return result;
 	}
+	
+	private static final String REFLECTDAY = 
+											"update HealthDiaryVO set share=0 where no=?";
+//										     "update HealthDiaryVO set height=1,weight=1,waistline=1,title=1,content=1,share=0 where no=?";
+	@Override
+	public int reflectday(HealthDiaryVO vo) {
+		int result = 0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(REFLECTDAY);
+	
+			query.setParameter(0, vo.getNo());
+	
+			int i = query.executeUpdate();
+			session.getTransaction().commit();
+			if (i > 0) {
+				result = i;
+			}
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			result = 0;
+			throw ex;
+		}
+		return result;
+	}	
+	
 }

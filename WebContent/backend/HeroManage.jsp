@@ -74,11 +74,7 @@
                 <div class="row">
                 	
                 
-                
-<%--                 		${reflectpagevo} --%>
-<!--                 		<hr/> -->
-<%--                 		<h1>${reflectpagevo.reflectpage[0]}</h1> --%>
-<!--                 		<hr/> -->
+                ${reflectok}<br/>
 			<c:if test="${!empty reflectpagevo.reflectpage}"> 		
                 <div id="paging">
 				<!-- 以下為控制第一頁、前一頁、下一頁、最末頁 等超連結-->
@@ -119,16 +115,6 @@
 				</table>
 				</div>
                 		
-<%--                 		檢舉日誌：<fmt:formatDate  --%>
-<%--                 		value="${reflectpagevo.reflectpage[0].reflectedDate}" type="date" /><br/> --%>
-<%--                 		檢舉會員：${reflectpagevo.reflectpage[0].reflectedId}<br/> --%>
-<%--                 		投訴會員：${reflectpagevo.reflectpage[0].authorId}<br/> --%>
-<%--                 		檢舉時間：<fmt:formatDate  --%>
-<%--                 		value="${reflectpagevo.reflectpage[0].authorDate}" type="date" /><br/> --%>
-<!--                 		<hr/> -->
-                
-                
-
 						<table class="table table-bordered table-hover table-striped">
 							<tr>
 								<th>檢舉日誌</th>

@@ -269,5 +269,10 @@ public class HealthDiaryDaoJdbc implements HealthDiaryDAO {
 		
 		return null;
 	}
+	@Override
+	public int reflectday(HealthDiaryVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
