@@ -46,9 +46,9 @@ public class ActivityService {
 			 element1.setName(element.getName());
 			 if(element.getContent().length()>30){
 				String re1 =  element.getContent().substring(0,30);
-//				System.out.println(re1);
+				System.out.println(re1);
 				 element1.setContent("<p>"+ re1 +"</p>");
-//			 System.out.println(element.getContent());
+			 System.out.println(element.getContent());
 //				 element1.setContent(element.getContent());
 			 	}else{
 			 		element1.setContent(element.getContent().substring(0,element.getContent().length()));

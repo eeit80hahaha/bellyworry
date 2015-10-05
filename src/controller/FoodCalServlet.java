@@ -65,7 +65,7 @@ public class FoodCalServlet extends HttpServlet{
 	
 			//換頁所呼叫的Service
 			PagesFoodCalVO PagesFoodCalVO = service.getDatePage(pageNo, 3);	
-			System.out.println(PagesFoodCalVO);
+//			System.out.println(PagesFoodCalVO);
 			PagesFoodCalVO.setFoodCalpage(service.base(PagesFoodCalVO.getFoodCalpage()));
 			
 			

@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 
 		// 呼叫model
 		MemberVO bean = service.login(username, password);
-		System.out.println(bean);
 		// 根據model執行結果，導向view
 		if (bean == null) {
 			errors.put("open", "$(\"#dialog0\").dialog(\"open\");");
@@ -83,8 +82,10 @@ public class LoginServlet extends HttpServlet {
 
 				success.put("update", "<a href='" + request.getContextPath()
 						+ "/updatemember.jsp'>修改會員資料</a>");
-				success.put("out", "'<a href='" + request.getContextPath()
-						+ "/logout.controller'>登出</a>");
+//				success.put("out", "'<a href='" + request.getContextPath()
+//						+ "/logout.controller'>登出</a>");
+				success.put("out", request.getContextPath()
+						+ "/logout.controller");
 				String dest = (String) session.getAttribute("dest");
 				
 				request.getSession().removeAttribute("eatBreakfast");

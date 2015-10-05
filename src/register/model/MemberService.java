@@ -41,7 +41,6 @@ public class MemberService {
 		boolean result=false;
 		MemberVO vo=memberDAO.selectById(acc);
 		if (vo!=null){
-			System.out.println(vo.getId()+":"+vo.getEmail());
 			if(vo.getEmail().trim().equals(mail.trim())){
 				result=true;
 				
@@ -70,7 +69,7 @@ public class MemberService {
 
 		  try {
 
-		   Message message = new MimeMessage(session);
+		   MimeMessage message = new MimeMessage(session);
 		   message.setFrom(new InternetAddress("c02360236@gmail.com"));
 		   message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
 		   //==========================================
@@ -92,24 +91,19 @@ public class MemberService {
 		       vo1.setLastName(vo.getLastName());
 		       vo1.setMemberNo(vo.getMemberNo());
 		       vo1.setNickname(vo.getNickname());
-		       System.out.println(1);
 		       vo1.setPassword(sb.toString());
-		       System.out.println(2);
 		       vo1.setPurview(vo.getPurview());
-		       System.out.println(vo1);
 		       memberDAO.update(vo1);
-		       
-	       message.setSubject("密碼確認信");
+		     
+	       message.setSubject("密碼確認信","utf-8");
 		   message.setContent("Dear "+vo.getFirstName()+" 您好, \n\n 您新密碼為"+sb+"請登入後立即更新您的密碼 !","text/html;charset=utf-8");
 		   Transport transport = session.getTransport("smtp");
 		   transport.connect(host, port, username, password);
 
 		   Transport.send(message);
-		   System.out.println("寄送email結束.");
-
+		   
 		  } catch (MessagingException e) {
-			  System.out.println("Exception====================");
-		   throw new RuntimeException(e);
+			throw new RuntimeException(e);
 		  }
 	}
 		

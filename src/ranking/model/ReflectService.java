@@ -1,6 +1,9 @@
 package ranking.model;
 
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import health.model.HealthDiaryDAO;
@@ -9,6 +12,7 @@ import health.model.HeroHealthDiaryVO;
 import health.model.dao.HealthDiaryDaoHbm;
 import ranking.model.dao.ReflectDAOHbm;
 import register.model.MemberDAO;
+import register.model.MemberVO;
 import register.model.dao.MemberDAOHbm;
 
 public class ReflectService {
@@ -57,8 +61,17 @@ public class ReflectService {
 		return result;
 	}
 	
-	public ReflectPageVO getPage(int pageNo, int pageSize, int reflectedNo){
-		List<ReflectVO> list = reflectdao.getPage(pageNo, pageSize, reflectedNo);
+	public ReflectPageVO getPage(int pageNo, int pageSize, String reflectedid){
+		List<ReflectVO> list = new ArrayList<ReflectVO>();
+		int rowCount = 0;
+		MemberVO vo = memberdao.selectById(reflectedid);
+		if(vo==null){
+			list = reflectdao.getPageNo(pageNo, pageSize);
+			rowCount = reflectdao.getPageTotalCount();
+		}else{
+			list = reflectdao.getPageNoID(pageNo, pageSize, vo.getMemberNo());
+			rowCount = reflectdao.getPageIDTotalCount(vo.getMemberNo());
+		}
 		
 		for (ReflectVO reflectvo : list) {
 			
@@ -71,10 +84,21 @@ public class ReflectService {
 
 		}
 		
-		int rowCount = reflectdao.getPageTotalCount(reflectedNo);
-		
 		ReflectPageVO result = new ReflectPageVO(pageNo, pageSize, rowCount, list);
 		
+		return result;
+	}
+	
+	public int reflectday(int memberNo,java.util.Date date){
+		int result = 0;
+		List<HealthDiaryVO> list = healthdiarydao.dateSelect(memberNo, date);
+		if(!list.isEmpty()){
+			int reflectday = healthdiarydao.reflectday(list.get(0));
+			if(reflectday >0){
+				reflectdao.deleteByND(memberNo, date);
+				return reflectday;
+			}
+		}
 		return result;
 	}
 	

@@ -110,20 +110,31 @@ table {
  border-collapse: separate;
  border-spacing: 3px;
  border: 3px solid #000000;
+ 
 }
 
 td {
  
  border: 2px solid #000000;
 }
+
+#picture {
+ color: black; /*文字白色*/
+ /*div.st加背景圖片並定義與圖片同尺寸*/
+ background:url(images/plate.jpg) no-repeat center;
+ overflow: auto; /*內容超過高度時產生捲軸*/
+  margin: 1.2em auto 0; 
+  background-size: 800px auto 
+}
 </style>
+<c:set var="funcName" value="FOOD" scope="session"/>
 <jsp:include page="/page/header.jsp" />
 </head>
 <body>
 	<div
-		style="position: relative; left: 0; right: 0; margin: 0 auto; width: 960px;">
+		id= "picture" style="position: relative; left: 0; right: 0; margin: 0 auto; width: 960px;">
 		<div>
-			<a href="index.jsp">Home</a>&nbsp;/&nbsp;<span>菜色&食譜</span>
+			<a href="index.jsp">首頁</a>&nbsp;/&nbsp;<span>菜色&食譜</span>
 		</div>
 		<form method="post"
 			action="${pageContext.request.contextPath}/Menuservelt.controller"

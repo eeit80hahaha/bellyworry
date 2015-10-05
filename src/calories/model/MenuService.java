@@ -34,16 +34,13 @@ public class MenuService {
 	public List<DayMealVO> selectDayMeal(DayMealVO vo) {
 		List<DayMealVO> result = null;
 		if (vo != null && vo.getNo() != 0) {
-			System.out.println("=========1==============");
 			DayMealVO temp = dayMealDao.selectByPrimaryKey(vo.getNo());
 			if (temp != null) {
 				result = new ArrayList<DayMealVO>();
 				result.add(temp);
 			}
 		} else {
-			System.out.println("=========2==============");
 			result = dayMealDao.getAll();
-			System.out.println("=========3=============="+result);
 		}
 		return result;
 	}
@@ -123,7 +120,6 @@ public class MenuService {
 		if (vo != 0) {
 			result = foodCalDao.selectByMenuNo(vo);
 		}
-		System.out.println("============Neil========"+result);
 		return result;
 	}
 
@@ -176,7 +172,6 @@ public class MenuService {
 	public static void main(String[] args) {
 		MenuService service = new MenuService();
 		List<FoodCalVO> list = service.select(null);
-		System.out.println("beans=" + list);
 	}
 
 }

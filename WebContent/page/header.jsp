@@ -28,14 +28,19 @@
               							<a href="${pageContext.request.contextPath}/login.jsp" id="dropdown-my">會員登入</a>
               						</c:when>
               						<c:otherwise>	
-              							<span style="color:#FF0000;font-family: impact;">${user.nickname}&nbsp;您好&nbsp;</span><span>${suc.update}</span>&nbsp;<span>${suc.out}</span>
+              							<span style="color:#FF0000;font-family: impact;">${user.nickname}&nbsp;您好&nbsp;</span><span>${suc.update}</span>&nbsp;<a href="${suc.out}">登出</a>
               						</c:otherwise>
               					</c:choose>
               				</div>                            
                             
                             <ul class="nav nav-pills ddmenu">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0)" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
+                                <c:if test="${ funcName != 'FOOD' }">
+                                <li class="dropdown" >
+                                </c:if>
+                                <c:if test="${ funcName == 'FOOD' }"> 
+					            <li class="dropdown active" >
+					            </c:if>
+                                 	<a href="javascript:void(0)" class="dropdown-toggle">健康食譜<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                        <li><a href="${pageContext.request.contextPath}/Menuservelt.controller">菜色&食譜</a></li>
 <%--                                         <li><a href="${pageContext.request.contextPath}/logout.controller">登出</a></li> --%>

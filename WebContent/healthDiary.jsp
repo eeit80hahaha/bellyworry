@@ -189,8 +189,8 @@
 										</c:forEach></div>
 									</div>
 								</div><br>
-								<div>飲食總熱量</div>
-								<div>運動總熱量</div>
+<!-- 								<div>飲食總熱量</div> -->
+<!-- 								<div>運動總熱量</div> -->
 								<div>
 									<a href="${path}">詳讀內文</a>
 								</div>
@@ -207,106 +207,6 @@
 							style="width: 335px; height: 360px; position: absolute; top: 235px"></div>
 					</div>
 
-<!-- 					<div class="tab-content" style="height: 100%; width: 100%;"> -->
-<!-- 						<table border='1'> -->
-<!-- 							<tr> -->
-<!-- 								<th width='70'>會員編號</th> -->
-<!-- 								<th width='70'>健康管理id</th> -->
-<!-- 								<th width='70'>日期</th> -->
-<!-- 								<th width='70'>身高</th> -->
-<!-- 								<th width='70'>體重</th> -->
-<!-- 								<th width='70'>腰圍</th> -->
-<!-- 								<th width='70'>BMI</th> -->
-<!-- 								<th width='70'>建議</th> -->
-<!-- 								<th width='70'>日誌標題</th> -->
-<!-- 								<th width='70'>日誌內容</th> -->
-<!-- 								<th width='70'>同意分享日誌</th> -->
-
-
-<!-- 								<th width='70'>日期</th> -->
-<!-- 								<th width='70'>運動</th> -->
-<!-- 								<th width='70'>每一小時消耗熱量</th> -->
-<!-- 								<th width='70'>分量</th> -->
-
-
-<!-- 								<th width='70'>日期</th> -->
-<!-- 								<th width='70'>時段</th> -->
-<!-- 								<th width='70'>菜色名稱</th> -->
-<!-- 								<th width='70'>熱量</th> -->
-<!-- 								<th width='70'>一搬份量</th> -->
-<!-- 								<th width='70'>每份公克數</th> -->
-<!-- 								<th width='70'>份量</th> -->
-<!-- 								<th width='70'>總熱量</th> -->
-<!-- 							</tr> -->
-<%-- 							<c:forEach var="vo" items="${list}"> --%>
-<!-- 								<tr> -->
-<%-- 									<td>${vo.memberNo}</td> --%>
-<%-- 									<td>${vo.no}</td> --%>
-<%-- 									<td>${vo.date}</td> --%>
-<%-- 									<td>${vo.height}</td> --%>
-<%-- 									<td>${vo.weight}</td> --%>
-<%-- 									<td>${vo.waistline}</td> --%>
-<%-- 									<td>${vo.weight/((vo.height/100)*(vo.height/100))}</td> --%>
-<!-- 									BMI -->
-<%-- 									<c:choose> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 18.5 ) }"> --%>
-<!-- 											<td>體重過輕</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${ ( vo.weight/((vo.height/100)*(vo.height/100)) < 24 ) }"> --%>
-<!-- 											<td>標準體重</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 27 ) }"> --%>
-<!-- 											<td>過重</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 30 ) }"> --%>
-<!-- 											<td>輕度肥胖</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) < 35 ) }"> --%>
-<!-- 											<td>中度肥胖</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:when --%>
-<%-- 											test="${(vo.weight/((vo.height/100)*(vo.height/100)) >= 35 ) }"> --%>
-<!-- 											<td>重度肥胖</td> -->
-<%-- 										</c:when> --%>
-<%-- 									</c:choose> --%>
-
-<%-- 									<td>${vo.title}</td> --%>
-<%-- 									<td>${vo.content}</td> --%>
-<%-- 									<td>${vo.share}</td> --%>
-
-<%-- 									<td>${vo.exerVo[0].date}</td> --%>
-<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.name}</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.exerciseCalVO.calHour}</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="exer" items="${vo.exerVo}">${exer.count}</c:forEach></td> --%>
-
-
-
-
-
-<%-- 									<td>${vo.eatVo[0].date}</td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.time }<br></c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.name}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.cal}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.count}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}">${eat.foodCalVO.weight}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<%-- 									<td><c:forEach var="eat" items="${vo.eatVo}"> ${eat.count*eat.foodCalVO.cal}<br> --%>
-<%-- 										</c:forEach></td> --%>
-<!-- 								</tr> -->
-<%-- 							</c:forEach> --%>
-<!-- 						</table> -->
-
-<!-- 					</div> -->
 				</div>
 				<div id="t-2" title="填寫日誌">
 
@@ -315,9 +215,6 @@
 							<!-- left -->
 							<div
 								style="width: 40%; float: left;height: 100%;"> <!-- 左邊框 border: 2px solid red;  -->
-
-
-
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
 									value="${bean.date} <fmt:formatDate pattern="yyyy-MM-dd" value="${healthDate}" />/>"></input>
@@ -332,78 +229,84 @@
 
 
 								<div style="height: 100%; cursor: pointer; display: block; font-size: 100%;">
-									<div class="easyui-accordion" style="border: 1px solid white;">
+									<div class="easyui-accordion" style="border:1px solid #DDDDDD;">
 									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
-											身高<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}<br>
-											體重<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}<br>
-											腰圍<input type="text" name="waistline"
-												value="${bean.waistline}">${errorMessage.waistlineError}<br>
+											<span style="color: red">*</span>&nbsp;身高：&nbsp;<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}&nbsp;&nbsp;cm<br>
+											<span style="color: red">*</span>&nbsp;體重：&nbsp;<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}&nbsp;&nbsp;kg<br>
+											<span style="color: red">*</span>&nbsp;腰圍：&nbsp;<input type="text" name="waistline"
+												value="${bean.waistline}">${errorMessage.waistlineError}&nbsp;&nbsp;cm<br>
 										</div>
 										</div>
 									</div>
-									<div class="easyui-accordion" style="border: 1px solid white;">
+									<div class="easyui-accordion" style="border:1px solid #DDDDDD;">
 										<div title="熱量計算" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3 style="background-color: #FFDD55" style="border: 1px solid #DDDDDD;">熱量計算</h3> -->
 										<div>
 											<div>
 											早餐：<br>
 											<c:forEach var="eatBK" items="${eatBreakfast}">
-											${eatBK.foodCalVO.name}
-											${eatBK.foodCalVO.cal}
-											${eatBK.foodCalVO.count}
-											${eatBK.foodCalVO.weight}
-											${eatBK.count}<br>
+											${eatBK.foodCalVO.name}&nbsp;
+											${eatBK.foodCalVO.cal * eatBK.count * (eatBK.foodCalVO.weight/100)}cal&nbsp;
+											${eatBK.count}
+											${eatBK.foodCalVO.count}&nbsp;
+											${eatBK.foodCalVO.weight * eatBK.count}g
+											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '早上' }">
-												${eat.foodCalVO.name}
-												${eat.foodCalVO.cal}
-												${eat.foodCalVO.count}
-												${eat.foodCalVO.weight}
-												${eat.count}<br>
+												${eat.foodCalVO.name}&nbsp;
+												${eat.foodCalVO.cal}cal&nbsp;
+												${eat.count}
+												${eat.foodCalVO.count}&nbsp;
+												${eat.foodCalVO.weight * eat.count}g
+												<br>
 											</c:if>
 											</c:forEach>
 											午餐：<br>
 											<c:forEach var="eatLunch" items="${eatLunch}">
-											${eatLunch.foodCalVO.name}
-											${eatLunch.foodCalVO.cal}
-											${eatLunch.foodCalVO.count}
-											${eatLunch.foodCalVO.weight}
-											${eatLunch.count}<br>
+											${eatLunch.foodCalVO.name}&nbsp;
+											${eatLunch.foodCalVO.cal * eatLunch.count *(eatLunch.foodCalVO.weight/100)}cal&nbsp;
+											${eatLunch.count}
+											${eatLunch.foodCalVO.count}&nbsp;
+											${eatLunch.foodCalVO.weight * eatLunch.count}g
+											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '中午' }">										
-												${eat.foodCalVO.name} 
-												${eat.foodCalVO.cal}
-												${eat.foodCalVO.count}
-												${eat.foodCalVO.weight}
-												${eat.count}<br>
+												${eat.foodCalVO.name} &nbsp;
+												${eat.foodCalVO.cal}cal&nbsp;
+												${eat.count}
+												${eat.foodCalVO.count}&nbsp;
+												${eat.foodCalVO.weight * eat.count}g
+												<br>
 											</c:if>
 												</c:forEach>	
 												晚餐：<br>
 										<c:forEach var="eatDinner" items="${eatDinner}">
-											${eatDinner.foodCalVO.name}
-											${eatDinner.foodCalVO.cal}
-											${eatDinner.foodCalVO.count}
-											${eatDinner.foodCalVO.weight}
-											${eatDinner.count}<br>
+											${eatDinner.foodCalVO.name}&nbsp;
+											${eatDinner.foodCalVO.cal * eatDinner.count *(eatDinner.foodCalVO.weight/100)}cal&nbsp;
+											${eatDinner.count}
+											${eatDinner.foodCalVO.count}&nbsp;
+											${eatDinner.foodCalVO.weight * eatDinner.count}g
+											<br>
 											</c:forEach>
 											<c:forEach var="eat" items="${bean.eatVo}">
 											<c:if test="${eat.time == '晚上' }">
 												
-												${eat.foodCalVO.name}
-												${eat.foodCalVO.cal}
-												${eat.foodCalVO.count}
-												${eat.foodCalVO.weight}
-												${eat.count}<br>
+												${eat.foodCalVO.name}&nbsp;
+												${eat.foodCalVO.cal}cal&nbsp;
+												${eat.count}
+												${eat.foodCalVO.count}&nbsp;
+												${eat.foodCalVO.weight * eat.count}g
+												<br>
 											</c:if>
 												</c:forEach>
 												運動：<br>
 												<c:forEach var="exer" items="${bean.exerVo}">
-												${exer.exerciseCalVO.name}
-												${exer.exerciseCalVO.calHour}
+												${exer.exerciseCalVO.name}&nbsp;
+												${exer.exerciseCalVO.calHour}&nbsp;
 												${exer.count}<br>
 												</c:forEach>
 												
@@ -451,7 +354,7 @@
 							<div
 								style="width: 59%; float: right;height: 100%;"> <!--right hand border: 2px solid yellow;   -->
 								<div style="height: 500px;">
-									<div class="easyui-accordion" style="height: 500px; border: 1px solid white;">
+									<div class="easyui-accordion" style="height: 500px;border: none">
 									<div title="瘦身日誌" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 										
 										<div>
@@ -465,7 +368,7 @@
 							</div>
 							<div>
 								<input type="submit" value="SAVE"
-									style="width: 110px; height: 45px; margin: 10px">
+									style="width: 110px; height: 45px; margin: 5px">
 								<button style="width: 110px; height: 45px;">
 									<a href="#">back</a>
 								</button>
@@ -502,7 +405,7 @@
 						style="width: 1000px; height: 400px; margin: 0 auto"></div>
 						
 					<br>
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center;margin-left:120px">
 						<tr>
 							<th width='130'>日期</th>
 							<th width='130'>體重</th>
@@ -539,7 +442,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center">
 						<tr>
 							<th width='130'>BMI</th>
 							<th width='130'>歷史變化量</th>
@@ -573,19 +476,14 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-
-
-					<table border='2' style="float: left;">
+					<table border='2' style="float: left;text-align:center">
 						<tr>
 							<th width='130'>腰圍</th>
 							<th width='130'>歷史變化量</th>
-
 						</tr>
 						<c:forEach var='vo' varStatus="i" items="${list}">
 							<tr>
 								<td>${vo.waistline}</td>
-
 								<c:choose>
 									<c:when test="${i.last}">
 										<td>--</td>
@@ -612,56 +510,10 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-
-
-
-
-
-
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div id="footerOuterSeparator"></div>
 
 	<div id="divFooter" class="footerArea">
@@ -734,8 +586,6 @@
 	
 	<script type="text/javascript" src="jeasyui/jquery.easyui.min.js"></script>
 	
-	
-	
 <!-- 	<script src="jeasyui/jquery.calendar.js"></script> -->
 
 <!-- 	<script type="text/javascript" src="jeasyui/jquery.calendar.js"></script> -->
@@ -743,9 +593,6 @@
 	<script type="text/javascript" src="jeasyui/easyui-lang-zh_TW.js"></script>
 	
 	<script src="ckeditor/ckeditor.js"></script>
-	
-	
-	
 	
 	<!-- 	<script src="scripts/jquery.min.js" type="text/javascript"></script> -->
 		
@@ -770,24 +617,28 @@
 			month = $('#month').val();
 // 			console.log($('#year option:selected').val())
 
+	Highcharts.setOptions({
+        colors: ['#058DC7', '#50B432', '#ED561B']
+    });
+
 		var a = function(){
+	
 			$.getJSON("json.view",{"id":memberNo,"year":year,"month":month},function(data){
 				var date = [];
 				for(var i=1;i<=31;i++){
 					date.push(i);
 				}
-				$.each(data,function(i,data){
-		
+				$.each(data,function(p,data){
 					$('#container').highcharts(
 							{
 								title : {
-									text : 'Monthly Average Temperature',
+									text : '體重、BMI、腰圍變化量',
 									x : -20
 								//center
 								},
 								subtitle : {
-									text : 'Source: WorldClimate.com',
-									x : -20
+									text : 'Weight.BMI.Waistline',
+									x : -10
 								},
 								xAxis : {
 									categories :date
@@ -795,16 +646,13 @@
 								yAxis : {
 
 									title : {
-										text : 'Temperature (°C)'
+										text : 'kg,cm,BMI'
 									},
 									plotLines : [ {
 										value : 0,
 										width : 1,
 										color : '#808080'
 									} ]
-								},
-								tooltip : {
-									valueSuffix : '°C'
 								},
 								legend : {
 									layout : 'vertical',
@@ -814,23 +662,31 @@
 								},
 								series : [
 										{
-											name : 'weight',
-											data : data.weight},
+											name : 'weight (kg)',
+											data : data.weight,
+											tooltip : {
+												headerFormat:'<b>weight</b><br/><b>{point.key}日</b><br/>',
+												valueSuffix : 'kg'
+											}},
 										{
-											name : 'waistline',
-											data : data.waistline},
+											name : 'waistline (cm)',
+											data : data.waistline,
+											tooltip : {
+												headerFormat:'<b>waistline</b><br/><b>{point.key}日</b><br/>',
+												valueSuffix : 'cm'
+											}},
 										{
-											name :'bmi',
-											data : data.BMI}
+											name :'BMI',
+											data : data.BMI,
+											tooltip : {
+												headerFormat:'<b>BMI</b><br/><b>{point.key}日</b><br/>',
+											}}
 										]
 					})
 				})
 			});
 			}
 			a();
-
-
-
 
 			$("#year").combobox({
 				onSelect:function(record){
@@ -901,63 +757,6 @@
 // 				$("#date").datepicker();
 // 			});
 
-
-			//圖表
-			/* var a = $.getJSON("json.view",{"id":1000018,"year":year,"month":month},function(data){
-				var date = [];
-				for(var i=1;i<=31;i++){
-					date.push(i);
-				}
-				$.each(data,function(i,data){
-		
-					$('#container').highcharts(
-							{
-								title : {
-									text : 'Monthly Average Temperature',
-									x : -20
-								//center
-								},
-								subtitle : {
-									text : 'Source: WorldClimate.com',
-									x : -20
-								},
-								xAxis : {
-									categories :date
-								},
-								yAxis : {
-
-									title : {
-										text : 'Temperature (°C)'
-									},
-									plotLines : [ {
-										value : 0,
-										width : 1,
-										color : '#808080'
-									} ]
-								},
-								tooltip : {
-									valueSuffix : '°C'
-								},
-								legend : {
-									layout : 'vertical',
-									align : 'right',
-									verticalAlign : 'middle',
-									borderWidth : 0
-								},
-								series : [
-										{
-											name : 'weight',
-											data : data.weight},
-										{
-											name : 'waistline',
-											data : data.waistline},
-										{
-											name :'bmi',
-											data : data.BMI}
-										]
-					})
-				})
-			}); */
 		})(jQuery);
 	</script>
 

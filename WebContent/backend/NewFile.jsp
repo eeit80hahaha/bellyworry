@@ -146,7 +146,7 @@ input[type="button"]:disabled{
 			               <!-- 這些隱藏欄位都會送到後端 -->
 			               <Input type='hidden' name='no' value='${activity.no}'><P/>
 			               <Input type='hidden' name='name' value='${activity.name}'><P/>
-			               <Input type='hidden' name='content' value='${activity.content}'><P/>
+<%-- 			               <Input type='hidden' name='content' value='${activity.content}'><P/> --%>
 			               <Input type='hidden' name='startTime' value='${activity.startTime}'><P/>
 			               <Input type='hidden' name='endTime' value='${activity.endTime}'><P/>
 			               <Input type='hidden' name='address' value='${activity.address}'><P/>

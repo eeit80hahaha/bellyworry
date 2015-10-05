@@ -216,9 +216,11 @@ legend {
 								<c:if test="${eat.time == '早上' }">&nbsp;
 
 									${eat.foodCalVO.name}&nbsp;
-									${eat.foodCalVO.cal}cal&nbsp;
 									${eat.count}
 									${eat.foodCalVO.count}&nbsp;
+									${eat.foodCalVO.cal}cal&nbsp;
+									
+									
 <%-- 									${eat.foodCalVO.weight} --%>
 									<br>
 								</c:if>
@@ -230,10 +232,10 @@ legend {
 							&nbsp;中午<br>
 							<c:forEach var="eat" items="${list.eatVo}">
 								<c:if test="${eat.time =='中午'}">&nbsp;
-			 							${eat.foodCalVO.name}&nbsp;
-			 							${eat.foodCalVO.cal}cal&nbsp;
-			 							${eat.count}
-			 							${eat.foodCalVO.count}&nbsp;
+			 							${eat.foodCalVO.name}&nbsp;			 							
+			 							${eat.count}		 							
+			 							${eat.foodCalVO.count}&nbsp;	
+			 							${eat.foodCalVO.cal}cal&nbsp;					
 <%-- 			 							${eat.foodCalVO.weight} --%>
 			 							<br>
 								</c:if>
@@ -247,9 +249,9 @@ legend {
 							<c:forEach var="eat" items="${list.eatVo}">
 								<c:if test="${eat.time=='晚上'}">&nbsp;
 			 							${eat.foodCalVO.name}&nbsp;
-			 							${eat.foodCalVO.cal}cal&nbsp;
 			 							${eat.count}
 			 							${eat.foodCalVO.count}&nbsp;
+			 							${eat.foodCalVO.cal}cal&nbsp;
 <%-- 			 							${eat.foodCalVO.weight} --%>
 			 							<br>
 								</c:if>
@@ -260,9 +262,9 @@ legend {
 						<div style="width: 100%; height: 100%; ">
 							&nbsp;運動<br>
 							<c:forEach var="exer" items="${list.exerVo}">&nbsp;
-									${exer.exerciseCalVO.name}
-									${exer.exerciseCalVO.calHour}
-									${exer.count}<br>
+									${exer.exerciseCalVO.name}&nbsp;
+									${exer.exerciseCalVO.calHour}cal&nbsp;
+									${exer.count}hour<br>
 							</c:forEach>
 							<hr>
 						</div>
@@ -283,7 +285,7 @@ legend {
 			<!-- calendar right-hand  border: 3px solid yellow; -->
 			<fieldset class="hoverable" style="border: 3px solid #CCEEFF;float: left;line-height: 30px;height: 630px;width: 100%;border-radius:23px;margin: 5px;padding: 5px">
 				<legend style="width: auto;border:none;">我的日誌</legend>
-				<div style="margin-top: -20px;font-size: medium;font-weight: 400">			
+				<div style="margin-top: -20px;font-size: medium;font-weight: 400;">			
 <!-- 				<h3 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;我的日誌</h3> -->
 				<br> &nbsp;標題：<td>${list.title}</td> 
 				<br> &nbsp;內容：<td>${list.content}</td> 
