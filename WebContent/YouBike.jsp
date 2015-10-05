@@ -434,7 +434,7 @@
 				total += myroute.legs[i].distance.value;				//	distance.value 距離
 			}
 			total = total / 1000;
-// 			document.getElementById('total').innerHTML = total + ' km';
+// 			document.getElementById('total').innerHTML = total + ' 公里';
 			console.log(result);
 // 			console.log(result.routes[0].legs[1].distance.value);	//兩個腳踏車站點距離;
 			if(startStation!=null && endStation!=null){

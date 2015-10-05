@@ -371,7 +371,7 @@
 			total += myroute.legs[i].distance.value;				//	distance.value 距離
 		}
 		total = total / 1000;
-		document.getElementById('total').innerHTML = total + ' km';
+		document.getElementById('total').innerHTML = total + ' 公里';
 	}
 	
 	function showSteps(directionResult) {
