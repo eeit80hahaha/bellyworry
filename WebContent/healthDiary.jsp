@@ -139,11 +139,11 @@
 											<!-- eat_record因為很多筆相同時段.菜色,所以用foreach -->
 											<c:if test="${eat.time == '早上' }">&nbsp;
 											
-											${eat.foodCalVO.name}
-											${eat.foodCalVO.cal} 卡
+											${eat.foodCalVO.name}&nbsp;
+											${eat.foodCalVO.cal} 卡&nbsp;
 											${eat.count}
-											${eat.foodCalVO.count}
-											${eat.foodCalVO.weight}g<br>
+											${eat.foodCalVO.count}<br>
+<%-- 											${eat.foodCalVO.weight}g --%>
 											
 											</c:if>
 										</c:forEach></div>
@@ -155,11 +155,11 @@
 										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="eat" items="${vo.eatVo}">
 											<c:if test="${eat.time =='中午'}">&nbsp;
- 							${eat.foodCalVO.name} 
- 							${eat.foodCalVO.cal} 卡
+ 							${eat.foodCalVO.name} &nbsp;
+ 							${eat.foodCalVO.cal} 卡&nbsp;
  							${eat.count}
- 							${eat.foodCalVO.count} 
- 							${eat.foodCalVO.weight}g<br>
+ 							${eat.foodCalVO.count} <br>
+<%--  							${eat.foodCalVO.weight}g --%>
 											</c:if>
 										</c:forEach></div>
 									</div>
@@ -169,11 +169,11 @@
 										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="eat" items="${vo.eatVo}">
 											<c:if test="${eat.time=='晚上'}">&nbsp;
- 							${eat.foodCalVO.name} 
- 							${eat.foodCalVO.cal} 卡  
+ 							${eat.foodCalVO.name} &nbsp;
+ 							${eat.foodCalVO.cal} 卡  &nbsp;
  							${eat.count}
- 							${eat.foodCalVO.count} 
- 							${eat.foodCalVO.weight}g<br>
+ 							${eat.foodCalVO.count} <br>
+<%--  							${eat.foodCalVO.weight}g --%>
  							
 											</c:if>
 										</c:forEach></div>
@@ -183,8 +183,8 @@
 										<h5 style="font-family:Microsoft JhengHei;font-weight: 600;color: #32CD32">&nbsp;<img src="images/exer.jpg" style="width: 25px;height: 25px">活動</h5>
 										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="exer" items="${vo.exerVo}">&nbsp;
-							${exer.exerciseCalVO.name}
-							${exer.exerciseCalVO.calHour}大卡  
+							${exer.exerciseCalVO.name}&nbsp;
+							${exer.exerciseCalVO.calHour}大卡  &nbsp;
 							${exer.count}hour<br>
 										</c:forEach></div>
 									</div>
@@ -367,10 +367,10 @@
 								</div>
 							</div>
 							<div>
-								<input type="submit" value="SAVE"
+								<input type="submit" value="儲存"
 									style="width: 110px; height: 45px; margin: 5px">
 								<button style="width: 110px; height: 45px;">
-									<a href="#">back</a>
+									<a href="#">返回</a>
 								</button>
 							</div>
 						</form>

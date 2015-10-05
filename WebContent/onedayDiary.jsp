@@ -299,7 +299,7 @@ legend {
 				<div>
 				
 					<button name="back" style="font-family:Microsoft JhengHei;float: left;margin: 10px;width: 80px;height: 60px;font-weight: 600;">
-						<a href="diaryIndex.controller">BACK</a>
+						<a href="diaryIndex.controller">返回</a>
 					</button>
 				</div>
 				<div>
