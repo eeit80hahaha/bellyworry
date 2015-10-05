@@ -218,7 +218,7 @@
 								<!-- 時間!!! -->
 								日期： <input class="easyui-datebox" name="date"
 									value="${bean.date} <fmt:formatDate pattern="yyyy-MM-dd" value="${healthDate}" />/>"></input>
-
+									<img id="demo" src="images/flower.jpg" style="width: 20px; ">
 <!--  <div class="easyui-accordion" style="width:500px;height:300px;"> -->
 <!--         <div title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;"> -->
 <!--             <h3 style="color:#0099FF;">Accordion for jQuery</h3> -->
@@ -233,9 +233,9 @@
 									<div title="瘦身指標" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 <!-- 										<h3	style="background-color: #FFDD55; border: 1px solid #DDDDDD;">瘦身指標</h3> -->
 										<div style="height: 100%">
-											<span style="color: red">*</span>&nbsp;身高：&nbsp;<input type="text" name="height" value="${bean.height}">${errorMessage.heightError}&nbsp;&nbsp;cm<br>
-											<span style="color: red">*</span>&nbsp;體重：&nbsp;<input type="text" name="weight" value="${bean.weight}">${errorMessage.weightError}&nbsp;&nbsp;kg<br>
-											<span style="color: red">*</span>&nbsp;腰圍：&nbsp;<input type="text" name="waistline"
+											<span style="color: red">*</span>&nbsp;身高：&nbsp;<input type="text" id="height" name="height" value="${bean.height}">${errorMessage.heightError}&nbsp;&nbsp;cm<br>
+											<span style="color: red">*</span>&nbsp;體重：&nbsp;<input type="text" id="weight" name="weight" value="${bean.weight}">${errorMessage.weightError}&nbsp;&nbsp;kg<br>
+											<span style="color: red">*</span>&nbsp;腰圍：&nbsp;<input type="text" id="waistline" name="waistline"
 												value="${bean.waistline}">${errorMessage.waistlineError}&nbsp;&nbsp;cm<br>
 										</div>
 										</div>
@@ -358,9 +358,9 @@
 									<div title="瘦身日誌" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;border: 1px solid #DDDDDD;">
 										
 										<div>
-											日誌標題<input type="text" name="title" value="${bean.title}"><br>
+											日誌標題<input type="text" name="title" id="title" value="${bean.title}"><br>
 											日誌內容
-											<textarea class="ckeditor" name="content">${bean.content}</textarea>
+											<textarea class="ckeditor" name="content" id="content" >${bean.content}</textarea>
 										</div>
 									</div>
 									</div>
@@ -757,6 +757,14 @@
 // 				$("#date").datepicker();
 // 			});
 
+			$("#demo").click(function(){
+				$("#height").val("168.4");
+				$("#weight").val("70.6");
+				$("#waistline").val("79.6");
+			})
+			
+			
+			
 		})(jQuery);
 	</script>
 
