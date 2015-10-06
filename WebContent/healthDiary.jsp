@@ -140,7 +140,7 @@
 											<c:if test="${eat.time == '早上' }">&nbsp;
 											
 											${eat.foodCalVO.name}&nbsp;
-											${eat.foodCalVO.cal} 卡&nbsp;
+											${eat.foodCalVO.cal} 卡
 											${eat.count}
 											${eat.foodCalVO.count}<br>
 <%-- 											${eat.foodCalVO.weight}g --%>
@@ -156,7 +156,7 @@
 										<c:forEach var="eat" items="${vo.eatVo}">
 											<c:if test="${eat.time =='中午'}">&nbsp;
  							${eat.foodCalVO.name} &nbsp;
- 							${eat.foodCalVO.cal} 卡&nbsp;
+ 							${eat.foodCalVO.cal} 卡
  							${eat.count}
  							${eat.foodCalVO.count} <br>
 <%--  							${eat.foodCalVO.weight}g --%>
@@ -170,7 +170,7 @@
 										<c:forEach var="eat" items="${vo.eatVo}">
 											<c:if test="${eat.time=='晚上'}">&nbsp;
  							${eat.foodCalVO.name} &nbsp;
- 							${eat.foodCalVO.cal} 卡  &nbsp;
+ 							${eat.foodCalVO.cal} 卡 
  							${eat.count}
  							${eat.foodCalVO.count} <br>
 <%--  							${eat.foodCalVO.weight}g --%>
@@ -184,7 +184,7 @@
 										<div style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
 										<c:forEach var="exer" items="${vo.exerVo}">&nbsp;
 							${exer.exerciseCalVO.name}&nbsp;
-							${exer.exerciseCalVO.calHour}大卡  &nbsp;
+							${exer.exerciseCalVO.calHour}大卡  
 							${exer.count}hour<br>
 										</c:forEach></div>
 									</div>
