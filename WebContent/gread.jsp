@@ -88,7 +88,7 @@
     </style>
 </head>
 <body id="pageBody">
-<c:set var="funcName" value="RANK" scope="session"/>
+<c:set var="funcName" value="EXAM" scope="session"/>
 <jsp:include page="/page/header.jsp"/>
 
 <div id="contentOuterSeparator"></div>

@@ -224,7 +224,7 @@ ${PageExamVO.exampage[0].content}
 					<input  name="ans" type="radio" class="radio-button-input" value="10"> 
 						<label class="answer-label radio-button-label no-touch touch-sensitive clearfix" for="644496188_7455644669"> 
 							<span class="radio-button-display"></span> 
-							<span class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].correct}<br/></span>
+							<span class="radio-button-label-text question-body-font-theme user-generated">A.${PageExamVO.exampage[0].correct}<br/></span>
 						</label>
 				</div>
 			</div>
@@ -235,7 +235,7 @@ ${PageExamVO.exampage[0].content}
 					<input  name="ans" type="radio" class="radio-button-input" value="0"> 
 						<label class="answer-label radio-button-label no-touch touch-sensitive clearfix checked" for="644496188_7455644670"> 
 							<span class="radio-button-display"></span> 
-							<span class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optA}<br/></span>
+							<span class="radio-button-label-text question-body-font-theme user-generated">A.${PageExamVO.exampage[0].optA}<br/></span>
 						</label>
 				</div>
 			</div>
@@ -248,7 +248,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644671"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optB}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">A.${PageExamVO.exampage[0].optB}<br/>
 					</span>
 					</label>
 				</div>
@@ -263,7 +263,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644672"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optC}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">A.${PageExamVO.exampage[0].optC}<br/>
 					</span>
 					</label>
 				</div>
@@ -277,7 +277,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644669"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].correct}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">B.${PageExamVO.exampage[0].correct}<br/>
 					</span>
 					</label>
 				</div>
@@ -291,7 +291,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix checked"
 						for="644496188_7455644670"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optA}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">B.${PageExamVO.exampage[0].optA}<br/>
 					</span>
 					</label>
 				</div>
@@ -305,7 +305,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644671"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optB}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">B.${PageExamVO.exampage[0].optB}<br/>
 					</span>
 					</label>
 				</div>
@@ -319,7 +319,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644672"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optC}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">B.${PageExamVO.exampage[0].optC}<br/>
 					</span>
 					</label>
 				</div>
@@ -333,7 +333,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644669"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].correct}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">C.${PageExamVO.exampage[0].correct}<br/>
 					</span>
 					</label>
 				</div>
@@ -347,7 +347,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix checked"
 						for="644496188_7455644670"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optA}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">C.${PageExamVO.exampage[0].optA}<br/>
 					</span>
 					</label>
 				</div>
@@ -361,7 +361,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644671"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optB}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">C.${PageExamVO.exampage[0].optB}<br/>
 					</span>
 					</label>
 				</div>
@@ -375,7 +375,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644672"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optC}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">C.${PageExamVO.exampage[0].optC}<br/>
 					</span>
 					</label>
 				</div>
@@ -389,7 +389,7 @@ ${PageExamVO.exampage[0].content}
 						<label
 							class="answer-label radio-button-label no-touch touch-sensitive clearfix"for="644496188_7455644669"> 
 							<span class="radio-button-display"></span> 
-							<span class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].correct}<br/>
+							<span class="radio-button-label-text question-body-font-theme user-generated">D.${PageExamVO.exampage[0].correct}<br/>
 							</span>
 					    </label>
 				</div>
@@ -403,7 +403,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix checked"
 						for="644496188_7455644670"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optA}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">D.${PageExamVO.exampage[0].optA}<br/>
 					</span>
 					</label>
 				</div>
@@ -417,7 +417,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644671"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optB}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">D.${PageExamVO.exampage[0].optB}<br/>
 					</span>
 					</label>
 				</div>
@@ -431,7 +431,7 @@ ${PageExamVO.exampage[0].content}
 						class="answer-label radio-button-label no-touch touch-sensitive clearfix"
 						for="644496188_7455644672"> <span
 						class="radio-button-display"></span> <span
-						class="radio-button-label-text question-body-font-theme user-generated">${PageExamVO.exampage[0].optC}<br/>
+						class="radio-button-label-text question-body-font-theme user-generated">D.${PageExamVO.exampage[0].optC}<br/>
 					</span>
 					</label>
 				</div>
