@@ -104,7 +104,7 @@
         <!--Edit Main Content Area here-->
         <div class="row-fluid">
 			<div class="span8" id="divMain">
-			<c:if test="${a>60}">
+			<c:if test="${a>=60}">
 				<h1>分數：${a}</h1>
 				<h4>厲害喔~身體吃不壞了 </h4>
 				</c:if>
